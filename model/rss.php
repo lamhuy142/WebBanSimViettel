@@ -1,51 +1,62 @@
 <?php
-class LOAITIN
+class RSS
 {
-    private $MaLT;
-    private $TenLT;
-    private $TrangThaiLT;
+    private $Ma;
     private $MaTL;
+    private $Url;
     
-    public function getMaLT()
+    public function getMa()
     {
-        return $this->MaLT;
+        return $this->Ma;
     }
-    public function setMaLT($value)
+    public function setMa($value)
     {
-        $this->MaLT = $value;
+        $this->Ma = $value;
     }
-    public function getTenLT()
-    {
-        return $this->TenLT;
-    }
-    public function setTenLT($value)
-    {
-        $this->TenLT = $value;
-    }
-    public function getTrangThaiLT()
-    {
-        return $this->TrangThaiLT;
-    }
-    public function setTrangThaiLT($value)
-    {
-        $this->TrangThaiLT = $value;
-    }
-    public function getMaTL()
+    public function getMaND()
     {
         return $this->MaTL;
     }
-    public function setMaTL($value)
+    public function setMaND($value)
     {
         $this->MaTL = $value;
     }
+    public function getUrl()
+    {
+        return $this->Url;
+    }
+    public function setUrl($value)
+    {
+        $this->Url = $value;
+    }
     // khai báo các thuộc tính (SV tự viết)
 
+
+    // lấy thông tin người dùng có $email
+    // public function laythongtinbaiviet($email)
+    // {
+    //     $db = DATABASE::connect();
+    //     try {
+    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
+    //         $cmd = $db->prepare($sql);
+    //         $cmd->bindValue(":Email", $Email);
+    //         $cmd->execute();
+    //         $ketqua = $cmd->fetch();
+    //         $cmd->closeCursor();
+    //         return $ketqua;
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
+
     // lấy tất cả ng dùng
-    public function laydanhsachloaitin()
+    public function laydanhsachrss()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM loaitin";
+            $sql = "SELECT * FROM rss";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -58,19 +69,18 @@ class LOAITIN
     }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function themloaitin($loaitin)
+    public function themrss($rss)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO loaitin(TenLT, TrangThaiLT, MaTL) 
-VALUES(:TenLT, :TrangThaiLT, :MaTL)";
+            $sql = "INSERT INTO rss(MaTL, Url) 
+VALUES(:MaTL, :Url)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':TenLT', $loaitin->TenLT);
-            $cmd->bindValue(':TrangThaiLT', $loaitin->TrangThaiLT);
-            $cmd->bindValue(':MaTL', $loaitin->MaTL);
+            $cmd->bindValue(':MaTL', $rss->MaTL);
+            $cmd->bindValue(':Url', $rss->Url);
             $cmd->execute();
-            $MaLT = $db->lastInsertMaLT();
-            return $MaLT;
+            $Ma = $db->lastInsertMa();
+            return $Ma;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -79,16 +89,15 @@ VALUES(:TenLT, :TrangThaiLT, :MaTL)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatloaitin($MaLT,$TenLT, $TrangThaiLT, $MaTL)
+    public function capnhatrss($Ma,$MaTL, $Url)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE loaitin set TenLT=:TenLT, TrangThaiLT=:TrangThaiLT,   where MaLT=MaLT";
+            $sql = "UPDATE rss set MaTL=:MaTL, Url=:Url  where Ma=Ma";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaLT', $MaLT);
-            $cmd->bindValue(':TenLT', $TenLT);
-            $cmd->bindValue(':TrangThaiLT', $TrangThaiLT);
+            $cmd->bindValue('Ma', $Ma);
             $cmd->bindValue(':MaTL', $MaTL);
+            $cmd->bindValue(':Url', $Url);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -115,14 +124,14 @@ VALUES(:TenLT, :TrangThaiLT, :MaTL)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($TenLT, $TrangThai)
+    // public function doiUrl($MaTL, $Url)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenLT=:TenLT";
+    //         $sql = "UPDATE baiviet set Url=:Url where MaTL=:MaTL";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':TenLT', $TenLT);
-    //         $cmd->bindValue(':TrangThai', $TrangThai);
+    //         $cmd->bindValue(':MaTL', $MaTL);
+    //         $cmd->bindValue(':Url', $Url);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;
     //     } catch (PDOException $e) {
