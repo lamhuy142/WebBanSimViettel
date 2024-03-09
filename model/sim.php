@@ -1,52 +1,52 @@
 <?php
-class BINHLUAN
+class SIM
 {
-    private $MaBL;
-    private $NoiDung;
-    private $Ngay;
-    private $MaBV;
-    private $MaND;
+    private $MaS;
+    private $TenS;
+    private $MaLS;
+    private $MoTa;
+    private $HinhAnh;
     
     
-    public function getMaBL()
+    public function getMaS()
     {
-        return $this->MaBL;
+        return $this->MaS;
     }
-    public function setMaBL($value)
+    public function setMaS($value)
     {
-        $this->MaBL = $value;
+        $this->MaS = $value;
     }
-    public function getNoiDung()
+    public function getTenS()
     {
-        return $this->NoiDung;
+        return $this->TenS;
     }
-    public function setNoiDung($value)
+    public function setTenS($value)
     {
-        $this->NoiDung = $value;
+        $this->TenS = $value;
     }
-    public function getNgay()
+    public function getMaLS()
     {
-        return $this->Ngay;
+        return $this->MaLS;
     }
-    public function setNgay($value)
+    public function setMaLS($value)
     {
-        $this->Ngay = $value;
+        $this->MaLS = $value;
     }
-    public function getMaBV()
+    public function getMoTa()
     {
-        return $this->MaBV;
+        return $this->MoTa;
     }
-    public function setMaBV($value)
+    public function setMoTa($value)
     {
-        $this->MaBV = $value;
+        $this->MoTa = $value;
     }
-    public function getMaND()
+    public function getHinhAnh()
     {
-        return $this->MaND;
+        return $this->HinhAnh;
     }
-    public function setMaND($value)
+    public function setHinhAnh($value)
     {
-        $this->MaND = $value;
+        $this->HinhAnh = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -71,11 +71,11 @@ class BINHLUAN
     // }
 
     // lấy tất cả ng dùng
-    public function laydanhsachbinhluan()
+    public function laydanhsachsim()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM binhluan";
+            $sql = "SELECT * FROM sim";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -88,20 +88,20 @@ class BINHLUAN
     }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function thembinhluan($binhluan)
+    public function themsim($sim)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO binhluan(NoiDung, Ngay, MaBV, MaND) 
-VALUES(:NoiDung, :Ngay, :MaBV, :MaND)";
+            $sql = "INSERT INTO sim(TenS, MaLS, MoTa, HinhAnh) 
+VALUES(:TenS, :MaLS, :MoTa, :HinhAnh)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':NoiDung', $binhluan->NoiDung);
-            $cmd->bindValue(':Ngay', $binhluan->Ngay);
-            $cmd->bindValue(':MaBV', $binhluan->MaBV);
-            $cmd->bindValue(':MaND', $binhluan->MaND);
+            $cmd->bindValue(':TenS', $sim->TenS);
+            $cmd->bindValue(':MaLS', $sim->MaLS);
+            $cmd->bindValue(':MoTa', $sim->MoTa);
+            $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
             $cmd->execute();
-            $MaBL = $db->lastInsertMaBL();
-            return $MaBL;
+            $MaS = $db->lastInsertMaS();
+            return $MaS;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -110,17 +110,17 @@ VALUES(:NoiDung, :Ngay, :MaBV, :MaND)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatbinhluan($NoiDung, $Ngay, $MaBV, $MaND) 
+    public function capnhatsim($MaS,$TenS, $MaLS, $MoTa, $HinhAnh) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE binhluan set NoiDung=:NoiDung, Ngay=:Ngay, MaBV=:MaBV, MaND=:MaND  where MaBL=MaBL";
+            $sql = "UPDATE sim set TenS=:TenS, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh  where MaS=MaS";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaBL', $MaBL);
-            $cmd->bindValue(':MaND', $MaND);
-            $cmd->bindValue(':Ngay', $Ngay);
-            $cmd->bindValue(':MaBV', $MaBV);
-            $cmd->bindValue(':MaND', $MaND);
+            $cmd->bindValue(':MaS', $MaS);
+            $cmd->bindValue(':TenS', $TenS);
+            $cmd->bindValue(':MaLS', $MaLS);
+            $cmd->bindValue(':MoTa', $MoTa);
+            $cmd->bindValue(':HinhAnh', $HinhAnh);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -147,13 +147,13 @@ VALUES(:NoiDung, :Ngay, :MaBV, :MaND)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($MaND, $TrangThai)
+    // public function doitrangthai($HinhAnh, $TrangThai)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where MaND=:MaND";
+    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where HinhAnh=:HinhAnh";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':MaND', $MaND);
+    //         $cmd->bindValue(':HinhAnh', $HinhAnh);
     //         $cmd->bindValue(':TrangThai', $TrangThai);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;

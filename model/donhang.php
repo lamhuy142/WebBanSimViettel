@@ -1,17 +1,21 @@
 <?php
-class BINHCHON
+class DONHANG
 {
-    private $MaBC;
+    private $MaDH;
     private $MaND;
-    private $DanhGia;
+    private $Ngay;
+    private $TongTien;
+    private $GhiChu;
+    private $TrangThai;
     
-    public function getMaBC()
+    
+    public function getMaDH()
     {
-        return $this->MaBC;
+        return $this->MaDH;
     }
-    public function setMaBC($value)
+    public function setMaDH($value)
     {
-        $this->MaBC = $value;
+        $this->MaDH = $value;
     }
     public function getMaND()
     {
@@ -21,13 +25,37 @@ class BINHCHON
     {
         $this->MaND = $value;
     }
-    public function getDanhGia()
+    public function getNgay()
     {
-        return $this->DanhGia;
+        return $this->Ngay;
     }
-    public function setDanhGia($value)
+    public function setNgay($value)
     {
-        $this->DanhGia = $value;
+        $this->Ngay = $value;
+    }
+    public function getTongTien()
+    {
+        return $this->TongTien;
+    }
+    public function setTongTien($value)
+    {
+        $this->TongTien = $value;
+    }
+    public function getGhiChu()
+    {
+        return $this->GhiChu;
+    }
+    public function setGhiChu($value)
+    {
+        $this->GhiChu = $value;
+    }
+    public function getTrangThai()
+    {
+        return $this->TrangThai;
+    }
+    public function setTrangThai($value)
+    {
+        $this->TrangThai = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -52,11 +80,11 @@ class BINHCHON
     // }
 
     // lấy tất cả ng dùng
-    public function laydanhsachbinhchon()
+    public function laydanhsachdonhang()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM binhchon";
+            $sql = "SELECT * FROM donhang";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -69,18 +97,21 @@ class BINHCHON
     }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function thembinhchon($binhchon)
+    public function themdonhang($donhang)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO binhchon(MaND, DanhGia) 
-VALUES(:MaND, :DanhGia)";
+            $sql = "INSERT INTO donhang(MaND, Ngay, TongTien, GhiChu, TrangThai) 
+VALUES(:MaND, :Ngay, :TongTien, :GhiChu)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaND', $binhchon->MaND);
-            $cmd->bindValue(':DanhGia', $binhchon->DanhGia);
+            $cmd->bindValue(':MaND', $donhang->MaND);
+            $cmd->bindValue(':Ngay', $donhang->Ngay);
+            $cmd->bindValue(':TongTien', $donhang->TongTien);
+            $cmd->bindValue(':GhiChu', $donhang->GhiChu);
+            $cmd->bindValue(':TrangThai', $donhang->TrangThai);
             $cmd->execute();
-            $MaBC = $db->lastInsertMaBC();
-            return $MaBC;
+            $MaDH = $db->lastInsertMaDH();
+            return $MaDH;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -89,15 +120,18 @@ VALUES(:MaND, :DanhGia)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatbinhchon($MaBC,$MaND, $DanhGia)
+    public function capnhatdonhang($MaDH,$MaND, $Ngay, $TongTien, $GhiChu, $TrangThai) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE binhchon set MaND=:MAND, DanhGia=:DanhGia  where MaBC=MaBC";
+            $sql = "UPDATE donhang set MaND=:MaND, Ngay=:Ngay, TongTien=:TongTien, GhiChu=:GhiChu, TrangThai=:TrangThai  where MaDH=MaDH";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaBC', $MaBC);
+            $cmd->bindValue(':MaDH', $MaDH);
             $cmd->bindValue(':MaND', $MaND);
-            $cmd->bindValue(':DanhGia', $DanhGia);
+            $cmd->bindValue(':Ngay', $Ngay);
+            $cmd->bindValue(':TongTien', $TongTien);
+            $cmd->bindValue(':GhiChu', $GhiChu);
+            $cmd->bindValue(':TrangThai', $TrangThai);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -124,14 +158,14 @@ VALUES(:MaND, :DanhGia)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($MaND, $TrangThai)
+    // public function doiGhiChu($GhiChu, $GhiChu)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where MaND=:MaND";
+    //         $sql = "UPDATE baiviet set GhiChu=:GhiChu where GhiChu=:GhiChu";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':MaND', $MaND);
-    //         $cmd->bindValue(':TrangThai', $TrangThai);
+    //         $cmd->bindValue(':GhiChu', $GhiChu);
+    //         $cmd->bindValue(':GhiChu', $GhiChu);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;
     //     } catch (PDOException $e) {

@@ -5,22 +5,24 @@
     <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="./images/icons/favicon.png" />
+
     <!--===================================link CSS============================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-    <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-    <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
-    <link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
-    <link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="css/util.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css"> wamp\www\WebBanSimViettel\public\assets-->
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/fonts/linearicons-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/MagnificPopup/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
     <!--===============================================================================================-->
 </head>
 
@@ -35,7 +37,7 @@
 
                     <!-- Logo desktop -->
                     <a href="#" class="logo">
-                        <img src="images/icons/logo-01.png" alt="IMG-LOGO">
+                        <img src="./images/icons/logo-01.png" alt="IMG-LOGO">
                     </a>
 
                     <!-- Menu desktop -->
@@ -95,7 +97,7 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="index.php"><img src="images/icons/logo-01.png" alt="IMG-LOGO"></a>
+                <a href="index.php"><img src="./images/icons/logo-01.png" alt="IMG-LOGO"></a>
             </div>
 
             <!-- Icon header -->
@@ -158,7 +160,7 @@
         <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
             <div class="container-search-header">
                 <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="images/icons/icon-close2.png" alt="CLOSE">
+                    <img src="./images/icons/icon-close2.png" alt="CLOSE">
                 </button>
 
                 <form class="wrap-search-header flex-w p-l-15">
@@ -228,47 +230,47 @@
                     <div class="flex-w flex-sb p-t-36 gallery-lb">
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-01.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-01.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-01.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-01.jpg');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-02.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-02.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-02.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-02.jpg');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-03.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-03.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-03.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-03.jpg');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-04.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-04.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-04.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-04.jpg');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-05.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-05.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-05.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-05.jpg');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-06.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-06.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-06.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-06.jpg');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-07.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-07.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-07.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-07.jpg');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-08.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-08.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-08.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-08.jpg');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="images/gallery-09.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-09.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="./images/gallery-09.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-09.jpg');"></a>
                         </div>
                     </div>
                 </div>
@@ -304,7 +306,7 @@
                 <ul class="header-cart-wrapitem w-full">
                     <li class="header-cart-item flex-w flex-t m-b-12">
                         <div class="header-cart-item-img">
-                            <img src="images/item-cart-01.jpg" alt="IMG">
+                            <img src="./images/item-cart-01.jpg" alt="IMG">
                         </div>
 
                         <div class="header-cart-item-txt p-t-8">
@@ -320,7 +322,7 @@
 
                     <li class="header-cart-item flex-w flex-t m-b-12">
                         <div class="header-cart-item-img">
-                            <img src="images/item-cart-02.jpg" alt="IMG">
+                            <img src="./images/item-cart-02.jpg" alt="IMG">
                         </div>
 
                         <div class="header-cart-item-txt p-t-8">
@@ -336,7 +338,7 @@
 
                     <li class="header-cart-item flex-w flex-t m-b-12">
                         <div class="header-cart-item-img">
-                            <img src="images/item-cart-03.jpg" alt="IMG">
+                            <img src="./images/item-cart-03.jpg" alt="IMG">
                         </div>
 
                         <div class="header-cart-item-txt p-t-8">

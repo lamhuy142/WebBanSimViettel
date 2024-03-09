@@ -2,15 +2,15 @@
 class NGUOIDUNG
 {
     private $MaND;
-    private $HoTen;
-    private $TenDN;
-    private $MatKhau;
     private $Email;
-    private $NgaySinh;
-    private $GioiTinh;
-    private $QuyenND;
-    private $NgayDK;
+    private $Sdt;
+    private $MatKhau;
+    private $HoTen;
+    private $MaQ;
     private $TrangThai;
+    private $HinhAnh;
+    private $DiaChi;
+    
 
     public function getMaND()
     {
@@ -28,13 +28,13 @@ class NGUOIDUNG
     {
         $this->HoTen = $value;
     }
-    public function getTenDN()
+    public function getSdt()
     {
-        return $this->TenDN;
+        return $this->Sdt;
     }
-    public function setTenDN($value)
+    public function setSdt($value)
     {
-        $this->TenDN = $value;
+        $this->Sdt = $value;
     }
     public function getMatKhau()
     {
@@ -42,7 +42,7 @@ class NGUOIDUNG
     }
     public function setMatKhau($value)
     {
-        $this->soMatKhau = $value;
+        $this->MatKhau = $value;
     }
     public function getEmail()
     {
@@ -52,37 +52,29 @@ class NGUOIDUNG
     {
         $this->Email = $value;
     }
-    public function getNgaySinh()
+    public function getHinhAnh()
     {
-        return $this->NgaySinh;
+        return $this->HinhAnh;
     }
-    public function setNgaySinh($value)
+    public function setHinhAnh($value)
     {
-        $this->NgaySinh = $value;
+        $this->HinhAnh = $value;
     }
-    public function getGioiTinh()
+    public function getMaQ()
     {
-        return $this->GioiTinh;
+        return $this->MaQ;
     }
-    public function setGioiTinh($value)
+    public function setMaQ($value)
     {
-        $this->GioiTinh = $value;
+        $this->MaQ = $value;
     }
-    public function getQuyenND()
+    public function getDiaChi()
     {
-        return $this->QuyenND;
+        return $this->DiaChi;
     }
-    public function setQuyenND($value)
+    public function setDiaChi($value)
     {
-        $this->QuyenND = $value;
-    }
-    public function getNgayDK()
-    {
-        return $this->NgayDK;
-    }
-    public function setNgayDK($value)
-    {
-        $this->NgayDK = $value;
+        $this->DiaChi = $value;
     }
     public function getTrangThai()
     {
@@ -94,7 +86,7 @@ class NGUOIDUNG
     }
     // khai báo các thuộc tính (SV tự viết)
 
-    public function kiemtranguoidunghople($email, $matkhau)
+    public function kiemtranguoidunghople($Email, $MatKhau)
     {
         $db = DATABASE::connect();
         try {
@@ -114,7 +106,7 @@ class NGUOIDUNG
     }
 
     // lấy thông tin người dùng có $email
-    public function laythongtinnguoidung($email)
+    public function laythongtinnguoidung($Email)
     {
         $db = DATABASE::connect();
         try {
@@ -154,18 +146,17 @@ class NGUOIDUNG
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO nguoidung(HoTen, TenDN, MatKhau, Email, NgaySinh, GioiTinh, QuyenND, NgayDK, TrangThai) 
-VALUES(:HoTen, :TenDN, :MatKhau, :Email, :NgaySinh, :GioiTinh, :QuyenND, :NgayDK, :TrangThai)";
+            $sql = "INSERT INTO nguoidung(HoTen, Sdt, MatKhau, Email, TrangThai, HinhAnh, MaQ, DiaChi) 
+VALUES(:HoTen, :Sdt, :MatKhau, :Email, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':HoTen', $nguoidung->HoTen);
-            $cmd->bindValue(':TenDN', $nguoidung->TenDN);
+            $cmd->bindValue(':Sdt', $nguoidung->Sdt);
             $cmd->bindValue(':MatKhau', md5($nguoidung->MatKhau));
             $cmd->bindValue(':Email', $nguoidung->Email);
-            $cmd->bindValue(':NgaySinh', $nguoidung->NgaySinh);
-            $cmd->bindValue(':GioiTinh', $nguoidung->GioiTinh);
-            $cmd->bindValue(':QuyenND', $nguoidung->QuyenND);
-            $cmd->bindValue(':NgayDK', $nguoidung->NgayDK);
             $cmd->bindValue(':TrangThai', $nguoidung->TrangThai);
+            $cmd->bindValue(':HinhAnh', $nguoidung->HinhAnh);
+            $cmd->bindValue(':MaQ', $nguoidung->MaQ);
+            $cmd->bindValue(':DiaChi', $nguoidung->DiaChi);
             $cmd->execute();
             $MaND = $db->lastInsertMaND();
             return $MaND;
@@ -177,22 +168,21 @@ VALUES(:HoTen, :TenDN, :MatKhau, :Email, :NgaySinh, :GioiTinh, :QuyenND, :NgayDK
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatnguoidung($MaND, $HoTen , $TenDN , $MatKhau , $Email, $Ngaysinh, $GioiTinh, $QuyenND, $NgayDK, $TrangThai)
+    public function capnhatnguoidung($MaND, $HoTen , $Sdt , $MatKhau , $Email, $TrangThai, $HinhAnh, $MaQ, $DiaChi)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung set HoTen=:HoTen, TenDN=:TenDN, MatKhau=:MatKhau, Email=:Email, NgaySinh=:NgaySinh, GioiTinh=:GioiTinh, QuyenND=:QuyenND, NgayDK=:NgayDK, TrangThai=:TrangThai where MaND=MaND";
+            $sql = "UPDATE nguoidung set HoTen=:HoTen, Sdt=:Sdt, MatKhau=:MatKhau, Email=:Email, TrangThai=:TrangThai, HinhAnh=:HinhAnh, MaQ=:MaQ, DiaChi=:DiaChi where MaND=MaND";
             $cmd = $db->prepare($sql);
             $cmd->bindValue('MaND', $MaND);
             $cmd->bindValue(':HoTen', $HoTen);
-            $cmd->bindValue(':TenDN', $TenDN);
+            $cmd->bindValue(':Sdt', $Sdt);
             $cmd->bindValue(':MatKhau', $MatKhau);
             $cmd->bindValue(':Email', $Email);
-            $cmd->bindValue(':NgaySinh', $NgaySinh);
-            $cmd->bindValue(':GioiTinh', $GioiTinh);
-            $cmd->bindValue(':QuyenND', $QuyenND);
-            $cmd->bindValue(':NgayDK', $NgayDK);
             $cmd->bindValue(':TrangThai', $TrangThai);
+            $cmd->bindValue(':HinhAnh', $HinhAnh);
+            $cmd->bindValue(':MaQ', $MaQ);
+            $cmd->bindValue(':DiaChi', $DiaChi);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -219,14 +209,14 @@ VALUES(:HoTen, :TenDN, :MatKhau, :Email, :NgaySinh, :GioiTinh, :QuyenND, :NgayDK
         }
     }
     // Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 khách hàng)
-    public function doiloainguoidung($Email, $QuyenND)
+    public function doiloainguoidung($Email, $MaQ)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung set QuyenND=:QuyenND where Email=:Email";
+            $sql = "UPDATE nguoidung set MaQ=:MaQ where Email=:Email";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':Email', $Email);
-            $cmd->bindValue(':QuyenND', $QuyenND);
+            $cmd->bindValue(':MaQ', $MaQ);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {

@@ -1,4 +1,4 @@
-<?php include("inc/top.php") ?>
+<?php include("inc/top.php"); ?>
 
 <!-- Slider -->
 <section class="section-slide">

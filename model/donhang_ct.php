@@ -1,25 +1,61 @@
 <?php
-class QUANGCAO
+class DONHANG_CT
 {
-    private $MaQC;
-    private $urlHinhAnh;
-
+    private $MaDH_CT;
+    private $MaDH;
+    private $MaLS;
+    private $SoLuong;
+    private $DonGia;
+    private $ThanhTien;
     
-    public function getMaQC()
+    
+    public function getMaDH_CT()
     {
-        return $this->MaQC;
+        return $this->MaDH_CT;
     }
-    public function setMaQC($value)
+    public function setMaDH_CT($value)
     {
-        $this->MaQC = $value;
+        $this->MaDH_CT = $value;
     }
-    public function geturlHinhAnh()
+    public function getMaDH()
     {
-        return $this->urlHinhAnh;
+        return $this->MaDH;
     }
-    public function seturlHinhAnh($value)
+    public function setMaDH($value)
     {
-        $this->urlHinhAnh = $value;
+        $this->MaDH = $value;
+    }
+    public function getMaLS()
+    {
+        return $this->MaLS;
+    }
+    public function setMaLS($value)
+    {
+        $this->MaLS = $value;
+    }
+    public function getSoLuong()
+    {
+        return $this->SoLuong;
+    }
+    public function setSoLuong($value)
+    {
+        $this->SoLuong = $value;
+    }
+    public function getThanhTien()
+    {
+        return $this->ThanhTien;
+    }
+    public function setThanhTien($value)
+    {
+        $this->ThanhTien = $value;
+    }
+    public function getDonGia()
+    {
+        return $this->DonGia;
+    }
+    public function setDonGia($value)
+    {
+        $this->DonGia = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -44,11 +80,11 @@ class QUANGCAO
     // }
 
     // lấy tất cả ng dùng
-    public function laydanhsachquangcao()
+    public function laydanhsachdonhang_ct()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM quangcao";
+            $sql = "SELECT * FROM donhang_ct";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -61,17 +97,21 @@ class QUANGCAO
     }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function themquangcao($quangcao)
+    public function themdonhang_ct($donhang_ct)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO quangcao(urlHinhAnh) 
-VALUES(:MoTaQC, :URL, :urlHinhAnh)";
+            $sql = "INSERT INTO donhang_ct(MaDH, MaLS, SoLuong, DonGia, ThanhTien) 
+VALUES(:MaDH, :MaLS, :SoLuong, :ThanhTien)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':urlHinhAnh', $quangcao->urlHinhAnh);
+            $cmd->bindValue(':MaDH', $donhang_ct->MaDH);
+            $cmd->bindValue(':MaLS', $donhang_ct->MaLS);
+            $cmd->bindValue(':SoLuong', $donhang_ct->SoLuong);
+            $cmd->bindValue(':DonGia', $donhang_ct->DonGia);
+            $cmd->bindValue(':ThanhTien', $donhang_ct->ThanhTien);
             $cmd->execute();
-            $MaQC = $db->lastInsertMaQC();
-            return $MaQC;
+            $MaDH_CT = $db->lastInsertMaDH_CT();
+            return $MaDH_CT;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -80,14 +120,18 @@ VALUES(:MoTaQC, :URL, :urlHinhAnh)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatquangcao($MaQC,$MoTaQC, $URL, $urlHinhAnh)
+    public function capnhatdonhang_ct($MaDH_CT,$MaDH, $MaLS, $SoLuong, $DonGia, $ThanhTien) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE quangcao set urlHinhAnh  where MaQC=MaQC";
+            $sql = "UPDATE donhang_ct set MaDH=:MaDH, MaLS=:MaLS, SoLuong=:SoLuong, DonGia=:DonGia, ThanhTien=:ThanhTien  where MaDH_CT=MaDH_CT";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaQC', $MaQC);
-            $cmd->bindValue(':urlHinhAnh', $urlHinhAnh);
+            $cmd->bindValue(':MaDH_CT', $MaDH_CT);
+            $cmd->bindValue(':MaDH', $MaDH);
+            $cmd->bindValue(':MaLS', $MaLS);
+            $cmd->bindValue(':SoLuong', $SoLuong);
+            $cmd->bindValue(':DonGia', $DonGia);
+            $cmd->bindValue(':ThanhTien', $ThanhTien);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -114,14 +158,14 @@ VALUES(:MoTaQC, :URL, :urlHinhAnh)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doiURL($MoTaQC, $URL)
+    // public function doitrangthai($ThanhTien, $TrangThai)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set URL=:URL where MoTaQC=:MoTaQC";
+    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where ThanhTien=:ThanhTien";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':MoTaQC', $MoTaQC);
-    //         $cmd->bindValue(':URL', $URL);
+    //         $cmd->bindValue(':ThanhTien', $ThanhTien);
+    //         $cmd->bindValue(':TrangThai', $TrangThai);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;
     //     } catch (PDOException $e) {

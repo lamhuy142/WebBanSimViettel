@@ -1,17 +1,35 @@
 <?php
-class QUANGCAO
+class DANHGIA
 {
-    private $MaQC;
+    private $MaDG;
+    private $MaND;
+    private $NoiDung;
     private $urlHinhAnh;
 
     
-    public function getMaQC()
+    public function getMaDG()
     {
-        return $this->MaQC;
+        return $this->MaDG;
     }
-    public function setMaQC($value)
+    public function setMaDG($value)
     {
-        $this->MaQC = $value;
+        $this->MaDG = $value;
+    }
+    public function getMaND()
+    {
+        return $this->MaND;
+    }
+    public function setMaND($value)
+    {
+        $this->MaND = $value;
+    }
+    public function getNoiDung()
+    {
+        return $this->NoiDung;
+    }
+    public function setNoiDung($value)
+    {
+        $this->NoiDung = $value;
     }
     public function geturlHinhAnh()
     {
@@ -44,11 +62,11 @@ class QUANGCAO
     // }
 
     // lấy tất cả ng dùng
-    public function laydanhsachquangcao()
+    public function laydanhsachdanhgia()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM quangcao";
+            $sql = "SELECT * FROM danhgia";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -61,17 +79,19 @@ class QUANGCAO
     }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function themquangcao($quangcao)
+    public function themdanhgia($danhgia)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO quangcao(urlHinhAnh) 
-VALUES(:MoTaQC, :URL, :urlHinhAnh)";
+            $sql = "INSERT INTO danhgia(MaND, NoiDung, urlHinhAnh) 
+VALUES(:MaND, :NoiDung, :urlHinhAnh)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':urlHinhAnh', $quangcao->urlHinhAnh);
+            $cmd->bindValue(':MaND', $danhgia->MaND);
+            $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
+            $cmd->bindValue(':urlHinhAnh', $danhgia->urlHinhAnh);
             $cmd->execute();
-            $MaQC = $db->lastInsertMaQC();
-            return $MaQC;
+            $MaDG = $db->lastInsertMaDG();
+            return $MaDG;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -80,13 +100,15 @@ VALUES(:MoTaQC, :URL, :urlHinhAnh)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatquangcao($MaQC,$MoTaQC, $URL, $urlHinhAnh)
+    public function capnhatdanhgia($MaDG,$MaND, $NoiDung, $urlHinhAnh)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE quangcao set urlHinhAnh  where MaQC=MaQC";
+            $sql = "UPDATE danhgia set MaND=:MaND, NoiDung=:NoiDung, urlHinhAnh  where MaDG=MaDG";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaQC', $MaQC);
+            $cmd->bindValue('MaDG', $MaDG);
+            $cmd->bindValue(':MaND', $MaND);
+            $cmd->bindValue(':NoiDung', $NoiDung);
             $cmd->bindValue(':urlHinhAnh', $urlHinhAnh);
             $ketqua = $cmd->execute();
             return $ketqua;
@@ -114,14 +136,14 @@ VALUES(:MoTaQC, :URL, :urlHinhAnh)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doiURL($MoTaQC, $URL)
+    // public function doiNoiDung($MaND, $NoiDung)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set URL=:URL where MoTaQC=:MoTaQC";
+    //         $sql = "UPDATE baiviet set NoiDung=:NoiDung where MaND=:MaND";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':MoTaQC', $MoTaQC);
-    //         $cmd->bindValue(':URL', $URL);
+    //         $cmd->bindValue(':MaND', $MaND);
+    //         $cmd->bindValue(':NoiDung', $NoiDung);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;
     //     } catch (PDOException $e) {

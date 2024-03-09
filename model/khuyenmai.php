@@ -1,43 +1,61 @@
 <?php
-class LICHSUDOC
+class KHUYENMAI
 {
-    private $MaLS;
-    private $MaND;
-    private $MaBV;
-    private $ThoiGianDoc;
-
+    private $MaKM;
+    private $TenKM;
+    private $MoTa;
+    private $GiaTriKM;
+    private $NgayBD;
+    private $NgayKT;
     
-    public function getMaLS()
+    
+    public function getMaKM()
     {
-        return $this->MaLS;
+        return $this->MaKM;
     }
-    public function setMaLS($value)
+    public function setMaKM($value)
     {
-        $this->MaLS = $value;
+        $this->MaKM = $value;
     }
-    public function getMaND()
+    public function getTenKM()
     {
-        return $this->MaND;
+        return $this->TenKM;
     }
-    public function setMaND($value)
+    public function setTenKM($value)
     {
-        $this->MaND = $value;
+        $this->TenKM = $value;
     }
-    public function getMaBV()
+    public function getMoTa()
     {
-        return $this->MaBV;
+        return $this->MoTa;
     }
-    public function setMaBV($value)
+    public function setMoTa($value)
     {
-        $this->MaBV = $value;
+        $this->MoTa = $value;
     }
-    public function getThoiGianDoc()
+    public function getGiaTriKM()
     {
-        return $this->ThoiGianDoc;
+        return $this->GiaTriKM;
     }
-    public function setThoiGianDoc($value)
+    public function setGiaTriKM($value)
     {
-        $this->ThoiGianDoc = $value;
+        $this->GiaTriKM = $value;
+    }
+    public function getNgayKT()
+    {
+        return $this->NgayKT;
+    }
+    public function setNgayKT($value)
+    {
+        $this->NgayKT = $value;
+    }
+    public function getNgayBD()
+    {
+        return $this->NgayBD;
+    }
+    public function setNgayBD($value)
+    {
+        $this->NgayBD = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -62,11 +80,11 @@ class LICHSUDOC
     // }
 
     // lấy tất cả ng dùng
-    public function laydanhsachlichsudoc()
+    public function laydanhsachkhuyenmai()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM lichsudoc";
+            $sql = "SELECT * FROM khuyenmai";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -79,19 +97,21 @@ class LICHSUDOC
     }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function themlichsudoc($lichsudoc)
+    public function themkhuyenmai($khuyenmai)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO lichsudoc(MaND, MaBV, ThoiGianDoc) 
-VALUES(:MaND, :MaBV, :ThoiGianDoc)";
+            $sql = "INSERT INTO khuyenmai(TenKM, MoTa, GiaTriKM, NgayBD, NgayKT) 
+VALUES(:TenKM, :MoTa, :GiaTriKM, :NgayKT)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaND', $lichsudoc->MaND);
-            $cmd->bindValue(':MaBV', $lichsudoc->MaBV);
-            $cmd->bindValue(':ThoiGianDoc', $lichsudoc->ThoiGianDoc);
+            $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
+            $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
+            $cmd->bindValue(':GiaTriKM', $khuyenmai->GiaTriKM);
+            $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
+            $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
             $cmd->execute();
-            $MaLS = $db->lastInsertMaLS();
-            return $MaLS;
+            $MaKM = $db->lastInsertMaKM();
+            return $MaKM;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -100,16 +120,18 @@ VALUES(:MaND, :MaBV, :ThoiGianDoc)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatlichsudoc($MaLS,$MaND, $MaBV, $ThoiGianDoc)
+    public function capnhatkhuyenmai($MaKM,$TenKM, $MoTa, $GiaTriKM, $NgayBD, $NgayKT) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE lichsudoc set MaND=:MaND, MaBV=:MaBV, ThoiGianDoc  where MaLS=MaLS";
+            $sql = "UPDATE khuyenmai set TenKM=:TenKM, MoTa=:MoTa, GiaTriKM=:GiaTriKM, NgayBD=:NgayBD, NgayKT=:NgayKT  where MaKM=MaKM";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaLS', $MaLS);
-            $cmd->bindValue(':MaND', $MaND);
-            $cmd->bindValue(':MaBV', $MaBV);
-            $cmd->bindValue(':ThoiGianDoc', $ThoiGianDoc);
+            $cmd->bindValue(':MaKM', $MaKM);
+            $cmd->bindValue(':TenKM', $TenKM);
+            $cmd->bindValue(':MoTa', $MoTa);
+            $cmd->bindValue(':GiaTriKM', $GiaTriKM);
+            $cmd->bindValue(':NgayBD', $NgayBD);
+            $cmd->bindValue(':NgayKT', $NgayKT);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -136,14 +158,14 @@ VALUES(:MaND, :MaBV, :ThoiGianDoc)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doiMaBV($MaND, $MaBV)
+    // public function doitrangthai($NgayKT, $TrangThai)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set MaBV=:MaBV where MaND=:MaND";
+    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where NgayKT=:NgayKT";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':MaND', $MaND);
-    //         $cmd->bindValue(':MaBV', $MaBV);
+    //         $cmd->bindValue(':NgayKT', $NgayKT);
+    //         $cmd->bindValue(':TrangThai', $TrangThai);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;
     //     } catch (PDOException $e) {
