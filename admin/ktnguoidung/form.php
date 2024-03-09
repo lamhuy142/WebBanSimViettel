@@ -1,4 +1,4 @@
-<?php include("inc/top.php"); ?>
+<?php include("../inc/top.php"); ?>
     <!-- Form Start -->
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
@@ -288,4 +288,4 @@
         </div>
     </div>
     <!-- Form End -->
-<?php include("inc/bottom.php"); ?>
+<?php include("../inc/bottom.php"); ?>

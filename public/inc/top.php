@@ -94,7 +94,7 @@
         </div>
 
         <!-- Header Mobile -->
-        <div class="wrap-header-mobile">
+        <div class="wrap-header-mobile" style="background-color: #E7E7E7;  ">
             <!-- Logo moblie -->
             <div class="logo-mobile">
                 <a href="index.php"><img src="./images/icons/logo-01.png" alt="IMG-LOGO"></a>
@@ -125,7 +125,7 @@
 
 
         <!-- Menu Mobile -->
-        <div class="menu-mobile">
+        <div class="menu-mobile" style=" background-color: #FFFFFF; color: black;">
             <ul class="main-menu-m">
                 <li>
                     <a href="index.php">Home</a>
