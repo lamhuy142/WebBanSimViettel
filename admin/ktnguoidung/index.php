@@ -42,27 +42,28 @@ switch ($action) {
     case "dangnhap":
         include("signin.php");
         break;
-    case "xulydangnhap":
+    case "xldangnhap":
 
         $email = $_POST["txtemail"];
         $matkhau = $_POST["txtpassword"];
 
         // Kiểm tra tính hợp lệ của email và mật khẩu
-        if (validateEmail($email) && validatePassword($matkhau)) {
-            if ($nd->kiemtranguoidunghople($email, $matkhau) == TRUE) {
-                $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
-                if ($_SESSION["nguoidung"]["loaind_id"] == 1) {
-                    include("main.php");
-                } elseif ($_SESSION["nguoidung"]["loaind_id"] == 2) {
-                    header("Location:../../public/index.php");
-                } else {
-                    $thongbao = "Nhập sai mật khẩu hoặc email";
-                    include("signin.php");
-                }
-            } else {
-                $thongbao = "Nhập sai mật khẩu hoặc email";
-                include("signin.php");
+        // if (validateEmail($email) && validatePassword($matkhau)) {
+        if ($nd->kiemtranguoidunghople($email, $matkhau) == TRUE) {
+            $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
+            if ($_SESSION["nguoidung"]["TrangThai"] == 1) {
+                include("main.php");
             }
+            //     elseif ($_SESSION["nguoidung"]["loaind_id"] == 2) {
+            //         header("Location:../../public/index.php");
+            //     } else {
+            //         $thongbao = "Nhập sai mật khẩu hoặc email";
+            //         include("signin.php");
+            //     }
+            // } else {
+            //     $thongbao = "Nhập sai mật khẩu hoặc email";
+            //     include("signin.php");
+            // }
         } else {
             $thongbao = "Mật khẩu hoặc email khôgn hợp lệ";
             include("signin.php");
