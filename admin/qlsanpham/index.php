@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION["nguoidung"])) 
+header("location:../index.php");
+
 require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
