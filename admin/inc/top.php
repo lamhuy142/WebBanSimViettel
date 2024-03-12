@@ -26,6 +26,8 @@
     <!-- Custom styles for this template-->
     <link href="../../admin/inc/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
+
     <!-- <script src="ckeditor5/ckeditor.js"></script>
     <script src="ckfinder/ckfinder.js"></script> -->
     <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script> -->

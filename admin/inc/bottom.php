@@ -58,16 +58,14 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 <script>
-    ClassicEditor
+        ClassicEditor
         .create(document.querySelector('#editor'))
         .catch(error => {
             console.error(error);
         });
+    // CKEDITOR.replace('ten');
+
 </script>
 </body>
-
-<!-- <script>
-    CKEDITOR.replace('ckeditor5', {});
-</script> -->
 
 </html>

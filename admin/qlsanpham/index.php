@@ -46,6 +46,7 @@ switch ($action) {
         $moi->setHinhAnh($hinhanh);
         $moi->setGiaGoc($_POST["txtgiagoc"]);
         $moi->setGiaBan($_POST["txtgiaban"]);
+        $moi->setTinhTrang($_POST["txttinhtrang"]);
         // thêm
         $s->themsim($moi);
 

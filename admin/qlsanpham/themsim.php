@@ -14,7 +14,7 @@
                         <label for="optloaisim" class="form-label">Loại Sim</label>
                         <select class="form-control form-select" name="optloaisim">
                             <?php foreach ($loaisim as $l) : ?>
-                                <option value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenSim']; ?></option>
+                                <option value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenLS']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -27,7 +27,7 @@
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtmota" class="form-label">Mô Tả</label>
-                        <input class="form-control" type="text" name="txtmota" placeholder="Nhập mô tả">
+                        <input class="form-control" id="editor" type="text" name="txtmota" placeholder="Nhập mô tả">
                     </div>
                 </div>
                 <div class="row g-3">
@@ -38,6 +38,10 @@
                     <div class="col md-3 mt-3">
                         <label for="txtgiaban" class="form-label">Giá bán</label>
                         <input class="form-control" type="number" name="txtgiaban" value="0">
+                    </div>
+                    <div class="col md-3 mt-3">
+                        <label for="txttinhtrang" class="form-label">Trạng Thái</label>
+                        <input class="form-control" type="number" name="txttinhtrang" value="1" disabled>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtsosim" class="form-label">Hình Ảnh</label>
