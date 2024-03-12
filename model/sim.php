@@ -2,10 +2,13 @@
 class SIM
 {
     private $MaS;
-    private $TenS;
+    private $SoSim;
     private $MaLS;
     private $MoTa;
     private $HinhAnh;
+    private $GiaGoc;
+    private $GiaBan;
+   
     
     
     public function getMaS()
@@ -16,13 +19,13 @@ class SIM
     {
         $this->MaS = $value;
     }
-    public function getTenS()
+    public function getSoSim()
     {
-        return $this->TenS;
+        return $this->SoSim;
     }
-    public function setTenS($value)
+    public function setSoSim($value)
     {
-        $this->TenS = $value;
+        $this->SoSim = $value;
     }
     public function getMaLS()
     {
@@ -48,6 +51,23 @@ class SIM
     {
         $this->HinhAnh = $value;
     }
+    public function getGiaGoc()
+    {
+        return $this->GiaGoc;
+    }
+    public function setGiaGoc($value)
+    {
+        $this->GiaGoc = $value;
+    }
+    public function getGiaBan()
+    {
+        return $this->GiaBan;
+    }
+    public function setGiaBan($value)
+    {
+        $this->GiaBan = $value;
+    }
+    
     // khai báo các thuộc tính (SV tự viết)
 
 
@@ -92,13 +112,16 @@ class SIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO sim(TenS, MaLS, MoTa, HinhAnh) 
-VALUES(:TenS, :MaLS, :MoTa, :HinhAnh)";
+            $sql = "INSERT INTO sim(SoSim, MaLS, MoTa, HinhAnh, GiaGoc, GiaBan) 
+VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':TenS', $sim->TenS);
+            $cmd->bindValue(':SoSim', $sim->SoSim);
             $cmd->bindValue(':MaLS', $sim->MaLS);
             $cmd->bindValue(':MoTa', $sim->MoTa);
             $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
+            $cmd->bindValue(':GiaGoc', $sim->GiaGoc);
+            $cmd->bindValue(':GiaBan', $sim->GiaBan);
+            
             $cmd->execute();
             $MaS = $db->lastInsertMaS();
             return $MaS;
@@ -110,17 +133,20 @@ VALUES(:TenS, :MaLS, :MoTa, :HinhAnh)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatsim($MaS,$TenS, $MaLS, $MoTa, $HinhAnh) 
+    public function capnhatsim($MaS,$SoSim, $MaLS, $MoTa, $HinhAnh, $GiaGoc, $GiaBan) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE sim set TenS=:TenS, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh  where MaS=MaS";
+            $sql = "UPDATE sim set SoSim=:SoSim, MaLS=:MaLS where MaS=MaS";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaS', $MaS);
-            $cmd->bindValue(':TenS', $TenS);
+            $cmd->bindValue(':SoSim', $SoSim);
             $cmd->bindValue(':MaLS', $MaLS);
             $cmd->bindValue(':MoTa', $MoTa);
             $cmd->bindValue(':HinhAnh', $HinhAnh);
+            $cmd->bindValue(':GiaGoc', $GiaGoc);
+            $cmd->bindValue(':GiaBan', $GiaBan);
+            
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
