@@ -2,7 +2,7 @@
 class LOAISIM
 {
     private $MaLS;
-    private $TenSim;
+    private $TenS;
     private $SoLuong;
     private $LuotMua;
     
@@ -14,13 +14,13 @@ class LOAISIM
     {
         $this->MaLS = $value;
     }
-    public function getTenSim()
+    public function getTenS()
     {
-        return $this->TenSim;
+        return $this->TenS;
     }
-    public function setTenSim($value)
+    public function setTenS($value)
     {
-        $this->TenSim = $value;
+        $this->TenS = $value;
     }
     public function getSoLuong()
     {
@@ -62,15 +62,15 @@ class LOAISIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO loaisim(TenSim, SoLuong, LuotMua) 
-VALUES(:TenSim, :SoLuong, :LuotMua)";
+            $sql = "INSERT INTO loaisim(TenS, SoLuong, LuotMua) 
+VALUES(:TenS, :SoLuong, :LuotMua)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':TenSim', $loaisim->TenSim);
+            $cmd->bindValue(':TenS', $loaisim->TenS);
             $cmd->bindValue(':SoLuong', $loaisim->SoLuong);
             $cmd->bindValue(':LuotMua', $loaisim->LuotMua);
             $cmd->execute();
-            $MaLS = $db->lastInsertMaLS();
-            return $MaLS;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -79,14 +79,14 @@ VALUES(:TenSim, :SoLuong, :LuotMua)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatloaisim($MaLS,$TenSim, $SoLuong, $LuotMua)
+    public function capnhatloaisim($MaLS,$TenS, $SoLuong, $LuotMua)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE loaisim set TenSim=:TenSim, SoLuong=:SoLuong,   where MaLS=MaLS";
+            $sql = "UPDATE loaisim set TenS=:TenS, SoLuong=:SoLuong,   where MaLS=MaLS";
             $cmd = $db->prepare($sql);
             $cmd->bindValue('MaLS', $MaLS);
-            $cmd->bindValue(':TenSim', $TenSim);
+            $cmd->bindValue(':TenS', $TenS);
             $cmd->bindValue(':SoLuong', $SoLuong);
             $cmd->bindValue(':LuotMua', $LuotMua);
             $ketqua = $cmd->execute();
@@ -115,13 +115,13 @@ VALUES(:TenSim, :SoLuong, :LuotMua)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($TenSim, $TrangThai)
+    // public function doitrangthai($TenS, $TrangThai)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenSim=:TenSim";
+    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenS=:TenS";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':TenSim', $TenSim);
+    //         $cmd->bindValue(':TenS', $TenS);
     //         $cmd->bindValue(':TrangThai', $TrangThai);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;

@@ -102,8 +102,8 @@ VALUES(:MaG, :MaLS, :SL, :TongGia)";
             $cmd->bindValue(':DonGia', $giohang_ct->DonGia);
             $cmd->bindValue(':TongGia', $giohang_ct->TongGia);
             $cmd->execute();
-            $MaCT = $db->lastInsertMaCT();
-            return $MaCT;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

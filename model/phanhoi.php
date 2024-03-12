@@ -79,8 +79,8 @@ VALUES(:MaND, :MaLPH)";
             $cmd->bindValue(':MaND', $phanhoi->MaND);
             $cmd->bindValue(':MaLPH', $phanhoi->MaLPH);
             $cmd->execute();
-            $MaPH = $db->lastInsertMaPH();
-            return $MaPH;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

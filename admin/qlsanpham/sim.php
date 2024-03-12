@@ -18,6 +18,8 @@
                             <th scope="col">Số Sim</th>
                             <th scope="col">Giá Gốc</th>
                             <th scope="col">Giá Bán</th>
+                            <th scope="col">Trạng Thái</th>
+                            <th scope="col">Hành Động</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -26,16 +28,28 @@
                             <th scope="col">Số Sim</th>
                             <th scope="col">Giá Gốc</th>
                             <th scope="col">Giá Bán</th>
+                            <th scope="col">Trạng Thái</th>
+                            <th scope="col">Hành Động</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php foreach ($sim as $s) : ?>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td><?php echo $s["SoSim"] ?></td>
-                                        <td><?php echo $s["GiaGoc"] ?></td>
-                                        <td><?php echo $s["GiaBan"] ?></td>
-                                    </tr>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><?php echo $s["SoSim"] ?></td>
+                                <td><?php echo $s["GiaGoc"] ?></td>
+                                <td><?php echo $s["GiaBan"] ?></td>
+                                <!-- Tình Trạng -->
+                                <?php if ($s["TinhTrang"] == 1) { ?>
+                                    <td class="text-success"> Còn Bán</td>
+                                <?php } else { ?>
+                                    <td class="text-danger"> Hết Hàng</td>
+                                <?php } ?>
+                                <td>
+                                    <a href="index.php?action=sua&id=<?php echo $s['MaSim']; ?>" class="btn btn-warning">Sửa</a>
+                                    <a href="index.php?action=xoa&id=<?php echo  $s['MaSim']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

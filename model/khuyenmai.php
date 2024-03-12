@@ -110,8 +110,8 @@ VALUES(:TenKM, :MoTa, :GiaTriKM, :NgayKT)";
             $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
             $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
             $cmd->execute();
-            $MaKM = $db->lastInsertMaKM();
-            return $MaKM;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

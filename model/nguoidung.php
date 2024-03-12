@@ -158,8 +158,8 @@ VALUES(:HoTen, :Sdt, :MatKhau, :Email, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
             $cmd->bindValue(':MaQ', $nguoidung->MaQ);
             $cmd->bindValue(':DiaChi', $nguoidung->DiaChi);
             $cmd->execute();
-            $MaND = $db->lastInsertMaND();
-            return $MaND;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

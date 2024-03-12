@@ -69,8 +69,8 @@ VALUES(:MaND)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaND', $giohang->MaND);
             $cmd->execute();
-            $MaG = $db->lastInsertMaG();
-            return $MaG;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

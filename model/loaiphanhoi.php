@@ -69,8 +69,8 @@ VALUES(:TenLPH)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':TenLPH', $loaiphanhoi->TenLPH);
             $cmd->execute();
-            $MaLPH = $db->lastInsertMaLPH();
-            return $MaLPH;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

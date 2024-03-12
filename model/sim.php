@@ -1,23 +1,24 @@
 <?php
 class SIM
 {
-    private $MaS;
+    private $MaSim;
     private $SoSim;
     private $MaLS;
     private $MoTa;
     private $HinhAnh;
     private $GiaGoc;
     private $GiaBan;
+    private $TinhTrang;
    
     
     
-    public function getMaS()
+    public function getMaSim()
     {
-        return $this->MaS;
+        return $this->MaSim;
     }
-    public function setMaS($value)
+    public function setMaSim($value)
     {
-        $this->MaS = $value;
+        $this->MaSim = $value;
     }
     public function getSoSim()
     {
@@ -67,6 +68,14 @@ class SIM
     {
         $this->GiaBan = $value;
     }
+    public function getTinhTrang()
+    {
+        return $this->TinhTrang;
+    }
+    public function setTinhTrang($value)
+    {
+        $this->TinhTrang = $value;
+    }
     
     // khai báo các thuộc tính (SV tự viết)
 
@@ -112,8 +121,8 @@ class SIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO sim(SoSim, MaLS, MoTa, HinhAnh, GiaGoc, GiaBan) 
-VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan)";
+            $sql = "INSERT INTO sim(SoSim, MaLS, MoTa, HinhAnh, GiaGoc, GiaBan, TinhTrang) 
+VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':SoSim', $sim->SoSim);
             $cmd->bindValue(':MaLS', $sim->MaLS);
@@ -121,10 +130,10 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan)";
             $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
             $cmd->bindValue(':GiaGoc', $sim->GiaGoc);
             $cmd->bindValue(':GiaBan', $sim->GiaBan);
-            
-            $cmd->execute();
-            $MaS = $db->lastInsertMaS();
-            return $MaS;
+            $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
+
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -133,22 +142,60 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatsim($MaS,$SoSim, $MaLS, $MoTa, $HinhAnh, $GiaGoc, $GiaBan) 
+    // public function capnhatsim($MaSim, $SoSim, $MaLS, $MoTa, $HinhAnh, $GiaGoc, $GiaBan, $TinhTrang) 
+    // {
+    //     $db = DATABASE::connect();
+    //     try {
+    //         $sql = "UPDATE sim set SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaGoc=:GiaGoc, GiaBan=:GiaBan, TinhTrang=:TinhTrang where MaSim=MaSim";
+    //         $cmd = $db->prepare($sql);
+    //         $cmd->bindValue(':MaSim', $MaSim);
+    //         $cmd->bindValue(':SoSim', $SoSim);
+    //         $cmd->bindValue(':MaLS', $MaLS);
+    //         $cmd->bindValue(':MoTa', $MoTa);
+    //         $cmd->bindValue(':HinhAnh', $HinhAnh);
+    //         $cmd->bindValue(':GiaGoc', $GiaGoc);
+    //         $cmd->bindValue(':GiaBan', $GiaBan);
+    //         $cmd->bindValue(':TinhTrang', $TinhTrang);
+
+    //         $ketqua = $cmd->execute();
+    //         return $ketqua;
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
+    public function suasim($sim)
     {
-        $db = DATABASE::connect();
+        $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE sim set SoSim=:SoSim, MaLS=:MaLS where MaS=MaS";
-            $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaS', $MaS);
-            $cmd->bindValue(':SoSim', $SoSim);
-            $cmd->bindValue(':MaLS', $MaLS);
-            $cmd->bindValue(':MoTa', $MoTa);
-            $cmd->bindValue(':HinhAnh', $HinhAnh);
-            $cmd->bindValue(':GiaGoc', $GiaGoc);
-            $cmd->bindValue(':GiaBan', $GiaBan);
-            
-            $ketqua = $cmd->execute();
-            return $ketqua;
+            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaGoc=:GiaGoc, GiaBan=:GiaBan, TinhTrang=:TinhTrang WHERE MaSim=MaSim";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(':MaSim', $sim->MaSim);
+            $cmd->bindValue(':SoSim', $sim->SoSim);
+            $cmd->bindValue(':MaLS', $sim->MaLS);
+            $cmd->bindValue(':MoTa', $sim->MoTa);
+            $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
+            $cmd->bindValue(':GiaGoc', $sim->GiaGoc);
+            $cmd->bindValue(':GiaBan', $sim->GiaBan);
+            $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
+            $result = $cmd->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function xoasim($sim)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "DELETE FROM sim WHERE MaSim=:MaSim";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaSim", $sim->MaSim);
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

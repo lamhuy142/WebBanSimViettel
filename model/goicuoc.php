@@ -100,8 +100,8 @@ VALUES(:Ten, :MoTa, :DungLuong, :ThoiGianHieuLuc)";
             $cmd->bindValue(':DungLuong', $goicuoc->DungLuong);
             $cmd->bindValue(':ThoiGianHieuLuc', $goicuoc->ThoiGianHieuLuc);
             $cmd->execute();
-            $MaGC = $db->lastInsertMaGC();
-            return $MaGC;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

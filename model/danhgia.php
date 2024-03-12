@@ -90,8 +90,8 @@ VALUES(:MaND, :NoiDung, :urlHinhAnh)";
             $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
             $cmd->bindValue(':urlHinhAnh', $danhgia->urlHinhAnh);
             $cmd->execute();
-            $MaDG = $db->lastInsertMaDG();
-            return $MaDG;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

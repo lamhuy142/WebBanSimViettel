@@ -79,8 +79,8 @@ VALUES(:MaS, :MaKM)";
             $cmd->bindValue(':MaS', $khuyenmai_sim->MaS);
             $cmd->bindValue(':MaKM', $khuyenmai_sim->MaKM);
             $cmd->execute();
-            $MaKMS = $db->lastInsertMaKMS();
-            return $MaKMS;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

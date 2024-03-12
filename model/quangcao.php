@@ -2,7 +2,8 @@
 class QUANGCAO
 {
     private $MaQC;
-    private $urlHinhAnh;
+    private $HinhAnh;
+    private $Url;
 
     
     public function getMaQC()
@@ -13,13 +14,21 @@ class QUANGCAO
     {
         $this->MaQC = $value;
     }
-    public function geturlHinhAnh()
+    public function getHinhAnh()
     {
-        return $this->urlHinhAnh;
+        return $this->HinhAnh;
     }
-    public function seturlHinhAnh($value)
+    public function setHinhAnh($value)
     {
-        $this->urlHinhAnh = $value;
+        $this->HinhAnh = $value;
+    }
+    public function getUrl()
+    {
+        return $this->Url;
+    }
+    public function setUrl($value)
+    {
+        $this->Url = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -65,13 +74,13 @@ class QUANGCAO
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO quangcao(urlHinhAnh) 
-VALUES(:MoTaQC, :URL, :urlHinhAnh)";
+            $sql = "INSERT INTO quangcao(HinhAnh, Url) 
+VALUES(:HinhAnh, :Url)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':urlHinhAnh', $quangcao->urlHinhAnh);
-            $cmd->execute();
-            $MaQC = $db->lastInsertMaQC();
-            return $MaQC;
+            $cmd->bindValue(':HinhAnh', $quangcao->HinhAnh);
+            $cmd->bindValue(':Url', $quangcao->Url);
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -80,14 +89,15 @@ VALUES(:MoTaQC, :URL, :urlHinhAnh)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatquangcao($MaQC,$MoTaQC, $URL, $urlHinhAnh)
+    public function capnhatquangcao($MaQC, $HinhAnh, $Url)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE quangcao set urlHinhAnh  where MaQC=MaQC";
+            $sql = "UPDATE quangcao set HinhAnh, Url  where MaQC=MaQC";
             $cmd = $db->prepare($sql);
             $cmd->bindValue('MaQC', $MaQC);
-            $cmd->bindValue(':urlHinhAnh', $urlHinhAnh);
+            $cmd->bindValue(':HinhAnh', $HinhAnh);
+            $cmd->bindValue(':Url', $Url);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
