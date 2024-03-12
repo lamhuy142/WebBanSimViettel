@@ -49,10 +49,11 @@
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>DarkPan</h3>
+                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Viettel</h3>
                             </a>
-                            <h3>Sign In</h3>
+                            <h3>Đăng Nhập</h3>
                         </div>
+<<<<<<< Updated upstream
                         <form action="index.php" method="post">
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" name="txtemail" id="txtemail" placeholder="name@example.com">
@@ -75,6 +76,34 @@
                             </div>
                             <p class="text-center mb-0">Don't have an Account? <a href="">Sign Up</a></p>
                         </form>
+=======
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                            <label for="floatingInput">Địa Chỉ Email</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                            <label for="floatingPassword">Mật Khẩu</label>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                            </div>
+                            <a href="">Quên Mật Khẩu???</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Đăng Nhập</button>
+                        <hr>
+                        <p class="text-center" >Hoặc</p> <br>
+                        <a href="#" class="btn btn-google btn-user btn-block">
+                            <i class="fab fa-google fa-fw"></i> Login with Google
+                        </a>
+                        <a href="#" class="btn btn-facebook btn-user btn-block">
+                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                        </a>
+                        <hr>
+                        <p class="text-center mb-0">Bạn Chưa Có Tải Khoản? <a href="">Đăng Ký</a></p>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
