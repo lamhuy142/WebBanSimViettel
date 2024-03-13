@@ -63,8 +63,6 @@
         .catch(error => {
             console.error(error);
         });
-    // CKEDITOR.replace('ten');
-
 </script>
 </body>
 

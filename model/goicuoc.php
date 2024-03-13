@@ -69,7 +69,37 @@ class GOICUOC
     //         exit();
     //     }
     // }
-
+    public function laydanhsachgoicuoctheoid($MaGC)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM goicuoc WHERE MaGC=:MaGC";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaGC", $MaGC);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function xoagoicuoc($goicuoc)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "DELETE FROM goicuoc WHERE MaGC=:MaGC";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaGC", $goicuoc->MaGC);
+            $result = $cmd->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // lấy tất cả ng dùng
     public function laydanhsachgoicuoc()
     {
@@ -110,19 +140,39 @@ VALUES(:Ten, :MoTa, :DungLuong, :ThoiGianHieuLuc)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatgoicuoc($MaGC,$Ten, $MoTa, $DungLuong, $ThoiGianHieuLuc) 
+    // public function capnhatgoicuoc($MaGC,$Ten, $MoTa, $DungLuong, $ThoiGianHieuLuc) 
+    // {
+    //     $db = DATABASE::connect();
+    //     try {
+    //         $sql = "UPDATE goicuoc set Ten=:Ten, MoTa=:MoTa, DungLuong=:DungLuong, ThoiGianHieuLuc=:ThoiGianHieuLuc  where MaGC=MaGC";
+    //         $cmd = $db->prepare($sql);
+    //         $cmd->bindValue(':MaGC', $MaGC);
+    //         $cmd->bindValue(':Ten', $Ten);
+    //         $cmd->bindValue(':MoTa', $MoTa);
+    //         $cmd->bindValue(':DungLuong', $DungLuong);
+    //         $cmd->bindValue(':ThoiGianHieuLuc', $ThoiGianHieuLuc);
+    //         $ketqua = $cmd->execute();
+    //         return $ketqua;
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
+    public function suagoicuoc($goicuoc)
     {
-        $db = DATABASE::connect();
+        $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE goicuoc set Ten=:Ten, MoTa=:MoTa, DungLuong=:DungLuong, ThoiGianHieuLuc=:ThoiGianHieuLuc  where MaGC=MaGC";
-            $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaGC', $MaGC);
-            $cmd->bindValue(':Ten', $Ten);
-            $cmd->bindValue(':MoTa', $MoTa);
-            $cmd->bindValue(':DungLuong', $DungLuong);
-            $cmd->bindValue(':ThoiGianHieuLuc', $ThoiGianHieuLuc);
-            $ketqua = $cmd->execute();
-            return $ketqua;
+            $sql = "UPDATE goicuoc SET Ten=:Ten, MoTa=:MoTa, DungLuong=:DungLuong, ThoiGianHieuLuc=:ThoiGianHieuLuc, Gia=:Gia WHERE MaGC=:MaGC";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(':MaSim', $goicuoc->MaSim);
+            $cmd->bindValue(':Ten', $goicuoc->Ten);
+            $cmd->bindValue(':MoTa', $goicuoc->MoTa);
+            $cmd->bindValue(':DungLuong', $goicuoc->DungLuong);
+            $cmd->bindValue(':ThoiGianHieuLuc', $goicuoc->ThoiGianHieuLuc);
+            $cmd->bindValue(':Gia', $goicuoc->Gia);
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

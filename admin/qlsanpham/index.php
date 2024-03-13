@@ -37,7 +37,7 @@ switch ($action) {
         //xử lý thêm mặt hàng
         //xử lý load ảnh
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
-        $duongdan = "../../img/sim/sim/" .$hinhanh; //nơi lưu file upload
+        $duongdan = "../../img/sim/sim/" . $hinhanh; //nơi lưu file upload
         $moi = new SIM();
         $moi->sethinhanh($hinhanh);
         $moi->setSoSim($_POST["txtsosim"]);
@@ -55,17 +55,34 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
+    case "themgoicuoc":
+        include("themgoicuoc.php");
+        break;
+    case "xulythemgc":
+        //xử lý thêm mặt hàng
+        $moi = new GOICUOC();
+        $moi->setTen($_POST["txttengc"]);
+        $moi->setMoTa($_POST["txtmota"]);
+        $moi->setDungLuong($_POST["txtdungluong"]);
+        $moi->setThoiGianHieuLuc($_POST["thoigianhieuluc"]);
+        // thêm
+        $gc->themgoicuoc($moi);
+
+        // load sản phẩm
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        include("goicuoc.php");
+        break;
     case "xoa":
         $xoa = new SIM();
         $xoa->setMaSim($_GET["id"]);
         $sim = $s->xoasim($xoa);
-        $loaisim = $l->laydanhsachloaisim();
+        $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
     case "sua":
         if (isset($_GET["id"])) {
-            $sim_ht = $s->laydanhsachsim($_GET["id"]);
+            $sim_ht = $s->laydanhsachsimtheoid($_GET["id"]);
             $loai = $ls->laydanhsachloaisim();
             include("suasim.php");
         } else {
@@ -76,12 +93,15 @@ switch ($action) {
     case "xulysua": // lưu dữ liệu sửa mới vào db
 
         // gán dữ liệu từ form
+        
         $sua = new SIM();
-        $sua->setMaSim($_POST["id"]);
+        $sua->setMaSim($_POST["MaSim"]);
+        $sua->setMaLS($_POST["optloaisim"]);
         $sua->setSoSim($_POST["txtsosim"]);
         $sua->setGiaGoc($_POST["txtgiagoc"]);
         $sua->setGiaBan($_POST["txtgiaban"]);
         $sua->setMoTa($_POST["txtmota"]);
+        $sua->setTinhTrang($_POST["txttinhtrang"]);
         $sua->setHinhAnh($_POST["hinhanh"]);
 
         if ($_FILES["filehinhanh"]["name"] != "") {
@@ -97,6 +117,38 @@ switch ($action) {
         $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         include("sim.php");
+        break;
+    case "xoagc":
+        $xoa = new GOICUOC();
+        $xoa->setMaGC($_GET["id"]);
+        $goicuoc = $gc->xoagoicuoc($xoa);
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        include("goicuoc.php");
+        break;
+    case "suagc":
+        if (isset($_GET["id"])) {
+            $goicuoc_ht = $gc->laydanhsachgoicuoctheoid($_GET["id"]);
+            include("suagoicuoc.php");
+        } else {
+            $goicuoc = $gc->laydanhsachgoicuoc();
+            include("goicuoc.php");
+        }
+        break;
+    case "xulysuagc": // lưu dữ liệu sửa mới vào db
+
+        // gán dữ liệu từ form
+
+        $sua = new GOICUOC();
+        $sua->setMaGC($_POST["MaGC"]);
+        $sua->setTen($_POST["txten"]);
+        $sua->setMoTa($_POST["txtmota"]);
+        $sua->setDungLuong($_POST["txtdungluong"]);
+        $sua->setThoiGianHieuLuc($_POST["thoigianhieuluc"]);
+        // sửa
+        $gc->suagoicuoc($sua);
+        // load danh sách
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        include("goicuoc.php");
         break;
     default:
         break;

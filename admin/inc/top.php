@@ -87,7 +87,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Login Screens:</h6> -->
                         <a class="collapse-item" href="../qlsanpham/index.php?action=sim">Sim</a>
-                        <a class="collapse-item" href="../qlsanpham/index.php?action=sim">Gói Cước</a>
+                        <a class="collapse-item" href="../qlsanpham/index.php?action=goicuoc">Gói Cước</a>
                     </div>
                 </div>
             </li>

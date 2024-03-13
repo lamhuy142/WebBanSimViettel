@@ -115,6 +115,22 @@ class SIM
             exit();
         }
     }
+    public function laydanhsachsimtheoid($MaSim)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM sim WHERE MaSim=:MaSim";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaSim", $MaSim);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
     public function themsim($sim)
@@ -169,7 +185,7 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaGoc=:GiaGoc, GiaBan=:GiaBan, TinhTrang=:TinhTrang WHERE MaSim=MaSim";
+            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaGoc=:GiaGoc, GiaBan=:GiaBan, TinhTrang=:TinhTrang WHERE MaSim=:MaSim";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaSim', $sim->MaSim);
             $cmd->bindValue(':SoSim', $sim->SoSim);

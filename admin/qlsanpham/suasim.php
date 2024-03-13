@@ -12,9 +12,9 @@
                 <div class="row g-3">
                     <div class="col my-3">
                         <label>Phân loại</label>
-                        <select class="form-control" name="optphanloai">
+                        <select class="form-control" name="optloaisim">
                             <?php foreach ($loai as $l) { ?>
-                                <option value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenS"]; ?></option>
+                                <option value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -37,6 +37,10 @@
                     <label for="txtmota" class="form-label">Mô tả</label>
                     <textarea id="editor" rows="5" class="form-control" name="txtmota"><?php echo $sim_ht['MoTa']; ?></textarea>
                 </div>
+                <div class="md-1 mt-1">
+                    <label for="txttinhtrang" class="form-label">Trạng Thái</label>
+                    <input class="form-control" name="txttinhtrang" value="<?php echo $sim_ht['TinhTrang']; ?>" readonly ></input>
+                </div>
                 </br>
                 <div class="row g-3">
                     <div class="col my-3">
@@ -57,7 +61,7 @@
                     </div>
                 </div>
                 <div class="my-3">
-                    <a href="index.php?action=xem" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
+                    <a href="index.php?action=sim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input class="btn btn-primary" type="submit" value="Lưu">
                     <input class="btn btn-warning" type="reset" value="Hủy">
                 </div>

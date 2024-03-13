@@ -41,7 +41,7 @@
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txttinhtrang" class="form-label">Trạng Thái</label>
-                        <input class="form-control" type="number" name="txttinhtrang" value="1" disabled>
+                        <input class="form-control" type="number" name="txttinhtrang" value="1" readonly>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtsosim" class="form-label">Hình Ảnh</label>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="md-3 mt-3">
-                    <a href="index.php?action=xem" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
+                    <a href="index.php?action=sim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input type="submit" value="Lưu" class="btn btn-success"></input>
                     <input type="reset" value="Hủy" class="btn btn-warning"></input>
                 </div>
