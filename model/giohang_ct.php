@@ -1,29 +1,20 @@
 <?php
 class GIOHANG_CT
 {
-    private $MaCT;
-    private $MaG;
+    private $MaGH;
+    private $MaND;
     private $MaLS;
     private $SL;
     private $DonGia;
     private $TongGia;
     
-    
-    public function getMaCT()
+    public function getMaGH()
     {
-        return $this->MaCT;
+        return $this->MaGH;
     }
-    public function setMaCT($value)
+    public function setMaGH($value)
     {
-        $this->MaCT = $value;
-    }
-    public function getMaG()
-    {
-        return $this->MaG;
-    }
-    public function setMaG($value)
-    {
-        $this->MaG = $value;
+        $this->MaGH = $value;
     }
     public function getMaLS()
     {
@@ -48,6 +39,22 @@ class GIOHANG_CT
     public function setTongGia($value)
     {
         $this->TongGia = $value;
+    }
+    public function getMaND()
+    {
+        return $this->MaND;
+    }
+    public function setMaND($value)
+    {
+        $this->MaND = $value;
+    }
+    public function getSL()
+    {
+        return $this->SL;
+    }
+    public function setSL($value)
+    {
+        $this->SL = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -93,10 +100,11 @@ class GIOHANG_CT
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO giohang_ct(MaG, MaLS, SL, DonGia, TongGia) 
-VALUES(:MaG, :MaLS, :SL, :TongGia)";
+            $sql = "INSERT INTO giohang_ct(MaGH, MaND, MaLS, SL, DonGia, TongGia) 
+VALUES(:MaGH, :MaLS, :SL, :TongGia)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaG', $giohang_ct->MaG);
+            $cmd->bindValue(':MaGH', $giohang_ct->MaGH);
+            $cmd->bindValue(':MaND', $giohang_ct->MaND);
             $cmd->bindValue(':MaLS', $giohang_ct->MaLS);
             $cmd->bindValue(':SL', $giohang_ct->SL);
             $cmd->bindValue(':DonGia', $giohang_ct->DonGia);
@@ -112,14 +120,13 @@ VALUES(:MaG, :MaLS, :SL, :TongGia)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatgiohang_ct($MaCT,$MaG, $MaLS, $SL, $DonGia, $TongGia) 
+    public function capnhatgiohang_ct($MaGH, $MaLS, $SL, $DonGia, $TongGia) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE giohang_ct set MaG=:MaG, MaLS=:MaLS, SL=:SL, DonGia=:DonGia, TongGia=:TongGia  where MaCT=MaCT";
+            $sql = "UPDATE giohang_ct set MaLS=:MaLS, SL=:SL, DonGia=:DonGia, TongGia=:TongGia  where = MaGH=:MaGH ";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaCT', $MaCT);
-            $cmd->bindValue(':MaG', $MaG);
+            $cmd->bindValue(':MaGH', $MaGH);
             $cmd->bindValue(':MaLS', $MaLS);
             $cmd->bindValue(':SL', $SL);
             $cmd->bindValue(':DonGia', $DonGia);

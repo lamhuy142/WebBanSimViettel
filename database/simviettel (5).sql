@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th3 08, 2024 lúc 02:58 PM
+-- Thời gian đã tạo: Th3 13, 2024 lúc 07:08 AM
 -- Phiên bản máy phục vụ: 8.2.0
 -- Phiên bản PHP: 8.2.13
 
@@ -20,41 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `simviettel`
 --
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `banggia`
---
-
-DROP TABLE IF EXISTS `banggia`;
-CREATE TABLE IF NOT EXISTS `banggia` (
-  `MaSP` int NOT NULL,
-  `GiaGoc` double NOT NULL,
-  `GiaBan` double NOT NULL,
-  `GiaKM` double NOT NULL,
-  `MaKM` int NOT NULL,
-  KEY `gc_bg` (`MaSP`),
-  KEY `km_bg` (`MaKM`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `chitietgiohang`
---
-
-DROP TABLE IF EXISTS `chitietgiohang`;
-CREATE TABLE IF NOT EXISTS `chitietgiohang` (
-  `MaCT` int NOT NULL AUTO_INCREMENT,
-  `MaG` int NOT NULL,
-  `MaS` int NOT NULL,
-  `SL` int NOT NULL,
-  `TongGia` double NOT NULL,
-  PRIMARY KEY (`MaCT`),
-  KEY `g_ct` (`MaG`),
-  KEY `s_ctg` (`MaS`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -81,13 +46,13 @@ CREATE TABLE IF NOT EXISTS `danhgia` (
 DROP TABLE IF EXISTS `donhang`;
 CREATE TABLE IF NOT EXISTS `donhang` (
   `MaDH` int NOT NULL AUTO_INCREMENT,
-  `NguoiDung_id` int NOT NULL,
+  `MaND` int NOT NULL,
   `Ngay` date NOT NULL,
   `TongTien` float NOT NULL,
   `GhiChu` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `TrangThai` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`MaDH`),
-  KEY `nd_dh` (`NguoiDung_id`)
+  KEY `nd_dh` (`MaND`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -98,28 +63,34 @@ CREATE TABLE IF NOT EXISTS `donhang` (
 
 DROP TABLE IF EXISTS `donhang_ct`;
 CREATE TABLE IF NOT EXISTS `donhang_ct` (
-  `MaDH_ct` int NOT NULL AUTO_INCREMENT,
+  `MaDH_CT` int NOT NULL AUTO_INCREMENT,
   `MaDH` int NOT NULL,
-  `MaSim` int NOT NULL,
+  `MaLS` int NOT NULL,
+  `DonGia` double NOT NULL,
   `SoLuong` int NOT NULL,
   `ThanhTien` float NOT NULL,
-  PRIMARY KEY (`MaDH_ct`),
+  PRIMARY KEY (`MaDH_CT`),
   KEY `dh_ct` (`MaDH`),
-  KEY `s_ct` (`MaSim`)
+  KEY `ls_ct` (`MaLS`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giohang`
+-- Cấu trúc bảng cho bảng `giohang_ct`
 --
 
-DROP TABLE IF EXISTS `giohang`;
-CREATE TABLE IF NOT EXISTS `giohang` (
-  `MaG` int NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `giohang_ct`;
+CREATE TABLE IF NOT EXISTS `giohang_ct` (
+  `MaGH` int NOT NULL AUTO_INCREMENT,
   `MaND` int NOT NULL,
-  PRIMARY KEY (`MaG`),
-  KEY `nd_g` (`MaND`)
+  `MaLS` int NOT NULL,
+  `SL` int NOT NULL,
+  `DonGia` double NOT NULL,
+  `TongGia` double NOT NULL,
+  PRIMARY KEY (`MaGH`),
+  KEY `ls_ctg` (`MaLS`),
+  KEY `nd_gh` (`MaND`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -135,8 +106,20 @@ CREATE TABLE IF NOT EXISTS `goicuoc` (
   `MoTa` text NOT NULL,
   `DungLuong` varchar(255) NOT NULL,
   `ThoiGianHieuLuc` varchar(255) NOT NULL,
+  `Gia` double NOT NULL,
   PRIMARY KEY (`MaGC`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `goicuoc`
+--
+
+INSERT INTO `goicuoc` (`MaGC`, `Ten`, `MoTa`, `DungLuong`, `ThoiGianHieuLuc`, `Gia`) VALUES
+(1, 'âsdasd', '', '221', '2024-03-14', 0),
+(9, 'âsdasd', '', '221', '2024-03-14', 0),
+(10, 'âsdasd', '', '221', '2024-03-14', 0),
+(11, 'kjashkajsd', '', '23', '2024-03-09', 0),
+(12, 'kjashkajsd', '', '23', '2024-03-09', 0);
 
 -- --------------------------------------------------------
 
@@ -150,6 +133,7 @@ CREATE TABLE IF NOT EXISTS `khuyenmai` (
   `TenKM` varchar(255) NOT NULL,
   `MoTa` text NOT NULL,
   `GiaTriKM` float NOT NULL,
+  `DonVi` varchar(50) NOT NULL,
   `NgayBD` date NOT NULL,
   `NgayKT` date NOT NULL,
   PRIMARY KEY (`MaKM`)
@@ -158,33 +142,46 @@ CREATE TABLE IF NOT EXISTS `khuyenmai` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khuyenmaigc`
+-- Cấu trúc bảng cho bảng `khuyenmai_gc`
 --
 
-DROP TABLE IF EXISTS `khuyenmaigc`;
-CREATE TABLE IF NOT EXISTS `khuyenmaigc` (
+DROP TABLE IF EXISTS `khuyenmai_gc`;
+CREATE TABLE IF NOT EXISTS `khuyenmai_gc` (
   `MaKMC` int NOT NULL AUTO_INCREMENT,
   `MaGC` int NOT NULL,
   `MaKM` int NOT NULL,
   PRIMARY KEY (`MaKMC`),
-  KEY `gc_kmc` (`MaGC`),
-  KEY `km_kmc` (`MaKM`)
+  KEY `km_kmc` (`MaKM`),
+  KEY `gc_km` (`MaGC`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khuyenmaisim`
+-- Cấu trúc bảng cho bảng `khuyenmai_sim`
 --
 
-DROP TABLE IF EXISTS `khuyenmaisim`;
-CREATE TABLE IF NOT EXISTS `khuyenmaisim` (
+DROP TABLE IF EXISTS `khuyenmai_sim`;
+CREATE TABLE IF NOT EXISTS `khuyenmai_sim` (
   `MaKMS` int NOT NULL AUTO_INCREMENT,
   `MaS` int NOT NULL,
   `MaKM` int NOT NULL,
   PRIMARY KEY (`MaKMS`),
-  KEY `s_kms` (`MaS`),
-  KEY `km_kms` (`MaKM`)
+  KEY `km_kms` (`MaKM`),
+  KEY `s_kms` (`MaS`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `loaigoicuoc`
+--
+
+DROP TABLE IF EXISTS `loaigoicuoc`;
+CREATE TABLE IF NOT EXISTS `loaigoicuoc` (
+  `MaLGC` int NOT NULL AUTO_INCREMENT,
+  `TenLGC` varchar(255) NOT NULL,
+  PRIMARY KEY (`MaLGC`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -208,10 +205,20 @@ CREATE TABLE IF NOT EXISTS `loaiphanhoi` (
 
 DROP TABLE IF EXISTS `loaisim`;
 CREATE TABLE IF NOT EXISTS `loaisim` (
-  `LoaiSim_id` int NOT NULL AUTO_INCREMENT,
-  `TenSim` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`LoaiSim_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MaLS` int NOT NULL AUTO_INCREMENT,
+  `TenLS` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `SoLuong` int NOT NULL,
+  `LuotMua` int NOT NULL,
+  PRIMARY KEY (`MaLS`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `loaisim`
+--
+
+INSERT INTO `loaisim` (`MaLS`, `TenLS`, `SoLuong`, `LuotMua`) VALUES
+(1, 'Sim trả trước', 100, 0),
+(2, 'Sim trả sau', 100, 0);
 
 -- --------------------------------------------------------
 
@@ -221,18 +228,26 @@ CREATE TABLE IF NOT EXISTS `loaisim` (
 
 DROP TABLE IF EXISTS `nguoidung`;
 CREATE TABLE IF NOT EXISTS `nguoidung` (
-  `MaNguoiDung` int NOT NULL AUTO_INCREMENT,
+  `MaND` int NOT NULL AUTO_INCREMENT,
   `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `SoDienThoai` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Sdt` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MatKhau` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `HoTen` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaQ` int NOT NULL,
   `TrangThai` tinyint NOT NULL,
   `HinhAnh` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `DiaChi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`MaNguoiDung`),
+  PRIMARY KEY (`MaND`),
   KEY `q_nd` (`MaQ`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `nguoidung`
+--
+
+INSERT INTO `nguoidung` (`MaND`, `Email`, `Sdt`, `MatKhau`, `HoTen`, `MaQ`, `TrangThai`, `HinhAnh`, `DiaChi`) VALUES
+(1, 'admin@gmail.com', '0123123123', '21232f297a57a5a743894a0e4a801fc3 ', 'Quản Trị Viên', 1, 1, 'user.jpg', 'An Giang'),
+(2, 'kh01@gmail.com', '0123456789', 'b9bc4dd06b7d2d49cb9fb3d8d9fba6c1 ', 'Lê Thị Lẹ', 2, 1, 'user1.jpg', 'Châu Thành, An Giang');
 
 -- --------------------------------------------------------
 
@@ -242,8 +257,10 @@ CREATE TABLE IF NOT EXISTS `nguoidung` (
 
 DROP TABLE IF EXISTS `phanhoi`;
 CREATE TABLE IF NOT EXISTS `phanhoi` (
+  `MaPH` int NOT NULL AUTO_INCREMENT,
   `MaND` int NOT NULL,
   `MaLPH` int NOT NULL,
+  PRIMARY KEY (`MaPH`),
   KEY `nd_ph` (`MaND`),
   KEY `lph_ph` (`MaLPH`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -257,7 +274,8 @@ CREATE TABLE IF NOT EXISTS `phanhoi` (
 DROP TABLE IF EXISTS `quangcao`;
 CREATE TABLE IF NOT EXISTS `quangcao` (
   `MaQC` int NOT NULL AUTO_INCREMENT,
-  `urlHinhAnh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `HinhAnh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `Url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`MaQC`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -269,10 +287,18 @@ CREATE TABLE IF NOT EXISTS `quangcao` (
 
 DROP TABLE IF EXISTS `quyen`;
 CREATE TABLE IF NOT EXISTS `quyen` (
-  `MaQuyen` int NOT NULL AUTO_INCREMENT,
-  `TenQuyen` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  PRIMARY KEY (`MaQuyen`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MaQ` int NOT NULL AUTO_INCREMENT,
+  `TenQ` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`MaQ`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quyen`
+--
+
+INSERT INTO `quyen` (`MaQ`, `TenQ`) VALUES
+(1, 'Quản Trị Viên'),
+(2, 'Khách Hàng');
 
 -- --------------------------------------------------------
 
@@ -283,71 +309,67 @@ CREATE TABLE IF NOT EXISTS `quyen` (
 DROP TABLE IF EXISTS `sim`;
 CREATE TABLE IF NOT EXISTS `sim` (
   `MaSim` int NOT NULL AUTO_INCREMENT,
-  `TenSim` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `LoaiSim_id` int NOT NULL,
-  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `HinhAnh` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `LuotMua` int NOT NULL,
-  `SoLuongTon` int NOT NULL,
+  `SoSim` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `MaLS` int NOT NULL,
+  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
+  `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `GiaGoc` double NOT NULL,
+  `GiaBan` double NOT NULL,
+  `TinhTrang` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`MaSim`),
-  KEY `ls_s` (`LoaiSim_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `ls_s` (`MaLS`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `sim`
+--
+
+INSERT INTO `sim` (`MaSim`, `SoSim`, `MaLS`, `MoTa`, `HinhAnh`, `GiaGoc`, `GiaBan`, `TinhTrang`) VALUES
+(1, '037 288 9054', 1, '', '', 50000, 50000, 1),
+(11, '1234567890', 1, '<p>ZhLKzjLKJsLKAS <strong>KJSLKAJSLKJAS JAJSHASJLKA kạhlkasjdlkasdjaslkdjas </strong><i><strong>jashdkjasdjashkjdashkd</strong></i></p><blockquote><ul><li><i><strong>jkhjkh</strong></i></li></ul></blockquote><ul><li><i><strong>kjhkj</strong></i><ul><li><h2>kjhkl</h2></li></ul></li></ul>', 'sim01.jpg', 50000, 5000, 1),
+(12, '12345678998', 1, '<p>lkasjdlkajslkasd <strong>lkajslajsdas </strong><i><strong>ljkasdlkajsd</strong></i></p><ol><li><i><strong>lkjlkj;</strong></i></li><li><i><strong>nkjjkjl</strong></i><ol><li><i><strong>kjhkjhk</strong></i><ol><li>kjhkjjjk</li></ol></li></ol></li></ol>', 'sim01.jpg', 50000, 50000, 1);
 
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Các ràng buộc cho bảng `banggia`
---
-ALTER TABLE `banggia`
-  ADD CONSTRAINT `gc_bg` FOREIGN KEY (`MaSP`) REFERENCES `goicuoc` (`MaGC`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `km_bg` FOREIGN KEY (`MaKM`) REFERENCES `khuyenmai` (`MaKM`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `s_bg` FOREIGN KEY (`MaSP`) REFERENCES `sim` (`MaSim`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
--- Các ràng buộc cho bảng `chitietgiohang`
---
-ALTER TABLE `chitietgiohang`
-  ADD CONSTRAINT `g_ct` FOREIGN KEY (`MaG`) REFERENCES `giohang` (`MaG`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `s_ctg` FOREIGN KEY (`MaS`) REFERENCES `sim` (`MaSim`) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
---
 -- Các ràng buộc cho bảng `danhgia`
 --
 ALTER TABLE `danhgia`
-  ADD CONSTRAINT `nd_dg` FOREIGN KEY (`MaND`) REFERENCES `nguoidung` (`MaNguoiDung`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `nd_dg` FOREIGN KEY (`MaND`) REFERENCES `nguoidung` (`MaND`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Các ràng buộc cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  ADD CONSTRAINT `nd_dh` FOREIGN KEY (`NguoiDung_id`) REFERENCES `nguoidung` (`MaNguoiDung`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `nd_dh` FOREIGN KEY (`MaND`) REFERENCES `nguoidung` (`MaND`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Các ràng buộc cho bảng `donhang_ct`
 --
 ALTER TABLE `donhang_ct`
   ADD CONSTRAINT `dh_ct` FOREIGN KEY (`MaDH`) REFERENCES `donhang` (`MaDH`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `s_ct` FOREIGN KEY (`MaSim`) REFERENCES `sim` (`MaSim`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `ls_ct` FOREIGN KEY (`MaLS`) REFERENCES `loaisim` (`MaLS`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `giohang`
+-- Các ràng buộc cho bảng `giohang_ct`
 --
-ALTER TABLE `giohang`
-  ADD CONSTRAINT `nd_g` FOREIGN KEY (`MaND`) REFERENCES `nguoidung` (`MaNguoiDung`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `giohang_ct`
+  ADD CONSTRAINT `ls_ctg` FOREIGN KEY (`MaLS`) REFERENCES `loaisim` (`MaLS`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `nd_gh` FOREIGN KEY (`MaND`) REFERENCES `nguoidung` (`MaND`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `khuyenmaigc`
+-- Các ràng buộc cho bảng `khuyenmai_gc`
 --
-ALTER TABLE `khuyenmaigc`
-  ADD CONSTRAINT `gc_kmc` FOREIGN KEY (`MaGC`) REFERENCES `goicuoc` (`MaGC`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+ALTER TABLE `khuyenmai_gc`
+  ADD CONSTRAINT `gc_km` FOREIGN KEY (`MaGC`) REFERENCES `goicuoc` (`MaGC`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `km_kmc` FOREIGN KEY (`MaKM`) REFERENCES `khuyenmai` (`MaKM`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Các ràng buộc cho bảng `khuyenmaisim`
+-- Các ràng buộc cho bảng `khuyenmai_sim`
 --
-ALTER TABLE `khuyenmaisim`
+ALTER TABLE `khuyenmai_sim`
   ADD CONSTRAINT `km_kms` FOREIGN KEY (`MaKM`) REFERENCES `khuyenmai` (`MaKM`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `s_kms` FOREIGN KEY (`MaS`) REFERENCES `sim` (`MaSim`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
@@ -355,20 +377,20 @@ ALTER TABLE `khuyenmaisim`
 -- Các ràng buộc cho bảng `nguoidung`
 --
 ALTER TABLE `nguoidung`
-  ADD CONSTRAINT `q_nd` FOREIGN KEY (`MaQ`) REFERENCES `quyen` (`MaQuyen`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `q_nd` FOREIGN KEY (`MaQ`) REFERENCES `quyen` (`MaQ`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Các ràng buộc cho bảng `phanhoi`
 --
 ALTER TABLE `phanhoi`
   ADD CONSTRAINT `lph_ph` FOREIGN KEY (`MaLPH`) REFERENCES `loaiphanhoi` (`MaLPH`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `nd_ph` FOREIGN KEY (`MaND`) REFERENCES `nguoidung` (`MaNguoiDung`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `nd_ph` FOREIGN KEY (`MaND`) REFERENCES `nguoidung` (`MaND`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Các ràng buộc cho bảng `sim`
 --
 ALTER TABLE `sim`
-  ADD CONSTRAINT `ls_s` FOREIGN KEY (`LoaiSim_id`) REFERENCES `loaisim` (`LoaiSim_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `ls_s` FOREIGN KEY (`MaLS`) REFERENCES `loaisim` (`MaLS`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

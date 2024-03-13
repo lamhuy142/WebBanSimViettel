@@ -140,7 +140,7 @@ switch ($action) {
 
         $sua = new GOICUOC();
         $sua->setMaGC($_POST["MaGC"]);
-        $sua->setTen($_POST["txten"]);
+        $sua->setTen($_POST["txtten"]);
         $sua->setMoTa($_POST["txtmota"]);
         $sua->setDungLuong($_POST["txtdungluong"]);
         $sua->setThoiGianHieuLuc($_POST["thoigianhieuluc"]);

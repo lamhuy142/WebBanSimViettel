@@ -9,54 +9,66 @@
             <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH NGƯỜI DÙNG</h6>
         </div>
         <div class="card-body">
+        <p><a class="btn btn-info" href="index.php?action=themnd">Thêm người dùng</a></p>
+
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Tên người dùng</th>
+                            <th>Tên Người Dùng</th>
+                            <th>Hình Ảnh</th>
                             <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Địa chỉ</th>
-                            <th>Loại người dùng</th>
-                            <th>Trạng thái</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Địa Chỉ</th>
+                            <th>Quyền</th>
+                            <th>Mật Khẩu</th>
+                            <th>Trạng Thái</th>
                             <th>Khóa</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Tên người dùng</th>
+                            <th>Tên Người Dùng</th>
+                            <th>Hình Ảnh</th>
                             <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Địa chỉ</th>
-                            <th>Loại người dùng</th>
-                            <th>Trạng thái</th>
+                            <th>Số Điện Thoại</th>
+                            <th>Địa Chỉ</th>
+                            <th>Quyền</th>
+                            <th>Mật Khẩu</th>
+                            <th>Trạng Thái</th>
                             <th>Khóa</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php foreach ($nguoidung as $n) :
-                            foreach ($loai as $l) :
-                                if ($n["loaind_id"] == $l["id"]) { ?>
+                            foreach ($quyen as $q) :
+                                if ($n["MaQ"] == $q["MaQ"]) { ?>
                                     <tr>
-                                        <td><?php echo $n["tennd"]; ?></td>
-                                        <td><?php echo $n["email"]; ?></td>
-                                        <td><?php echo $n["sdt"]; ?></td>
-                                        <td><?php echo $n["diachi"]; ?></td>
-                                        <td><?php echo $l["tenlnd"]; ?></td>
-                                        <?php if ($n["tinhtrang"] == 1) { ?>
+                                        <td><?php echo $n["HoTen"]; ?></td>
+                                        <td><img width="50px" src="../../img/user/<?php echo $n["HinhAnh"]; ?>" alt="<?php echo $n["HinhAnh"]; ?>"></td>
+                                        <td><?php echo $n["Email"]; ?></td>
+                                        <td><?php echo $n["Sdt"]; ?></td>
+                                        <td><?php echo $n["DiaChi"]; ?></td>
+                                        <?php if($q["MaQ"] == 1) {?>
+                                        <td class="text-success"><?php echo $q["TenQ"]; ?></td>
+                                        <?php }else{?>
+                                            <td class="text-primary"><?php echo $q["TenQ"]; ?></td>
+                                            <?php } ?>
+                                        <td><?php echo $n["MatKhau"]; ?></td>
+                                        <?php if ($n["TrangThai"] == 1) { ?>
                                             <td class="text-success">Hoạt động</td>
-                                        <?php } //end if tinhtrang 
+                                        <?php } //end if TrangThai 
                                         else {
                                         ?>
                                             <td class="text-danger">Khóa</td>
                                         <?php }  ?>
 
                                         <td>
-                                            <?php if ($n["tinhtrang"] == 1) { ?>
-                                                <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-danger">Khóa</a>
+                                            <?php if ($n["TrangThai"] == 1) { ?>
+                                                <a href="index.php?action=khoa&id=<?php echo $n['MaND']; ?>&TrangThai=<?php echo $n['TrangThai']; ?>" class="btn btn-danger">Khóa</a>
                                             <?php } else {
                                             ?>
-                                                <a href="index.php?action=khoa&id=<?php echo $n['id']; ?>&tinhtrang=<?php echo $n['tinhtrang']; ?>" class="btn btn-warning">Mở</a>
+                                                <a href="index.php?action=khoa&id=<?php echo $n['MaND']; ?>&TrangThai=<?php echo $n['TrangThai']; ?>" class="btn btn-warning">Mở</a>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -66,7 +78,6 @@
                         endforeach; ?>
                     </tbody>
                 </table>
-                <p><a class="btn btn-info" href="index.php?action=them">Thêm người dùng</a></p>
             </div>
         </div>
     </div>

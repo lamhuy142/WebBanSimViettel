@@ -73,7 +73,7 @@
             <li class="nav-item
             <?php if (strpos($_SERVER["REQUEST_URI"], "qlnguoidung") != false) echo "active"; ?>
             ">
-                <a class="nav-link" href="../qlnguoidung/index.php">
+                <a class="nav-link" href="../qlnguoidung/index.php?action=xem">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Quản lý người dùng</span></a>
             </li>

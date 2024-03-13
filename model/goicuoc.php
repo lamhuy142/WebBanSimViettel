@@ -6,6 +6,7 @@ class GOICUOC
     private $MoTa;
     private $DungLuong;
     private $ThoiGianHieuLuc;
+    private $Gia;
     
     
     public function getMaGC()
@@ -47,6 +48,14 @@ class GOICUOC
     public function setThoiGianHieuLuc($value)
     {
         $this->ThoiGianHieuLuc = $value;
+    }
+    public function getGia()
+    {
+        return $this->Gia;
+    }
+    public function setGia($value)
+    {
+        $this->Gia = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -122,13 +131,14 @@ class GOICUOC
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO goicuoc(Ten, MoTa, DungLuong, ThoiGianHieuLuc) 
-VALUES(:Ten, :MoTa, :DungLuong, :ThoiGianHieuLuc)";
+            $sql = "INSERT INTO goicuoc(Ten, MoTa, DungLuong, ThoiGianHieuLuc, Gia) 
+VALUES(:Ten, :MoTa, :DungLuong, :ThoiGianHieuLuc, :Gia)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':Ten', $goicuoc->Ten);
             $cmd->bindValue(':MoTa', $goicuoc->MoTa);
             $cmd->bindValue(':DungLuong', $goicuoc->DungLuong);
             $cmd->bindValue(':ThoiGianHieuLuc', $goicuoc->ThoiGianHieuLuc);
+            $cmd->bindValue(':Gia', $goicuoc->Gia);
             $cmd->execute();
             $result = $cmd->execute();
             return $result;
@@ -165,7 +175,7 @@ VALUES(:Ten, :MoTa, :DungLuong, :ThoiGianHieuLuc)";
         try {
             $sql = "UPDATE goicuoc SET Ten=:Ten, MoTa=:MoTa, DungLuong=:DungLuong, ThoiGianHieuLuc=:ThoiGianHieuLuc, Gia=:Gia WHERE MaGC=:MaGC";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(':MaSim', $goicuoc->MaSim);
+            $cmd->bindValue(':MaGC', $goicuoc->MaGC);
             $cmd->bindValue(':Ten', $goicuoc->Ten);
             $cmd->bindValue(':MoTa', $goicuoc->MoTa);
             $cmd->bindValue(':DungLuong', $goicuoc->DungLuong);
