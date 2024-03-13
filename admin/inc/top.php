@@ -55,7 +55,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item <?php if (strpos($_SERVER["REQUEST_URI"], "ktnguoidung") != false) echo "active"; ?>">
                 <a class="nav-link" href="../ktnguoidung">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Bảng điều khiển</span></a>
@@ -74,7 +74,7 @@
             <?php if (strpos($_SERVER["REQUEST_URI"], "qlnguoidung") != false) echo "active"; ?>
             ">
                 <a class="nav-link" href="../qlnguoidung/index.php?action=xem">
-                    <i class="fas fa-fw fa-table"></i>
+                <i class="bi bi-person-badge-fill"></i>
                     <span>Quản lý người dùng</span></a>
             </li>
             <!-- Nav Item - MYPHAM -->
@@ -90,6 +90,14 @@
                         <a class="collapse-item" href="../qlsanpham/index.php?action=goicuoc">Gói Cước</a>
                     </div>
                 </div>
+            </li>
+            <!-- Nav Item - DONHANG -->
+            <li class="nav-item
+            <?php if (strpos($_SERVER["REQUEST_URI"], "qldonhang") != false) echo "active"; ?>
+            ">
+                <a class="nav-link" href="../qldonhang/index.php?action=xem">
+                <i class="bi bi-receipt-cutoff"></i>
+                    <span>Quản lý đơn hàng</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
