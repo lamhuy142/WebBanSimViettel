@@ -6,8 +6,6 @@ class DONHANG_CT
     private $MaLS;
     private $SoLuong;
     private $DonGia;
-    private $ThoiGianDatHang;
-    private $ThoiGianGiaoHang;
     private $ThanhTien;
     
     
@@ -59,22 +57,6 @@ class DONHANG_CT
     {
         $this->DonGia = $value;
     }
-    public function getThoiGianDatHang()
-    {
-        return $this->ThoiGianDatHang;
-    }
-    public function setThoiGianDatHang($value)
-    {
-        $this->ThoiGianDatHang = $value;
-    }
-    public function getThoiGianGiaoHang()
-    {
-        return $this->ThoiGianGiaoHang;
-    }
-    public function setThoiGianGiaoHang($value)
-    {
-        $this->ThoiGianGiaoHang = $value;
-    }
     
     
     // khai báo các thuộc tính (SV tự viết)
@@ -121,15 +103,13 @@ class DONHANG_CT
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO donhang_ct(MaDH, MaLS, SoLuong, DonGia, ThoiGianDatHang, ThoiGianGiaoHang, ThanhTien) 
-VALUES(:MaDH, :MaLS, :SoLuong, :ThoiGianDatHang, :ThoiGianGiaoHang, :ThanhTien)";
+            $sql = "INSERT INTO donhang_ct(MaDH, MaLS, SoLuong, DonGia, ThanhTien) 
+VALUES(:MaDH, :MaLS, :SoLuong, :ThanhTien)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaDH', $donhang_ct->MaDH);
             $cmd->bindValue(':MaLS', $donhang_ct->MaLS);
             $cmd->bindValue(':SoLuong', $donhang_ct->SoLuong);
             $cmd->bindValue(':DonGia', $donhang_ct->DonGia);
-            $cmd->bindValue(':ThoiGianDatHang', $donhang_ct->ThoiGianDatHang);
-            $cmd->bindValue(':ThoiGianGiaoHang', $donhang_ct->ThoiGianGiaoHang);
             $cmd->bindValue(':ThanhTien', $donhang_ct->ThanhTien);
             $cmd->execute();
             $result = $cmd->execute();
@@ -146,15 +126,13 @@ VALUES(:MaDH, :MaLS, :SoLuong, :ThoiGianDatHang, :ThoiGianGiaoHang, :ThanhTien)"
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE donhang_ct set MaDH=:MaDH, MaLS=:MaLS, SoLuong=:SoLuong, DonGia=:DonGia,ThoiGianDatHang=:ThoiGianDatHang,ThoiGianGiaoHang=:ThoiGianGiaoHang, ThanhTien=:ThanhTien  where MaDH_CT=MaDH_CT";
+            $sql = "UPDATE donhang_ct set MaDH=:MaDH, MaLS=:MaLS, SoLuong=:SoLuong, DonGia=:DonGia, ThanhTien=:ThanhTien  where MaDH_CT=MaDH_CT";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaDH_CT', $MaDH_CT);
             $cmd->bindValue(':MaDH', $MaDH);
             $cmd->bindValue(':MaLS', $MaLS);
             $cmd->bindValue(':SoLuong', $SoLuong);
             $cmd->bindValue(':DonGia', $DonGia);
-            $cmd->bindValue(':ThoiGianDatHang', $ThoiGianDatHang);
-            $cmd->bindValue(':ThoiGianGiaoHang', $ThoiGianGiaoHang);
             $cmd->bindValue(':ThanhTien', $ThanhTien);
             $ketqua = $cmd->execute();
             return $ketqua;
@@ -198,20 +176,5 @@ VALUES(:MaDH, :MaLS, :SoLuong, :ThoiGianDatHang, :ThoiGianGiaoHang, :ThanhTien)"
             exit();
         }
     }
-    public function capnhatngaygiaohang($MaDH, $ThoiGianGiaoHang)
-    {
-        $dbcon = DATABASE::connect();
-        try {
-            $sql = "UPDATE donhang_ct SET ThoiGianGiaoHang = :ThoiGianGiaoHang WHERE MaDH=:MaDH";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":ThoiGianGiaoHang", $ThoiGianGiaoHang);
-            $cmd->bindValue(":MaDH", $MaDH);
-            $result = $cmd->execute();
-            return $result;
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
-    }
+    
 }

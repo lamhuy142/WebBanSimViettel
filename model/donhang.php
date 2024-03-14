@@ -3,7 +3,8 @@ class DONHANG
 {
     private $MaDH;
     private $MaND;
-    private $Ngay;
+    private $NgayDatHang;
+    private $NgayGiaoHang;
     private $TongTien;
     private $GhiChu;
     private $TrangThai;
@@ -25,13 +26,21 @@ class DONHANG
     {
         $this->MaND = $value;
     }
-    public function getNgay()
+    public function getNgayGiaoHang()
     {
-        return $this->Ngay;
+        return $this->NgayGiaoHang;
     }
-    public function setNgay($value)
+    public function setNgayGiaoHang($value)
     {
-        $this->Ngay = $value;
+        $this->NgayGiaoHang = $value;
+    }
+    public function getNgayDatHang()
+    {
+        return $this->NgayDatHang;
+    }
+    public function setNgayDatHang($value)
+    {
+        $this->NgayDatHang = $value;
     }
     public function getTongTien()
     {
@@ -101,11 +110,12 @@ class DONHANG
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO donhang(MaND, Ngay, TongTien, GhiChu, TrangThai) 
-VALUES(:MaND, :Ngay, :TongTien, :GhiChu)";
+            $sql = "INSERT INTO donhang(MaND, NgayDatHang, NgayGiaoHang, TongTien, GhiChu, TrangThai) 
+VALUES(:MaND, :NgayGiaoHang, :TongTien, :GhiChu)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaND', $donhang->MaND);
-            $cmd->bindValue(':Ngay', $donhang->Ngay);
+            $cmd->bindValue(':NgayDatHang', $donhang->NgayDatHang);
+            $cmd->bindValue(':NgayGiaoHang', $donhang->NgayGiaoHang);
             $cmd->bindValue(':TongTien', $donhang->TongTien);
             $cmd->bindValue(':GhiChu', $donhang->GhiChu);
             $cmd->bindValue(':TrangThai', $donhang->TrangThai);
@@ -120,15 +130,16 @@ VALUES(:MaND, :Ngay, :TongTien, :GhiChu)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatdonhang($MaDH,$MaND, $Ngay, $TongTien, $GhiChu, $TrangThai) 
+    public function capnhatdonhang($MaDH,$MaND, $NgayDatHang, $NgayGiaoHang, $TongTien, $GhiChu, $TrangThai) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE donhang set MaND=:MaND, Ngay=:Ngay, TongTien=:TongTien, GhiChu=:GhiChu, TrangThai=:TrangThai  where MaDH=MaDH";
+            $sql = "UPDATE donhang set MaND=:MaND,, NgayDatHang=:NgayDatHang, NgayGiaoHang=:NgayGiaoHang, TongTien=:TongTien, GhiChu=:GhiChu, TrangThai=:TrangThai  where MaDH=MaDH";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaDH', $MaDH);
             $cmd->bindValue(':MaND', $MaND);
-            $cmd->bindValue(':Ngay', $Ngay);
+            $cmd->bindValue(':NgayDatHang', $NgayDatHang);
+            $cmd->bindValue(':NgayGiaoHang', $NgayGiaoHang);
             $cmd->bindValue(':TongTien', $TongTien);
             $cmd->bindValue(':GhiChu', $GhiChu);
             $cmd->bindValue(':TrangThai', $TrangThai);
@@ -174,4 +185,36 @@ VALUES(:MaND, :Ngay, :TongTien, :GhiChu)";
     //         exit();
     //     }
     // }
+    public function capnhatngaygiaohang($MaDH, $NgayGiaoHang)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "UPDATE donhang SET NgayGiaoHang = :NgayGiaoHang WHERE MaDH=:MaDH";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":NgayGiaoHang", $NgayGiaoHang);
+            $cmd->bindValue(":MaDH",$MaDH);
+            $result = $cmd->execute();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function doitrangthai($MaDH, $TrangThai)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE donhang set TrangThai=:TrangThai where MaDH=:MaDH";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaDH', $MaDH);
+            $cmd->bindValue(':TrangThai', $TrangThai);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

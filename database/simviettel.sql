@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th3 13, 2024 lúc 07:08 AM
+-- Thời gian đã tạo: Th3 14, 2024 lúc 01:13 AM
 -- Phiên bản máy phục vụ: 8.2.0
 -- Phiên bản PHP: 8.2.13
 
@@ -48,12 +48,18 @@ CREATE TABLE IF NOT EXISTS `donhang` (
   `MaDH` int NOT NULL AUTO_INCREMENT,
   `MaND` int NOT NULL,
   `Ngay` date NOT NULL,
-  `TongTien` float NOT NULL,
+  `TongTien` double NOT NULL,
   `GhiChu` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `TrangThai` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`MaDH`),
   KEY `nd_dh` (`MaND`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`MaDH`, `MaND`, `Ngay`, `TongTien`, `GhiChu`) VALUES
+(1, 2, '2024-03-12', 50000, 'kjsdhaksdhkas');
 
 -- --------------------------------------------------------
 
@@ -69,10 +75,20 @@ CREATE TABLE IF NOT EXISTS `donhang_ct` (
   `DonGia` double NOT NULL,
   `SoLuong` int NOT NULL,
   `ThanhTien` float NOT NULL,
+  `ThoiGianDatHang` datetime NOT NULL,
+  `ThoiGianGiaoHang` datetime NOT NULL,
+  `TrangThai` int NOT NULL,
   PRIMARY KEY (`MaDH_CT`),
   KEY `dh_ct` (`MaDH`),
   KEY `ls_ct` (`MaLS`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang_ct`
+--
+
+INSERT INTO `donhang_ct` (`MaDH_CT`, `MaDH`, `MaLS`, `DonGia`, `SoLuong`, `ThanhTien`, `ThoiGianDatHang`, `ThoiGianGiaoHang`, `TrangThai`) VALUES
+(1, 1, 1, 50000, 1, 50000, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -108,18 +124,16 @@ CREATE TABLE IF NOT EXISTS `goicuoc` (
   `ThoiGianHieuLuc` varchar(255) NOT NULL,
   `Gia` double NOT NULL,
   PRIMARY KEY (`MaGC`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `goicuoc`
 --
 
 INSERT INTO `goicuoc` (`MaGC`, `Ten`, `MoTa`, `DungLuong`, `ThoiGianHieuLuc`, `Gia`) VALUES
-(1, 'âsdasd', '', '221', '2024-03-14', 0),
-(9, 'âsdasd', '', '221', '2024-03-14', 0),
-(10, 'âsdasd', '', '221', '2024-03-14', 0),
-(11, 'kjashkajsd', '', '23', '2024-03-09', 0),
-(12, 'kjashkajsd', '', '23', '2024-03-09', 0);
+(1, 'âsdasd', '<p>sakjdhasidja <strong>kjshjasdhas</strong></p><ol><li><strong>ksdhksfd</strong></li><li><strong>sdkjhkfs</strong></li><li><strong>sdkfkf</strong></li></ol>', '221', '2024-03-14', 0),
+(13, 'UWIEHQWE', '', '20', '2024-03-07', 0),
+(14, 'UWIEHQWE', '<p>HAHGIUHWU <strong>IHSIDUHD </strong><i><strong>HKAJSDHASKD&nbsp;</strong></i></p><ol><li><i><strong>JKHKJ</strong></i><ol><li><i><strong>KJHOSD</strong></i><ol><li><i><strong>JHSIDJFK</strong></i></li></ol></li></ol></li></ol>', '20', '2024-03-07', 0);
 
 -- --------------------------------------------------------
 
@@ -239,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `nguoidung` (
   `DiaChi` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`MaND`),
   KEY `q_nd` (`MaQ`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `nguoidung`
@@ -311,14 +325,14 @@ CREATE TABLE IF NOT EXISTS `sim` (
   `MaSim` int NOT NULL AUTO_INCREMENT,
   `SoSim` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `MaLS` int NOT NULL,
-  `MoTa` text COLLATE utf8mb4_general_ci NOT NULL,
-  `HinhAnh` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `MoTa` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `HinhAnh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `GiaGoc` double NOT NULL,
   `GiaBan` double NOT NULL,
   `TinhTrang` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`MaSim`),
   KEY `ls_s` (`MaLS`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `sim`
@@ -327,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `sim` (
 INSERT INTO `sim` (`MaSim`, `SoSim`, `MaLS`, `MoTa`, `HinhAnh`, `GiaGoc`, `GiaBan`, `TinhTrang`) VALUES
 (1, '037 288 9054', 1, '', '', 50000, 50000, 1),
 (11, '1234567890', 1, '<p>ZhLKzjLKJsLKAS <strong>KJSLKAJSLKJAS JAJSHASJLKA kạhlkasjdlkasdjaslkdjas </strong><i><strong>jashdkjasdjashkjdashkd</strong></i></p><blockquote><ul><li><i><strong>jkhjkh</strong></i></li></ul></blockquote><ul><li><i><strong>kjhkj</strong></i><ul><li><h2>kjhkl</h2></li></ul></li></ul>', 'sim01.jpg', 50000, 5000, 1),
-(12, '12345678998', 1, '<p>lkasjdlkajslkasd <strong>lkajslajsdas </strong><i><strong>ljkasdlkajsd</strong></i></p><ol><li><i><strong>lkjlkj;</strong></i></li><li><i><strong>nkjjkjl</strong></i><ol><li><i><strong>kjhkjhk</strong></i><ol><li>kjhkjjjk</li></ol></li></ol></li></ol>', 'sim01.jpg', 50000, 50000, 1);
+(13, '1234567890', 1, '<p>kjhiWUOEHAWIEU <strong>IUKAHSOIAUDAO I</strong><i><strong>HALKSJDHASKLDJ</strong></i></p><ul><li><i><strong>KJHOI</strong></i><ul><li><i><strong>HUIOJ</strong></i><ul><li><i><strong>HJOIJOI</strong></i></li></ul></li></ul></li></ul>', 'sim01.jpg', 2000, 2000, 1);
 
 --
 -- Các ràng buộc cho các bảng đã đổ

@@ -3,7 +3,8 @@
 //     header("location:../index.php");
 
 require("../../model/database.php");
-require("../../model/donhang_ct.php");
+// require("../../mode/donhang_ct.php");
+require("../../model/donhang.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 
@@ -15,40 +16,14 @@ if (isset($_REQUEST["action"])) {
     $action = "xem";
 }
 
-$dh = new DONHANG_CT();
+$dh = new DONHANG();
 $nd = new NGUOIDUNG();
 $q = new QUYEN();
 
 switch ($action) {
     case "xem":
-        $donhang = $dh->laydanhsachdonhang_ct();
-        include("main.php");
-        break;
-    case "themnd":
-        $donhang = $dh->laydanhsachdonhang_ct();
-        include("themnguoidung.php");
-        break;
-    case "xulythemnd":
-        //xử lý load ảnh
-        $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
-        $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
-        move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
-        //xử lý thêm 
-        $nguoidungmoi = new NGUOIDUNG();
-        $nguoidungmoi->setEmail($_POST["txtemail"]);
-        $nguoidungmoi->setSdt($_POST["txtsodienthoai"]);
-        $nguoidungmoi->setMatKhau($_POST["txtmatkhau"]);
-        $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);
-        $nguoidungmoi->setHoTen($_POST["txthoten"]);
-        $nguoidungmoi->setMaQ($_POST["optquyen"]);
-        $nguoidungmoi->setTrangThai($_POST["txttrangthai"]);
-        $nguoidungmoi->setHinhAnh($hinhanh);
-        // thêm
-        $nd->themnguoidung($nguoidungmoi);
-        // load người dùng
-        $quyen = $q->laydanhsachquyen();
+        $donhang = $dh->laydanhsachdonhang();
         $nguoidung = $nd->laydanhsachnguoidung();
-        $donhang = $dh->laydanhsachdonhang_ct();
         include("main.php");
         break;
     case "khoa":
@@ -66,7 +41,7 @@ switch ($action) {
         // load hóa đơn
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
-        $donhang = $dh->laydanhsachdonhang_ct();
+        $donhang = $dh->laydanhsachdonhang();
         include("main.php");
         break;
     case "hoantat":
@@ -82,14 +57,14 @@ switch ($action) {
             $dh->doitrangthai($id, $tinhtrang);
         }
         //cập nhật thời gian giao hàng khi nhấn nút hoàn tất
-        $donhanght = new DONHANG_CT();
+        $donhanght = new DONHANG();
         $currentDateTime = date('Y-m-d H:i:s');
         $dh->capnhatngaygiaohang($id, $currentDateTime);
 
         // load hóa đơn
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
-        $donhang = $dh->laydanhsachdonhang_ct();
+        $donhang = $dh->laydanhsachdonhang();
         include("main.php");
         break;
     case "huydon":
@@ -102,9 +77,9 @@ switch ($action) {
         $tinhtrang = 3;
         $dh->doitrangthai($id, $tinhtrang);
         // load hóa đơn
-        $loai = $lnd->layloainguoidung();
+        $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
-        $hoadon = $dh->laydanhsachdonhang_ct();
+        $donhang = $dh->laydanhsachdonhang();
         include("main.php");
         break;
     default:
