@@ -6,10 +6,10 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">DANH SÁCH NGƯỜI DÙNG</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">DANH SÁCH CHƯƠNG TRÌNH KHUYẾN MÃI</h6>
         </div>
         <div class="card-body">
-            <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themnd">Thêm người dùng</a></p>
+            <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themnd">Thêm</a></p>
 
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -50,17 +50,17 @@
                                         <td><?php echo $n["Sdt"]; ?></td>
                                         <td><?php echo $n["DiaChi"]; ?></td>
                                         <?php if ($q["MaQ"] == 1) { ?>
-                                            <td class="text-success"><?php echo $q["TenQ"]; ?></td>
+                                            <td class="text-success font-weight-bold"><?php echo $q["TenQ"]; ?></td>
                                         <?php } else { ?>
-                                            <td class="text-primary"><?php echo $q["TenQ"]; ?></td>
+                                            <td class="text-primary font-weight-bold"><?php echo $q["TenQ"]; ?></td>
                                         <?php } ?>
                                         <td><?php echo $n["MatKhau"]; ?></td>
                                         <?php if ($n["TrangThai"] == 1) { ?>
-                                            <td class="text-success">Hoạt động</td>
+                                            <td class="text-success font-weight-bold">Hoạt động</td>
                                         <?php } //end if TrangThai 
                                         else {
                                         ?>
-                                            <td class="text-danger">Khóa</td>
+                                            <td class="text-danger font-weight-bold">Khóa</td>
                                         <?php }  ?>
 
                                         <td>

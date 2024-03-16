@@ -50,17 +50,17 @@
                                         <td><?php echo $n["Sdt"]; ?></td>
                                         <td><?php echo $n["DiaChi"]; ?></td>
                                         <?php if ($q["MaQ"] == 1) { ?>
-                                            <td class="text-success"><?php echo $q["TenQ"]; ?></td>
+                                            <td class="text-success font-weight-bold"><?php echo $q["TenQ"]; ?></td>
                                         <?php } else { ?>
-                                            <td class="text-primary"><?php echo $q["TenQ"]; ?></td>
+                                            <td class="text-primary font-weight-bold"><?php echo $q["TenQ"]; ?></td>
                                         <?php } ?>
                                         <td><?php echo $n["MatKhau"]; ?></td>
                                         <?php if ($n["TrangThai"] == 1) { ?>
-                                            <td class="text-success">Hoạt động</td>
+                                            <td class="text-success font-weight-bold">Hoạt động</td>
                                         <?php } //end if TrangThai 
                                         else {
                                         ?>
-                                            <td class="text-danger">Khóa</td>
+                                            <td class="text-danger font-weight-bold">Khóa</td>
                                         <?php }  ?>
 
                                         <td>

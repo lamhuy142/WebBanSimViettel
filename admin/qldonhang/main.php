@@ -68,12 +68,12 @@
                                 <php }  > -->
                                         <!-- cột trạng thái -->
                                         <?php if ($dh["TrangThai"] == 0) { ?>
-                                            <td class="text-success">Chuẩn bị hàng </td>
+                                            <td class="text-success font-weight-bold">Chuẩn bị hàng </td>
                                         <?php } elseif ($dh["TrangThai"] == 1) { ?>
-                                            <td class="text-success">Đang vận chuyển</td>
-                                        <?php } elseif ($dh["TrangThai"] == 2) { ?><td class="text-success">Hoàn tất đơn hàng</td>
+                                            <td class="text-success font-weight-bold">Đang vận chuyển</td>
+                                        <?php } elseif ($dh["TrangThai"] == 2) { ?><td class="text-success font-weight-bold">Hoàn tất đơn hàng</td>
                                         <?php } elseif ($dh["TrangThai"] == 3) { ?>
-                                            <td class="text-danger">Đơn đã hủy</td>
+                                            <td class="text-danger font-weight-bold">Đơn đã hủy</td>
                                         <?php } ?>
 
                                         <td>

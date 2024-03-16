@@ -46,9 +46,9 @@
                                         <td><?php echo $s["GiaBan"] ?></td>
                                         <!-- Tình Trạng -->
                                         <?php if ($s["TinhTrang"] == 1) { ?>
-                                            <td class="text-success"> Còn Bán</td>
+                                            <td class="text-success font-weight-bold"> Còn Bán</td>
                                         <?php } else { ?>
-                                            <td class="text-danger"> Hết Hàng</td>
+                                            <td class="text-danger font-weight-bold"> Hết Hàng</td>
                                         <?php } ?>
                                         <td>
                                             <a href="index.php?action=sua&id=<?php echo $s['MaSim']; ?>" class="btn btn-warning">Sửa</a>

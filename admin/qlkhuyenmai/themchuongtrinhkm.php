@@ -11,16 +11,6 @@
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="optquyen" class="form-label">Phân quyền</label>
-                            <select class="form-select" name="optquyen">
-                                <?php foreach ($quyen as $q) : ?>
-                                    <option value="<?php echo $q['MaQ']; ?>"><?php echo $q['TenQ']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
                             <label for="txthoten" class="form-label">Họ Tên Người Dùng</label>
                             <input class="form-control" type="text" name="txthoten" placeholder="Nhập họ tên">
                         </div>
