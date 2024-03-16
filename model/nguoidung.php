@@ -242,4 +242,38 @@ VALUES(:HoTen, :Sdt, :MatKhau, :Email, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
             exit();
         }
     }
+    public function kiemtraSdtTonTai($sodienthoai)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(*) FROM nguoidung WHERE Sdt=:sodienthoai";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":sodienthoai", $sodienthoai);
+            $cmd->execute();
+            $count = $cmd->fetchColumn();
+            $cmd->closeCursor();
+            return $count > 0; // Trả về true nếu số điện thoại đã tồn tại, ngược lại trả về false
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function kiemtraEmailTonTai($Email)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(*) FROM nguoidung WHERE Email=:Email";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":Email", $Email);
+            $cmd->execute();
+            $count = $cmd->fetchColumn();
+            $cmd->closeCursor();
+            return $count > 0; // Trả về true nếu số điện thoại đã tồn tại, ngược lại trả về false
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

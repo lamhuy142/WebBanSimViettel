@@ -5,44 +5,36 @@
             <h6 style="color: #EA0029;" class="m-0 font-weight-bold">THÊM NGƯỜI DÙNG</h6>
         </div>
         <div class="card-body">
-            <form class="was-validated" method="post" enctype="multipart/form-data" action="index.php">
+            <form method="post" enctype="multipart/form-data" action="index.php">
                 <input type="hidden" name="action" value="xulythemnd">
 
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="optquyen" class="form-label">Phân quyền</label>
-                            <select class="form-select" required name="optquyen">
-                                <option value="">Chọn quyền người dùng</option>
+                            <select class="form-select" name="optquyen">
                                 <?php foreach ($quyen as $q) : ?>
                                     <option value="<?php echo $q['MaQ']; ?>"><?php echo $q['TenQ']; ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <div class="invalid-feedback">Vui lòng chọn loại quyền</div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txthoten">Họ Tên:</label>
-                            <input type="text" class="form-control has-validation" id="username" name="txthoten" value="<?php echo isset($HoTen) ? $HoTen : ''; ?>" required>
-                            <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Điền đầy đủ họ tên.</div>
+                            <label for="txthoten" class="form-label">Họ Tên Người Dùng</label>
+                            <input class="form-control" type="text" name="txthoten" placeholder="Nhập họ tên">
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtemail" class="form-label">Email</label>
-                            <input class="form-control has-validation" type="email" name="txtemail" value="<?php echo isset($Email) ? $Email : ''; ?>" required>
-                            <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng nhập địa chỉ email hợp lệ.</div>
+                            <input class="form-control" type="email" name="txtemail" placeholder="Nhập email">
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtsodienthoai" class="form-label">Số điện thoại</label>
-                            <input class="form-control has-validation" type="number" name="txtsodienthoai" value="<?php echo isset($Sdt) ? $Sdt : ''; ?>" required>
-                            <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng nhập số điện thoại hợp lệ.</div>
+                            <input class="form-control" type="number" name="txtsodienthoai" placeholder="Nhập số điện thoại">
                         </div>
                     </div>
                 </div>
@@ -50,17 +42,13 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtdiachi" class="form-label">Địa chỉ</label>
-                            <input class="form-control has-validation" type="text" name="txtdiachi" value="<?php echo isset($DiaChi) ? $DiaChi : ''; ?>" required>
-                            <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng nhập địa chỉ.</div>
+                            <input class="form-control" type="text" name="txtdiachi" placeholder="Nhập địa chỉ">
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtmatkhau" class="form-label">Mật khẩu</label>
-                            <input class="form-control has-validation" type="text" name="txtmatkhau" value="<?php echo isset($MatKhau) ? $MatKhau : ''; ?>" required></input>
-                            <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
+                            <input class="form-control" type="text" name="txtmatkhau" placeholder="Nhập mật khẩu"></input>
                         </div>
                     </div>
                     <div class="col">
@@ -72,9 +60,7 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label>Hình ảnh</label>
-                            <input type="file" class="form-control" name="fileanh" value="<?php echo isset($HinhAnh) ? $HinhAnh : ''; ?>" required></input>
-                            <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng chọn hình ảnh.</div>
+                            <input type="file" class="form-control" name="fileanh"></input>
                         </div>
                     </div>
                 </div>

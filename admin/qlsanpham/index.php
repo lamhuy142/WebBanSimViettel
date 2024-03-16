@@ -22,6 +22,7 @@ $ls = new LOAISIM();
 
 switch ($action) {
     case "sim":
+        $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
@@ -72,14 +73,14 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         include("goicuoc.php");
         break;
-    case "xoa":
-        $xoa = new SIM();
-        $xoa->setMaSim($_GET["id"]);
-        $sim = $s->xoasim($xoa);
-        $loaisim = $ls->laydanhsachloaisim();
-        $sim = $s->laydanhsachsim();
-        include("sim.php");
-        break;
+    // case "xoa":
+    //     $xoa = new SIM();
+    //     $xoa->setMaSim($_GET["id"]);
+    //     $sim = $s->xoasim($xoa);
+    //     $loaisim = $ls->laydanhsachloaisim();
+    //     $sim = $s->laydanhsachsim();
+    //     include("sim.php");
+    //     break;
     case "sua":
         if (isset($_GET["id"])) {
             $sim_ht = $s->laydanhsachsimtheoid($_GET["id"]);
@@ -118,13 +119,13 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
-    case "xoagc":
-        $xoa = new GOICUOC();
-        $xoa->setMaGC($_GET["id"]);
-        $goicuoc = $gc->xoagoicuoc($xoa);
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        include("goicuoc.php");
-        break;
+    // case "xoagc":
+    //     $xoa = new GOICUOC();
+    //     $xoa->setMaGC($_GET["id"]);
+    //     $goicuoc = $gc->xoagoicuoc($xoa);
+    //     $goicuoc = $gc->laydanhsachgoicuoc();
+    //     include("goicuoc.php");
+    //     break;
     case "suagc":
         if (isset($_GET["id"])) {
             $goicuoc_ht = $gc->laydanhsachgoicuoctheoid($_GET["id"]);

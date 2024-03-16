@@ -2,8 +2,10 @@
 class QUANGCAO
 {
     private $MaQC;
+    private $MoTa;
     private $HinhAnh;
     private $Url;
+    private $TrangThai;
 
     
     public function getMaQC()
@@ -29,6 +31,22 @@ class QUANGCAO
     public function setUrl($value)
     {
         $this->Url = $value;
+    }
+    public function getMoTa()
+    {
+        return $this->MoTa;
+    }
+    public function setMoTa($value)
+    {
+        $this->MoTa = $value;
+    }
+    public function getTrangThai()
+    {
+        return $this->TrangThai;
+    }
+    public function setTrangThai($value)
+    {
+        $this->TrangThai = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -74,11 +92,13 @@ class QUANGCAO
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO quangcao(HinhAnh, Url) 
-VALUES(:HinhAnh, :Url)";
+            $sql = "INSERT INTO quangcao(MoTa, HinhAnh, Url, TrangThai) 
+VALUES(,:MoTa, :HinhAnh, :Url, :TrangThai)";
             $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MoTa', $quangcao->MoTa);
             $cmd->bindValue(':HinhAnh', $quangcao->HinhAnh);
             $cmd->bindValue(':Url', $quangcao->Url);
+            $cmd->bindValue(':TrangThai', $quangcao->TrangThai);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -89,15 +109,17 @@ VALUES(:HinhAnh, :Url)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatquangcao($MaQC, $HinhAnh, $Url)
+    public function capnhatquangcao($MaQC, $MoTa, $HinhAnh, $Url, $TrangThai)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE quangcao set HinhAnh, Url  where MaQC=MaQC";
+            $sql = "UPDATE quangcao set MoTa, HinhAnh, Url, TrangThai   where MaQC=MaQC";
             $cmd = $db->prepare($sql);
             $cmd->bindValue('MaQC', $MaQC);
+            $cmd->bindValue(':MoTa', $MoTa);
             $cmd->bindValue(':HinhAnh', $HinhAnh);
             $cmd->bindValue(':Url', $Url);
+            $cmd->bindValue(':TrangThai', $TrangThai);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {

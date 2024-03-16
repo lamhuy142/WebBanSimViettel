@@ -41,11 +41,11 @@
     <div id="wrapper">
         <!-- bg-gradient-primary -->
         <!-- Sidebar -->
-        <ul style="background-color: #EA0029;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul style="background-color: #E7E7E7;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a href="#" class="navbar-brand">
-                <img class="mx-auto d-block" src="../../img/logo/Viettel_Logo_white.png" width="100" height="50" alt="LogoViettel">
+                <img class="mx-auto d-block" src="../../img/logo/logo_home_new.png" width="100" height="40" alt="LogoViettel">
             </a>
 
             <!-- Divider -->
@@ -53,8 +53,8 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item <?php if (strpos($_SERVER["REQUEST_URI"], "ktnguoidung") != false) echo "active"; ?>">
-                <a class="nav-link" href="../ktnguoidung">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a style="color: #576C8F;" class="nav-link" href="../ktnguoidung">
+                    <i style="color: #576C8F;" class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Bảng điều khiển</span></a>
             </li>
 
@@ -62,7 +62,7 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <div style="color: #576C8F;" class="sidebar-heading">
                 Quản Lý
             </div>
 
@@ -70,21 +70,21 @@
             <li class="nav-item
             <?php if (strpos($_SERVER["REQUEST_URI"], "qlnguoidung") != false) echo "active"; ?>
             ">
-                <a class="nav-link" href="../qlnguoidung/index.php?action=xem">
-                    <i class="bi bi-person-badge-fill"></i>
+                <a style="color: #576C8F;" class="nav-link" href="../qlnguoidung/index.php?action=xem">
+                    <i style="color: #576C8F;" class="bi bi-person-badge-fill"></i>
                     <span>Quản lý người dùng</span></a>
             </li>
             <!-- Nav Item - MYPHAM -->
             <li class="nav-item <?php if (strpos($_SERVER["REQUEST_URI"], "qlsanpham") != false) echo "active"; ?>">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                <a style="color: #576C8F;" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+                    <i style="color: #576C8F;" class="fas fa-fw fa-folder"></i>
                     <span>Quản lý sản phẩm</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Login Screens:</h6> -->
-                        <a class="collapse-item" href="../qlsanpham/index.php?action=sim">Sim</a>
-                        <a class="collapse-item" href="../qlsanpham/index.php?action=goicuoc">Gói Cước</a>
+                        <a style="color: #576C8F;" class="collapse-item" href="../qlsanpham/index.php?action=sim">Sim</a>
+                        <a style="color: #576C8F;" class="collapse-item" href="../qlsanpham/index.php?action=goicuoc">Gói Cước</a>
                     </div>
                 </div>
             </li>
@@ -92,9 +92,33 @@
             <li class="nav-item
             <?php if (strpos($_SERVER["REQUEST_URI"], "qldonhang") != false) echo "active"; ?>
             ">
-                <a class="nav-link" href="../qldonhang/index.php?action=xem">
-                    <i class="bi bi-receipt-cutoff"></i>
+                <a style="color: #576C8F;" class="nav-link" href="../qldonhang/index.php?action=xem">
+                    <i style="color: #576C8F;" class="bi bi-calendar-check-fill"></i>
                     <span>Quản lý đơn hàng</span></a>
+            </li>
+            <!-- Nav Item - PHAN HOI TU NGUOI DUNG -->
+            <li class="nav-item
+            <?php if (strpos($_SERVER["REQUEST_URI"], "phanhoinguoidung") != false) echo "active"; ?>
+            ">
+                <a style="color: #576C8F;" class="nav-link" href="../phanhoinguoidung/index.php?action=xem">
+                    <i style="color: #576C8F;" class="bi bi-chat-left-dots-fill"></i>
+                    <span>Phản hồi người dùng</span></a>
+            </li>
+            <!-- Nav Item - QUANGCAO -->
+            <li class="nav-item
+            <?php if (strpos($_SERVER["REQUEST_URI"], "qlquangcao") != false) echo "active"; ?>
+            ">
+                <a style="color: #576C8F;" class="nav-link" href="../qlquangcao/index.php?action=xem">
+                    <i style="color: #576C8F;" class="bi bi-badge-ad-fill"></i>
+                    <span>Banner quảng cáo</span></a>
+            </li>
+            <!-- Nav Item - CHUONG TRINH KHUYEN MAI -->
+            <li class="nav-item
+            <?php if (strpos($_SERVER["REQUEST_URI"], "qlkhuyenmai") != false) echo "active"; ?>
+            ">
+                <a style="color: #576C8F;" class="nav-link" href="../qlkhuyenmai/index.php?action=xem">
+                    <i style="color: #576C8F;" class="bi bi-gift-fill"></i>
+                    <span>Chương trình khuyến mãi</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -114,7 +138,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav style="background-color: #EA0029;" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav style="background-color: #E7E7E7;" class="navbar navbar-expand navbar-light bg-light topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

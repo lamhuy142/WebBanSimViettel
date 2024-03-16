@@ -45,7 +45,7 @@
                                 <td><?php echo $gc["Gia"] ?></td>
                                 <td>
                                     <a href="index.php?action=suagc&id=<?php echo $gc['MaGC']; ?>" class="btn btn-warning">Sửa</a>
-                                    <a href="index.php?action=xoagc&id=<?php echo  $gc['MaGC']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
+                                    <!-- <a href="index.php?action=xoagc&id=<php echo  $gc['MaGC']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a> -->
                                 </td>
                             </tr>
                         <?php endforeach; ?>
