@@ -39,16 +39,13 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+        <!-- bg-gradient-primary -->
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul style="background-color: #EA0029;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../ktnguoidung/index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">VIETTEL</sup></div>
+            <a href="#" class="navbar-brand">
+                <img class="mx-auto d-block" src="../../img/logo/Viettel_Logo_white.png" width="100" height="50" alt="LogoViettel">
             </a>
 
             <!-- Divider -->
@@ -74,7 +71,7 @@
             <?php if (strpos($_SERVER["REQUEST_URI"], "qlnguoidung") != false) echo "active"; ?>
             ">
                 <a class="nav-link" href="../qlnguoidung/index.php?action=xem">
-                <i class="bi bi-person-badge-fill"></i>
+                    <i class="bi bi-person-badge-fill"></i>
                     <span>Quản lý người dùng</span></a>
             </li>
             <!-- Nav Item - MYPHAM -->
@@ -96,7 +93,7 @@
             <?php if (strpos($_SERVER["REQUEST_URI"], "qldonhang") != false) echo "active"; ?>
             ">
                 <a class="nav-link" href="../qldonhang/index.php?action=xem">
-                <i class="bi bi-receipt-cutoff"></i>
+                    <i class="bi bi-receipt-cutoff"></i>
                     <span>Quản lý đơn hàng</span></a>
             </li>
             <!-- Divider -->
@@ -117,7 +114,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav style="background-color: #EA0029;" class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

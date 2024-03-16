@@ -6,15 +6,9 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">DANH SÁCH ĐƠN HÀNG</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">CHI TIẾT ĐƠN HÀNG</h6>
         </div>
         <div class="card-body">
-            <form action="">
-                <div class="input-group col-4">
-                    <span class="input-group-text"><i class="bi bi-search"></i></span>
-                    <input type="text" name="txtMaDH" class="form-control" placeholder="Nhập Mã Đơn Hàng...">
-                </div>
-            </form>
             <div class="table-responsive">
 
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

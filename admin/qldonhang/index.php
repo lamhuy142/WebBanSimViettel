@@ -26,6 +26,11 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         include("main.php");
         break;
+    case "xemchitiet":
+        $donhang = $dh->laydanhsachdonhang();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        include("chitietdonhang.php");
+        break;
     case "khoa":
 
         if (isset($_REQUEST["id"]))

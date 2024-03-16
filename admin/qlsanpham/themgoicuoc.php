@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">THÊM GÓI CƯỚC</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">THÊM GÓI CƯỚC</h6>
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">

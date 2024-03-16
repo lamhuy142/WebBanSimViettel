@@ -6,11 +6,11 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DANH SÁCH SIM</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">DANH SÁCH SIM</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <p><a class="btn btn-info" href="index.php?action=themsim">Thêm</a></p>
+                <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themsim">Thêm</a></p>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>

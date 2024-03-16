@@ -33,38 +33,38 @@
         <!-- Header desktop -->
         <div class="container-menu-desktop trans-03">
             <div class="wrap-menu-desktop">
-                <nav class="limiter-menu-desktop p-l-45">
+                <nav style="background-color: #E7E7E7;" class="limiter-menu-desktop p-l-45">
 
                     <!-- Logo desktop -->
-                    <a href="#" class="logo">
-                        <img src="./images/icons/logo-01.png" alt="IMG-LOGO">
+                    <a href="#" class="navbar-brand">
+                        <img class="mx-auto d-block" src="../img/logo/logo_home_new.png" width="100" height="40" alt="LogoViettel">
                     </a>
 
                     <!-- Menu desktop -->
                     <div class="menu-desktop">
-                        <ul class="main-menu">
+                        <ul class="main-menu ">
                             <li class="active-menu">
-                                <a href="index.php">Home</a>
+                                <a style="color: #576C8F;"  href="index.php">Home</a>
                             </li>
 
                             <li>
-                                <a href="product.php">Shop</a>
+                                <a style="color: #576C8F;" href="product.php">Shop</a>
                             </li>
 
                             <li class="label1" data-label1="hot">
-                                <a href="shoping-cart.php">Features</a>
+                                <a style="color: #576C8F;" href="shoping-cart.php">Features</a>
                             </li>
 
                             <li>
-                                <a href="blog.php">Blog</a>
+                                <a style="color: #576C8F;" href="blog.php">Blog</a>
                             </li>
 
                             <li>
-                                <a href="about.php">About</a>
+                                <a style="color: #576C8F;" href="about.php">About</a>
                             </li>
 
                             <li>
-                                <a href="contact.php">Contact</a>
+                                <a style="color: #576C8F;" href="contact.php">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -73,19 +73,19 @@
                     <div class="wrap-icon-header flex-w flex-r-m h-full">
                         <div class="flex-c-m h-full p-r-24">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-                                <i class="zmdi zmdi-search"></i>
+                                <i style="color: #576C8F;" class="zmdi zmdi-search"></i>
                             </div>
                         </div>
 
                         <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
-                                <i class="zmdi zmdi-shopping-cart"></i>
+                                <i style="color: #576C8F;" class="zmdi zmdi-shopping-cart"></i>
                             </div>
                         </div>
 
                         <div class="flex-c-m h-full p-lr-19">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-                                <i class="zmdi zmdi-menu"></i>
+                                <i style="color: #576C8F;" class="zmdi zmdi-menu"></i>
                             </div>
                         </div>
                     </div>
@@ -96,9 +96,9 @@
         <!-- Header Mobile -->
         <div class="wrap-header-mobile" style="background-color: #E7E7E7;  ">
             <!-- Logo moblie -->
-            <div class="logo-mobile">
-                <a href="index.php"><img src="./images/icons/logo-01.png" alt="IMG-LOGO"></a>
-            </div>
+            <a href="#" class="navbar-brand">
+                <img class="mx-auto d-block" src="../img/logo/logo_home_new.png" width="100" height="40" alt="LogoViettel">
+            </a>
 
             <!-- Icon header -->
             <div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">

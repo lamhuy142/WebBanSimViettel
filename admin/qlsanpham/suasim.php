@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">SỬA THÔNG TIN SIM</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">SỬA THÔNG TIN SIM</h6>
         </div>
         <div class="card-body">
             <form method="post" action="index.php" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="md-1 mt-1">
                     <label for="txttinhtrang" class="form-label">Trạng Thái</label>
-                    <input class="form-control" name="txttinhtrang" value="<?php echo $sim_ht['TinhTrang']; ?>" readonly ></input>
+                    <input class="form-control" name="txttinhtrang" value="<?php echo $sim_ht['TinhTrang']; ?>" readonly></input>
                 </div>
                 </br>
                 <div class="row g-3">

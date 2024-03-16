@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">SỬA THÔNG TIN GÓI CƯỚC</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">SỬA THÔNG TIN GÓI CƯỚC</h6>
         </div>
         <div class="card-body">
             <form method="post" action="index.php" enctype="multipart/form-data">
