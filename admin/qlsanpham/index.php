@@ -103,7 +103,6 @@ switch ($action) {
         // gán dữ liệu từ form
         
         $sua = new SIM();
-        $sua->setMaSim($_POST["MaSim"]);
         $sua->setMaLS($_POST["optloaisim"]);
         $sua->setSoSim($_POST["txtsosim"]);
         $sua->setGiaGoc($_POST["txtgiagoc"]);
@@ -147,7 +146,6 @@ switch ($action) {
         // gán dữ liệu từ form
 
         $sua = new GOICUOC();
-        $sua->setMaGC($_POST["MaGC"]);
         $sua->setTen($_POST["txtten"]);
         $sua->setMoTa($_POST["txtmota"]);
         $sua->setDungLuong($_POST["txtdungluong"]);

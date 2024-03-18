@@ -52,7 +52,7 @@
                         <input class="form-control" type="number" name="txttinhtrang" value="1" readonly>
                     </div>
                     <div class="col md-3 mt-3">
-                        <label for="txtsosim" class="form-label">Hình Ảnh</label>
+                        <label for="fileanh" class="form-label">Hình Ảnh</label>
                         <input type="file" class="form-control" name="fileanh" required></input>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng chọn hình ảnh cho sản phẩm.</div>
