@@ -93,7 +93,7 @@ class QUANGCAO
         $db = DATABASE::connect();
         try {
             $sql = "INSERT INTO quangcao(MoTa, HinhAnh, Url, TrangThai) 
-VALUES(,:MoTa, :HinhAnh, :Url, :TrangThai)";
+VALUES(:MoTa, :HinhAnh, :Url, :TrangThai)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MoTa', $quangcao->MoTa);
             $cmd->bindValue(':HinhAnh', $quangcao->HinhAnh);

@@ -36,25 +36,20 @@ switch ($action) {
         include("themchuongtrinhkm.php");
         break;
     case "xulythemkm":
-        //xử lý load ảnh
-        $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
-        $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
-        move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
         //xử lý thêm 
-        $nguoidungmoi = new NGUOIDUNG();
-        $nguoidungmoi->setEmail($_POST["txtemail"]);
-        $nguoidungmoi->setSdt($_POST["txtsodienthoai"]);
-        $nguoidungmoi->setMatKhau($_POST["txtmatkhau"]);
-        $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);
-        $nguoidungmoi->setHoTen($_POST["txthoten"]);
-        $nguoidungmoi->setMaQ($_POST["optquyen"]);
-        $nguoidungmoi->setTrangThai($_POST["txttrangthai"]);
-        $nguoidungmoi->setHinhAnh($hinhanh);
+        $khuyenmaimoi = new KHUYENMAI();
+        $khuyenmaimoi->setTenKM($_POST["txttenkm"]);
+        $khuyenmaimoi->setLoaiKM($_POST["optloai"]);
+        $khuyenmaimoi->setGiaTriKM($_POST["txtgiatri"]);
+        $khuyenmaimoi->setMoTa($_POST["txtmota"]);
+        $khuyenmaimoi->setNgayBD($_POST["ngaybd"]);
+        $khuyenmaimoi->setNgayKT($_POST["ngaykt"]);
         // thêm
-        $nd->themnguoidung($nguoidungmoi);
+        $km->themkhuyenmai($khuyenmaimoi);
         // load người dùng
-        $quyen = $q->laydanhsachquyen();
-        $nguoidung = $nd->laydanhsachnguoidung();
+        $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        $ngayht = date("Y-m-d");
         include("main.php");
         break;
     case "khoa":

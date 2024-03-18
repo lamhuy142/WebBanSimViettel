@@ -36,7 +36,7 @@
                     </tfoot>
                     <tbody>
                         <?php foreach ($sim as $s) :
-                            foreach ($loaisim as $l) :
+                            foreach ($loai as $l) :
                                 if ($s["MaLS"] == $l["MaLS"]) { ?>
                                     <tr>
                                         <td><?php echo $l["TenLS"] ?></td>

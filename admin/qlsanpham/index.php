@@ -22,7 +22,7 @@ $ls = new LOAISIM();
 
 switch ($action) {
     case "sim":
-        $loaisim = $ls->laydanhsachloaisim();
+        $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
@@ -31,7 +31,7 @@ switch ($action) {
         include("goicuoc.php");
         break;
     case "themsim":
-        $loaisim = $ls->laydanhsachloaisim();
+        $loai = $ls->laydanhsachloaisim();
         include("themsim.php");
         break;
     case "xulythem":
@@ -52,7 +52,7 @@ switch ($action) {
         $s->themsim($moi);
 
         // load sản phẩm
-        $loaisim = $ls->laydanhsachloaisim();
+        $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
@@ -60,6 +60,11 @@ switch ($action) {
         include("themgoicuoc.php");
         break;
     case "xulythemgc":
+        $SoSim = $_POST["txtsosim"];
+        $DungLuong = $_POST["txtdungluong"];
+        $MoTa = $_POST["txtmota"];
+        $GiaGoc = $_POST["txtgiagoc"];
+        $GiaBan = $_POST["txtgiaban"];
         //xử lý thêm mặt hàng
         $moi = new GOICUOC();
         $moi->setTen($_POST["txttengc"]);
@@ -89,6 +94,7 @@ switch ($action) {
             include("suasim.php");
         } else {
             $sim = $s->laydanhsachsim();
+            $loai = $ls->laydanhsachloaisim();
             include("sim.php");
         }
         break;

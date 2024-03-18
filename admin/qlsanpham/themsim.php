@@ -14,7 +14,7 @@
                         <label for="optloaisim" class="form-label">Loại Sim</label>
                         <select class="form-control form-select" required name="optloaisim">
                             <option value="">Chọn loại sim</option>
-                            <?php foreach ($loaisim as $l) : ?>
+                            <?php foreach ($loai as $l) : ?>
                                 <option value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenLS']; ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -22,13 +22,14 @@
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtsosim" class="form-label">Số Sim</label>
-                        <input class="form-control" type="text" name="txtsosim" required>
+                        <input class="form-control" type="number" name="txtsosim" value="<?php echo isset($SoSim) ? $SoSim : ''; ?>" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập số.</div>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtmota" class="form-label">Mô Tả</label>
-                        <input class="form-control" id="editor" type="text" name="txtmota" required>
+                        <!-- <input class="form-control" id="editor" type="text" name="txtmota" value="<php echo isset($MoTa) ? $MoTa : ''; ?>" > -->
+                        <textarea id="editor" rows="5" class="form-control" name="txtmota"></textarea>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập mô tả.</div>
                     </div>
@@ -36,13 +37,13 @@
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
                         <label for="txtgiagoc" class="form-label">Giá Gốc</label>
-                        <input class="form-control" type="number" name="txtgiagoc" required>
+                        <input class="form-control" type="number" name="txtgiagoc" value="<?php echo isset($GiaGoc) ? $GiaGoc : ''; ?>" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Hãy điền giá gốc của sản phẩm.</div>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtgiaban" class="form-label">Giá bán</label>
-                        <input class="form-control" type="number" name="txtgiaban" required>
+                        <input class="form-control" type="number" name="txtgiaban" value="<?php echo isset($GiaBan) ? $GiaBan : ''; ?>" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Hãy điền giá bán của sản phẩm.</div>
                     </div>

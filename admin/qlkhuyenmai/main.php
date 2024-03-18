@@ -54,16 +54,19 @@
                                         if ($ngayht >= $km["NgayBD"] && $ngayht <= $km["NgayKT"]) { ?>
                                             <td class="text-success font-weight-bold">Chương trình đang hoạt động</td>
                                             <td>
+                                                <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
                                                 <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
                                             </td>
-                                            <?php } elseif ($ngayht < $km["NgayBD"]) { ?>
-                                            <td class="text-success font-weight-bold">Chương trình sẽ bắt đầu vào ngày <?php echo $km["NgayBD"]; ?></td>
+                                        <?php } elseif ($ngayht < $km["NgayBD"]) { ?>
+                                            <td class="text-warning font-weight-bold">Chương trình sẽ bắt đầu vào ngày <?php echo $km["NgayBD"]; ?></td>
                                             <td>
+                                                <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
                                                 <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
                                             </td>
                                         <?php } else { ?>
-                                            <td class="text-success font-weight-bold">Chương trình đã kết thúc</td>
+                                            <td class="text-dark font-weight-bold">Chương trình đã kết thúc</td>
                                             <td>
+                                                <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
                                                 <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
                                             </td>
 

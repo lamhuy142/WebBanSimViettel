@@ -5,6 +5,7 @@ class KHUYENMAI
     private $TenKM;
     private $MoTa;
     private $GiaTriKM;
+    private $LoaiKM;
     private $NgayBD;
     private $NgayKT;
     
@@ -40,6 +41,14 @@ class KHUYENMAI
     public function setGiaTriKM($value)
     {
         $this->GiaTriKM = $value;
+    }
+    public function getLoaiKM()
+    {
+        return $this->LoaiKM;
+    }
+    public function setLoaiKM($value)
+    {
+        $this->LoaiKM = $value;
     }
     public function getNgayKT()
     {
@@ -101,12 +110,13 @@ class KHUYENMAI
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO khuyenmai(TenKM, MoTa, GiaTriKM, NgayBD, NgayKT) 
-VALUES(:TenKM, :MoTa, :GiaTriKM, :NgayKT)";
+            $sql = "INSERT INTO khuyenmai(TenKM, MoTa, GiaTriKM, LoaiKM, NgayBD, NgayKT) 
+VALUES(:TenKM, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
             $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
             $cmd->bindValue(':GiaTriKM', $khuyenmai->GiaTriKM);
+            $cmd->bindValue(':LoaiKM', $khuyenmai->LoaiKM);
             $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
             $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
             $cmd->execute();
@@ -120,16 +130,17 @@ VALUES(:TenKM, :MoTa, :GiaTriKM, :NgayKT)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatkhuyenmai($MaKM,$TenKM, $MoTa, $GiaTriKM, $NgayBD, $NgayKT) 
+    public function capnhatkhuyenmai($MaKM,$TenKM, $MoTa, $GiaTriKM, $LoaiKM, $NgayBD, $NgayKT) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE khuyenmai set TenKM=:TenKM, MoTa=:MoTa, GiaTriKM=:GiaTriKM, NgayBD=:NgayBD, NgayKT=:NgayKT  where MaKM=MaKM";
+            $sql = "UPDATE khuyenmai set TenKM=:TenKM, MoTa=:MoTa, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM , NgayBD=:NgayBD, NgayKT=:NgayKT  where MaKM=MaKM";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaKM', $MaKM);
             $cmd->bindValue(':TenKM', $TenKM);
             $cmd->bindValue(':MoTa', $MoTa);
             $cmd->bindValue(':GiaTriKM', $GiaTriKM);
+            $cmd->bindValue(':LoaiKM', $LoaiKM);
             $cmd->bindValue(':NgayBD', $NgayBD);
             $cmd->bindValue(':NgayKT', $NgayKT);
             $ketqua = $cmd->execute();

@@ -35,7 +35,7 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtmota" class="form-label">Mô Tả</label>
-                            <input class="form-control has-validation" id="editor" type="text" name="txtmota" required>
+                            <textarea id="editor" rows="5" class="form-control" name="txtmota"></textarea>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Vui lòng nhập mô tả.</div>
                         </div>
