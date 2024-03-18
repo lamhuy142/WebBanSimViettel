@@ -14,7 +14,6 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Tên Gói Cước</th>
                             <th scope="col">Mô Tả</th>
                             <th scope="col">Dung Lượng</th>
@@ -25,7 +24,6 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Tên Gói Cước</th>
                             <th scope="col">Mô Tả</th>
                             <th scope="col">Dung Lượng</th>
@@ -37,7 +35,6 @@
                     <tbody>
                         <?php foreach ($goicuoc as $gc) : ?>
                             <tr>
-                                <th scope="row">1</th>
                                 <td><?php echo $gc["Ten"] ?></td>
                                 <td><?php echo $gc["MoTa"] ?></td>
                                 <td><?php echo $gc["DungLuong"] ?></td>

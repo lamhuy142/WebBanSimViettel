@@ -5,6 +5,10 @@
 require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
+require("../../model/khuyenmai.php");
+require("../../model/khuyenmai_gc.php");
+require("../../model/khuyenmai_sim.php");
+require("../../model/loaikhuyenmai.php");
 
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
@@ -15,19 +19,23 @@ if (isset($_REQUEST["action"])) {
 
 $q = new QUYEN();
 $nd = new NGUOIDUNG();
+$km = new KHUYENMAI();
+$km_gc = new KHUYENMAI_GC();
+$km_s = new KHUYENMAI_SIM();
+$l = new LOAIKHUYENMAI();
 
 switch ($action) {
     case "xem":
-        $quyen = $q->laydanhsachquyen();
-        $nguoidung = $nd->laydanhsachnguoidung();
-
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
+        $ngayht = date("Y-m-d");
         include("main.php");
         break;
-    case "themnd":
-        $quyen = $q->laydanhsachquyen();
-        include("themnguoidung.php");
+    case "themkm":
+        $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
+        include("themchuongtrinhkm.php");
         break;
-    case "xulythemnd":
+    case "xulythemkm":
         //xử lý load ảnh
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
         $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload

@@ -23,7 +23,7 @@
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txthoten">Họ Tên:</label>
+                            <label for="txthoten">Họ tên:</label>
                             <input type="text" class="form-control has-validation" id="username" name="txthoten" value="<?php echo isset($HoTen) ? $HoTen : ''; ?>" required>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Điền đầy đủ họ tên.</div>
@@ -31,10 +31,10 @@
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txtemail" class="form-label">Email</label>
-                            <input class="form-control has-validation" type="email" name="txtemail" value="<?php echo isset($Email) ? $Email : ''; ?>" required>
+                            <label for="txttendangnhap" class="form-label">Tên đăng nhập</label>
+                            <input class="form-control has-validation" type="text" name="txttendangnhap" value="<?php echo isset($TenDangNhap) ? $TenDangNhap : ''; ?>" required>
                             <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng nhập địa chỉ email hợp lệ.</div>
+                            <div class="invalid-feedback">Vui lòng nhập địa chỉ tên đăng nhập hợp lệ.</div>
                         </div>
                     </div>
                     <div class="col">

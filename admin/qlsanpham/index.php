@@ -65,7 +65,8 @@ switch ($action) {
         $moi->setTen($_POST["txttengc"]);
         $moi->setMoTa($_POST["txtmota"]);
         $moi->setDungLuong($_POST["txtdungluong"]);
-        $moi->setThoiGianHieuLuc($_POST["thoigianhieuluc"]);
+        $moi->setThoiGianHieuLuc($_POST["txtthoigianhieuluc"]);
+        $moi->setGia($_POST["gia"]);
         // thêm
         $gc->themgoicuoc($moi);
 
@@ -144,7 +145,8 @@ switch ($action) {
         $sua->setTen($_POST["txtten"]);
         $sua->setMoTa($_POST["txtmota"]);
         $sua->setDungLuong($_POST["txtdungluong"]);
-        $sua->setThoiGianHieuLuc($_POST["thoigianhieuluc"]);
+        $sua->setThoiGianHieuLuc($_POST["txtthoigianhieuluc"]);
+        $sua->setGia($_POST["gia"]);
         // sửa
         $gc->suagoicuoc($sua);
         // load danh sách

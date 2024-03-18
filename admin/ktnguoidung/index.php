@@ -3,26 +3,6 @@ require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 
-// Hàm validate email
-function validateEmail($email)
-{
-    // Kiểm tra tính hợp lệ của email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return false;
-    }
-    return true;
-}
-
-// Hàm validate mật khẩu
-function validatePassword($password)
-{
-    // Kiểm tra tính hợp lệ của mật khẩu, ví dụ: ít nhất 6 ký tự
-    if (strlen($password) < 6) {
-        return false;
-    }
-    return true;
-}
-
 // Biến $isLogin cho biết người dùng đăng nhập chưa
 // $isLogin = isset($_SESSION["nguoidung"]);
 // Kiểm tra hành động $action: yêu cầu đăng nhập nếu chưa xác thực

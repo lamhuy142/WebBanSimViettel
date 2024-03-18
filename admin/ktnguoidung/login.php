@@ -41,7 +41,7 @@
                                     </div>
                                     <form class="user" method="post">
                                         <div class="form-group">
-                                            <input type="email" name="txtemail" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nhập email..." required>
+                                            <input type="text" name="txtdangnhap" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nhập tên đăng nhập..." required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" name="txtpassword" class=" form-control form-control-user" id="exampleInputPassword" placeholder="Nhập mật khẩu..." required>

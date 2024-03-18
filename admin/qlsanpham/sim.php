@@ -14,22 +14,22 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
                             <th scope="col">Giá Gốc</th>
                             <th scope="col">Giá Bán</th>
+                            <th scope="col">Mô Tả</th>
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
                             <th scope="col">Giá Gốc</th>
                             <th scope="col">Giá Bán</th>
+                            <th scope="col">Mô Tả</th>
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
                         </tr>
@@ -39,11 +39,11 @@
                             foreach ($loaisim as $l) :
                                 if ($s["MaLS"] == $l["MaLS"]) { ?>
                                     <tr>
-                                        <th scope="row">1</th>
                                         <td><?php echo $l["TenLS"] ?></td>
                                         <td><?php echo $s["SoSim"] ?></td>
                                         <td><?php echo $s["GiaGoc"] ?></td>
                                         <td><?php echo $s["GiaBan"] ?></td>
+                                        <td><?php echo $s["MoTa"] ?></td>
                                         <!-- Tình Trạng -->
                                         <?php if ($s["TinhTrang"] == 1) { ?>
                                             <td class="text-success font-weight-bold"> Còn Bán</td>

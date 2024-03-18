@@ -2,55 +2,65 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 style="color: #EA0029;" class="m-0 font-weight-bold">THÊM NGƯỜI DÙNG</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold">THÊM CHƯƠNG TRÌNH KHUYẾN MÃI</h6>
         </div>
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data" action="index.php">
-                <input type="hidden" name="action" value="xulythemnd">
+            <form class="was-validated" method="post" enctype="multipart/form-data" action="index.php">
+                <input type="hidden" name="action" value="xulythemkm">
 
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txthoten" class="form-label">Họ Tên Người Dùng</label>
-                            <input class="form-control" type="text" name="txthoten" placeholder="Nhập họ tên">
+                            <label for="txttenkm" class="form-label">Tên chương trình khuyến mãi</label>
+                            <input class="form-control" type="text" name="txttenkm" required>
+                            <div class="valid-feedback">Hợp lệ.</div>
+                            <div class="invalid-feedback">Vui lòng điền tên khuyến mãi.</div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txtemail" class="form-label">Email</label>
-                            <input class="form-control" type="email" name="txtemail" placeholder="Nhập email">
+                            <label for="optloai" class="form-label">Loại khuyến mãi</label>
+                            <select class="form-select" required name="optloai">
+                                <option value="">Chọn loại khuyến mãi</option>
+                                <?php foreach ($loaikhuyenmai as $l) : ?>
+                                    <option value="<?php echo $l['MaLKM']; ?>"><?php echo $l['TenLKM']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn loại khuyến mãi</div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txtsodienthoai" class="form-label">Số điện thoại</label>
-                            <input class="form-control" type="number" name="txtsodienthoai" placeholder="Nhập số điện thoại">
+                            <label for="txtgiatri" class="form-label">Giá trị khuyến mãi</label>
+                            <input class="form-control" type="number" name="txtgiatri" required>
+                            <div class="valid-feedback">Hợp lệ.</div>
+                            <div class="invalid-feedback">Vui lòng nhập giá trị khuyến mãi.</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txtdiachi" class="form-label">Địa chỉ</label>
-                            <input class="form-control" type="text" name="txtdiachi" placeholder="Nhập địa chỉ">
+                            <label for="txtmota" class="form-label">Mô tả</label>
+                            <input class="form-control" id="editor" type="text" name="txtmota" required>
+                            <div class="valid-feedback">Hợp lệ.</div>
+                            <div class="invalid-feedback">Hãy nhập mô tả khuyến mãi.</div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txtmatkhau" class="form-label">Mật khẩu</label>
-                            <input class="form-control" type="text" name="txtmatkhau" placeholder="Nhập mật khẩu"></input>
+                            <label for="ngaybd" class="form-label">Ngày bắt đầu</label>
+                            <input class="form-control" type="date" name="ngaybd" required>
+                            <div class="valid-feedback">Hợp lệ.</div>
+                            <div class="invalid-feedback">Vui lòng chọn ngày bắt đầu chương trình khuyến mãi.</div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txttrangthai" class="form-label">Trạng thái</label>
-                            <input class="form-control" type="number" name="txttrangthai" value="1"></input>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label>Hình ảnh</label>
-                            <input type="file" class="form-control" name="fileanh"></input>
+                            <label for="ngaykt" class="form-label">Ngày kết thúc</label>
+                            <input class="form-control" type="date" name="ngaykt" required>
+                            <div class="valid-feedback">Hợp lệ.</div>
+                            <div class="invalid-feedback">Vui lòng chọn ngày kết thúc chương trình khuyến mãi.</div>
                         </div>
                     </div>
                 </div>

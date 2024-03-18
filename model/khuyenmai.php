@@ -140,6 +140,40 @@ VALUES(:TenKM, :MoTa, :GiaTriKM, :NgayKT)";
             exit();
         }
     }
+    public function kiemtratrangthai($MaKM)
+    {
+        $db = DATABASE::connect();
+        try {
+            $ngay_hien_tai = date("Y-m-d"); // Lấy ngày hiện tại
+
+            $sql = "SELECT * FROM khuyenmai WHERE MaKM = :MaKM";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaKM', $MaKM);
+            $cmd->execute();
+            $ketqua = $cmd->fetch();
+
+            if ($ketqua) { // Nếu tìm thấy chương trình khuyến mãi
+                $ngay_bd = $ketqua['NgayBD']; // Lấy ngày bắt đầu
+                $ngay_kt = $ketqua['NgayKT']; // Lấy ngày kết thúc
+
+                // So sánh ngày bắt đầu và kết thúc với ngày hiện tại
+                if ($ngay_hien_tai >= $ngay_bd && $ngay_hien_tai <= $ngay_kt) {
+                    return "Chương trình khuyến mãi đang diễn ra";
+                } elseif ($ngay_hien_tai < $ngay_bd) {
+                    return "Chương trình khuyến mãi sẽ bắt đầu vào ngày $ngay_bd";
+                } else {
+                    return "Chương trình khuyến mãi đã kết thúc vào ngày $ngay_kt";
+                }
+            } else { // Nếu không tìm thấy chương trình khuyến mãi
+                return "Không tìm thấy chương trình khuyến mãi";
+            }
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
     // Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 khách hàng)
     // public function doiloaibaiviet($Email, $QuyenND)
     // {

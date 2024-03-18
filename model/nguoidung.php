@@ -2,7 +2,7 @@
 class NGUOIDUNG
 {
     private $MaND;
-    private $Email;
+    private $TenDangNhap;
     private $Sdt;
     private $MatKhau;
     private $HoTen;
@@ -44,13 +44,13 @@ class NGUOIDUNG
     {
         $this->MatKhau = $value;
     }
-    public function getEmail()
+    public function getTenDangNhap()
     {
-        return $this->Email;
+        return $this->TenDangNhap;
     }
-    public function setEmail($value)
+    public function setTenDangNhap($value)
     {
-        $this->Email = $value;
+        $this->TenDangNhap = $value;
     }
     public function getHinhAnh()
     {
@@ -86,13 +86,13 @@ class NGUOIDUNG
     }
     // khai báo các thuộc tính (SV tự viết)
 
-    public function kiemtranguoidunghople($Email, $MatKhau)
+    public function kiemtranguoidunghople($TenDangNhap, $MatKhau)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM nguoidung WHERE Email=:Email AND MatKhau=:MatKhau AND TrangThai=1";
+            $sql = "SELECT * FROM nguoidung WHERE TenDangNhap=:TenDangNhap AND MatKhau=:MatKhau AND TrangThai=1";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(":Email", $Email);
+            $cmd->bindValue(":TenDangNhap", $TenDangNhap);
             $cmd->bindValue(":MatKhau", md5($MatKhau));
             $cmd->execute();
             $valMaND = ($cmd->rowCount() == 1);
@@ -105,14 +105,14 @@ class NGUOIDUNG
         }
     }
 
-    // lấy thông tin người dùng có $email
-    public function laythongtinnguoidung($Email)
+    // lấy thông tin người dùng có $TenDangNhap
+    public function laythongtinnguoidung($TenDangNhap)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM nguoidung WHERE Email=:Email";
+            $sql = "SELECT * FROM nguoidung WHERE TenDangNhap=:TenDangNhap";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(":Email", $Email);
+            $cmd->bindValue(":TenDangNhap", $TenDangNhap);
             $cmd->execute();
             $ketqua = $cmd->fetch();
             $cmd->closeCursor();
@@ -146,13 +146,13 @@ class NGUOIDUNG
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO nguoidung(HoTen, Sdt, MatKhau, Email, TrangThai, HinhAnh, MaQ, DiaChi) 
-VALUES(:HoTen, :Sdt, :MatKhau, :Email, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
+            $sql = "INSERT INTO nguoidung(HoTen, Sdt, MatKhau, TenDangNhap, TrangThai, HinhAnh, MaQ, DiaChi) 
+VALUES(:HoTen, :Sdt, :MatKhau, :TenDangNhap, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':HoTen', $nguoidung->HoTen);
             $cmd->bindValue(':Sdt', $nguoidung->Sdt);
             $cmd->bindValue(':MatKhau', md5($nguoidung->MatKhau));
-            $cmd->bindValue(':Email', $nguoidung->Email);
+            $cmd->bindValue(':TenDangNhap', $nguoidung->TenDangNhap);
             $cmd->bindValue(':TrangThai', $nguoidung->TrangThai);
             $cmd->bindValue(':HinhAnh', $nguoidung->HinhAnh);
             $cmd->bindValue(':MaQ', $nguoidung->MaQ);
@@ -166,19 +166,19 @@ VALUES(:HoTen, :Sdt, :MatKhau, :Email, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
             exit();
         }
     }
-    // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
+    // Cập nhật thông tin ng dùng: họ tên, số đt, TenDangNhap, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatnguoidung($MaND, $HoTen , $Sdt , $MatKhau , $Email, $TrangThai, $HinhAnh, $MaQ, $DiaChi)
+    public function capnhatnguoidung($MaND, $HoTen , $Sdt , $MatKhau , $TenDangNhap, $TrangThai, $HinhAnh, $MaQ, $DiaChi)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung set HoTen=:HoTen, Sdt=:Sdt, MatKhau=:MatKhau, Email=:Email, TrangThai=:TrangThai, HinhAnh=:HinhAnh, MaQ=:MaQ, DiaChi=:DiaChi where MaND=MaND";
+            $sql = "UPDATE nguoidung set HoTen=:HoTen, Sdt=:Sdt, MatKhau=:MatKhau, TenDangNhap=:TenDangNhap, TrangThai=:TrangThai, HinhAnh=:HinhAnh, MaQ=:MaQ, DiaChi=:DiaChi where MaND=MaND";
             $cmd = $db->prepare($sql);
             $cmd->bindValue('MaND', $MaND);
             $cmd->bindValue(':HoTen', $HoTen);
             $cmd->bindValue(':Sdt', $Sdt);
             $cmd->bindValue(':MatKhau', $MatKhau);
-            $cmd->bindValue(':Email', $Email);
+            $cmd->bindValue(':TenDangNhap', $TenDangNhap);
             $cmd->bindValue(':TrangThai', $TrangThai);
             $cmd->bindValue(':HinhAnh', $HinhAnh);
             $cmd->bindValue(':MaQ', $MaQ);
@@ -192,13 +192,13 @@ VALUES(:HoTen, :Sdt, :MatKhau, :Email, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
         }
     }
     // Đổi mật khẩu
-    public function doiMatKhau($Email, $MatKhau)
+    public function doiMatKhau($TenDangNhap, $MatKhau)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung set MatKhau=:MatKhau where Email=:Email";
+            $sql = "UPDATE nguoidung set MatKhau=:MatKhau where TenDangNhap=:TenDangNhap";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':Email', $Email);
+            $cmd->bindValue(':TenDangNhap', $TenDangNhap);
             $cmd->bindValue(':MatKhau', md5($MatKhau));
             $ketqua = $cmd->execute();
             return $ketqua;
@@ -209,13 +209,13 @@ VALUES(:HoTen, :Sdt, :MatKhau, :Email, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
         }
     }
     // Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 khách hàng)
-    public function doiloainguoidung($Email, $MaQ)
+    public function doiloainguoidung($TenDangNhap, $MaQ)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung set MaQ=:MaQ where Email=:Email";
+            $sql = "UPDATE nguoidung set MaQ=:MaQ where TenDangNhap=:TenDangNhap";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':Email', $Email);
+            $cmd->bindValue(':TenDangNhap', $TenDangNhap);
             $cmd->bindValue(':MaQ', $MaQ);
             $ketqua = $cmd->execute();
             return $ketqua;
@@ -259,13 +259,13 @@ VALUES(:HoTen, :Sdt, :MatKhau, :Email, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
             exit();
         }
     }
-    public function kiemtraEmailTonTai($Email)
+    public function kiemtraTenDangNhapTonTai($TenDangNhap)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT COUNT(*) FROM nguoidung WHERE Email=:Email";
+            $sql = "SELECT COUNT(*) FROM nguoidung WHERE TenDangNhap=:TenDangNhap";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(":Email", $Email);
+            $cmd->bindValue(":TenDangNhap", $TenDangNhap);
             $cmd->execute();
             $count = $cmd->fetchColumn();
             $cmd->closeCursor();

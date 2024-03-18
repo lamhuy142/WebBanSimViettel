@@ -29,14 +29,14 @@ switch ($action) {
         break;
     case "xulythemnd":
         $sodienthoai = $_POST["txtsodienthoai"];
-        $Email = $_POST["txtemail"];
+        $tendangnhap= $_POST["txttendangnhap"];
         $kiemtra1 = $nd->kiemtraSdtTonTai($sodienthoai);
-        $kiemtra2 = $nd->kiemtraEmailTonTai($Email);
+        $kiemtra2 = $nd->kiemtraTenDangNhapTonTai($tendangnhap);
         if ($kiemtra1) {
             // Nếu số điện thoại đã tồn tại, hiển thị thông báo
             echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng chọn số điện thoại khác.');</script>";
             $HoTen = $_POST["txthoten"];
-            $Email = $_POST["txtemail"];
+            $tendangnhap= $_POST["txtemail"];
             $DiaChi = $_POST["txtdiachi"];
             $MatKhau = $_POST["txtmatkhau"];
             $MaQ = $_POST["optquyen"];
@@ -64,7 +64,7 @@ switch ($action) {
             move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
             //xử lý thêm 
             $nguoidungmoi = new NGUOIDUNG();
-            $nguoidungmoi->setEmail($_POST["txtemail"]);
+            $nguoidungmoi->setTenDangNhap($_POST["txttendangnhap"]);
             $nguoidungmoi->setSdt($_POST["txtsodienthoai"]);
             $nguoidungmoi->setMatKhau($_POST["txtmatkhau"]);
             $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);

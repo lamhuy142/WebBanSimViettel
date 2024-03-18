@@ -17,7 +17,7 @@
                         <tr>
                             <th>Tên Người Dùng</th>
                             <th>Hình Ảnh</th>
-                            <th>Email</th>
+                            <th>Tên Đăng Nhập</th>
                             <th>Số Điện Thoại</th>
                             <th>Địa Chỉ</th>
                             <th>Quyền</th>
@@ -30,7 +30,7 @@
                         <tr>
                             <th>Tên Người Dùng</th>
                             <th>Hình Ảnh</th>
-                            <th>Email</th>
+                            <th>Tên Đăng Nhập</th>
                             <th>Số Điện Thoại</th>
                             <th>Địa Chỉ</th>
                             <th>Quyền</th>
@@ -46,7 +46,7 @@
                                     <tr>
                                         <td><?php echo $n["HoTen"]; ?></td>
                                         <td><img width="50px" src="../../img/user/<?php echo $n["HinhAnh"]; ?>" alt="<?php echo $n["HinhAnh"]; ?>"></td>
-                                        <td><?php echo $n["Email"]; ?></td>
+                                        <td><?php echo $n["TenDangNhap"]; ?></td>
                                         <td><?php echo $n["Sdt"]; ?></td>
                                         <td><?php echo $n["DiaChi"]; ?></td>
                                         <?php if ($q["MaQ"] == 1) { ?>
