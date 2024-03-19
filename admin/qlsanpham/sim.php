@@ -46,7 +46,7 @@
                                         <td><?php echo $s["MoTa"] ?></td>
                                         <!-- Tình Trạng -->
                                         <?php if ($s["TinhTrang"] == 1) { ?>
-                                            <td class="text-success font-weight-bold"> Còn Bán</td>
+                                            <td class="text-success font-weight-bold"> Còn Hàng</td>
                                         <?php } else { ?>
                                             <td class="text-danger font-weight-bold"> Hết Hàng</td>
                                         <?php } ?>

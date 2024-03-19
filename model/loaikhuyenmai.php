@@ -47,7 +47,7 @@ class LOAIKHUYENMAI
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM loaikhuyenmai";
+            $sql = "SELECT * FROM loaikhuyenmai ORDER BY MaLKM DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

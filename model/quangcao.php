@@ -51,31 +51,29 @@ class QUANGCAO
     // khai báo các thuộc tính (SV tự viết)
 
 
-    // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    public function laydanhsachquangcaotheoid($MaQC)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM quangcao WHERE MaQC=:MaQC";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaQC", $MaQC);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 
     // lấy tất cả ng dùng
     public function laydanhsachquangcao()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM quangcao";
+            $sql = "SELECT * FROM quangcao ORDER BY MaQC DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -109,19 +107,19 @@ VALUES(:MoTa, :HinhAnh, :Url, :TrangThai)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatquangcao($MaQC, $MoTa, $HinhAnh, $Url, $TrangThai)
+    public function suaquangcao($quangcao)
     {
-        $db = DATABASE::connect();
+        $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE quangcao set MoTa, HinhAnh, Url, TrangThai   where MaQC=MaQC";
-            $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaQC', $MaQC);
-            $cmd->bindValue(':MoTa', $MoTa);
-            $cmd->bindValue(':HinhAnh', $HinhAnh);
-            $cmd->bindValue(':Url', $Url);
-            $cmd->bindValue(':TrangThai', $TrangThai);
-            $ketqua = $cmd->execute();
-            return $ketqua;
+            $sql = "UPDATE quangcao SET MoTa=:MoTa, HinhAnh=:HinhAnh, Url=:Url, TrangThai=:TrangThai WHERE MaQC=:MaQC";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(':MoTa', $quangcao->MoTa);
+            $cmd->bindValue(':HinhAnh', $quangcao->HinhAnh);
+            $cmd->bindValue(':Url', $quangcao->Url);
+            $cmd->bindValue(':TrangThai', $quangcao->TrangThai);
+            $cmd->bindValue(':MaQC', $quangcao->MaQC);
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -146,20 +144,20 @@ VALUES(:MoTa, :HinhAnh, :Url, :TrangThai)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doiURL($MoTaQC, $URL)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set URL=:URL where MoTaQC=:MoTaQC";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':MoTaQC', $MoTaQC);
-    //         $cmd->bindValue(':URL', $URL);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    public function doitrangthai($MaQC, $TrangThai)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE quangcao set TrangThai=:TrangThai where MaQC=:MaQC";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaQC', $MaQC);
+            $cmd->bindValue(':TrangThai', $TrangThai);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

@@ -2,12 +2,14 @@
 class KHUYENMAI
 {
     private $MaKM;
+    private $TieuDe;
     private $TenKM;
     private $MoTa;
     private $GiaTriKM;
     private $LoaiKM;
     private $NgayBD;
     private $NgayKT;
+    private $TrangThai;
     
     
     public function getMaKM()
@@ -17,6 +19,14 @@ class KHUYENMAI
     public function setMaKM($value)
     {
         $this->MaKM = $value;
+    }
+    public function getTieuDe()
+    {
+        return $this->TieuDe;
+    }
+    public function setTieuDe($value)
+    {
+        $this->TieuDe = $value;
     }
     public function getTenKM()
     {
@@ -66,34 +76,40 @@ class KHUYENMAI
     {
         $this->NgayBD = $value;
     }
+    public function getTrangThai()
+    {
+        return $this->TrangThai;
+    }
+    public function setTrangThai($value)
+    {
+        $this->TrangThai = $value;
+    }
     // khai báo các thuộc tính (SV tự viết)
 
 
-    // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    public function laydanhsachkhuyenmaitheoid($MaKM)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM khuyenmai WHERE MaKM=:MaKM";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaKM", $MaKM);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 
     // lấy tất cả ng dùng
     public function laydanhsachkhuyenmai()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM khuyenmai";
+            $sql = "SELECT * FROM khuyenmai ORDER BY MaKM DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -110,15 +126,17 @@ class KHUYENMAI
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO khuyenmai(TenKM, MoTa, GiaTriKM, LoaiKM, NgayBD, NgayKT) 
-VALUES(:TenKM, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT)";
+            $sql = "INSERT INTO khuyenmai(TenKM, TieuDe, MoTa, GiaTriKM, LoaiKM, NgayBD, NgayKT, TrangThai) 
+VALUES(:TenKM, :TieuDe, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :TrangThai)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
+            $cmd->bindValue(':TieuDe', $khuyenmai->TieuDe);
             $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
             $cmd->bindValue(':GiaTriKM', $khuyenmai->GiaTriKM);
             $cmd->bindValue(':LoaiKM', $khuyenmai->LoaiKM);
             $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
             $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
+            $cmd->bindValue(':TrangThai', $khuyenmai->TrangThai);
             $cmd->execute();
             $result = $cmd->execute();
             return $result;
@@ -130,60 +148,62 @@ VALUES(:TenKM, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatkhuyenmai($MaKM,$TenKM, $MoTa, $GiaTriKM, $LoaiKM, $NgayBD, $NgayKT) 
+    public function suakhuyenmai($khuyenmai)
     {
-        $db = DATABASE::connect();
+        $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE khuyenmai set TenKM=:TenKM, MoTa=:MoTa, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM , NgayBD=:NgayBD, NgayKT=:NgayKT  where MaKM=MaKM";
-            $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaKM', $MaKM);
-            $cmd->bindValue(':TenKM', $TenKM);
-            $cmd->bindValue(':MoTa', $MoTa);
-            $cmd->bindValue(':GiaTriKM', $GiaTriKM);
-            $cmd->bindValue(':LoaiKM', $LoaiKM);
-            $cmd->bindValue(':NgayBD', $NgayBD);
-            $cmd->bindValue(':NgayKT', $NgayKT);
-            $ketqua = $cmd->execute();
-            return $ketqua;
+            $sql = "UPDATE khuyenmai SET TenKM=:TenKM, TieuDe=:TieuDe, MoTa=:MoTa, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT, TrangThai=:TrangThai WHERE MaKM=:MaKM";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
+            $cmd->bindValue(':TieuDe', $khuyenmai->TieuDe);
+            $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
+            $cmd->bindValue(':GiaTriKM', $khuyenmai->GiaTriKM);
+            $cmd->bindValue(':LoaiKM', $khuyenmai->LoaiKM);
+            $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
+            $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
+            $cmd->bindValue(':TrangThai', $khuyenmai->TrangThai);
+            $cmd->bindValue(':MaKM', $khuyenmai->MaKM);
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
             exit();
         }
     }
-    public function kiemtratrangthai($MaKM)
-    {
-        $db = DATABASE::connect();
-        try {
-            $ngay_hien_tai = date("Y-m-d"); // Lấy ngày hiện tại
+    // public function kiemtratrangthai($MaKM)
+    // {
+    //     $db = DATABASE::connect();
+    //     try {
+    //         $ngay_hien_tai = date("Y-m-d"); // Lấy ngày hiện tại
 
-            $sql = "SELECT * FROM khuyenmai WHERE MaKM = :MaKM";
-            $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaKM', $MaKM);
-            $cmd->execute();
-            $ketqua = $cmd->fetch();
+    //         $sql = "SELECT * FROM khuyenmai WHERE MaKM = :MaKM";
+    //         $cmd = $db->prepare($sql);
+    //         $cmd->bindValue(':MaKM', $MaKM);
+    //         $cmd->execute();
+    //         $ketqua = $cmd->fetch();
 
-            if ($ketqua) { // Nếu tìm thấy chương trình khuyến mãi
-                $ngay_bd = $ketqua['NgayBD']; // Lấy ngày bắt đầu
-                $ngay_kt = $ketqua['NgayKT']; // Lấy ngày kết thúc
+    //         if ($ketqua) { // Nếu tìm thấy chương trình khuyến mãi
+    //             $ngay_bd = $ketqua['NgayBD']; // Lấy ngày bắt đầu
+    //             $ngay_kt = $ketqua['NgayKT']; // Lấy ngày kết thúc
 
-                // So sánh ngày bắt đầu và kết thúc với ngày hiện tại
-                if ($ngay_hien_tai >= $ngay_bd && $ngay_hien_tai <= $ngay_kt) {
-                    return "Chương trình khuyến mãi đang diễn ra";
-                } elseif ($ngay_hien_tai < $ngay_bd) {
-                    return "Chương trình khuyến mãi sẽ bắt đầu vào ngày $ngay_bd";
-                } else {
-                    return "Chương trình khuyến mãi đã kết thúc vào ngày $ngay_kt";
-                }
-            } else { // Nếu không tìm thấy chương trình khuyến mãi
-                return "Không tìm thấy chương trình khuyến mãi";
-            }
-        } catch (PDOException $e) {
-            $error_message = $e->getMessage();
-            echo "<p>Lỗi truy vấn: $error_message</p>";
-            exit();
-        }
-    }
+    //             // So sánh ngày bắt đầu và kết thúc với ngày hiện tại
+    //             if ($ngay_hien_tai >= $ngay_bd && $ngay_hien_tai <= $ngay_kt) {
+    //                 return "Chương trình khuyến mãi đang diễn ra";
+    //             } elseif ($ngay_hien_tai < $ngay_bd) {
+    //                 return "Chương trình khuyến mãi sẽ bắt đầu vào ngày $ngay_bd";
+    //             } else {
+    //                 return "Chương trình khuyến mãi đã kết thúc vào ngày $ngay_kt";
+    //             }
+    //         } else { // Nếu không tìm thấy chương trình khuyến mãi
+    //             return "Không tìm thấy chương trình khuyến mãi";
+    //         }
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
 
     // Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 khách hàng)
     // public function doiloaibaiviet($Email, $QuyenND)
@@ -203,20 +223,20 @@ VALUES(:TenKM, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($NgayKT, $TrangThai)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where NgayKT=:NgayKT";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':NgayKT', $NgayKT);
-    //         $cmd->bindValue(':TrangThai', $TrangThai);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    public function doitrangthai($MaKM, $TrangThai)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE khuyenmai set TrangThai=:TrangThai where MaKM=:MaKM";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaKM', $MaKM);
+            $cmd->bindValue(':TrangThai', $TrangThai);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

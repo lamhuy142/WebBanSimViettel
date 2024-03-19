@@ -45,46 +45,53 @@ switch ($action) {
         break;
     case "suaqc":
         if (isset($_GET["id"])) {
-            $goicuoc_ht = $gc->laydanhsachgoicuoctheoid($_GET["id"]);
-            include("suagoicuoc.php");
+            $quangcao_ht = $qc->laydanhsachquangcaotheoid($_GET["id"]);
+            include("suaquangcao.php");
         } else {
-            $goicuoc = $gc->laydanhsachgoicuoc();
-            include("goicuoc.php");
+            $quangcao = $qc->laydanhsachquangcao();
+            include("main.php");
         }
         break;
     case "xulysuaqc": // lưu dữ liệu sửa mới vào db
 
         // gán dữ liệu từ form
 
-        $sua = new GOICUOC();
-        $sua->setMaGC($_POST["MaGC"]);
-        $sua->setTen($_POST["txtten"]);
+        $sua = new QUANGCAO();
+        $sua->setMaQC($_POST["MaQC"]);
         $sua->setMoTa($_POST["txtmota"]);
-        $sua->setDungLuong($_POST["txtdungluong"]);
-        $sua->setThoiGianHieuLuc($_POST["thoigianhieuluc"]);
+        $sua->setTrangThai($_POST["txttrangthai"]);
+        $sua->setHinhAnh($_POST["hinhanh"]);
+        $sua->setUrl($_POST["txtduongdan"]);
+
+        if ($_FILES["filehinhanh"]["name"] != "") {
+            //xử lý load ảnh
+            $hinhanh = basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
+            $sua->sethinhanh($hinhanh);
+            $duongdan = "../../img/products/" . $hinhanh; //nơi lưu file upload
+            move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
+        }
         // sửa
-        $gc->suagoicuoc($sua);
+        $qc->suaquangcao($sua);
         // load danh sách
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        include("goicuoc.php");
+        $quangcao = $qc->laydanhsachquangcao();
+        include("main.php");
         break;
     case "khoa":
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
-        if (isset($_REQUEST["trangthai"]))
-            $trangthai = $_REQUEST["trangthai"];
+        if (isset($_REQUEST["TrangThai"]))
+            $trangthai = $_REQUEST["TrangThai"];
         else
             $trangthai = "1";
         if ($trangthai == "1") {
             $trangthai = 0;
-            $nd->doitrangthai($id, $trangthai);
+            $qc->doitrangthai($id, $trangthai);
         } else {
             $trangthai = 1;
-            $nd->doitrangthai($id, $trangthai);
+            $qc->doitrangthai($id, $trangthai);
         }
         // load người dùng
-        $quyen = $q->laydanhsachquyen();
-        $nguoidung = $nd->laydanhsachnguoidung();
+        $quangcao = $qc->laydanhsachquangcao();
         include("main.php");
         break;
     default:

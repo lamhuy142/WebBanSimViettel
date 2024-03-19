@@ -86,7 +86,7 @@ class DONHANG_CT
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM donhang_ct";
+            $sql = "SELECT * FROM donhang_ct ORDER BY MaDH_CT DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

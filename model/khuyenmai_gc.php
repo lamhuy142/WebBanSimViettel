@@ -56,7 +56,7 @@ class KHUYENMAI_GC
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM khuyenmai_gc";
+            $sql = "SELECT * FROM khuyenmai_gc ORDER BY MaKMC DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

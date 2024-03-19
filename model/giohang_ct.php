@@ -83,7 +83,7 @@ class GIOHANG_CT
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM giohang_ct";
+            $sql = "SELECT * FROM giohang_ct ORDER BY MaGH DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

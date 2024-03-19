@@ -66,7 +66,7 @@ class DANHGIA
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM danhgia";
+            $sql = "SELECT * FROM danhgia ORDER BY MaDG DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

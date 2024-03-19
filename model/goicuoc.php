@@ -98,7 +98,7 @@ class GOICUOC
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "DELETE FROM goicuoc WHERE MaGC=:MaGC";
+            $sql = "DELETE FROM goicuoc WHERE MaGC=:MaGC ";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":MaGC", $goicuoc->MaGC);
             $result = $cmd->execute();
@@ -114,7 +114,7 @@ class GOICUOC
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM goicuoc";
+            $sql = "SELECT * FROM goicuoc ORDER BY MaGC DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

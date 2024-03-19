@@ -56,7 +56,7 @@ class PHANHOI
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM phanhoi";
+            $sql = "SELECT * FROM phanhoi ORDER BY MaPH DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

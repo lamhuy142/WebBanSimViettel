@@ -45,7 +45,7 @@ class LOAISIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM loaisim";
+            $sql = "SELECT * FROM loaisim ORDER BY MaLS DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

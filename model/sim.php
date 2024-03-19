@@ -104,7 +104,7 @@ class SIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM sim";
+            $sql = "SELECT * FROM sim ORDER BY MaSim DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

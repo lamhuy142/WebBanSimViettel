@@ -129,7 +129,7 @@ class NGUOIDUNG
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM nguoidung";
+            $sql = "SELECT * FROM nguoidung ORDER BY MaND DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

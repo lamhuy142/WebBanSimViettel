@@ -56,7 +56,7 @@ class KHUYENMAI_SIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM khuyenmai_sim";
+            $sql = "SELECT * FROM khuyenmai_sim ORDER BY MaKMS DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();

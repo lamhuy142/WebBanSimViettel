@@ -93,7 +93,7 @@ class DONHANG
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM donhang";
+            $sql = "SELECT * FROM donhang ORDER BY MaDH DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
