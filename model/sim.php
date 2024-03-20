@@ -9,6 +9,7 @@ class SIM
     private $GiaGoc;
     private $GiaBan;
     private $TinhTrang;
+    private $LoaiThueBao;
    
     
     
@@ -76,6 +77,14 @@ class SIM
     {
         $this->TinhTrang = $value;
     }
+    public function getLoaiThueBao()
+    {
+        return $this->LoaiThueBao;
+    }
+    public function setLoaiThueBao($value)
+    {
+        $this->LoaiThueBao = $value;
+    }
     
     // khai báo các thuộc tính (SV tự viết)
 
@@ -137,8 +146,8 @@ class SIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO sim(SoSim, MaLS, MoTa, HinhAnh, GiaGoc, GiaBan, TinhTrang) 
-VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang)";
+            $sql = "INSERT INTO sim(SoSim, MaLS, MoTa, HinhAnh, GiaGoc, GiaBan, TinhTrang, LoaiThueBao) 
+VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang, :LoaiThueBao)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':SoSim', $sim->SoSim);
             $cmd->bindValue(':MaLS', $sim->MaLS);
@@ -147,6 +156,7 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang)";
             $cmd->bindValue(':GiaGoc', $sim->GiaGoc);
             $cmd->bindValue(':GiaBan', $sim->GiaBan);
             $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
+            $cmd->bindValue(':LoaiThueBao', $sim->LoaiThueBao);
 
             $result = $cmd->execute();
             return $result;
@@ -185,7 +195,7 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaGoc=:GiaGoc, GiaBan=:GiaBan, TinhTrang=:TinhTrang WHERE MaSim=:MaSim";
+            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaGoc=:GiaGoc, GiaBan=:GiaBan, TinhTrang=:TinhTrang, LoaiThueBao=:LoaiThueBao WHERE MaSim=:MaSim";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaSim', $sim->MaSim);
             $cmd->bindValue(':SoSim', $sim->SoSim);
@@ -195,6 +205,7 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang)";
             $cmd->bindValue(':GiaGoc', $sim->GiaGoc);
             $cmd->bindValue(':GiaBan', $sim->GiaBan);
             $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
+            $cmd->bindValue(':LoaiThueBao', $sim->LoaiThueBao);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

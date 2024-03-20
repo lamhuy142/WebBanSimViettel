@@ -64,13 +64,11 @@ class QUYEN
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO quyen(TenQ) 
-VALUES(:TenQ)";
+            $sql = "INSERT INTO quyen(TenQ) VALUES(:TenQ)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':TenQ', $quyen->TenQ);
-            $cmd->execute();
-            $MaQ = $db->lastInsertMaQ();
-            return $MaQ;
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

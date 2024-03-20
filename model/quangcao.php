@@ -2,7 +2,6 @@
 class QUANGCAO
 {
     private $MaQC;
-    private $MoTa;
     private $HinhAnh;
     private $Url;
     private $TrangThai;
@@ -31,14 +30,6 @@ class QUANGCAO
     public function setUrl($value)
     {
         $this->Url = $value;
-    }
-    public function getMoTa()
-    {
-        return $this->MoTa;
-    }
-    public function setMoTa($value)
-    {
-        $this->MoTa = $value;
     }
     public function getTrangThai()
     {
@@ -90,10 +81,9 @@ class QUANGCAO
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO quangcao(MoTa, HinhAnh, Url, TrangThai) 
-VALUES(:MoTa, :HinhAnh, :Url, :TrangThai)";
+            $sql = "INSERT INTO quangcao(HinhAnh, Url, TrangThai) 
+VALUES(:HinhAnh, :Url, :TrangThai)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MoTa', $quangcao->MoTa);
             $cmd->bindValue(':HinhAnh', $quangcao->HinhAnh);
             $cmd->bindValue(':Url', $quangcao->Url);
             $cmd->bindValue(':TrangThai', $quangcao->TrangThai);
@@ -111,9 +101,8 @@ VALUES(:MoTa, :HinhAnh, :Url, :TrangThai)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE quangcao SET MoTa=:MoTa, HinhAnh=:HinhAnh, Url=:Url, TrangThai=:TrangThai WHERE MaQC=:MaQC";
+            $sql = "UPDATE quangcao SET HinhAnh=:HinhAnh, Url=:Url, TrangThai=:TrangThai WHERE MaQC=:MaQC";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(':MoTa', $quangcao->MoTa);
             $cmd->bindValue(':HinhAnh', $quangcao->HinhAnh);
             $cmd->bindValue(':Url', $quangcao->Url);
             $cmd->bindValue(':TrangThai', $quangcao->TrangThai);

@@ -6,7 +6,6 @@ class GIOHANG_CT
     private $MaLS;
     private $SL;
     private $DonGia;
-    private $TongGia;
     
     public function getMaGH()
     {
@@ -31,14 +30,6 @@ class GIOHANG_CT
     public function setDonGia($value)
     {
         $this->DonGia = $value;
-    }
-    public function getTongGia()
-    {
-        return $this->TongGia;
-    }
-    public function setTongGia($value)
-    {
-        $this->TongGia = $value;
     }
     public function getMaND()
     {
@@ -100,15 +91,14 @@ class GIOHANG_CT
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO giohang_ct(MaGH, MaND, MaLS, SL, DonGia, TongGia) 
-VALUES(:MaGH, :MaLS, :SL, :TongGia)";
+            $sql = "INSERT INTO giohang_ct(MaGH, MaND, MaLS, SL, DonGia) 
+VALUES(:MaGH, :MaLS, :SL, :DonGia)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaGH', $giohang_ct->MaGH);
             $cmd->bindValue(':MaND', $giohang_ct->MaND);
             $cmd->bindValue(':MaLS', $giohang_ct->MaLS);
             $cmd->bindValue(':SL', $giohang_ct->SL);
             $cmd->bindValue(':DonGia', $giohang_ct->DonGia);
-            $cmd->bindValue(':TongGia', $giohang_ct->TongGia);
             $cmd->execute();
             $result = $cmd->execute();
             return $result;
@@ -124,13 +114,12 @@ VALUES(:MaGH, :MaLS, :SL, :TongGia)";
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE giohang_ct set MaLS=:MaLS, SL=:SL, DonGia=:DonGia, TongGia=:TongGia  where = MaGH=:MaGH ";
+            $sql = "UPDATE giohang_ct set MaLS=:MaLS, SL=:SL, DonGia=:DonGia where = MaGH=:MaGH ";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaGH', $MaGH);
             $cmd->bindValue(':MaLS', $MaLS);
             $cmd->bindValue(':SL', $SL);
             $cmd->bindValue(':DonGia', $DonGia);
-            $cmd->bindValue(':TongGia', $TongGia);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {

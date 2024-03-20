@@ -1,24 +1,24 @@
 <?php
-class LOAIPHANHOI
+class LOAIGOICUOC
 {
-    private $MaLPH;
-    private $TenLPH;
+    private $MaLGC;
+    private $TenLGC;
     
-    public function getMaLPH()
+    public function getMaLGC()
     {
-        return $this->MaLPH;
+        return $this->MaLGC;
     }
-    public function setMaLPH($value)
+    public function setMaLGC($value)
     {
-        $this->MaLPH = $value;
+        $this->MaLGC = $value;
     }
-    public function getTenLPH()
+    public function getTenLGC()
     {
-        return $this->TenLPH;
+        return $this->TenLGC;
     }
-    public function setTenLPH($value)
+    public function setTenLGC($value)
     {
-        $this->TenLPH = $value;
+        $this->TenLGC = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -43,11 +43,11 @@ class LOAIPHANHOI
     // }
 
     // lấy tất cả ng dùng
-    public function laydanhsachloaiphanhoi()
+    public function laydanhsachloaigoicuoc()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM loaiphanhoi ORDER BY MaLPH DESC";
+            $sql = "SELECT * FROM loaigoicuoc ORDER BY MaLGC DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -60,14 +60,14 @@ class LOAIPHANHOI
     }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function themloaiphanhoi($loaiphanhoi)
+    public function themloaigoicuoc($loaigoicuoc)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO loaiphanhoi(TenLPH) 
-VALUES(:TenLPH)";
+            $sql = "INSERT INTO loaigoicuoc(TenLGC) 
+VALUES(:TenLGC)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':TenLPH', $loaiphanhoi->TenLPH);
+            $cmd->bindValue(':TenLGC', $loaigoicuoc->TenLGC);
             $cmd->execute();
             $result = $cmd->execute();
             return $result;
@@ -79,14 +79,14 @@ VALUES(:TenLPH)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatloaiphanhoi($MaLPH,$TenLPH)
+    public function capnhatloaigoicuoc($MaLGC,$TenLGC)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE loaiphanhoi set TenLPH=:TenLPH  where MaLPH=MaLPH";
+            $sql = "UPDATE loaigoicuoc set TenLGC=:TenLGC  where MaLGC=MaLGC";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaLPH', $MaLPH);
-            $cmd->bindValue(':TenLPH', $TenLPH);
+            $cmd->bindValue('MaLGC', $MaLGC);
+            $cmd->bindValue(':TenLGC', $TenLGC);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -113,13 +113,13 @@ VALUES(:TenLPH)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($TenLPH, $TrangThai)
+    // public function doitrangthai($TenLGC, $TrangThai)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenLPH=:TenLPH";
+    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenLGC=:TenLGC";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':TenLPH', $TenLPH);
+    //         $cmd->bindValue(':TenLGC', $TenLGC);
     //         $cmd->bindValue(':TrangThai', $TrangThai);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;

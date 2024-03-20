@@ -3,7 +3,7 @@ class PHANHOI
 {
     private $MaPH;
     private $MaND;
-    private $MaLPH;
+    private $TenPH;
     
     public function getMaPH()
     {
@@ -21,13 +21,13 @@ class PHANHOI
     {
         $this->MaND = $value;
     }
-    public function getMaLPH()
+    public function getTenPH()
     {
-        return $this->MaLPH;
+        return $this->TenPH;
     }
-    public function setMaLPH($value)
+    public function setTenPH($value)
     {
-        $this->MaLPH = $value;
+        $this->TenPH = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -73,11 +73,11 @@ class PHANHOI
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO phanhoi(MaND, MaLPH) 
-VALUES(:MaND, :MaLPH)";
+            $sql = "INSERT INTO phanhoi(MaND, TenPH) 
+VALUES(:MaND, :TenPH)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaND', $phanhoi->MaND);
-            $cmd->bindValue(':MaLPH', $phanhoi->MaLPH);
+            $cmd->bindValue(':TenPH', $phanhoi->TenPH);
             $cmd->execute();
             $result = $cmd->execute();
             return $result;
@@ -89,15 +89,15 @@ VALUES(:MaND, :MaLPH)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatphanhoi($MaPH,$MaND, $MaLPH)
+    public function capnhatphanhoi($MaPH,$MaND, $TenPH)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE phanhoi set MaND=:MaND, MaLPH=:MaLPH  where MaPH=MaPH";
+            $sql = "UPDATE phanhoi set MaND=:MaND, TenPH=:TenPH  where MaPH=MaPH";
             $cmd = $db->prepare($sql);
             $cmd->bindValue('MaPH', $MaPH);
             $cmd->bindValue(':MaND', $MaND);
-            $cmd->bindValue(':MaLPH', $MaLPH);
+            $cmd->bindValue(':TenPH', $TenPH);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -124,14 +124,14 @@ VALUES(:MaND, :MaLPH)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doiMaLPH($MaND, $MaLPH)
+    // public function doiTenPH($MaND, $TenPH)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set MaLPH=:MaLPH where MaND=:MaND";
+    //         $sql = "UPDATE baiviet set TenPH=:TenPH where MaND=:MaND";
     //         $cmd = $db->prepare($sql);
     //         $cmd->bindValue(':MaND', $MaND);
-    //         $cmd->bindValue(':MaLPH', $MaLPH);
+    //         $cmd->bindValue(':TenPH', $TenPH);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;
     //     } catch (PDOException $e) {

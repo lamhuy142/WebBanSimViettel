@@ -3,9 +3,9 @@ class DONHANG_CT
 {
     private $MaDH_CT;
     private $MaDH;
-    private $MaLS;
-    private $SoLuong;
+    private $MaS;
     private $DonGia;
+    private $SoLuong;
     private $ThanhTien;
     
     
@@ -25,13 +25,13 @@ class DONHANG_CT
     {
         $this->MaDH = $value;
     }
-    public function getMaLS()
+    public function getMaS()
     {
-        return $this->MaLS;
+        return $this->MaS;
     }
-    public function setMaLS($value)
+    public function setMaS($value)
     {
-        $this->MaLS = $value;
+        $this->MaS = $value;
     }
     public function getSoLuong()
     {
@@ -103,13 +103,13 @@ class DONHANG_CT
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO donhang_ct(MaDH, MaLS, SoLuong, DonGia, ThanhTien) 
-VALUES(:MaDH, :MaLS, :SoLuong, :ThanhTien)";
+            $sql = "INSERT INTO donhang_ct(MaDH, MaS, DonGia, SoLuong,ThanhTien) 
+VALUES(:MaDH, :MaS, :DonGia, :SoLuong, :ThanhTien)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaDH', $donhang_ct->MaDH);
-            $cmd->bindValue(':MaLS', $donhang_ct->MaLS);
-            $cmd->bindValue(':SoLuong', $donhang_ct->SoLuong);
+            $cmd->bindValue(':MaS', $donhang_ct->MaS);
             $cmd->bindValue(':DonGia', $donhang_ct->DonGia);
+            $cmd->bindValue(':SoLuong', $donhang_ct->SoLuong);
             $cmd->bindValue(':ThanhTien', $donhang_ct->ThanhTien);
             $cmd->execute();
             $result = $cmd->execute();
@@ -122,15 +122,15 @@ VALUES(:MaDH, :MaLS, :SoLuong, :ThanhTien)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatdonhang_ct($MaDH_CT,$MaDH, $MaLS, $SoLuong, $DonGia, $ThoiGianDatHang, $ThoiGianGiaoHang, $ThanhTien) 
+    public function capnhatdonhang_ct($MaDH_CT,$MaDH, $MaS, $SoLuong, $DonGia, $ThoiGianDatHang, $ThoiGianGiaoHang, $ThanhTien) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE donhang_ct set MaDH=:MaDH, MaLS=:MaLS, SoLuong=:SoLuong, DonGia=:DonGia, ThanhTien=:ThanhTien  where MaDH_CT=MaDH_CT";
+            $sql = "UPDATE donhang_ct set MaDH=:MaDH, MaS=:MaS, DonGia=:DonGia, SoLuong=:SoLuong,  ThanhTien=:ThanhTien  where MaDH_CT=MaDH_CT";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaDH_CT', $MaDH_CT);
             $cmd->bindValue(':MaDH', $MaDH);
-            $cmd->bindValue(':MaLS', $MaLS);
+            $cmd->bindValue(':MaS', $MaS);
             $cmd->bindValue(':SoLuong', $SoLuong);
             $cmd->bindValue(':DonGia', $DonGia);
             $cmd->bindValue(':ThanhTien', $ThanhTien);

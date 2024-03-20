@@ -2,8 +2,8 @@
 class LOAISIM
 {
     private $MaLS;
-    private $TenS;
-    private $SoLuong;
+    private $TenLS;
+    private $MaGC;
     private $LuotMua;
     
     public function getMaLS()
@@ -14,21 +14,21 @@ class LOAISIM
     {
         $this->MaLS = $value;
     }
-    public function getTenS()
+    public function getTenLS()
     {
-        return $this->TenS;
+        return $this->TenLS;
     }
-    public function setTenS($value)
+    public function setTenLS($value)
     {
-        $this->TenS = $value;
+        $this->TenLS = $value;
     }
-    public function getSoLuong()
+    public function getMaGC()
     {
-        return $this->SoLuong;
+        return $this->MaGC;
     }
-    public function setSoLuong($value)
+    public function setMaGC($value)
     {
-        $this->SoLuong = $value;
+        $this->MaGC = $value;
     }
     public function getLuotMua()
     {
@@ -62,11 +62,11 @@ class LOAISIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO loaisim(TenS, SoLuong, LuotMua) 
-VALUES(:TenS, :SoLuong, :LuotMua)";
+            $sql = "INSERT INTO loaisim(TenLS, MaGC, LuotMua) 
+VALUES(:TenLS, :MaGC, :LuotMua)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':TenS', $loaisim->TenS);
-            $cmd->bindValue(':SoLuong', $loaisim->SoLuong);
+            $cmd->bindValue(':TenLS', $loaisim->TenLS);
+            $cmd->bindValue(':MaGC', $loaisim->MaGC);
             $cmd->bindValue(':LuotMua', $loaisim->LuotMua);
             $cmd->execute();
             $result = $cmd->execute();
@@ -79,15 +79,15 @@ VALUES(:TenS, :SoLuong, :LuotMua)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatloaisim($MaLS,$TenS, $SoLuong, $LuotMua)
+    public function capnhatloaisim($MaLS,$TenLS, $MaGC, $LuotMua)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE loaisim set TenS=:TenS, SoLuong=:SoLuong,   where MaLS=MaLS";
+            $sql = "UPDATE loaisim set TenLS=:TenLS, MaGC=:MaGC,   where MaLS=MaLS";
             $cmd = $db->prepare($sql);
             $cmd->bindValue('MaLS', $MaLS);
-            $cmd->bindValue(':TenS', $TenS);
-            $cmd->bindValue(':SoLuong', $SoLuong);
+            $cmd->bindValue(':TenLS', $TenLS);
+            $cmd->bindValue(':MaGC', $MaGC);
             $cmd->bindValue(':LuotMua', $LuotMua);
             $ketqua = $cmd->execute();
             return $ketqua;
@@ -115,13 +115,13 @@ VALUES(:TenS, :SoLuong, :LuotMua)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($TenS, $TrangThai)
+    // public function doitrangthai($TenLS, $TrangThai)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenS=:TenS";
+    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenLS=:TenLS";
     //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':TenS', $TenS);
+    //         $cmd->bindValue(':TenLS', $TenLS);
     //         $cmd->bindValue(':TrangThai', $TrangThai);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;

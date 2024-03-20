@@ -2,11 +2,12 @@
 class GOICUOC
 {
     private $MaGC;
+    private $MaLGC;
     private $Ten;
     private $MoTa;
     private $DungLuong;
-    private $ThoiGianHieuLuc;
     private $Gia;
+    private $GiaTriKM;
     
     
     public function getMaGC()
@@ -16,6 +17,14 @@ class GOICUOC
     public function setMaGC($value)
     {
         $this->MaGC = $value;
+    }
+    public function getMaLGC()
+    {
+        return $this->MaLGC;
+    }
+    public function setMaLGC($value)
+    {
+        $this->MaLGC = $value;
     }
     public function getTen()
     {
@@ -41,13 +50,13 @@ class GOICUOC
     {
         $this->DungLuong = $value;
     }
-    public function getThoiGianHieuLuc()
+    public function getGiaTriKM()
     {
-        return $this->ThoiGianHieuLuc;
+        return $this->GiaTriKM;
     }
-    public function setThoiGianHieuLuc($value)
+    public function setGiaTriKM($value)
     {
-        $this->ThoiGianHieuLuc = $value;
+        $this->GiaTriKM = $value;
     }
     public function getGia()
     {
@@ -131,14 +140,15 @@ class GOICUOC
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO goicuoc(Ten, MoTa, DungLuong, ThoiGianHieuLuc, Gia) 
-VALUES(:Ten, :MoTa, :DungLuong, :ThoiGianHieuLuc, :Gia)";
+            $sql = "INSERT INTO goicuoc(MaLGC, Ten, MoTa, DungLuong, Gia, GiaTriKM) 
+VALUES(:MaLGC, :Ten, :MoTa, :DungLuong, :Gia, :GiaTiKM)";
             $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaLGC', $goicuoc->MaLGC);
             $cmd->bindValue(':Ten', $goicuoc->Ten);
             $cmd->bindValue(':MoTa', $goicuoc->MoTa);
             $cmd->bindValue(':DungLuong', $goicuoc->DungLuong);
-            $cmd->bindValue(':ThoiGianHieuLuc', $goicuoc->ThoiGianHieuLuc);
             $cmd->bindValue(':Gia', $goicuoc->Gia);
+            $cmd->bindValue(':GiaTriKM', $goicuoc->Gia);
             $cmd->execute();
             $result = $cmd->execute();
             return $result;
@@ -173,14 +183,15 @@ VALUES(:Ten, :MoTa, :DungLuong, :ThoiGianHieuLuc, :Gia)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE goicuoc SET Ten=:Ten, MoTa=:MoTa, DungLuong=:DungLuong, ThoiGianHieuLuc=:ThoiGianHieuLuc, Gia=:Gia WHERE MaGC=:MaGC";
+            $sql = "UPDATE goicuoc SET MaLGC=:MaLGC, Ten=:Ten, MoTa=:MoTa, DungLuong=:DungLuong, Gia=:Gia, GiaTriKM=:GiaTriKM WHERE MaGC=:MaGC";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaGC', $goicuoc->MaGC);
+            $cmd->bindValue(':MaLGC', $goicuoc->MaLGC);
             $cmd->bindValue(':Ten', $goicuoc->Ten);
             $cmd->bindValue(':MoTa', $goicuoc->MoTa);
             $cmd->bindValue(':DungLuong', $goicuoc->DungLuong);
-            $cmd->bindValue(':ThoiGianHieuLuc', $goicuoc->ThoiGianHieuLuc);
             $cmd->bindValue(':Gia', $goicuoc->Gia);
+            $cmd->bindValue(':GiaTriKM', $goicuoc->GiaTriKM);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

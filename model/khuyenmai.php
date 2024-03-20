@@ -2,8 +2,9 @@
 class KHUYENMAI
 {
     private $MaKM;
-    private $TieuDe;
+    private $MaLS;
     private $TenKM;
+    private $TieuDe;
     private $MoTa;
     private $GiaTriKM;
     private $LoaiKM;
@@ -19,6 +20,14 @@ class KHUYENMAI
     public function setMaKM($value)
     {
         $this->MaKM = $value;
+    }
+    public function getMaLS()
+    {
+        return $this->MaLS;
+    }
+    public function setMaLS($value)
+    {
+        $this->MaLS = $value;
     }
     public function getTieuDe()
     {
@@ -126,9 +135,10 @@ class KHUYENMAI
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO khuyenmai(TenKM, TieuDe, MoTa, GiaTriKM, LoaiKM, NgayBD, NgayKT, TrangThai) 
-VALUES(:TenKM, :TieuDe, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :TrangThai)";
+            $sql = "INSERT INTO khuyenmai(MaLS, TenKM, TieuDe, MoTa, GiaTriKM, LoaiKM, NgayBD, NgayKT, TrangThai) 
+VALUES(:MaLS, :TenKM, :TieuDe, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :TrangThai)";
             $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaLS', $khuyenmai->MaLS);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
             $cmd->bindValue(':TieuDe', $khuyenmai->TieuDe);
             $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
@@ -152,8 +162,9 @@ VALUES(:TenKM, :TieuDe, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :TrangThai)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE khuyenmai SET TenKM=:TenKM, TieuDe=:TieuDe, MoTa=:MoTa, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT, TrangThai=:TrangThai WHERE MaKM=:MaKM";
+            $sql = "UPDATE khuyenmai SET MaLS=:MaLS, TenKM=:TenKM, TieuDe=:TieuDe, MoTa=:MoTa, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT, TrangThai=:TrangThai WHERE MaKM=:MaKM";
             $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(':MaLS', $khuyenmai->MaLS);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
             $cmd->bindValue(':TieuDe', $khuyenmai->TieuDe);
             $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
