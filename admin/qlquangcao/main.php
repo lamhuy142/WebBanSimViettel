@@ -16,7 +16,6 @@
                     <thead>
                         <tr>
                             <th>Mã Quảng Cáo</th>
-                            <th>Mô Tả</th>
                             <th>Hình Ảnh</th>
                             <th>Đường Dẫn</th>
                             <th>Trạng Thái</th>
@@ -26,7 +25,6 @@
                     <tfoot>
                         <tr>
                             <th>Mã Quảng Cáo</th>
-                            <th>Mô Tả</th>
                             <th>Hình Ảnh</th>
                             <th>Đường Dẫn</th>
                             <th>Trạng Thái</th>
@@ -37,7 +35,6 @@
                         <?php foreach ($quangcao as $qc) : ?>
                             <tr>
                                 <td><?php echo $qc["MaQC"]; ?></td>
-                                <td><?php echo $qc["MoTa"]; ?></td>
                                 <td><img width="50px" src="../../img/user/<?php echo $qc["HinhAnh"]; ?>" alt="<?php echo $qc["HinhAnh"]; ?>"></td>
                                 <td><a class="text-decoration-none" href="<?php echo $qc['Url']; ?>"><?php echo $qc["Url"]; ?></a></td>
                                 <?php if ($qc["TrangThai"] == 1) { ?>

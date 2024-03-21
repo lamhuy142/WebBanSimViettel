@@ -33,7 +33,6 @@ switch ($action) {
         move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
         //xử lý thêm 
         $quangcaomoi = new QUANGCAO();
-        $quangcaomoi->setMoTa($_POST["txtmota"]);
         $quangcaomoi->setUrl($_POST["txturl"]);
         $quangcaomoi->setTrangThai($_POST["txttrangthai"]);
         $quangcaomoi->setHinhAnh($hinhanh);
@@ -58,7 +57,6 @@ switch ($action) {
 
         $sua = new QUANGCAO();
         $sua->setMaQC($_POST["MaQC"]);
-        $sua->setMoTa($_POST["txtmota"]);
         $sua->setTrangThai($_POST["txttrangthai"]);
         $sua->setHinhAnh($_POST["hinhanh"]);
         $sua->setUrl($_POST["txtduongdan"]);

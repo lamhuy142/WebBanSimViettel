@@ -32,6 +32,7 @@ switch ($action) {
         break;
     case "themsim":
         $loai = $ls->laydanhsachloaisim();
+        $loaithuebao = $s->laydanhsachloaithuebao();
         include("themsim.php");
         break;
     case "xulythem":
@@ -70,7 +71,7 @@ switch ($action) {
         $moi->setTen($_POST["txttengc"]);
         $moi->setMoTa($_POST["txtmota"]);
         $moi->setDungLuong($_POST["txtdungluong"]);
-        $moi->setThoiGianHieuLuc($_POST["txtthoigianhieuluc"]);
+        $moi->setGia($_POST["gia"]);
         $moi->setGia($_POST["gia"]);
         // thêm
         $gc->themgoicuoc($moi);
@@ -149,8 +150,8 @@ switch ($action) {
         $sua->setTen($_POST["txtten"]);
         $sua->setMoTa($_POST["txtmota"]);
         $sua->setDungLuong($_POST["txtdungluong"]);
-        $sua->setThoiGianHieuLuc($_POST["txtthoigianhieuluc"]);
         $sua->setGia($_POST["gia"]);
+        $sua->setGia($_POST[""]);
         // sửa
         $gc->suagoicuoc($sua);
         // load danh sách

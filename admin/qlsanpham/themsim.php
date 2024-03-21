@@ -20,6 +20,18 @@
                         </select>
                         <div class="invalid-feedback">Vui lòng chọn loại sim.</div>
                     </div>
+                    <!-- LOẠI THUÊ BAO -->
+                    <div class="col md-3 mt-3">
+                        <label for="optloaisim" class="form-label">Loại thuê bao</label>
+                        <select class="form-control form-select" required name="optloaisim">
+                            <option value="">Chọn loại thuê bao</option>
+                            <?php foreach ($loaithuebao as $tb) : ?>
+                            <option value="txtthuebao"> </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback">Vui lòng chọn loại sim.</div>
+                    </div>
+
                     <div class="col md-3 mt-3">
                         <label for="txtsosim" class="form-label">Số Sim</label>
                         <input class="form-control" type="number" name="txtsosim" value="<?php echo isset($SoSim) ? $SoSim : ''; ?>" required>
@@ -28,7 +40,6 @@
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtmota" class="form-label">Mô Tả</label>
-                        <!-- <input class="form-control" id="editor" type="text" name="txtmota" value="<php echo isset($MoTa) ? $MoTa : ''; ?>" > -->
                         <textarea id="editor" rows="5" class="form-control" name="txtmota"></textarea>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập mô tả.</div>

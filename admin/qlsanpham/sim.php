@@ -19,6 +19,7 @@
                             <th scope="col">Giá Gốc</th>
                             <th scope="col">Giá Bán</th>
                             <th scope="col">Mô Tả</th>
+                            <th scope="col">Loại Thuê Bao</th>
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
                         </tr>
@@ -30,6 +31,7 @@
                             <th scope="col">Giá Gốc</th>
                             <th scope="col">Giá Bán</th>
                             <th scope="col">Mô Tả</th>
+                            <th scope="col">Loại Thuê Bao</th>
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
                         </tr>
@@ -44,6 +46,13 @@
                                         <td><?php echo $s["GiaGoc"] ?></td>
                                         <td><?php echo $s["GiaBan"] ?></td>
                                         <td><?php echo $s["MoTa"] ?></td>
+
+                                        <!-- Loại thuê bao -->
+                                        <?php if ($s["LoaiThueBao"] == 1) { ?>
+                                            <td class="text-success font-weight-bold"> Thuê Bao Trả Trước</td>
+                                        <?php } else { ?>
+                                            <td class="text-warning font-weight-bold"> Thuê Bao Trả Sau</td>
+                                        <?php } ?>
                                         <!-- Tình Trạng -->
                                         <?php if ($s["TinhTrang"] == 1) { ?>
                                             <td class="text-success font-weight-bold"> Còn Hàng</td>

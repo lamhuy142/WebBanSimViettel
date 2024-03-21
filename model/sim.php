@@ -124,6 +124,21 @@ class SIM
             exit();
         }
     }
+    public function laydanhsachloaithuebao()
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "SELECT LoaiThueBao FROM sim GROUP BY LoaiThueBao";
+            $cmd = $db->prepare($sql);
+            $cmd->execute();
+            $ketqua = $cmd->fetchAll();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     public function laydanhsachsimtheoid($MaSim)
     {
         $dbcon = DATABASE::connect();
