@@ -14,6 +14,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th scope="col">Mã Sim</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
                             <th scope="col">Giá Gốc</th>
@@ -26,6 +27,7 @@
                     </thead>
                     <tfoot>
                         <tr>
+                            <th scope="col">Mã Sim</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
                             <th scope="col">Giá Gốc</th>
@@ -41,10 +43,11 @@
                             foreach ($loai as $l) :
                                 if ($s["MaLS"] == $l["MaLS"]) { ?>
                                     <tr>
+                                        <td><?php echo $s["MaSim"] ?></td>
                                         <td><?php echo $l["TenLS"] ?></td>
                                         <td><?php echo $s["SoSim"] ?></td>
-                                        <td><?php echo $s["GiaGoc"] ?></td>
-                                        <td><?php echo $s["GiaBan"] ?></td>
+                                        <td><?php echo number_format($s["GiaGoc"])  ?></td>
+                                        <td><?php echo number_format($s["GiaBan"]) ?></td>
                                         <td><?php echo $s["MoTa"] ?></td>
 
                                         <!-- Loại thuê bao -->

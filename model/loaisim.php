@@ -56,6 +56,22 @@ class LOAISIM
             exit();
         }
     }
+    public function laydanhsachloaisimtheoid($MaLS)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM loaisim WHERE MaLS=:MaLS";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaLS", $MaLS);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
     public function themloaisim($loaisim)
@@ -79,18 +95,18 @@ VALUES(:TenLS, :MaGC, :LuotMua)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatloaisim($MaLS,$TenLS, $MaGC, $LuotMua)
+    public function sualoaisim($loaisim)
     {
-        $db = DATABASE::connect();
+        $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE loaisim set TenLS=:TenLS, MaGC=:MaGC,   where MaLS=MaLS";
-            $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaLS', $MaLS);
-            $cmd->bindValue(':TenLS', $TenLS);
-            $cmd->bindValue(':MaGC', $MaGC);
-            $cmd->bindValue(':LuotMua', $LuotMua);
-            $ketqua = $cmd->execute();
-            return $ketqua;
+            $sql = "UPDATE loaisim SET MaGC=:MaGC, TenLS=:TenLS, LuotMua=:LuotMua WHERE MaLS=:MaLS";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(':MaLS', $loaisim->MaLS);
+            $cmd->bindValue(':MaGC', $loaisim->MaGC);
+            $cmd->bindValue(':TenLS', $loaisim->TenLS);
+            $cmd->bindValue(':LuotMua', $loaisim->LuotMua);
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

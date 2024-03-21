@@ -22,16 +22,19 @@
                     </div>
                     <!-- LOẠI THUÊ BAO -->
                     <div class="col md-3 mt-3">
-                        <label for="optloaisim" class="form-label">Loại thuê bao</label>
-                        <select class="form-control form-select" required name="optloaisim">
+                        <label for="optloaithuebao" class="form-label">Loại thuê bao</label>
+                        <select class="form-control form-select" required name="optloaithuebao">
                             <option value="">Chọn loại thuê bao</option>
                             <?php foreach ($loaithuebao as $tb) : ?>
-                            <option value="txtthuebao"> </option>
+                                <?php if ($tb['LoaiThueBao'] == 1) { ?>
+                                    <option value="1">Thuê Bao Trả Trước</option>
+                                <?php } elseif ($tb['LoaiThueBao'] == 0) { ?>
+                                    <option value="0">Thuê Bao Trả Sau</option>
+                                <?php } ?>
                             <?php endforeach; ?>
                         </select>
-                        <div class="invalid-feedback">Vui lòng chọn loại sim.</div>
+                        <div class="invalid-feedback">Vui lòng chọn loại thuê bao.</div>
                     </div>
-
                     <div class="col md-3 mt-3">
                         <label for="txtsosim" class="form-label">Số Sim</label>
                         <input class="form-control" type="number" name="txtsosim" value="<?php echo isset($SoSim) ? $SoSim : ''; ?>" required>

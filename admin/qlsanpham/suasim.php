@@ -18,6 +18,20 @@
                             <?php } ?>
                         </select>
                     </div>
+                    <!-- LOẠI THUÊ BAO -->
+                    <div class="col md-3 mt-3">
+                        <label for="optloaithuebao" class="form-label">Loại thuê bao</label>
+                        <select class="form-control form-select" required name="optloaithuebao">
+                            <option value="">Chọn loại thuê bao</option>
+                            <?php foreach ($loaithuebao as $tb) : ?>
+                                <option value="<?php echo $tb['LoaiThueBao']; ?>" <?php if ($tb['LoaiThueBao'] == $sim_ht['LoaiThueBao']) echo 'selected'; ?>>
+                                    <?php echo $tb['LoaiThueBao'] == 1 ? 'Thuê Bao Trả Trước' : 'Thuê Bao Trả Sau'; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback">Vui lòng chọn loại thuê bao.</div>
+                    </div>
+
                     <div class="col my-3">
                         <label>Số Sim</label>
                         <input class="form-control" type="text" name="txtsosim" required value="<?php echo $sim_ht["SoSim"]; ?>">

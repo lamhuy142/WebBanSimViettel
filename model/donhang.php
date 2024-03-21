@@ -134,7 +134,7 @@ VALUES(:MaND, :NgayGiaoHang, :TongTien, :GhiChu)";
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE donhang set MaND=:MaND,, NgayDatHang=:NgayDatHang, NgayGiaoHang=:NgayGiaoHang, TongTien=:TongTien, GhiChu=:GhiChu, TrangThai=:TrangThai  where MaDH=MaDH";
+            $sql = "UPDATE donhang set MaND=:MaND,, NgayDatHang=:NgayDatHang, NgayGiaoHang=:NgayGiaoHang, TongTien=:TongTien, GhiChu=:GhiChu, TrangThai=:TrangThai  where MaDH=:MaDH";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaDH', $MaDH);
             $cmd->bindValue(':MaND', $MaND);

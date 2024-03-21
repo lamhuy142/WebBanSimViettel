@@ -6,8 +6,9 @@ require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 require("../../model/sim.php");
-require("../../model/goicuoc.php");
 require("../../model/loaisim.php");
+require("../../model/goicuoc.php");
+
 
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
@@ -26,9 +27,10 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
-    case "goicuoc":
+    case "loaisim":
+        $loai = $ls->laydanhsachloaisim();
         $goicuoc = $gc->laydanhsachgoicuoc();
-        include("goicuoc.php");
+        include("loaisim.php");
         break;
     case "themsim":
         $loai = $ls->laydanhsachloaisim();
@@ -43,6 +45,7 @@ switch ($action) {
         $moi = new SIM();
         $moi->sethinhanh($hinhanh);
         $moi->setSoSim($_POST["txtsosim"]);
+        $moi->setLoaiThueBao($_POST["optloaithuebao"]);
         $moi->setMoTa($_POST["txtmota"]);
         $moi->setMaLS($_POST["optloaisim"]);
         $moi->setHinhAnh($hinhanh);
@@ -51,16 +54,15 @@ switch ($action) {
         $moi->setTinhTrang($_POST["txttinhtrang"]);
         // thêm
         $s->themsim($moi);
-
         // load sản phẩm
         $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
-    case "themgoicuoc":
-        include("themgoicuoc.php");
+    case "themls":
+        include("themloaisim.php");
         break;
-    case "xulythemgc":
+    case "xulythemls":
         $SoSim = $_POST["txtsosim"];
         $DungLuong = $_POST["txtdungluong"];
         $MoTa = $_POST["txtmota"];
@@ -77,8 +79,8 @@ switch ($action) {
         $gc->themgoicuoc($moi);
 
         // load sản phẩm
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        include("goicuoc.php");
+        $loai = $ls->laydanhsachloaisim();
+        include("loaisim.php");
         break;
     // case "xoa":
     //     $xoa = new SIM();
@@ -92,10 +94,12 @@ switch ($action) {
         if (isset($_GET["id"])) {
             $sim_ht = $s->laydanhsachsimtheoid($_GET["id"]);
             $loai = $ls->laydanhsachloaisim();
+            $loaithuebao = $s->laydanhsachloaithuebao();
             include("suasim.php");
         } else {
             $sim = $s->laydanhsachsim();
             $loai = $ls->laydanhsachloaisim();
+            $loaithuebao = $s->laydanhsachloaithuebao();
             include("sim.php");
         }
         break;
@@ -105,6 +109,7 @@ switch ($action) {
         
         $sua = new SIM();
         $sua->setMaLS($_POST["optloaisim"]);
+        $sua->setLoaiThueBao($_POST["optloaithuebao"]);
         $sua->setSoSim($_POST["txtsosim"]);
         $sua->setGiaGoc($_POST["txtgiagoc"]);
         $sua->setGiaBan($_POST["txtgiaban"]);
@@ -124,39 +129,34 @@ switch ($action) {
         // load danh sách
         $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
+        $loaithuebao = $s->laydanhsachloaithuebao();
         include("sim.php");
         break;
-    // case "xoagc":
-    //     $xoa = new GOICUOC();
-    //     $xoa->setMaGC($_GET["id"]);
-    //     $goicuoc = $gc->xoagoicuoc($xoa);
-    //     $goicuoc = $gc->laydanhsachgoicuoc();
-    //     include("goicuoc.php");
-    //     break;
-    case "suagc":
+    
+    case "suals":
         if (isset($_GET["id"])) {
-            $goicuoc_ht = $gc->laydanhsachgoicuoctheoid($_GET["id"]);
-            include("suagoicuoc.php");
-        } else {
+            $loaisim_ht = $ls->laydanhsachloaisimtheoid($_GET["id"]);
+            $loai = $ls->laydanhsachloaisim();
             $goicuoc = $gc->laydanhsachgoicuoc();
-            include("goicuoc.php");
+            include("sualoaisim.php");
+        } else {
+            $loai = $ls->laydanhsachloaisim();
+            $goicuoc = $gc->laydanhsachgoicuoc();
+            include("loaisim.php");
         }
         break;
-    case "xulysuagc": // lưu dữ liệu sửa mới vào db
-
+    case "xulysuals": // lưu dữ liệu sửa mới vào db
         // gán dữ liệu từ form
-
-        $sua = new GOICUOC();
-        $sua->setTen($_POST["txtten"]);
-        $sua->setMoTa($_POST["txtmota"]);
-        $sua->setDungLuong($_POST["txtdungluong"]);
-        $sua->setGia($_POST["gia"]);
-        $sua->setGia($_POST[""]);
+        $sua = new LOAISIM();
+        $sua->setMaGC($_POST["optloaigoicuoc"]);
+        $sua->setTenLS($_POST["optloaisim"]);
+        $sua->setLuotMua($_POST["txtluotmua"]);
         // sửa
-        $gc->suagoicuoc($sua);
+        $ls->sualoaisim($sua);
         // load danh sách
+        $loai = $ls->laydanhsachloaisim();
         $goicuoc = $gc->laydanhsachgoicuoc();
-        include("goicuoc.php");
+        include("loaisim.php");
         break;
     default:
         break;
