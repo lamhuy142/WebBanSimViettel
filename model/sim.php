@@ -6,8 +6,6 @@ class SIM
     private $MaLS;
     private $MoTa;
     private $HinhAnh;
-    private $GiaGoc;
-    private $GiaBan;
     private $TinhTrang;
     private $LoaiThueBao;
    
@@ -52,22 +50,6 @@ class SIM
     public function setHinhAnh($value)
     {
         $this->HinhAnh = $value;
-    }
-    public function getGiaGoc()
-    {
-        return $this->GiaGoc;
-    }
-    public function setGiaGoc($value)
-    {
-        $this->GiaGoc = $value;
-    }
-    public function getGiaBan()
-    {
-        return $this->GiaBan;
-    }
-    public function setGiaBan($value)
-    {
-        $this->GiaBan = $value;
     }
     public function getTinhTrang()
     {
@@ -161,15 +143,13 @@ class SIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO sim(SoSim, MaLS, MoTa, HinhAnh, GiaGoc, GiaBan, TinhTrang, LoaiThueBao) 
-VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang, :LoaiThueBao)";
+            $sql = "INSERT INTO sim(SoSim, MaLS, MoTa, HinhAnh, TinhTrang, LoaiThueBao) 
+VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :TinhTrang, :LoaiThueBao)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':SoSim', $sim->SoSim);
             $cmd->bindValue(':MaLS', $sim->MaLS);
             $cmd->bindValue(':MoTa', $sim->MoTa);
             $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
-            $cmd->bindValue(':GiaGoc', $sim->GiaGoc);
-            $cmd->bindValue(':GiaBan', $sim->GiaBan);
             $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
             $cmd->bindValue(':LoaiThueBao', $sim->LoaiThueBao);
 
@@ -210,15 +190,13 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :GiaGoc, :GiaBan, :TinhTrang, :LoaiThueBa
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaGoc=:GiaGoc, GiaBan=:GiaBan, TinhTrang=:TinhTrang, LoaiThueBao=:LoaiThueBao WHERE MaSim=:MaSim";
+            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, TinhTrang=:TinhTrang, LoaiThueBao=:LoaiThueBao WHERE MaSim=:MaSim";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaSim', $sim->MaSim);
             $cmd->bindValue(':SoSim', $sim->SoSim);
             $cmd->bindValue(':MaLS', $sim->MaLS);
             $cmd->bindValue(':MoTa', $sim->MoTa);
             $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
-            $cmd->bindValue(':GiaGoc', $sim->GiaGoc);
-            $cmd->bindValue(':GiaBan', $sim->GiaBan);
             $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
             $cmd->bindValue(':LoaiThueBao', $sim->LoaiThueBao);
             $result = $cmd->execute();

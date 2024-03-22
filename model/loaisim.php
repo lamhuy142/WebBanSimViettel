@@ -4,6 +4,8 @@ class LOAISIM
     private $MaLS;
     private $TenLS;
     private $MaGC;
+    private $GiaGoc;
+    private $GiaBan;
     private $LuotMua;
     
     public function getMaLS()
@@ -29,6 +31,22 @@ class LOAISIM
     public function setMaGC($value)
     {
         $this->MaGC = $value;
+    }
+    public function getGiaGoc()
+    {
+        return $this->GiaGoc;
+    }
+    public function setGiaGoc($value)
+    {
+        $this->GiaGoc = $value;
+    }
+    public function getGiaBan()
+    {
+        return $this->GiaBan;
+    }
+    public function setGiaBan($value)
+    {
+        $this->GiaBan = $value;
     }
     public function getLuotMua()
     {
@@ -78,11 +96,13 @@ class LOAISIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO loaisim(TenLS, MaGC, LuotMua) 
-VALUES(:TenLS, :MaGC, :LuotMua)";
+            $sql = "INSERT INTO loaisim(TenLS, MaGC, GiaGoc, GiaBan, LuotMua) 
+VALUES(:TenLS, :MaGC, :GiaGoc, :GiaBan, :LuotMua)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':TenLS', $loaisim->TenLS);
             $cmd->bindValue(':MaGC', $loaisim->MaGC);
+            $cmd->bindValue(':GiaGoc', $loaisim->GiaGoc);
+            $cmd->bindValue(':GiaBan', $loaisim->GiaBan);
             $cmd->bindValue(':LuotMua', $loaisim->LuotMua);
             $cmd->execute();
             $result = $cmd->execute();
@@ -99,11 +119,13 @@ VALUES(:TenLS, :MaGC, :LuotMua)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE loaisim SET MaGC=:MaGC, TenLS=:TenLS, LuotMua=:LuotMua WHERE MaLS=:MaLS";
+            $sql = "UPDATE loaisim SET MaGC=:MaGC, TenLS=:TenLS, GiaGoc=:GiaGoc,GiaBan=:GiaBan, LuotMua=:LuotMua WHERE MaLS=:MaLS";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaLS', $loaisim->MaLS);
             $cmd->bindValue(':MaGC', $loaisim->MaGC);
             $cmd->bindValue(':TenLS', $loaisim->TenLS);
+            $cmd->bindValue(':GiaGoc', $loaisim->GiaGoc);
+            $cmd->bindValue(':GiaBan', $loaisim->GiaBan);
             $cmd->bindValue(':LuotMua', $loaisim->LuotMua);
             $result = $cmd->execute();
             return $result;
