@@ -11,12 +11,8 @@
                 <input type="hidden" name="MaLS" value="<?php echo $loaisim_ht["MaLS"]; ?>">
                 <div class="row g-3">
                     <div class="col my-3">
-                        <label>Tên loại sim</label>
-                        <select class="form-control" name="optloaisim">
-                            <?php foreach ($loai as $l) { ?>
-                                <option value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $loaisim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
-                            <?php } ?>
-                        </select>
+                        <label for="txttenloaisim" class="form-label">Tên loại sim</label>
+                        <input class="form-control" type="text" name="txttenloaisim" value="<?php echo $loaisim_ht['TenLS']; ?>">
                     </div>
                     <div class="col my-3">
                         <label>Loại gói cước</label>
@@ -25,6 +21,16 @@
                                 <option value="<?php echo $gc["MaGC"]; ?>" <?php if ($gc["MaGC"] == $loaisim_ht["MaGC"]) echo "selected"; ?>><?php echo $gc["Ten"]; ?></option>
                             <?php } ?>
                         </select>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col md-3 mt-3">
+                        <label for="txtgiagoc" class="form-label">Giá Gốc</label>
+                        <input class="form-control" type="number" name="txtgiagoc" value="<?php echo $loaisim_ht['GiaGoc']; ?>">
+                    </div>
+                    <div class="col md-3 mt-3">
+                        <label for="txtgiaban" class="form-label">Giá Bán</label>
+                        <input class="form-control" type="number" name="txtgiaban" value="<?php echo $loaisim_ht['GiaBan']; ?>">
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtluotmua" class="form-label">Lượt mua</label>

@@ -31,16 +31,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="txtmota" class="form-label">Mô Tả</label>
-                            <textarea id="editor" rows="5" class="form-control" name="txtmota"></textarea>
-                            <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng nhập mô tả.</div>
-                        </div>
-                    </div>
-                </div>
                 <div class="md-3 mt-3">
                     <a href="index.php?action=xem" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input type="submit" value="Lưu" class="btn btn-success"></input>

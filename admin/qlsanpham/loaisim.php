@@ -17,6 +17,8 @@
                             <th scope="col">Mã Loại Sim</th>
                             <th scope="col">Tên Loại Sim</th>
                             <th scope="col">Loại Gói Cước</th>
+                            <th scope="col">Giá Gốc</th>
+                            <th scope="col">Giá Bán</th>
                             <th scope="col">Lượt Mua</th>
                             <th scope="col">Hành Động</th>
                         </tr>
@@ -26,29 +28,33 @@
                             <th scope="col">Mã Loại Sim</th>
                             <th scope="col">Tên Loại Sim</th>
                             <th scope="col">Loại Gói Cước</th>
+                            <th scope="col">Giá Gốc</th>
+                            <th scope="col">Giá Bán</th>
                             <th scope="col">Lượt Mua</th>
                             <th scope="col">Hành Động</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php foreach ($loai as $ls) :
-                            foreach ($goicuoc as $gc) : 
-                            if($ls["MaGC"] == $gc["MaGC"]){ ?>
-                            <tr>
-                                <td><?php echo $ls["MaLS"] ?></td>
-                                <td><?php echo $ls["TenLS"] ?></td>
-                                <td><?php echo $gc["Ten"] ?></td>
-                                <td><?php echo $ls["LuotMua"] ?></td>
-                                <td>
-                                    <a href="index.php?action=suals&id=<?php echo $ls['MaLS']; ?>" class="btn btn-warning">Sửa</a>
-                                    <!-- <a href="index.php?action=xoagc&id=<php echo  $ls['MaGC']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a> -->
-                                </td>
-                            </tr>
-                            
+                            foreach ($goicuoc as $gc) :
+                                if ($ls["MaGC"] == $gc["MaGC"]) { ?>
+                                    <tr>
+                                        <td><?php echo $ls["MaLS"] ?></td>
+                                        <td><?php echo $ls["TenLS"] ?></td>
+                                        <td><?php echo $gc["Ten"] ?></td>
+                                        <td><?php echo number_format($ls["GiaGoc"])  ?></td>
+                                        <td><?php echo number_format($ls["GiaBan"]) ?></td>
+                                        <td><?php echo $ls["LuotMua"] ?></td>
+                                        <td>
+                                            <a href="index.php?action=suals&id=<?php echo $ls['MaLS']; ?>" class="btn btn-warning">Sửa</a>
+                                            <!-- <a href="index.php?action=xoagc&id=<php echo  $ls['MaGC']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a> -->
+                                        </td>
+                                    </tr>
+
                         <?php
-                            }
+                                }
                             endforeach;
-                    endforeach; ?>
+                        endforeach; ?>
                     </tbody>
                 </table>
             </div>

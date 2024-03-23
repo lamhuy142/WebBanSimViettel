@@ -65,7 +65,7 @@ switch ($action) {
             //xử lý load ảnh
             $hinhanh = basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
             $sua->sethinhanh($hinhanh);
-            $duongdan = "../../img/products/" . $hinhanh; //nơi lưu file upload
+            $duongdan = "../../img/" . $hinhanh; //nơi lưu file upload
             move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
         }
         // sửa

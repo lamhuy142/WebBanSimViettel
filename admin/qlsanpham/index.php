@@ -49,8 +49,6 @@ switch ($action) {
         $moi->setMoTa($_POST["txtmota"]);
         $moi->setMaLS($_POST["optloaisim"]);
         $moi->setHinhAnh($hinhanh);
-        $moi->setGiaGoc($_POST["txtgiagoc"]);
-        $moi->setGiaBan($_POST["txtgiaban"]);
         $moi->setTinhTrang($_POST["txttinhtrang"]);
         // thêm
         $s->themsim($moi);
@@ -60,26 +58,29 @@ switch ($action) {
         include("sim.php");
         break;
     case "themls":
+        $goicuoc = $gc->laydanhsachgoicuoc();
         include("themloaisim.php");
         break;
     case "xulythemls":
-        $SoSim = $_POST["txtsosim"];
-        $DungLuong = $_POST["txtdungluong"];
-        $MoTa = $_POST["txtmota"];
-        $GiaGoc = $_POST["txtgiagoc"];
-        $GiaBan = $_POST["txtgiaban"];
+        
+        // $SoSim = $_POST["txtsosim"];
+        // $DungLuong = $_POST["txtdungluong"];
+        // $MoTa = $_POST["txtmota"];
+        // $GiaGoc = $_POST["txtgiagoc"];
+        // $GiaBan = $_POST["txtgiaban"];
         //xử lý thêm mặt hàng
-        $moi = new GOICUOC();
-        $moi->setTen($_POST["txttengc"]);
-        $moi->setMoTa($_POST["txtmota"]);
-        $moi->setDungLuong($_POST["txtdungluong"]);
-        $moi->setGia($_POST["gia"]);
-        $moi->setGia($_POST["gia"]);
+        $moi = new LOAISIM();
+        $moi->setTenLS($_POST["txttenloaisim"]);
+        $moi->setGiaBan($_POST["giaban"]);
+        $moi->setGiaGoc($_POST["giagoc"]);
+        $moi->setMaGC($_POST["optloaicuoc"]);
+        $moi->setLuotMua($_POST["luotmua"]);
         // thêm
-        $gc->themgoicuoc($moi);
+        $ls->themloaisim($moi);
 
         // load sản phẩm
         $loai = $ls->laydanhsachloaisim();
+        $goicuoc = $gc->laydanhsachgoicuoc();
         include("loaisim.php");
         break;
     // case "xoa":
@@ -108,11 +109,10 @@ switch ($action) {
         // gán dữ liệu từ form
         
         $sua = new SIM();
+        $sua->setMaSim($_POST["MaSim"]);
         $sua->setMaLS($_POST["optloaisim"]);
         $sua->setLoaiThueBao($_POST["optloaithuebao"]);
         $sua->setSoSim($_POST["txtsosim"]);
-        $sua->setGiaGoc($_POST["txtgiagoc"]);
-        $sua->setGiaBan($_POST["txtgiaban"]);
         $sua->setMoTa($_POST["txtmota"]);
         $sua->setTinhTrang($_POST["txttinhtrang"]);
         $sua->setHinhAnh($_POST["hinhanh"]);
@@ -148,8 +148,11 @@ switch ($action) {
     case "xulysuals": // lưu dữ liệu sửa mới vào db
         // gán dữ liệu từ form
         $sua = new LOAISIM();
+        $sua->setMaLS($_POST["MaLS"]);
+        $sua->setTenLS($_POST["txttenloaisim"]);
         $sua->setMaGC($_POST["optloaigoicuoc"]);
-        $sua->setTenLS($_POST["optloaisim"]);
+        $sua->setGiaGoc($_POST["txtgiagoc"]);
+        $sua->setGiaBan($_POST["txtgiaban"]);
         $sua->setLuotMua($_POST["txtluotmua"]);
         // sửa
         $ls->sualoaisim($sua);

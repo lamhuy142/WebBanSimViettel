@@ -58,12 +58,27 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 <script>
-        ClassicEditor
+    ClassicEditor
         .create(document.querySelector('#editor'))
         .catch(error => {
             console.error(error);
         });
+
+    // document.getElementById("txtMaDH").addEventListener("input", function() {
+    //     var maDH = document.getElementById("txtMaDH").value;
+    //     // Gửi yêu cầu Ajax để tìm kiếm đơn hàng dựa trên mã đơn hàng
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.onreadystatechange = function() {
+    //         if (xhr.readyState == 4 && xhr.status == 200) {
+    //             // Xử lý dữ liệu trả về (ví dụ: cập nhật nội dung trang)
+    //             document.getElementById("result").innerHTML = xhr.responseText;
+    //         }
+    //     };
+    //     xhr.open("GET", "index.php?action=xem&txtMaDH=" + maDH, true);
+    //     xhr.send();
+    // });
 </script>
+
 </body>
 
 </html>

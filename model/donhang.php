@@ -88,6 +88,23 @@ class DONHANG
     //     }
     // }
 
+
+    public function timdonhangtheoid($MaND)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM nguoidung WHERE MaND=:MaND";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaND", $MaND);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // lấy tất cả ng dùng
     public function laydanhsachdonhang()
     {

@@ -50,18 +50,6 @@
                 </div>
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
-                        <label for="txtgiagoc" class="form-label">Giá Gốc</label>
-                        <input class="form-control" type="number" name="txtgiagoc" value="<?php echo isset($GiaGoc) ? $GiaGoc : ''; ?>" required>
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Hãy điền giá gốc của sản phẩm.</div>
-                    </div>
-                    <div class="col md-3 mt-3">
-                        <label for="txtgiaban" class="form-label">Giá bán</label>
-                        <input class="form-control" type="number" name="txtgiaban" value="<?php echo isset($GiaBan) ? $GiaBan : ''; ?>" required>
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Hãy điền giá bán của sản phẩm.</div>
-                    </div>
-                    <div class="col md-3 mt-3">
                         <label for="txttinhtrang" class="form-label">Trạng Thái</label>
                         <input class="form-control" type="number" name="txttinhtrang" value="1" readonly>
                     </div>
@@ -78,9 +66,9 @@
                     <input type="submit" value="Lưu" class="btn btn-success"></input>
                     <input type="reset" value="Hủy" class="btn btn-warning"></input>
                 </div>
+            </form>
         </div>
 
-        </form>
     </div>
 </div>
 </div>

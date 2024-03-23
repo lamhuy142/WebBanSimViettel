@@ -157,7 +157,6 @@ VALUES(:HoTen, :Sdt, :MatKhau, :TenDangNhap, :TrangThai, :HinhAnh, :MaQ, :DiaChi
             $cmd->bindValue(':HinhAnh', $nguoidung->HinhAnh);
             $cmd->bindValue(':MaQ', $nguoidung->MaQ);
             $cmd->bindValue(':DiaChi', $nguoidung->DiaChi);
-            $cmd->execute();
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -242,6 +241,7 @@ VALUES(:HoTen, :Sdt, :MatKhau, :TenDangNhap, :TrangThai, :HinhAnh, :MaQ, :DiaChi
             exit();
         }
     }
+    
     public function kiemtraSdtTonTai($sodienthoai)
     {
         $db = DATABASE::connect();

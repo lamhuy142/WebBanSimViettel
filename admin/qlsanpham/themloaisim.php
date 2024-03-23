@@ -3,58 +3,58 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">THÊM GÓI CƯỚC</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">THÊM LOẠI SIM</h6>
         </div>
         <div class="card-body">
             <form class="was-validated" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="action" value="xulythemgc">
+                <input type="hidden" name="action" value="xulythemls">
 
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
-                        <label for="txttengc" class="form-label">Tên gói cước</label>
-                        <input class="form-control" type="text" name="txttengc" required>
+                        <label for="txttenloaisim" class="form-label">Tên loại sim</label>
+                        <input class="form-control" type="text" name="txttenloaisim" required>
                         <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Vui lòng điền tên gói cước.</div>
+                        <div class="invalid-feedback">Vui lòng điền tên loại sim.</div>
                     </div>
                     <div class="col md-3 mt-3">
-                        <label for="txtdungluong" class="form-label">Dung lượng</label>
-                        <input class="form-control" type="number" name="txtdungluong" required>
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Hãy nhập dung lượng gói cước.</div>
+                        <label for="optloaicuoc" class="form-label">Loại gói cước</label>
+                        <select class="form-control form-select" required name="optloaicuoc">
+                            <option value="">Chọn loại gói cước</option>
+                            <?php foreach ($goicuoc as $gc) : ?>
+                                <option value="<?php echo $gc['MaGC']; ?>"><?php echo $gc['Ten']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback">Vui lòng chọn loại gói cước.</div>
                     </div>
                     <div class="col md-3 mt-3">
-                        <label for="txtthoigianhieuluc" class="form-label">Thời gian hiệu lực</label>
-                        <input class="form-control" type="text" name="txtthoigianhieuluc" required>
+                        <label for="giagoc" class="form-label">Giá gốc</label>
+                        <input class="form-control" type="number" name="giagoc" required>
                         <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Vui lòng nhập thời hạn của gói cước.</div>
+                        <div class="invalid-feedback">Vui lòng nhập giá gốc.</div>
                     </div>
                     <div class="col md-3 mt-3">
-                        <label for="gia" class="form-label">Giá</label>
-                        <input class="form-control" type="number" name="gia" required>
+                        <label for="giaban" class="form-label">Giá bán</label>
+                        <input class="form-control" type="number" name="giaban" required>
                         <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Vui lòng nhập giá tiền của gói cước.</div>
+                        <div class="invalid-feedback">Vui lòng nhập giá bán.</div>
                     </div>
                 </div>
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
-                        <label for="txtmota" class="form-label">Mô Tả</label>
-                        <!-- <input class="form-control" id="editor" type="text" name="txtmota"> -->
-                        <textarea id="editor" rows="5" class="form-control" name="txtmota"></textarea>
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Hãy nhập mô tả gói cước.</div>
+                        <label for="luotmua" class="form-label">Lượt mua</label>
+                        <input class="form-control" type="number" name="luotmua" value="0" readonly>
                     </div>
                 </div>
 
                 <div class="md-3 mt-3">
-                    <a href="index.php?action=goicuoc" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
+                    <a href="index.php?action=loaisim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input type="submit" value="Lưu" class="btn btn-success"></input>
                     <input type="reset" value="Hủy" class="btn btn-warning"></input>
                 </div>
-        </div>
 
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 
 <?php include("../inc/bottom.php"); ?>

@@ -30,13 +30,26 @@ switch ($action) {
     case "xulythemnd":
         $sodienthoai = $_POST["txtsodienthoai"];
         $tendangnhap= $_POST["txttendangnhap"];
+
         $kiemtra1 = $nd->kiemtraSdtTonTai($sodienthoai);
         $kiemtra2 = $nd->kiemtraTenDangNhapTonTai($tendangnhap);
-        if ($kiemtra1) {
-            // Nếu số điện thoại đã tồn tại, hiển thị thông báo
-            echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng chọn số điện thoại khác.');</script>";
+        
+        if(strlen($sodienthoai) < 10 ){
+            echo "<script>alert('Số điện thoại phải tối thiểu 10 chữ số, Vui lòng nhập lại số điện thoại.');</script>";
             $HoTen = $_POST["txthoten"];
-            $tendangnhap= $_POST["txtemail"];
+            $tendangnhap = $_POST["txttendangnhap"];
+            $DiaChi = $_POST["txtdiachi"];
+            $MatKhau = $_POST["txtmatkhau"];
+            $MaQ = $_POST["optquyen"];
+            $TrangThai = $_POST["txttrangthai"];
+            $HinhAnh = basename($_FILES["fileanh"]["name"]);
+            $quyen = $q->laydanhsachquyen();
+            include("themnguoidung.php");
+        }elseif($kiemtra1) {
+            // Nếu số điện thoại đã tồn tại, hiển thị thông báo
+            echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập số điện thoại khác.');</script>";
+            $HoTen = $_POST["txthoten"];
+            $tendangnhap= $_POST["txttendangnhap"];
             $DiaChi = $_POST["txtdiachi"];
             $MatKhau = $_POST["txtmatkhau"];
             $MaQ = $_POST["optquyen"];
@@ -46,7 +59,7 @@ switch ($action) {
             include("themnguoidung.php");
         }elseif($kiemtra2){
             // Nếu email đã tồn tại, hiển thị thông báo
-            echo "<script>alert('Email đã tồn tại trong cơ sở dữ liệu. Vui lòng chọn Email khác.');</script>";
+            echo "<script>alert('Tên đăng nhập đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập Tên đăng nhập khác.');</script>";
             $HoTen = $_POST["txthoten"];
             $Sdt = $_POST["txtsodienthoai"];
             $DiaChi = $_POST["txtdiachi"];

@@ -152,7 +152,6 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :TinhTrang, :LoaiThueBao)";
             $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
             $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
             $cmd->bindValue(':LoaiThueBao', $sim->LoaiThueBao);
-
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

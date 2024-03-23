@@ -19,12 +19,6 @@
                         <input class="form-control" name="txttrangthai" value="<?php echo $quangcao_ht['TrangThai']; ?>"></input>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col md-3 mt-3">
-                        <label for="txtmota" class="form-label">Mô tả</label>
-                        <textarea id="editor" rows="5" class="form-control" name="txtmota"><?php echo $quangcao_ht['MoTa']; ?></textarea>
-                    </div>
-                </div>
                 </br>
                 <div class="row g-3">
                     <div class="col my-3">

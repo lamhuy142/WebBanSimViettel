@@ -12,7 +12,7 @@ require("../../model/quyen.php");
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
-} else {   // mặc định là xem danh sách
+} else {
     $action = "xem";
 }
 
@@ -22,9 +22,18 @@ $q = new QUYEN();
 
 switch ($action) {
     case "xem":
-        $donhang = $dh->laydanhsachdonhang();
-        $nguoidung = $nd->laydanhsachnguoidung();
-        include("main.php");
+        // Kiểm tra xem có yêu cầu tìm kiếm mã đơn hàng không
+        // Kiểm tra và xử lý yêu cầu tìm kiếm mã đơn hàng
+        if (isset($_GET['txtMaDH'])) {
+            $maDH = $_GET['txtMaDH'];
+            $donhang_tk = $dh->timdonhangtheoid($maDH);
+            include("timkiem.php");
+        } else {
+            $donhang = $dh->laydanhsachdonhang();
+            $nguoidung = $nd->laydanhsachnguoidung();
+            include("main.php");
+        }
+        
         break;
     case "xemchitiet":
         $donhang = $dh->laydanhsachdonhang();

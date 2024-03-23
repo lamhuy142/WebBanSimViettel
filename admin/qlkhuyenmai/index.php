@@ -6,9 +6,7 @@ require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 require("../../model/khuyenmai.php");
-require("../../model/khuyenmai_gc.php");
-require("../../model/khuyenmai_sim.php");
-require("../../model/loaikhuyenmai.php");
+
 
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
@@ -20,19 +18,15 @@ if (isset($_REQUEST["action"])) {
 $q = new QUYEN();
 $nd = new NGUOIDUNG();
 $km = new KHUYENMAI();
-$km_gc = new KHUYENMAI_GC();
-$km_s = new KHUYENMAI_SIM();
-$l = new LOAIKHUYENMAI();
+
 
 switch ($action) {
     case "xem":
         $khuyenmai = $km->laydanhsachkhuyenmai();
-        $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
         $ngayht = date("Y-m-d");
         include("main.php");
         break;
     case "themkm":
-        $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
         include("themchuongtrinhkm.php");
         break;
     case "xulythemkm":
@@ -49,18 +43,15 @@ switch ($action) {
         // thêm
         $km->themkhuyenmai($khuyenmaimoi);
         // load người dùng
-        $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $ngayht = date("Y-m-d");
         include("main.php");
         break;
     case "sua":
         if (isset($_GET["id"])) {
-            $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
             $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
             include("suakhuyenmai.php");
         } else {
-            $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
             $khuyenmai = $km->laydanhsachkhuyenmai();
             $ngayht = date("Y-m-d");
             include("main.php");
@@ -85,7 +76,6 @@ switch ($action) {
         // sửa
         $km->suakhuyenmai($sua);
         // load danh sách
-        $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $ngayht = date("Y-m-d");
         include("main.php");
@@ -105,7 +95,6 @@ switch ($action) {
             $km->doitrangthai($id, $trangthai);
         }
         // load người dùng
-        $loaikhuyenmai = $l->laydanhsachloaikhuyenmai();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $ngayht = date("Y-m-d");
         include("main.php");

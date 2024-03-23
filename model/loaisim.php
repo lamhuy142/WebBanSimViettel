@@ -104,7 +104,6 @@ VALUES(:TenLS, :MaGC, :GiaGoc, :GiaBan, :LuotMua)";
             $cmd->bindValue(':GiaGoc', $loaisim->GiaGoc);
             $cmd->bindValue(':GiaBan', $loaisim->GiaBan);
             $cmd->bindValue(':LuotMua', $loaisim->LuotMua);
-            $cmd->execute();
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

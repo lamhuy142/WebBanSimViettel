@@ -17,8 +17,6 @@
                             <th scope="col">Mã Sim</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
-                            <th scope="col">Giá Gốc</th>
-                            <th scope="col">Giá Bán</th>
                             <th scope="col">Mô Tả</th>
                             <th scope="col">Loại Thuê Bao</th>
                             <th scope="col">Trạng Thái</th>
@@ -30,8 +28,6 @@
                             <th scope="col">Mã Sim</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
-                            <th scope="col">Giá Gốc</th>
-                            <th scope="col">Giá Bán</th>
                             <th scope="col">Mô Tả</th>
                             <th scope="col">Loại Thuê Bao</th>
                             <th scope="col">Trạng Thái</th>
@@ -46,8 +42,6 @@
                                         <td><?php echo $s["MaSim"] ?></td>
                                         <td><?php echo $l["TenLS"] ?></td>
                                         <td><?php echo $s["SoSim"] ?></td>
-                                        <td><?php echo number_format($s["GiaGoc"])  ?></td>
-                                        <td><?php echo number_format($s["GiaBan"]) ?></td>
                                         <td><?php echo $s["MoTa"] ?></td>
 
                                         <!-- Loại thuê bao -->
