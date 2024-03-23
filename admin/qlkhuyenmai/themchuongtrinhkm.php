@@ -45,12 +45,20 @@
                             <div class="invalid-feedback">Vui lòng nhập giá trị khuyến mãi.</div>
                         </div>
                     </div>
+                    <!-- <div class="col">
+                        <div class="md-3 mt-3">
+                            <label for="txtdonvi" class="form-label">Đơn vị khuyến mãi</label>
+                            <input class="form-control" type="text" name="txtdonvi" required>
+                            <div class="valid-feedback">Hợp lệ.</div>
+                            <div class="invalid-feedback">Vui lòng nhập đơn vị khuyến mãi.</div>
+                        </div>
+                    </div> -->
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="trangthai" class="form-label">Trạng Thái</label>
                             <input class="form-control" type="number" name="trangthai" value="1" readonly required>
                             <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng nhập giá trị khuyến mãi.</div>
+                            <div class="invalid-feedback">Vui lòng nhập trạng thái khuyến mãi.</div>
                         </div>
                     </div>
                 </div>

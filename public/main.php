@@ -185,7 +185,7 @@
 			<div class="tab-content p-t-50">
 
 				<!-- - -->
-				<div class="tab-pane fade show active" id="<?php echo $l['MaLS'] ?>" role="tabpanel">
+				<div class="tab-pane fade show active" id="1" role="tabpanel">
 					<!-- SIM DATA -->
 					<div class="row mx-auto" style=" width: 200px;">
 						<div class="form-check form-check-inline">
@@ -209,7 +209,7 @@
 						</thead>
 						<?php foreach ($sim as $s) :
 							foreach ($loaisim as $l) :
-								if ($s['MaLS'] == $l['MaLS']) { ?>
+								if ($s['MaLS'] == $l['MaLS'] && $l['MaLS'] == 1 ) { ?>
 									<tbody>
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
