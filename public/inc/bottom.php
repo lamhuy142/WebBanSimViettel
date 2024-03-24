@@ -399,7 +399,38 @@
 	<!--===============================================================================================-->
 	<script src="./assets/js/main.js"></script>
 
-	
+	<!-- <script>
+		// Hàm để hiển thị hoặc ẩn các sim dựa trên lựa chọn trả trước hoặc trả sau
+		function filterSim(type) {
+			// Lặp qua tất cả các sim
+			var simItems = document.querySelectorAll('.tab-pane');
+			simItems.forEach(function(item) {
+				// Lấy ra loại của sim (trả trước hoặc trả sau) từ attribute data-type
+				var simType = item.getAttribute('data-type');
+				// Nếu loại sim không khớp với lựa chọn của người dùng, ẩn sim đó
+				if (type !== 'all' && type !== simType) {
+					item.style.display = 'none';
+				} else {
+					// Nếu loại sim khớp với lựa chọn của người dùng, hiển thị sim đó
+					item.style.display = 'block';
+				}
+			});
+		}
+
+		// Lắng nghe sự kiện khi người dùng thay đổi lựa chọn trả trước hoặc trả sau
+		var radioOptions = document.querySelectorAll('input[name="inlineRadioOptions"]');
+		radioOptions.forEach(function(option) {
+			option.addEventListener('change', function() {
+				var type = this.value; // Lấy ra giá trị của lựa chọn (trả trước hoặc trả sau)
+				filterSim(type); // Gọi hàm để lọc và hiển thị các sim phù hợp với lựa chọn
+			});
+		});
+
+		// Hiển thị tất cả các sim khi trang được tải lần đầu
+		filterSim('all');
+	</script> -->
+
+
 
 	</body>
 

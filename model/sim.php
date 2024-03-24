@@ -137,6 +137,22 @@ class SIM
             exit();
         }
     }
+    public function laysimtheoloai($MaLS)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM sim WHERE MaLS=:MaLS";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaLS", $MaLS);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
     public function themsim($sim)
