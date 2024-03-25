@@ -12,9 +12,8 @@
 			Blog
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
-
 		<span class="stext-109 cl4">
-			8 Inspiring Ways to Wear Dresses in the Winter
+			<?php echo $khuyenmai_ht["TieuDe"] ?>
 		</span>
 	</div>
 </div>
@@ -28,9 +27,9 @@
 				<div class="p-r-45 p-r-0-lg">
 					<!--  -->
 					<div class="wrap-pic-w how-pos5-parent">
-						<img src="images/blog-04.jpg" alt="IMG-BLOG">
+						<img src="../../img/khuyenmai/<?php echo $khuyenmai_ht['HinhAnh']; ?>" alt="IMG-BLOG">
 
-						<div class="flex-col-c-m size-123 bg9 how-pos5">
+						<!-- <div class="flex-col-c-m size-123 bg9 how-pos5">
 							<span class="ltext-107 cl2 txt-center">
 								22
 							</span>
@@ -38,7 +37,7 @@
 							<span class="stext-109 cl3 txt-center">
 								Jan 2018
 							</span>
-						</div>
+						</div> -->
 					</div>
 
 					<div class="p-t-32">
@@ -54,25 +53,20 @@
 							</span>
 
 							<span>
-								StreetStyle, Fashion, Couple
-								<span class="cl12 m-l-4 m-r-6">|</span>
-							</span>
-
-							<span>
 								8 Comments
 							</span>
 						</span>
 
 						<h4 class="ltext-109 cl2 p-b-28">
-							8 Inspiring Ways to Wear Dresses in the Winter
+							<?php echo $khuyenmai_ht['TieuDe']; ?>
 						</h4>
 
 						<p class="stext-117 cl6 p-b-26">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet est vel orci luctus sollicitudin. Duis eleifend vestibulum justo, varius semper lacus condimentum dictum. Donec pulvinar a magna ut malesuada. In posuere felis diam, vel sodales metus accumsan in. Duis viverra dui eu pharetra pellentesque. Donec a eros leo. Quisque sed ligula vitae lorem efficitur faucibus. Praesent sit amet imperdiet ante. Nulla id tellus auctor, dictum libero a, malesuada nisi. Nulla in porta nibh, id vestibulum ipsum. Praesent dapibus tempus erat quis aliquet. Donec ac purus id sapien condimentum feugiat.
+							<?php echo $khuyenmai_ht['MoTa']; ?>
 						</p>
 
 						<p class="stext-117 cl6 p-b-26">
-							Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet suscipit in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit. Sed tempor magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel placerat orci, a venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh arcu. Vivamus sagittis accumsan felis, quis vulputate
+							<?php echo $khuyenmai_ht['MoTa']; ?> 
 						</p>
 					</div>
 

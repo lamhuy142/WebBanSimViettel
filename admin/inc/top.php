@@ -116,9 +116,16 @@
             <li class="nav-item
             <?php if (strpos($_SERVER["REQUEST_URI"], "qlkhuyenmai") != false) echo "active"; ?>
             ">
-                <a style="color: #576C8F;" class="nav-link" href="../qlkhuyenmai/index.php?action=xem">
+                <a style="color: #576C8F;" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#khuyenmai" aria-expanded="true" aria-controls="khuyenmai">
                     <i style="color: #576C8F;" class="bi bi-gift-fill"></i>
-                    <span>Chương trình khuyến mãi</span></a>
+                    <span>Thông tin khuyến mãi</span></a>
+                <div id="khuyenmai" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!-- <h6 class="collapse-header">Login Screens:</h6> -->
+                        <a style="color: #576C8F;" class="collapse-item" href="../qlkhuyenmai/index.php?action=xem">Khuyến mãi</a>
+                        <a style="color: #576C8F;" class="collapse-item" href="../qlkhuyenmai/index.php?action=danhmuc">Loại khuyến mãi</a>
+                    </div>
+                </div>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

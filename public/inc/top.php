@@ -44,7 +44,7 @@
                     <div class="menu-desktop">
                         <ul class="main-menu ">
                             <li class="active-menu">
-                                <a style="color: #576C8F;"  href="index.php">Home</a>
+                                <a style="color: #576C8F;" href="index.php">Home</a>
                             </li>
 
                             <li>
@@ -73,19 +73,24 @@
                     <div class="wrap-icon-header flex-w flex-r-m h-full">
                         <div class="flex-c-m h-full p-r-24">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-                                <i style="color: #576C8F;" class="zmdi zmdi-search"></i>
+                                <i style="color: #576C9D;" class="zmdi zmdi-search"></i>
                             </div>
                         </div>
 
                         <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
-                                <i style="color: #576C8F;" class="zmdi zmdi-shopping-cart"></i>
+                                <i style="color: #576C9D;" class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+                        </div>
+                        <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11" data-notify="2">
+                                <i style="color: #576C9D;" class=" bi bi-person-fill"></i>
                             </div>
                         </div>
 
                         <div class="flex-c-m h-full p-lr-19">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-                                <i style="color: #576C8F;" class="zmdi zmdi-menu"></i>
+                                <i style="color: #576C9D;" class="zmdi zmdi-menu"></i>
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txttenkm" class="form-label">Tên chương trình khuyến mãi</label>
+                            <label for="txttenkm" class="form-label">Tên khuyến mãi</label>
                             <input class="form-control" type="text" name="txttenkm" required>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Vui lòng điền tên khuyến mãi.</div>
@@ -39,11 +39,29 @@
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
+                            <label for="optloaisim" class="form-label">Loại sim</label>
+                            <select class="form-select" required name="optloaisim">
+                                <option value="">Chọn loại sim</option>
+                                <?php foreach ($loaisim as $ls) : ?>
+                                    <option value="<?php echo $ls['MaLS']; ?>"><?php echo $ls['TenLS']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="invalid-feedback">Vui lòng chọn loại sim</div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="md-3 mt-3">
                             <label for="txtgiatri" class="form-label">Giá trị khuyến mãi</label>
                             <input class="form-control" type="number" name="txtgiatri" required>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Vui lòng nhập giá trị khuyến mãi.</div>
                         </div>
+                    </div>
+                    <div class="col md-3 mt-3">
+                        <label for="fileanh" class="form-label">Hình Ảnh</label>
+                        <input type="file" class="form-control" name="fileanh" required></input>
+                        <div class="valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Vui lòng chọn hình ảnh .</div>
                     </div>
                     <!-- <div class="col">
                         <div class="md-3 mt-3">

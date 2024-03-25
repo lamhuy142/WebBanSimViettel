@@ -6,6 +6,7 @@ class KHUYENMAI
     private $TenKM;
     private $TieuDe;
     private $MoTa;
+    private $HinhAnh;
     private $GiaTriKM;
     private $LoaiKM;
     private $NgayBD;
@@ -52,6 +53,14 @@ class KHUYENMAI
     public function setMoTa($value)
     {
         $this->MoTa = $value;
+    }
+    public function getHinhAnh()
+    {
+        return $this->HinhAnh;
+    }
+    public function setHinhAnh($value)
+    {
+        $this->HinhAnh = $value;
     }
     public function getGiaTriKM()
     {
@@ -103,7 +112,6 @@ class KHUYENMAI
             $sql = "SELECT * FROM khuyenmai WHERE MaKM=:MaKM";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":MaKM", $MaKM);
-            $cmd->execute();
             $result = $cmd->fetch();
             return $result;
         } catch (PDOException $e) {
@@ -135,19 +143,19 @@ class KHUYENMAI
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO khuyenmai(MaLS, TenKM, TieuDe, MoTa, GiaTriKM, LoaiKM, NgayBD, NgayKT, TrangThai) 
-VALUES(:MaLS, :TenKM, :TieuDe, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :TrangThai)";
+            $sql = "INSERT INTO khuyenmai(MaLS, TenKM, TieuDe, MoTa, HinhAnh, GiaTriKM, LoaiKM, NgayBD, NgayKT, TrangThai) 
+VALUES(:MaLS, :TenKM, :TieuDe, :MoTa, :HinhAnh, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :TrangThai)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaLS', $khuyenmai->MaLS);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
             $cmd->bindValue(':TieuDe', $khuyenmai->TieuDe);
             $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
+            $cmd->bindValue(':HinhAnh', $khuyenmai->HinhAnh);
             $cmd->bindValue(':GiaTriKM', $khuyenmai->GiaTriKM);
             $cmd->bindValue(':LoaiKM', $khuyenmai->LoaiKM);
             $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
             $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
             $cmd->bindValue(':TrangThai', $khuyenmai->TrangThai);
-            $cmd->execute();
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -162,12 +170,13 @@ VALUES(:MaLS, :TenKM, :TieuDe, :MoTa, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :Tra
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE khuyenmai SET MaLS=:MaLS, TenKM=:TenKM, TieuDe=:TieuDe, MoTa=:MoTa, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT, TrangThai=:TrangThai WHERE MaKM=:MaKM";
+            $sql = "UPDATE khuyenmai SET MaLS=:MaLS, TenKM=:TenKM, TieuDe=:TieuDe, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT, TrangThai=:TrangThai WHERE MaKM=:MaKM";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaLS', $khuyenmai->MaLS);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
             $cmd->bindValue(':TieuDe', $khuyenmai->TieuDe);
             $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
+            $cmd->bindValue(':HinhAnh', $khuyenmai->HinhAnh);
             $cmd->bindValue(':GiaTriKM', $khuyenmai->GiaTriKM);
             $cmd->bindValue(':LoaiKM', $khuyenmai->LoaiKM);
             $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);

@@ -64,6 +64,22 @@
                             <input class="form-control" type="date" name="ngaykt" value="<?php echo $khuyenmai_ht['NgayKT'] ?>">
                         </div>
                     </div>
+                    <div class="col my-3">
+                        <label>Hình ảnh</label><br>
+                        <input type="hidden" name="hinhanh" value="<?php echo $sim_ht["HinhAnh"]; ?>">
+                        <img src="../../img/khuyenmai/<?php echo $sim_ht["HinhAnh"]; ?>" width="100px" class="img-thumbnail">
+                        <p>
+                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Đổi hình ảnh
+                            </a>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <input type="file" class="form-control" name="filehinhanh">
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="md-3 mt-3">
                     <a href="index.php?action=xem" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>

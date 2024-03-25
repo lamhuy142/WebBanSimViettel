@@ -38,10 +38,10 @@ switch ($action) {
         include("themsim.php");
         break;
     case "xulythem":
-        //xử lý thêm mặt hàng
+        
         //xử lý load ảnh
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
-        $duongdan = "../../img/sim/sim/" . $hinhanh; //nơi lưu file upload
+        $duongdan = "../../img/sim/" . $hinhanh; //nơi lưu file upload
         $moi = new SIM();
         $moi->sethinhanh($hinhanh);
         $moi->setSoSim($_POST["txtsosim"]);
@@ -121,7 +121,7 @@ switch ($action) {
             //xử lý load ảnh
             $hinhanh = basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
             $sua->sethinhanh($hinhanh);
-            $duongdan = "../../img/sim/sim/" . $hinhanh; //nơi lưu file upload
+            $duongdan = "../../img/sim/" . $hinhanh; //nơi lưu file upload
             move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
         }
         // sửa

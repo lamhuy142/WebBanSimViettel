@@ -2,6 +2,7 @@
 require("../model/database.php");
 require("../model/sim.php");
 require("../model/loaisim.php");
+require("../model/khuyenmai.php");
 
 
 
@@ -15,14 +16,29 @@ if (isset($_REQUEST["action"])) {
 
 $s = new SIM();
 $ls = new LOAISIM();
+$km = new KHUYENMAI();
 
 switch ($action) {
     case "macdinh":
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
         include("main.php");
         break;
+    case "detail":
+        if (isset($_GET["id"])) {
+            $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
+            include("blog-detail.php");
+        } else {
+            $sim = $s->laydanhsachsim();
+            $thuebao = $s->laydanhsachloaithuebao();
+            $loaisim = $ls->laydanhsachloaisim();
+            $khuyenmai = $km->laydanhsachkhuyenmai();
+            include("main.php");
+        }
+        break;
+        
     default:
         break;
 }

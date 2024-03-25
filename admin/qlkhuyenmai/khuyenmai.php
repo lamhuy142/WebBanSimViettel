@@ -16,8 +16,10 @@
                     <thead>
                         <tr>
                             <th>Tên Khuyến Mãi</th>
+                            <th>Loại Sim</th>
                             <th>Tiêu Đề</th>
                             <th>Mô Tả</th>
+                            <th>Hình Ảnh</th>
                             <th>Giá Trị</th>
                             <th>Loại Khuyến Mãi</th>
                             <th>Ngày Bắt Dầu</th>
@@ -29,8 +31,10 @@
                     <tfoot>
                         <tr>
                             <th>Tên Khuyến Mãi</th>
+                            <th>Loại Sim</th>
                             <th>Tiêu Đề</th>
                             <th>Mô Tả</th>
+                            <th>Hình Ảnh</th>
                             <th>Giá Trị</th>
                             <th>Loại Khuyến Mãi</th>
                             <th>Ngày Bắt Dầu</th>
@@ -42,12 +46,14 @@
                     <tbody>
                         <?php foreach ($khuyenmai as $km) :
                             foreach ($loaikhuyenmai as $l) :
-                                if ($km["LoaiKM"] == $l["MaLKM"]) { ?>
+                            foreach ($loaisim as $ls) :
+                                if ($km["LoaiKM"] == $l["MaLKM"] && $ls["MaLS"] == $km["MaLS"]) { ?>
                                     <tr>
                                         <td><?php echo $km["TenKM"]; ?></td>
+                                        <td><?php echo $ls["TenLS"]; ?></td>
                                         <td><?php echo $km["TieuDe"]; ?></td>
-                                        <!-- <td><img width="50px" src="../../img/user/<php echo $km["HinhAnh"]; ?>" alt="<php echo $km["HinhAnh"]; ?>"></td> -->
                                         <td><?php echo $km["MoTa"]; ?></td>
+                                        <td><img width="50px" src="../../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="<?php echo $km["HinhAnh"]; ?>"></td>
                                         <td><?php echo $km["GiaTriKM"]; ?></td>
                                         <td><?php echo $l["TenLKM"]; ?></td>
                                         <td><?php echo $km["NgayBD"]; ?></td>
@@ -83,6 +89,7 @@
                                     </tr>
                         <?php
                                 } //end if
+                            endforeach;
                             endforeach;
                         endforeach; ?>
                     </tbody>
