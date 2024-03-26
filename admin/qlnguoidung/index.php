@@ -1,6 +1,6 @@
-<?php
-// if (!isset($_SESSION["nguoidung"]))
-//     header("location:../index.php");
+<?php session_start();
+if (!isset($_SESSION["nguoidung"]))
+    header("location:../index.php");
 
 require("../../model/database.php");
 require("../../model/nguoidung.php");
@@ -20,7 +20,6 @@ switch ($action) {
     case "xem":
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
-
         include("main.php");
         break;
     case "themnd":

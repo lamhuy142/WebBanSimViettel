@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Đăng Nhập</title>
 
     <!-- Custom fonts for this template-->
     <link href="../admin/inc/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -49,25 +49,25 @@
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
+                                                <label class="custom-control-label" for="customCheck">Nhớ</label>
                                             </div>
                                         </div>
                                         <input type="hidden" name="action" value="xulydangnhap">
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng nhập">
                                         <hr>
                                         <a href="login/google-api-php-client-main/login.php" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                            <i class="fab fa-google fa-fw"></i> Đăng nhập với Google
                                         </a>
                                         <a href="#" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                            <i class="fab fa-facebook-f fa-fw"></i> Đăng nhập với Facebook
                                         </a>
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small" href="index.php?action=quenmatkhau">Quên mật khẩu?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.html">Create an Account!</a>
+                                        <a class="small" href="index.php?action=dangky">Tạo một tài khoản!</a>
                                     </div>
                                 </div>
                             </div>

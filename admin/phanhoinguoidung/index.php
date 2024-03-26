@@ -1,10 +1,12 @@
 <?php
-// if (!isset($_SESSION["nguoidung"]))
-//     header("location:../index.php");
+
+if (!isset($_SESSION["nguoidung"]))
+    header("location:../index.php");
 
 require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
+require("../../model/danhgia.php");
 
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
@@ -15,12 +17,13 @@ if (isset($_REQUEST["action"])) {
 
 $q = new QUYEN();
 $nd = new NGUOIDUNG();
+$dg = new DANHGIA();
 
 switch ($action) {
     case "xem":
-        $quyen = $q->laydanhsachquyen();
+        // $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
-
+        $danhgia = $dg->laydanhsachdanhgia();
         include("main.php");
         break;
     case "themnd":
@@ -34,8 +37,6 @@ switch ($action) {
         move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
         //xử lý thêm 
         $nguoidungmoi = new NGUOIDUNG();
-        $nguoidungmoi->setEmail($_POST["txtemail"]);
-        $nguoidungmoi->setSdt($_POST["txtsodienthoai"]);
         $nguoidungmoi->setMatKhau($_POST["txtmatkhau"]);
         $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);
         $nguoidungmoi->setHoTen($_POST["txthoten"]);
