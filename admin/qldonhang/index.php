@@ -3,10 +3,11 @@
 //     header("location:../index.php");
 
 require("../../model/database.php");
-// require("../../mode/donhang_ct.php");
+require("../../model/donhang_ct.php");
 require("../../model/donhang.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
+require("../../model/sim.php");
 
 
 // Xét xem có thao tác nào được chọn
@@ -19,6 +20,8 @@ if (isset($_REQUEST["action"])) {
 $dh = new DONHANG();
 $nd = new NGUOIDUNG();
 $q = new QUYEN();
+$dct = new DONHANG_CT();
+$s = new SIM();
 
 switch ($action) {
     case "xem":
@@ -37,7 +40,8 @@ switch ($action) {
         break;
     case "xemchitiet":
         $donhang = $dh->laydanhsachdonhang();
-        $nguoidung = $nd->laydanhsachnguoidung();
+        $donhang_ct = $dct->laydanhsachdonhang_ct();
+        $sim = $s->laydanhsachsim();
         include("chitietdonhang.php");
         break;
     case "khoa":

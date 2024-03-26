@@ -166,6 +166,7 @@ switch ($action) {
         $sua->setMaLKM($_POST["MaLKM"]);
         $sua->setTenLKM($_POST["txtten"]);
         $sua->setDonViKM($_POST["txtdonvi"]);
+        $sua->setTrangThai($_POST["opttrangthai"]);
 
         // sửa
         $lkm->capnhatloaikhuyenmai($sua);

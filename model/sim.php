@@ -255,20 +255,20 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :TinhTrang, :LoaiThueBao)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($HinhAnh, $TrangThai)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where HinhAnh=:HinhAnh";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':HinhAnh', $HinhAnh);
-    //         $cmd->bindValue(':TrangThai', $TrangThai);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    public function doitrangthai($MaSim, $TinhTrang)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE sim set TinhTrang=:TinhTrang where MaSim=:MaSim";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaSim', $MaSim);
+            $cmd->bindValue(':TinhTrang', $TinhTrang);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

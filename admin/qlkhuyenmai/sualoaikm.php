@@ -23,10 +23,11 @@
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="optloai" class="form-label">Trạng Thái</label>
-                            <select class="form-select" name="optloai">
+                            <label for="opttrangthai" class="form-label">Trạng Thái</label>
+                            <select class="form-select" name="opttrangthai">
                                 <option value="">Chọn loại trạng thái</option>
-                                    <option value="<?php echo $l["MaLKM"]; ?>" <?php if ($l["MaLKM"] == $loai_ht["LoaiKM"]) echo "selected"; ?>><?php echo $l["TenLKM"]; ?></option>
+                                    <option value="<?php echo $loai_ht["TrangThai"]; ?>" <?php if ($loai_ht["TrangThai"] == 0) echo "selected"; ?>>Hoạt Động</option>
+                                    <option value="<?php echo $loai_ht["TrangThai"]; ?>" <?php if ($loai_ht["TrangThai"] == 1) echo "selected"; ?>>Dừng</option>
                             </select>
                         </div>
                     </div>

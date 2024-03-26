@@ -57,6 +57,25 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         include("sim.php");
         break;
+    case "khoa":
+        if (isset($_REQUEST["id"]))
+            $id = $_REQUEST["id"];
+        if (isset($_REQUEST["TrangThai"]))
+        $trangthai = $_REQUEST["TrangThai"];
+        else
+            $trangthai = "1";
+        if ($trangthai == "1") {
+            $trangthai = 0;
+            $s->doitrangthai($id, $trangthai);
+        } else {
+            $trangthai = 1;
+            $s->doitrangthai($id, $trangthai);
+        }
+        // load danh sách
+        $loai = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
+        include("sim.php");
+        break;
     case "themls":
         $goicuoc = $gc->laydanhsachgoicuoc();
         include("themloaisim.php");

@@ -43,20 +43,20 @@
                     <!-- Menu desktop -->
                     <div class="menu-desktop">
                         <ul class="main-menu ">
-                            <li class="active-menu">
-                                <a style="color: #576C8F;" href="index.php">Home</a>
+                            <li class="active-menu <?php if (strpos($_SERVER["REQUEST_URI"], "index") != false) echo "active"; ?>">
+                                <a class="" style="color: #576C8F;" href="index.php">Home</a>
                             </li>
 
-                            <li>
+                            <li class="<?php if (strpos($_SERVER["REQUEST_URI"], "index") != false) echo "active"; ?>">
                                 <a style="color: #576C8F;" href="product.php">Shop</a>
                             </li>
 
-                            <li class="label1" data-label1="hot">
+                            <!-- <li class="label1" data-label1="hot">
                                 <a style="color: #576C8F;" href="shoping-cart.php">Features</a>
-                            </li>
+                            </li> -->
 
                             <li>
-                                <a style="color: #576C8F;" href="blog.php">Blog</a>
+                                <a style="color: #576C8F;" href="index.php?action=blog">Blog</a>
                             </li>
 
                             <li>

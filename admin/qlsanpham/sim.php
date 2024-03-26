@@ -58,6 +58,7 @@
                                         <?php } ?>
                                         <td>
                                             <a href="index.php?action=sua&id=<?php echo $s['MaSim']; ?>" class="btn btn-warning">Sửa</a>
+                                            <a href="index.php?action=khoa&id=<?php echo $s['MaSim']; ?>&TrangThai=<?php echo $s['TinhTrang'];?>" class="btn btn-secondary">Khóa</a>
                                             <!-- <a href="index.php?action=xoa&id=<php echo  $s['MaSim']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a> -->
                                         </td>
                                     </tr>

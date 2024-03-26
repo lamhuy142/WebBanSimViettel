@@ -38,7 +38,10 @@ switch ($action) {
             include("main.php");
         }
         break;
-        
+    case "blog":
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        include("blog.php");
+        break;
     default:
         break;
 }
