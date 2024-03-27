@@ -11,30 +11,14 @@
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="optquyen" class="form-label">Phân quyền</label>
-                            <select class="form-select" name="optquyen">
-                                <?php foreach ($quyen as $q) : ?>
-                                    <option value="<?php echo $q['MaQ']; ?>"><?php echo $q['TenQ']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="txthoten" class="form-label">Họ Tên Người Dùng</label>
-                            <input class="form-control" type="text" name="txthoten" placeholder="Nhập họ tên">
+                            <label for="txtdanhgia" class="form-label">Đánh giá từ người dùng</label>
+                            <textarea id="editor" rows="5" class="form-control" name="txtdanhgia"><?php echo $danhgia_ht["NoiDung"]; ?></textarea>
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtemail" class="form-label">Email</label>
                             <input class="form-control" type="email" name="txtemail" placeholder="Nhập email">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="txtsodienthoai" class="form-label">Số điện thoại</label>
-                            <input class="form-control" type="number" name="txtsodienthoai" placeholder="Nhập số điện thoại">
                         </div>
                     </div>
                 </div>

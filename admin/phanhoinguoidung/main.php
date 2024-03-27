@@ -19,6 +19,7 @@
                             <th>Tên Người Dùng</th>
                             <th>Nội Dung</th>
                             <th>Hình Ảnh</th>
+                            <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
                     </thead>
@@ -28,18 +29,23 @@
                             <th>Tên Người Dùng</th>
                             <th>Nội Dung</th>
                             <th>Hình Ảnh</th>
+                            <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php foreach ($danhgia as $d) :
-                            foreach ($nguoidung as $n) : 
-                            if($n["MaND"] == $d["MaND"]){ ?>
+                            foreach ($nguoidung as $n) :
+                                if ($n["MaND"] == $d["MaND"]) { ?>
                                     <tr>
                                         <td><?php echo $d["MaND"]; ?></td>
-                                        <td><?php echo $n["TenND"]; ?></td>
+                                        <td><?php echo $n["HoTen"]; ?></td>
                                         <td><?php echo $d["NoiDung"]; ?></td>
                                         <td><img width="50px" src="../../img/user/<?php echo $d["urlHinhAnh"]; ?>" alt="<?php echo $d["urlHinhAnh"]; ?>"></td>
+                                        <?php if ($d["TraLoi"] != null) { ?>
+                                            <td class="text-sussecc"><i class=" bi bi-check-circle-fill"></i> Đã trả lời</td>
+                                        <?php } else { ?><td class="text-secondary"><i class="bi bi-x-circle-fill"></i> Chưa trả lời</td> <?php } ?>
+                                        <td><a class="btn btn-primary" href="index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">Phản Hồi</a></td>
                                     </tr>
                         <?php
                                 } //end if

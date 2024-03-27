@@ -62,6 +62,22 @@ class DANHGIA
     // }
 
     // lấy tất cả ng dùng
+    public function laydanhsachdanhgiatheoid($MaDG)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM danhgia WHERE MaDG=:MaDG";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaDG", $MaDG);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     public function laydanhsachdanhgia()
     {
         $db = DATABASE::connect();

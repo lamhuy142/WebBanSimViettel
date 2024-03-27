@@ -26,11 +26,18 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         include("main.php");
         break;
-    case "themnd":
-        $quyen = $q->laydanhsachquyen();
-        include("themnguoidung.php");
+    case "phanhoi":
+        if(isset($_GET["id"])){
+            $danhgia_ht = $dg->laydanhsachdanhgiatheoid($_GET["id"]);
+            include("phanhoi.php");
+        }else{
+            $nguoidung = $nd->laydanhsachnguoidung();
+            $danhgia = $dg->laydanhsachdanhgia();
+            include("main.php");
+        }
+       
         break;
-    case "xulythemnd":
+    case "xulyphanhoi":
         //xử lý load ảnh
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
         $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload

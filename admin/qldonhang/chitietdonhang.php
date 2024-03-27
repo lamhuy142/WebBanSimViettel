@@ -50,8 +50,7 @@
                 </table>
                 <div class="md-3 mt-3">
                     <a href="index.php?action=xem" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
-                    <input type="submit" value="Lưu" class="btn btn-success"></input>
-                    <input type="reset" value="Hủy" class="btn btn-warning"></input>
+                    <!-- <input type="reset" value="Hủy" class="btn btn-warning"></input> -->
                 </div>
             </div>
         </div>

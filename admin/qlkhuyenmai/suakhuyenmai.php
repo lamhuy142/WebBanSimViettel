@@ -7,7 +7,8 @@
         <div class="card-body">
             <form method="post" enctype="multipart/form-data" action="index.php">
                 <input type="hidden" name="action" value="xulysua">
-                <input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht['MaKM'] ?>">
+                <input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht['MaKM']  ?>">
+               
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
