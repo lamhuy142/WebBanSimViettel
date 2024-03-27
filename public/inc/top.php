@@ -5,7 +5,7 @@
     <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="./images/icons/favicon.png" />
+    <link rel="icon" type="image/png" href="../img/favicon.png" />
 
     <!--===================================link CSS============================================================-->
     <!-- <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css"> wamp\www\WebBanSimViettel\public\assets-->
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="./assets/vendor/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/util.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!--===============================================================================================-->
 </head>
 
@@ -79,14 +80,28 @@
 
                         <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
-                                <i style="color: #576C9D;" class="zmdi zmdi-shopping-cart"></i>
+                                <i style="color: #576C8F;" class="zmdi zmdi-shopping-cart"></i>
                             </div>
                         </div>
-                        <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11" data-notify="2">
-                                <i style="color: #576C9D;" class=" bi bi-person-fill"></i>
+                        <?php if (isset($_SESSION["nguoidung"]) && !empty($_SESSION["nguoidung"]["HoTen"])) { ?>
+                            <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                                <div style="color:#576C8F ;" class=" icon-header-item  hov-cl1 trans-04 p-lr-11 dropdown-toggle" id="navbarDarkDropdownMenuLink" data-notify="2">
+                                    <img class="img-profile rounded-circle" style="height:30px; width: 30px; " src="../img/user/<?php echo $_SESSION['nguoidung']['HinhAnh']; ?>" alt="">
+                                    <span class="h6"><?php echo $_SESSION["nguoidung"]["HoTen"]; ?></span>
+                                </div>
+                                <ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="navbarDarkDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="index.php?action=hoso&id=<?php echo $_SESSION["nguoidung"]["id"] ?>">Profile</a></li>
+                                    <li><a class="dropdown-item" href="index.php?action=dangxuat">Logout</a></li>
+                                </ul>
                             </div>
-                        </div>
+                        <?php } else { ?>
+                            <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                                <div class=" icon-header-item cl2 hov-cl1 trans-04 p-lr-11" data-notify="2">
+                                    <i style="color: #576C9D;" class=" bi bi-person-fill"></i>
+                                </div>
+                            </div>
+                        <?php } ?>
+
 
                         <div class="flex-c-m h-full p-lr-19">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
@@ -235,47 +250,12 @@
                     <div class="flex-w flex-sb p-t-36 gallery-lb">
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-01.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-01.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="../../img/slide/slide1.png" data-lightbox="gallery" style="background-image: url('../../img/slide/slide1.png');"></a>
                         </div>
 
                         <!-- item gallery sidebar -->
                         <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-02.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-02.jpg');"></a>
-                        </div>
-
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-03.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-03.jpg');"></a>
-                        </div>
-
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-04.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-04.jpg');"></a>
-                        </div>
-
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-05.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-05.jpg');"></a>
-                        </div>
-
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-06.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-06.jpg');"></a>
-                        </div>
-
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-07.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-07.jpg');"></a>
-                        </div>
-
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-08.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-08.jpg');"></a>
-                        </div>
-
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="./images/gallery-09.jpg" data-lightbox="gallery" style="background-image: url('images/gallery-09.jpg');"></a>
+                            <a class="item-gallery bg-img1" href="../../img/slide/slide2.png" data-lightbox="gallery" style="background-image: url('../../img/slide/slide2.png');"></a>
                         </div>
                     </div>
                 </div>

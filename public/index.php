@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 require("../model/database.php");
 require("../model/sim.php");
 require("../model/loaisim.php");
@@ -7,7 +7,7 @@ require("../model/khuyenmai.php");
 
 
 // Xét xem có thao tác nào được chọn
-// Xét xem có thao tác nào được chọn
+$isLogin = isset($_SESSION["nguoidung"]);
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } else {   // mặc định là xem danh sách
@@ -20,6 +20,7 @@ $km = new KHUYENMAI();
 
 switch ($action) {
     case "macdinh":
+
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();

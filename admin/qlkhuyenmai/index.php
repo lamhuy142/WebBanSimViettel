@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 if (!isset($_SESSION["nguoidung"]))
     header("location:../index.php");
@@ -123,7 +123,7 @@ switch ($action) {
             $trangthai = 1;
             $km->doitrangthai($id, $trangthai);
         }
-        // load người dùng
+        // load 
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
@@ -168,7 +168,6 @@ switch ($action) {
         $sua->setTenLKM($_POST["txtten"]);
         $sua->setDonViKM($_POST["txtdonvi"]);
         $sua->setTrangThai($_POST["opttrangthai"]);
-
         // sửa
         $lkm->capnhatloaikhuyenmai($sua);
         // load danh sách

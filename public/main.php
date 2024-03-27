@@ -1,8 +1,8 @@
-<?php include("inc/top.php"); 
+<?php include("inc/top.php");
 // <!-- Slider -->
-include("inc/slider.php"); 
+include("inc/sider.php");
 // <!-- Banner -->
-include("inc/banner.php"); 
+include("inc/banner.php");
 $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptions'] : 'all';
 ?>
 
@@ -63,7 +63,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
 											<td><?php echo $l['GiaBan'] ?></td>
-											<td></td>
+											<td><a style="background-color: #EF0033; color: white;" class="btn" href="">Mua Ngay</a></td>
 										</tr>
 									</tbody>
 							<?php

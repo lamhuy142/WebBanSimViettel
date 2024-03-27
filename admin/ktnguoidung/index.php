@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
