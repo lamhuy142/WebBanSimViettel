@@ -19,19 +19,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/searchpanes/2.3.0/css/searchPanes.bootstrap5.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/select/2.0.0/css/select.bootstrap5.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
     <link href="../../admin/inc/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    
     <!-- Custom styles for this template-->
     <link href="../../admin/inc/css/sb-admin-2.min.css" rel="stylesheet">
 
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script> 
 
     <!-- <script src="ckeditor5/ckeditor.js"></script>
     <script src="ckfinder/ckfinder.js"></script> -->
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script> -->
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script> --> 
 
 
 </head>
@@ -75,17 +79,31 @@
                     <i style="color: #576C8F;" class="bi bi-person-badge-fill"></i>
                     <span>Quản lý người dùng</span></a>
             </li>
-            <!-- Nav Item - MYPHAM -->
-            <li class="nav-item <?php if (strpos($_SERVER["REQUEST_URI"], "qlsanpham") != false) echo "active"; ?>">
+            <!-- Nav Item - SIM -->
+            <li class="nav-item <?php if (strpos($_SERVER["REQUEST_URI"], "sim") != false) echo "active"; ?>">
                 <a style="color: #576C8F;" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <i style="color: #576C8F;" class="fas fa-fw fa-folder"></i>
-                    <span>Quản lý sản phẩm</span>
+                    <span>Quản lý sim</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Login Screens:</h6> -->
-                        <a style="color: #576C8F;" class="collapse-item" href="../qlsanpham/index.php?action=sim">Sim</a>
-                        <a style="color: #576C8F;" class="collapse-item" href="../qlsanpham/index.php?action=loaisim">Loại Sim</a>
+                        <a style="color: #576C8F;" class="collapse-item" href="../sim/index.php?action=sim">Sim</a>
+                        <a style="color: #576C8F;" class="collapse-item" href="../sim/index.php?action=loaisim">Loại Sim</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - GOICUOC -->
+            <li class="nav-item <?php if (strpos($_SERVER["REQUEST_URI"], "goicuoc") != false) echo "active"; ?>">
+                <a style="color: #576C8F;" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#goicuoc" aria-expanded="true" aria-controls="goicuoc">
+                    <i style="color: #576C8F;" class="fas fa-fw fa-folder"></i>
+                    <span>Quản lý gói cước</span>
+                </a>
+                <div id="goicuoc" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!-- <h6 class="collapse-header">Login Screens:</h6> -->
+                        <a style="color: #576C8F;" class="collapse-item" href="../goicuoc/index.php?action=goicuoc">Gói cước</a>
+                        <a style="color: #576C8F;" class="collapse-item" href="../goicuoc/index.php?action=loaigoicuoc">Loại gói cước</a>
                     </div>
                 </div>
             </li>

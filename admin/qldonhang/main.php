@@ -9,16 +9,16 @@
             <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">DANH SÁCH ĐƠN HÀNG</h6>
         </div>
         <div class="card-body">
-            <form action="index.php" method="GET">
+            <!-- <form action="index.php" method="GET">
                 <div class="input-group col-4">
                     <span class="input-group-text"><i class="bi bi-search"></i></span>
                     <input type="text" name="txtMaDH" id="txtMaDH" class="form-control" placeholder="Nhập Mã Đơn Hàng...">
                     <input type="submit" value="Tìm kiếm" class="btn btn-info"></input>
                 </div>
-            </form>
+            </form> -->
             <div class="table-responsive">
 
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered " id="example" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Mã Đơn Hàng</th>

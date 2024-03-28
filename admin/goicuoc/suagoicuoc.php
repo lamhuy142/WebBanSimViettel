@@ -17,16 +17,13 @@
                         <div class="invalid-feedback">Vui lòng điền tên gói cước.</div>
                     </div>
                     <div class="col md-3 mt-3">
-                        <label for="txtdungluong" class="form-label">Dung Lượng</label>
-                        <input class="form-control" type="number" name="txtdungluong" required value="<?php echo $goicuoc_ht['DungLuong']; ?>">
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Hãy nhập dung lượng gói cước.</div>
-                    </div>
-                    <div class="col md-3 mt-3">
-                        <label for="txtthoigianhieuluc" class="form-label">Thời Gian Hiệu Lực</label>
-                        <input class="form-control" type="text" name="txtthoigianhieuluc" required value="<?php echo $goicuoc_ht['ThoiGianHieuLuc']; ?>">
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Vui lòng nhập thời hạn của gói cước.</div>
+                        <label for="optloai" class="form-label">Loại gói cước</label>
+                        <select class="form-select" name="optloai">
+                            <option value="">Chọn loại gói cước</option>
+                            <?php foreach ($loai as $l) : ?>
+                                <option value="<?php echo $l["MaLGC"] ?>" <?php if ($l["MaLGC"] == $goicuoc_ht["MaLGC"]) echo "selected"; ?>><?php echo $l["TenLGC"]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="gia" class="form-label">Giá</label>
@@ -34,12 +31,24 @@
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập giá tiền của gói cước.</div>
                     </div>
+                    <div class="col md-3 mt-3">
+                        <label for="giatrikm" class="form-label">Giá trị khuyến mãi</label>
+                        <input class="form-control" type="number" name="giatrikm" required value="<?php echo $goicuoc_ht['GiaTriKM']; ?>">
+                        <div class="valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Vui lòng nhập giá trị khuyến mãi.</div>
+                    </div>
                 </div>
                 <div class="md-3 mt-3">
                     <label for="txtmota" class="form-label">Mô tả</label>
                     <textarea id="editor" rows="5" class="form-control" name="txtmota"><?php echo $goicuoc_ht['MoTa']; ?></textarea>
                     <div class="valid-feedback">Hợp lệ.</div>
                     <div class="invalid-feedback">Hãy nhập mô tả gói cước.</div>
+                </div>
+                <div class="col md-3 mt-3">
+                    <label for="txtthoihan" class="form-label">Thời Hạn</label>
+                    <input class="form-control" type="text" name="txtthoihan" required value="<?php echo $goicuoc_ht['ThoiHan']; ?>">
+                    <div class="valid-feedback">Hợp lệ.</div>
+                    <div class="invalid-feedback">Hãy nhập dung lượng gói cước.</div>
                 </div>
                 </br>
                 <div class="my-3">

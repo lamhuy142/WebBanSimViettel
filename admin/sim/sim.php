@@ -53,14 +53,18 @@
                                         <!-- Tình Trạng -->
                                         <?php if ($s["TinhTrang"] == 1) { ?>
                                             <td class="text-success font-weight-bold"> Còn Hàng</td>
+                                            <td>
+                                                <a href="index.php?action=sua&id=<?php echo $s['MaSim']; ?>" class="btn btn-warning">Sửa</a>
+                                                <a href="index.php?action=khoa&id=<?php echo $s['MaSim']; ?>&TrangThai=<?php echo $s['TinhTrang']; ?>" class="btn btn-secondary">Khóa</a>
+                                            </td>
                                         <?php } else { ?>
                                             <td class="text-danger font-weight-bold"> Hết Hàng</td>
+                                            <td>
+                                                <a href="index.php?action=sua&id=<?php echo $s['MaSim']; ?>" class="btn btn-warning">Sửa</a>
+                                                <a href="index.php?action=khoa&id=<?php echo $s['MaSim']; ?>&TrangThai=<?php echo $s['TinhTrang']; ?>" class="btn btn-primary">Mở</a>
+                                            </td>
                                         <?php } ?>
-                                        <td>
-                                            <a href="index.php?action=sua&id=<?php echo $s['MaSim']; ?>" class="btn btn-warning">Sửa</a>
-                                            <a href="index.php?action=khoa&id=<?php echo $s['MaSim']; ?>&TrangThai=<?php echo $s['TinhTrang'];?>" class="btn btn-secondary">Khóa</a>
-                                            <!-- <a href="index.php?action=xoa&id=<php echo  $s['MaSim']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a> -->
-                                        </td>
+
                                     </tr>
                         <?php
                                 } //end if

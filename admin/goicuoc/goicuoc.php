@@ -15,37 +15,45 @@
                     <thead>
                         <tr>
                             <th scope="col">Tên Gói Cước</th>
+                            <th scope="col">Loại Gói Cước</th>
                             <th scope="col">Mô Tả</th>
-                            <th scope="col">Dung Lượng</th>
-                            <th scope="col">Thời Gian Hiệu Lực</th>
                             <th scope="col">Giá</th>
+                            <th scope="col">Giá Trị Khuyến Mãi</th>
+                            <th scope="col">Thời Hạn</th>
                             <th scope="col">Hành Động</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th scope="col">Tên Gói Cước</th>
+                            <th scope="col">Loại Gói Cước</th>
                             <th scope="col">Mô Tả</th>
-                            <th scope="col">Dung Lượng</th>
-                            <th scope="col">Thời Gian Hiệu Lực</th>
                             <th scope="col">Giá</th>
+                            <th scope="col">Giá Trị Khuyến Mãi</th>
+                            <th scope="col">Thời Hạn</th>
                             <th scope="col">Hành Động</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php foreach ($goicuoc as $gc) : ?>
+                        <?php foreach ($goicuoc as $gc) :
+                            foreach ($loai as $l) : 
+                            if($l["MaLGC"] == $gc["MaLGC"]){ ?>
                             <tr>
                                 <td><?php echo $gc["Ten"] ?></td>
+                                <td><?php echo $l["TenLGC"] ?></td>
                                 <td><?php echo $gc["MoTa"] ?></td>
-                                <td><?php echo $gc["DungLuong"] ?></td>
-                                <td><?php echo $gc["ThoiGianHieuLuc"] ?></td>
                                 <td><?php echo $gc["Gia"] ?></td>
+                                <td><?php echo $gc["GiaTriKM"] ?></td>
+                                <td><?php echo $gc["ThoiHan"] ?></td>
                                 <td>
                                     <a href="index.php?action=suagc&id=<?php echo $gc['MaGC']; ?>" class="btn btn-warning">Sửa</a>
                                     <!-- <a href="index.php?action=xoagc&id=<php echo  $gc['MaGC']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a> -->
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php
+                            }
+                            endforeach;
+                     endforeach; ?>
                     </tbody>
                 </table>
             </div>

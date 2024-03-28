@@ -6,7 +6,8 @@
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data" action="index.php">
-                <input type="hidden" name="action" value="xulythemnd">
+                <input type="hidden" name="action" value="xulyphanhoi">
+                <input type="hidden" name="MaDG" value="<?php echo $danhgia_ht['MaDG']; ?>">
 
                 <div class="row">
                     <div class="col">
@@ -17,40 +18,14 @@
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txtemail" class="form-label">Email</label>
-                            <input class="form-control" type="email" name="txtemail" placeholder="Nhập email">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="txtdiachi" class="form-label">Địa chỉ</label>
-                            <input class="form-control" type="text" name="txtdiachi" placeholder="Nhập địa chỉ">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="txtmatkhau" class="form-label">Mật khẩu</label>
-                            <input class="form-control" type="text" name="txtmatkhau" placeholder="Nhập mật khẩu"></input>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="txttrangthai" class="form-label">Trạng thái</label>
-                            <input class="form-control" type="number" name="txttrangthai" value="1"></input>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label>Hình ảnh</label>
-                            <input type="file" class="form-control" name="fileanh"></input>
+                            <label for="txttraloi" class="form-label">Trả lời đánh giá</label>
+                            <textarea id="editor1" rows="5" class="form-control" name="txttraloi"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="md-3 mt-3">
                     <a href="index.php?action=xem" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
-                    <input type="submit" value="Lưu" class="btn btn-success"></input>
+                    <input type="submit" value="Trả Lời" class="btn btn-success"></input>
                     <input type="reset" value="Hủy" class="btn btn-warning"></input>
                 </div>
             </form>

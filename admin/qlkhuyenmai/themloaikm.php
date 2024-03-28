@@ -29,13 +29,13 @@
                         <label for="opttrangthai" class="form-label">Loại trạng thái</label>
                         <select class="form-control form-select" required name="opttrangthai">
                             <option value="">Chọn loại trạng thái</option>
-                            <?php foreach ($trangthai as $t) : ?>
-                                <?php if ($t['TrangThai'] == 1) { ?>
+                            <!-- <php foreach ($trangthai as $t) : ?> -->
+                                <!-- <php if ($t['TrangThai'] == 1) { ?> -->
                                     <option value="1">Hoạt Động</option>
-                                <?php } elseif ($t['TrangThai'] == 0) { ?>
+                                <!-- <php } elseif ($t['TrangThai'] == 0) { ?> -->
                                     <option value="0">Dừng</option>
-                                <?php } ?>
-                            <?php endforeach; ?>
+                                <!-- <php } ?> -->
+                            <!-- <php endforeach; ?> -->
                         </select>
                         <div class="invalid-feedback">Vui lòng chọn loại thuê bao.</div>
                     </div>

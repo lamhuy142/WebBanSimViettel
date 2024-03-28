@@ -5,7 +5,7 @@
     <title>Home</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="../img/favicon.png" />
+    <link rel="icon" href="../../img/logo/favicon.png" />
 
     <!--===================================link CSS============================================================-->
     <!-- <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css"> wamp\www\WebBanSimViettel\public\assets-->

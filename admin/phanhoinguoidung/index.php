@@ -21,7 +21,6 @@ $dg = new DANHGIA();
 
 switch ($action) {
     case "xem":
-        // $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         include("main.php");
@@ -38,22 +37,14 @@ switch ($action) {
        
         break;
     case "xulyphanhoi":
-        //xử lý load ảnh
-        $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
-        $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
-        move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
         //xử lý thêm 
-        $nguoidungmoi = new NGUOIDUNG();
-        $nguoidungmoi->setMatKhau($_POST["txtmatkhau"]);
-        $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);
-        $nguoidungmoi->setHoTen($_POST["txthoten"]);
-        $nguoidungmoi->setMaQ($_POST["optquyen"]);
-        $nguoidungmoi->setTrangThai($_POST["txttrangthai"]);
-        $nguoidungmoi->setHinhAnh($hinhanh);
+        // $moi = new DANHGIA();
+        $MaDG = $_POST["MaDG"];
+        $TraLoi = $_POST["txttraloi"];
         // thêm
-        $nd->themnguoidung($nguoidungmoi);
+        $dg->capnhattraloi($MaDG, $TraLoi);
         // load người dùng
-        $quyen = $q->laydanhsachquyen();
+        $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         include("main.php");
         break;

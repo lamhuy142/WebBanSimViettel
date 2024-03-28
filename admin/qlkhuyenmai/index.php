@@ -66,6 +66,8 @@ switch ($action) {
     case "sua":
         if (isset($_GET["id"])) {
             $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
+            // print($khuyenmai_ht) ;
+            // exit();
             include("suakhuyenmai.php");
         } else {
             $khuyenmai = $km->laydanhsachkhuyenmai();
@@ -136,7 +138,7 @@ switch ($action) {
         include("loaikhuyenmai.php");
         break;
     case "themloaikm":
-        $trangthai = $lkm->laydanhsachloaikhuyenmai();
+        
         include("themloaikm.php");
         break;
     case "xulythemloaikm":
@@ -144,6 +146,7 @@ switch ($action) {
         $moi = new LOAIKHUYENMAI();
         $moi->setTenLKM($_POST["txtten"]);
         $moi->setDonViKM($_POST["txtdonvi"]);
+        $moi->setTrangThai($_POST["opttrangthai"]);
         // thêm
         $lkm->themloaikhuyenmai($moi);
         // load người dùng
@@ -178,17 +181,16 @@ switch ($action) {
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
         if (isset($_REQUEST["TrangThai"]))
-            $trangthai = $_REQUEST["TrangThai"];
+        $trangthai = $_REQUEST["TrangThai"];
         else
             $trangthai = "1";
         if ($trangthai == "1") {
             $trangthai = 0;
-            $km->doitrangthai($id, $trangthai);
+            $lkm->doitrangthai($id, $trangthai);
         } else {
             $trangthai = 1;
-            $km->doitrangthai($id, $trangthai);
+            $lkm->doitrangthai($id, $trangthai);
         }
-        // load người dùng
         $loai = $lkm->laydanhsachloaikhuyenmai();
         include("loaikhuyenmai.php");
         break;

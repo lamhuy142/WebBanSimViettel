@@ -3,6 +3,7 @@ class LOAIGOICUOC
 {
     private $MaLGC;
     private $TenLGC;
+    private $TrangThai;
     
     public function getMaLGC()
     {
@@ -20,27 +21,35 @@ class LOAIGOICUOC
     {
         $this->TenLGC = $value;
     }
+    public function getTrangThai()
+    {
+        return $this->TrangThai;
+    }
+    public function setTrangThai($value)
+    {
+        $this->TrangThai = $value;
+    }
     // khai báo các thuộc tính (SV tự viết)
 
 
     // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    public function laydanhsachloaigoicuoctheoid($MaLGC)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM loaigoicuoc WHERE MaLGC=:MaLGC";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(":MaLGC", $MaLGC);
+            $cmd->execute();
+            $ketqua = $cmd->fetch();
+            $cmd->closeCursor();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 
     // lấy tất cả ng dùng
     public function laydanhsachloaigoicuoc()
@@ -64,10 +73,11 @@ class LOAIGOICUOC
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO loaigoicuoc(TenLGC) 
+            $sql = "INSERT INTO loaigoicuoc(TenLGC, TrangThai) 
 VALUES(:TenLGC)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':TenLGC', $loaigoicuoc->TenLGC);
+            $cmd->bindValue(':TrangThai', $loaigoicuoc->TrangThai);
             $cmd->execute();
             $result = $cmd->execute();
             return $result;
@@ -79,14 +89,15 @@ VALUES(:TenLGC)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatloaigoicuoc($MaLGC,$TenLGC)
+    public function capnhatloaigoicuoc($MaLGC)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE loaigoicuoc set TenLGC=:TenLGC  where MaLGC=MaLGC";
+            $sql = "UPDATE loaigoicuoc set TenLGC=:TenLGC, TrangThai=:TrangThai  where MaLGC=MaLGC";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaLGC', $MaLGC);
-            $cmd->bindValue(':TenLGC', $TenLGC);
+            $cmd->bindValue('MaLGC', $MaLGC->MaLGC);
+            $cmd->bindValue(':TenLGC', $MaLGC->TenLGC);
+            $cmd->bindValue(':TrangThai', $MaLGC->TrangThai);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {

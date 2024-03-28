@@ -5,7 +5,7 @@ class GOICUOC
     private $MaLGC;
     private $Ten;
     private $MoTa;
-    private $DungLuong;
+    private $ThoiHan;
     private $Gia;
     private $GiaTriKM;
     
@@ -42,13 +42,13 @@ class GOICUOC
     {
         $this->MoTa = $value;
     }
-    public function getDungLuong()
+    public function getThoiHan()
     {
-        return $this->DungLuong;
+        return $this->ThoiHan;
     }
-    public function setDungLuong($value)
+    public function setThoiHan($value)
     {
-        $this->DungLuong = $value;
+        $this->ThoiHan = $value;
     }
     public function getGiaTriKM()
     {
@@ -140,13 +140,13 @@ class GOICUOC
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO goicuoc(MaLGC, Ten, MoTa, DungLuong, Gia, GiaTriKM) 
-VALUES(:MaLGC, :Ten, :MoTa, :DungLuong, :Gia, :GiaTiKM)";
+            $sql = "INSERT INTO goicuoc(MaLGC, Ten, MoTa, Gia, GiaTriKM, ThoiHan) 
+VALUES(:MaLGC, :Ten, :MoTa, :Gia, :GiaTiKM, :ThoiHan)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaLGC', $goicuoc->MaLGC);
             $cmd->bindValue(':Ten', $goicuoc->Ten);
             $cmd->bindValue(':MoTa', $goicuoc->MoTa);
-            $cmd->bindValue(':DungLuong', $goicuoc->DungLuong);
+            $cmd->bindValue(':ThoiHan', $goicuoc->ThoiHan);
             $cmd->bindValue(':Gia', $goicuoc->Gia);
             $cmd->bindValue(':GiaTriKM', $goicuoc->Gia);
             $cmd->execute();
@@ -160,16 +160,16 @@ VALUES(:MaLGC, :Ten, :MoTa, :DungLuong, :Gia, :GiaTiKM)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    // public function capnhatgoicuoc($MaGC,$Ten, $MoTa, $DungLuong, $ThoiGianHieuLuc) 
+    // public function capnhatgoicuoc($MaGC,$Ten, $MoTa, $ThoiHan, $ThoiGianHieuLuc) 
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE goicuoc set Ten=:Ten, MoTa=:MoTa, DungLuong=:DungLuong, ThoiGianHieuLuc=:ThoiGianHieuLuc  where MaGC=MaGC";
+    //         $sql = "UPDATE goicuoc set Ten=:Ten, MoTa=:MoTa, ThoiHan=:ThoiHan, ThoiGianHieuLuc=:ThoiGianHieuLuc  where MaGC=MaGC";
     //         $cmd = $db->prepare($sql);
     //         $cmd->bindValue(':MaGC', $MaGC);
     //         $cmd->bindValue(':Ten', $Ten);
     //         $cmd->bindValue(':MoTa', $MoTa);
-    //         $cmd->bindValue(':DungLuong', $DungLuong);
+    //         $cmd->bindValue(':ThoiHan', $ThoiHan);
     //         $cmd->bindValue(':ThoiGianHieuLuc', $ThoiGianHieuLuc);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;
@@ -183,13 +183,13 @@ VALUES(:MaLGC, :Ten, :MoTa, :DungLuong, :Gia, :GiaTiKM)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE goicuoc SET MaLGC=:MaLGC, Ten=:Ten, MoTa=:MoTa, DungLuong=:DungLuong, Gia=:Gia, GiaTriKM=:GiaTriKM WHERE MaGC=:MaGC";
+            $sql = "UPDATE goicuoc SET MaLGC=:MaLGC, Ten=:Ten, MoTa=:MoTa, Gia=:Gia, GiaTriKM=:GiaTriKM, ThoiHan=:ThoiHan WHERE MaGC=:MaGC";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaGC', $goicuoc->MaGC);
             $cmd->bindValue(':MaLGC', $goicuoc->MaLGC);
             $cmd->bindValue(':Ten', $goicuoc->Ten);
             $cmd->bindValue(':MoTa', $goicuoc->MoTa);
-            $cmd->bindValue(':DungLuong', $goicuoc->DungLuong);
+            $cmd->bindValue(':ThoiHan', $goicuoc->ThoiHan);
             $cmd->bindValue(':Gia', $goicuoc->Gia);
             $cmd->bindValue(':GiaTriKM', $goicuoc->GiaTriKM);
             $result = $cmd->execute();

@@ -43,8 +43,8 @@
                                         <td><?php echo $d["NoiDung"]; ?></td>
                                         <td><img width="50px" src="../../img/user/<?php echo $d["urlHinhAnh"]; ?>" alt="<?php echo $d["urlHinhAnh"]; ?>"></td>
                                         <?php if ($d["TraLoi"] != null) { ?>
-                                            <td class="text-sussecc"><i class=" bi bi-check-circle-fill"></i> Đã trả lời</td>
-                                        <?php } else { ?><td class="text-secondary"><i class="bi bi-x-circle-fill"></i> Chưa trả lời</td> <?php } ?>
+                                            <td class="text-success"><i class=" bi bi-check-circle-fill"></i> Đã trả lời</td>
+                                        <?php } else { ?><td class="text-warning"><i class="bi bi-x-circle-fill"></i> Chưa trả lời</td> <?php } ?>
                                         <td><a class="btn btn-primary" href="index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">Phản Hồi</a></td>
                                     </tr>
                         <?php

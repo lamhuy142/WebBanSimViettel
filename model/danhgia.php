@@ -4,6 +4,7 @@ class DANHGIA
     private $MaDG;
     private $MaND;
     private $NoiDung;
+    private $TraLoi;
     private $urlHinhAnh;
 
     
@@ -30,6 +31,14 @@ class DANHGIA
     public function setNoiDung($value)
     {
         $this->NoiDung = $value;
+    }
+    public function getTraLoi()
+    {
+        return $this->TraLoi;
+    }
+    public function setTraLoi($value)
+    {
+        $this->TraLoi = $value;
     }
     public function geturlHinhAnh()
     {
@@ -126,6 +135,22 @@ VALUES(:MaND, :NoiDung, :urlHinhAnh)";
             $cmd->bindValue(':MaND', $MaND);
             $cmd->bindValue(':NoiDung', $NoiDung);
             $cmd->bindValue(':urlHinhAnh', $urlHinhAnh);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function capnhattraloi($MaDG, $TraLoi)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE danhgia set TraLoi=:TraLoi where MaDG=:MaDG";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaDG', $MaDG);
+            $cmd->bindValue(':TraLoi', $TraLoi);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {

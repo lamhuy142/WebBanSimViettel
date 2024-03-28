@@ -55,6 +55,14 @@
 <script src="../../admin/inc/js/demo/chart-area-demo.js"></script>
 <script src="../../admin/inc/js/demo/chart-pie-demo.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/searchpanes/2.3.0/js/dataTables.searchPanes.js"></script>
+<script src="https://cdn.datatables.net/searchpanes/2.3.0/js/searchPanes.bootstrap5.js"></script>
+<script src="https://cdn.datatables.net/select/2.0.0/js/select.bootstrap5.js"></script>
+
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
 <script>
@@ -63,6 +71,15 @@
         .catch(error => {
             console.error(error);
         });
+    ClassicEditor
+        .create(document.querySelector('#editor1'))
+        .catch(error => {
+            console.error(error);
+        });
+
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
 
     // document.getElementById("txtMaDH").addEventListener("input", function() {
     //     var maDH = document.getElementById("txtMaDH").value;

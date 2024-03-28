@@ -35,15 +35,20 @@
                                 <td><?php echo $l["TenLKM"]; ?></td>
                                 <td><?php echo $l["DonViKM"]; ?></td>
                                 <!-- Trạng Thái của chương trình khuyến mãi -->
-                                <?php if ($l["TrangThai"] == 0) { ?>
+                                <?php if ($l["TrangThai"] == 1) { ?>
                                     <td class="text-success">Hoạt Động</td>
+                                    <td>
+                                        <a href="index.php?action=sualoaikm&id=<?php echo $l['MaLKM']; ?>" class="btn btn-warning">Sửa</a>
+                                        <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>&TrangThai=<?php echo $l['TrangThai'] ?>" class="btn btn-danger">Khóa</a>
+                                    </td>
                                 <?php } else { ?>
                                     <td class="text-danger">Dừng</td>
+                                    <td>
+                                        <a href="index.php?action=sualoaikm&id=<?php echo $l['MaLKM']; ?>" class="btn btn-warning">Sửa</a>
+                                        <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>&TrangThai=<?php echo $l['TrangThai'] ?>" class="btn btn-primary">Mở</a>
+                                    </td>
                                 <?php } ?>
-                                <td>
-                                    <a href="index.php?action=sualoaikm&id=<?php echo $l['MaLKM']; ?>" class="btn btn-warning">Sửa</a>
-                                    <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>" class="btn btn-danger">Khóa</a>
-                                </td>
+
 
                             </tr>
                         <?php endforeach; ?>

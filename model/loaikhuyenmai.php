@@ -118,7 +118,6 @@ VALUES(:TenLKM, :DonViKM, :TrangThai)";
             $cmd->bindValue(':TenLKM', $loaikhuyenmai->TenLKM);
             $cmd->bindValue(':DonViKM', $loaikhuyenmai->DonViKM);
             $cmd->bindValue(':TrangThai', $loaikhuyenmai->TrangThai);
-            $cmd->execute();
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -133,9 +132,9 @@ VALUES(:TenLKM, :DonViKM, :TrangThai)";
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE loaikhuyenmai set TenLKM=:TenLKM, DonViKM=:DonViKM, TrangThai=:TrangThai  where MaLKM=MaLKM";
+            $sql = "UPDATE loaikhuyenmai set TenLKM=:TenLKM, DonViKM=:DonViKM, TrangThai=:TrangThai  where MaLKM=:MaLKM";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaLKM', $MaLKM->MaLKM);
+            $cmd->bindValue(':MaLKM', $MaLKM->MaLKM);
             $cmd->bindValue(':TenLKM', $MaLKM->TenLKM);
             $cmd->bindValue(':DonViKM', $MaLKM->DonViKM);
             $cmd->bindValue(':TrangThai', $MaLKM->TrangThai);
@@ -165,20 +164,20 @@ VALUES(:TenLKM, :DonViKM, :TrangThai)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($TenLKM, $TrangThai)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenLKM=:TenLKM";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':TenLKM', $TenLKM);
-    //         $cmd->bindValue(':TrangThai', $TrangThai);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    public function doitrangthai($MaLKM, $TrangThai)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE loaikhuyenmai set TrangThai=:TrangThai where MaLKM=:MaLKM";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaLKM', $MaLKM);
+            $cmd->bindValue(':TrangThai', $TrangThai);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }
