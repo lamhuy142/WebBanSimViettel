@@ -1,4 +1,5 @@
-<?php session_start();
+<?php 
+// session_start();
 
 if (!isset($_SESSION["nguoidung"]))
     header("location:../index.php");
@@ -67,9 +68,9 @@ switch ($action) {
         if (isset($_GET["id"])) {
             $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
             $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
-            // echo ($khuyenmai_ht);
+            $loaisim = $ls->laydanhsachloaisim();
             if($khuyenmai_ht == false){
-                echo "null òi";
+                echo "Không có dữ liệu";
                 exit();
             }
 
@@ -95,7 +96,7 @@ switch ($action) {
         $sua->setTrangThai($_POST["txttrangthai"]);
         $sua->setTieuDe($_POST["txttieude"]);
         $sua->setGiaTriKM($_POST["txtgiatri"]);
-        $sua->setLoaiKM($_POST["optloai"]);
+        $sua->setLoaiKM($_POST["optloaikm"]);
         $sua->setNgayBD($_POST["ngaybd"]);
         $sua->setNgayKT($_POST["ngaykt"]);
 

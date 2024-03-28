@@ -26,8 +26,21 @@
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="optloai" class="form-label">Loại khuyến mãi</label>
+                            <label for="optloai" class="form-label">Loại sim</label>
                             <select class="form-select" name="optloai">
+                                <option value="">Chọn loại sim</option>
+                                <?php foreach ($loaisim as $ls) : ?>
+                                    <option value="<?php echo $ls["MaLS"] ?>" <?php if ($ls["MaLS"] == $khuyenmai_ht["MaLS"]) echo "selected"; ?>><?php echo $ls["TenLS"]; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="md-3 mt-3">
+                            <label for="optloaikm" class="form-label">Loại khuyến mãi</label>
+                            <select class="form-select" name="optloaikm">
                                 <option value="">Chọn loại khuyến mãi</option>
                                 <?php foreach ($loaikhuyenmai as $l) : ?>
                                     <option value="<?php echo $l["MaLKM"] ?>" <?php if ($l["MaLKM"] == $khuyenmai_ht["LoaiKM"]) echo "selected"; ?>><?php echo $l["TenLKM"]; ?></option>
@@ -51,22 +64,26 @@
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txtmota" class="form-label">Mô tả</label>
-                            <textarea id="editor" rows="5" class="form-control" name="txtmota"><?php echo $khuyenmai_ht['MoTa']  ?></textarea>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
                             <label for="ngaybd" class="form-label">Ngày bắt đầu</label>
-                            <input class="form-control" type="date" name="ngaybd" value="<?php echo isset($khuyenmai_ht['NgayBD']); ?>"> <!-- ? date('d/m/Y', strtotime($khuyenmai_ht['NgayBD'])) :  '' -->
+                            <input class="form-control" type="date" name="ngaybd" value="<?php echo $khuyenmai_ht['NgayBD']; ?>"> <!-- ? date('d/m/Y', strtotime($khuyenmai_ht['NgayBD'])) :  '' -->
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="ngaykt" class="form-label">Ngày kết thúc</label>
-                            <input class="form-control" type="date" name="ngaykt" value="<?php echo isset($khuyenmai_ht['NgayKT']);  ?>">
+                            <input class="form-control" type="date" name="ngaykt" value="<?php echo $khuyenmai_ht['NgayKT'] ;  ?>">
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="md-3 mt-3">
+                            <label for="txtmota" class="form-label">Mô tả</label>
+                            <textarea id="editor" rows="5" class="form-control" name="txtmota"><?php echo $khuyenmai_ht['MoTa']  ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col my-3">
                         <label>Hình ảnh</label><br>
                         <input type="hidden" name="hinhanh" value="<?php echo $khuyenmai_ht["HinhAnh"]; ?>">

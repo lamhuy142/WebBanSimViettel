@@ -42,7 +42,7 @@
                                 <td><?php echo $gc["Ten"] ?></td>
                                 <td><?php echo $l["TenLGC"] ?></td>
                                 <td><?php echo $gc["MoTa"] ?></td>
-                                <td><?php echo $gc["Gia"] ?></td>
+                                <td><?php echo number_format($gc["Gia"]); ?></td>
                                 <td><?php echo $gc["GiaTriKM"] ?></td>
                                 <td><?php echo $gc["ThoiHan"] ?></td>
                                 <td>

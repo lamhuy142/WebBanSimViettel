@@ -1,4 +1,7 @@
-<?php session_start();
+<?php
+// session_start();
+// Đặt múi giờ mặc định
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 if (!isset($_SESSION["nguoidung"]))
     header("location:../index.php");
 

@@ -38,8 +38,8 @@
                                         <td><?php echo $d["MaDH_CT"]; ?></td>
                                         <td><?php echo $d["MaDH"]; ?></td>
                                         <td><?php echo $s["SoSim"]; ?></td>
-                                        <td><?php echo $d["DonGia"]; ?></td>
-                                        <td><?php echo $d["ThanhTien"]; ?></td>
+                                        <td><?php echo number_format($d["DonGia"]);  ?></td>
+                                        <td><?php echo number_format($d["ThanhTien"]); ?></td>
                                         
                                     </tr>
                         <?php

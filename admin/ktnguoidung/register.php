@@ -35,10 +35,13 @@
                                 <h1 class="h4 text-gray-900 mb-4">Tạo Tài Khoản!</h1>
                             </div>
                             <form class="user was-validated" method="post">
+                                <input type="hidden" name="action" value="xulydangky">
+                                <input type="hidden" name="quyen" value="2">
+                                <input type="hidden" name="trangthai" value="1">
                                 <div class="form-group ">
-                                        <input type="text" class="form-control form-control-user has-validation" name="txthoten" id="exampleFirstName" placeholder="Họ tên" required>
-                                        <div class="valid-feedback">Hợp lệ.</div>
-                                        <div class="invalid-feedback">Điền đầy đủ họ tên.</div>
+                                    <input type="text" class="form-control form-control-user has-validation" name="txthoten" id="exampleFirstName" placeholder="Họ tên" required>
+                                    <div class="valid-feedback">Hợp lệ.</div>
+                                    <div class="invalid-feedback">Điền đầy đủ họ tên.</div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -69,9 +72,10 @@
                                         <div class="invalid-feedback">Vui lòng xác nhận mật khẩu.</div>
                                     </div>
                                 </div>
-                                <a href="index.php?action=xulydangky" class="btn btn-primary btn-user btn-block">
+                                <!-- <a href="index.php?action=xulydangky" class="btn btn-primary btn-user btn-block">
                                     Đăng Ký
-                                </a>
+                                </a> -->
+                                <input class="btn btn-primary" type="submit" value="Đăng Ký">
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Đăng ký với Google

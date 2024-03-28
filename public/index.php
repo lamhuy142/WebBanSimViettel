@@ -1,4 +1,5 @@
-<?php session_start();
+<?php 
+// session_start();
 require("../model/database.php");
 require("../model/sim.php");
 require("../model/loaisim.php");
