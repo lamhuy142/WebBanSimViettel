@@ -5,6 +5,7 @@
             <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">SỬA THÔNG TIN KHUYẾN MÃI</h6>
         </div>
         <div class="card-body">
+
             <!-- Mã PHP để hiển thị dữ liệu -->
             <form method="post" enctype="multipart/form-data" action="index.php">
                 <input type="hidden" name="action" value="xulysua">
@@ -13,7 +14,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txttenkm" class="form-label">Tên chương trình khuyến mãi</label>
+                            <label for="txttenkm" class="form-label">Tên chương trình </label>
                             <input class="form-control" type="text" name="txttenkm" value="<?php echo $khuyenmai_ht['TenKM'] ?>">
                         </div>
                     </div>
@@ -57,13 +58,13 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="ngaybd" class="form-label">Ngày bắt đầu</label>
-                            <input class="form-control" type="date" name="ngaybd" value="<?php echo isset($khuyenmai_ht['NgayBD']) ? date('d/m/Y', strtotime($khuyenmai_ht['NgayBD'])) : ''; ?>">
+                            <input class="form-control" type="date" name="ngaybd" value="<?php echo isset($khuyenmai_ht['NgayBD']); ?>"> <!-- ? date('d/m/Y', strtotime($khuyenmai_ht['NgayBD'])) :  '' -->
                         </div>
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="ngaykt" class="form-label">Ngày kết thúc</label>
-                            <input class="form-control" type="date" name="ngaykt" value="<?php echo isset($khuyenmai_ht['NgayKT']) ? date('d/m/Y', strtotime($khuyenmai_ht['NgayKT'])) : ''; ?>">
+                            <input class="form-control" type="date" name="ngaykt" value="<?php echo isset($khuyenmai_ht['NgayKT']);  ?>">
                         </div>
                     </div>
                     <div class="col my-3">

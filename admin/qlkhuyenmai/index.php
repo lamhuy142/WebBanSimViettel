@@ -66,8 +66,13 @@ switch ($action) {
     case "sua":
         if (isset($_GET["id"])) {
             $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
-            // print($khuyenmai_ht) ;
-            // exit();
+            $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
+            // echo ($khuyenmai_ht);
+            if($khuyenmai_ht == false){
+                echo "null òi";
+                exit();
+            }
+
             include("suakhuyenmai.php");
         } else {
             $khuyenmai = $km->laydanhsachkhuyenmai();
@@ -84,7 +89,7 @@ switch ($action) {
         $sua = new KHUYENMAI();
         $sua->setMaKM($_POST["MaKM"]);
         $sua->setTenKM($_POST["txttenkm"]);
-        $sua->setMaLS($_POST["optloaisim"]);
+        $sua->setMaLS($_POST["optloai"]);
         $sua->setMoTa($_POST["txtmota"]);
         $sua->setHinhAnh($_POST["hinhanh"]);
         $sua->setTrangThai($_POST["txttrangthai"]);

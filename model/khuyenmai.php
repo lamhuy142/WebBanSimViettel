@@ -108,11 +108,16 @@ class KHUYENMAI
     public function laydanhsachkhuyenmaitheoid($MaKM)
     {
         $dbcon = DATABASE::connect();
+        $intMaKM = (int)$MaKM;
         try {
-            $sql = "SELECT * FROM khuyenmai WHERE MaKM=:MaKM";
-            $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":MaKM", $MaKM);
-            $result = $cmd->fetch();
+            //$sql = $dbcon->query("SELECT * FROM khuyenmai WHERE MaKM=:MaKM");
+            $sql = $dbcon->query("SELECT * FROM khuyenmai WHERE MaKM='".$MaKM."'");
+            $sql->execute();
+            //$cmd = $dbcon->prepare($sql);
+            //$cmd->bindValue(":MaKM", $MaKM);
+            //echo ($cmd);
+            //$result = $cmd->fetch();
+            $result = $sql->fetch();
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
