@@ -3,6 +3,7 @@
 require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
+require("../../model/danhgia.php");
 
 // Biến $isLogin cho biết người dùng đăng nhập chưa
 $isLogin = isset($_SESSION["nguoidung"]);
@@ -16,8 +17,12 @@ if (isset($_REQUEST["action"])) {
 }
 $nd = new NGUOIDUNG();
 $q = new QUYEN();
+$dg = new DANHGIA();
 switch ($action) {
     case "macdinh":
+
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $danhgia = $dg->laydanhsachdanhgia();
         include("main.php");
         break;
     case "dangnhap":
@@ -101,6 +106,10 @@ switch ($action) {
         //     $quyen = $q->laydanhsachquyen();
         //     include("register.php");
         // } else {
+        //xử lý load ảnh
+        $hinhanh = "user_md.png"; // đường dẫn ảnh lưu trong db
+        // $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
+        // move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
             //xử lý thêm 
             $nguoidungmoi = new NGUOIDUNG();
             $nguoidungmoi->setTenDangNhap($_POST["txttendn"]);
@@ -110,6 +119,8 @@ switch ($action) {
             $nguoidungmoi->setHoTen($_POST["txthoten"]);
             $nguoidungmoi->setMaQ($_POST["quyen"]);
             $nguoidungmoi->setTrangThai($_POST["trangthai"]);
+            $nguoidungmoi->setHinhAnh($hinhanh);
+            
             // thêm
             $nd->themnguoidung($nguoidungmoi);
             // load người dùng

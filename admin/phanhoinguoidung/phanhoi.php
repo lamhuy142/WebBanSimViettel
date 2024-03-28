@@ -19,7 +19,7 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txttraloi" class="form-label">Trả lời đánh giá</label>
-                            <textarea id="editor1" rows="5" class="form-control" name="txttraloi"></textarea>
+                            <textarea id="editor1" rows="5" class="form-control" name="txttraloi"><?php echo $danhgia_ht["TraLoi"]; ?></textarea>
                         </div>
                     </div>
                 </div>
