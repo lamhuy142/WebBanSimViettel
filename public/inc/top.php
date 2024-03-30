@@ -87,16 +87,30 @@
                             </div>
                         </div>
                         <?php if (isset($_SESSION["nguoidung"]) && !empty($_SESSION["nguoidung"]["HoTen"])) { ?>
-                            <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-                                <div style="color:#576C8F ;" class=" icon-header-item  hov-cl1 trans-04 p-lr-11 dropdown-toggle" id="navbarDarkDropdownMenuLink" data-notify="2">
-                                    <img class="img-profile rounded-circle" style="height:30px; width: 30px; " src="../img/user/<?php echo $_SESSION['nguoidung']['HinhAnh']; ?>" alt="">
-                                    <span class="h6"><?php echo $_SESSION["nguoidung"]["HoTen"]; ?></span>
+                            <nav class="navbar navbar-expand-lg text-decoration-none ">
+                                <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item dropdown">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <img class="img-profile rounded-circle" style="height:30px; width: 30px; " src="../img/user/<?php echo $_SESSION['nguoidung']['HinhAnh']; ?>" alt="">
+                                                </div>
+                                                <div class="col-10">
+                                                    <a style="color: #576C8F;" class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <?php echo $_SESSION["nguoidung"]["HoTen"]; ?>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                                <li><a class="dropdown-item" href="index.php?action=hoso&id=<?php echo $_SESSION["nguoidung"]["id"] ?>">Profile</a></li>
+                                                <li><a class="dropdown-item" href="index.php?action=dangxuat">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="navbarDarkDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="index.php?action=hoso&id=<?php echo $_SESSION["nguoidung"]["id"] ?>">Profile</a></li>
-                                    <li><a class="dropdown-item" href="index.php?action=dangxuat">Logout</a></li>
-                                </ul>
-                            </div>
+                            </nav>
                         <?php } else { ?>
                             <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
                                 <div class=" icon-header-item cl2 hov-cl1 trans-04 p-lr-11" data-notify="2">
@@ -104,6 +118,17 @@
                                 </div>
                             </div>
                         <?php } ?>
+                        <!-- <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                            <div style="color:#576C8F ;" class=" icon-header-item  hov-cl1 trans-04 p-lr-11 dropdown-toggle" id="navbarDarkDropdownMenuLink" data-notify="2">
+                                <img class="img-profile rounded-circle" style="height:30px; width: 30px; " src="../img/user/<php echo $_SESSION['nguoidung']['HinhAnh']; ?>" alt="">
+                                <span class="h6"><php echo $_SESSION["nguoidung"]["HoTen"]; ?></span>
+                            </div>
+                            <ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="index.php?action=hoso&id=<php echo $_SESSION["nguoidung"]["id"] ?>">Profile</a></li>
+                                <li><a class="dropdown-item" href="index.php?action=dangxuat">Logout</a></li>
+                            </ul>
+                        </div> -->
+
 
 
                         <div class="flex-c-m h-full p-lr-19">

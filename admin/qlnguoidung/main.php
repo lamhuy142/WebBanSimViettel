@@ -12,7 +12,7 @@
             <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themnd">Thêm người dùng</a></p>
 
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="example " width="100%" cellspacing="0"> <!-- id"dataTable "-->
                     <thead>
                         <tr>
                             <th>Tên Người Dùng</th>

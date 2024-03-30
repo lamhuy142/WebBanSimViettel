@@ -4,26 +4,61 @@ require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 require("../../model/danhgia.php");
+require("../../model/donhang.php");
 
 // Biến $isLogin cho biết người dùng đăng nhập chưa
-$isLogin = isset($_SESSION["nguoidung"]);
+$isLogin = isset($_SESSION["nguoidung"] );
 // Kiểm tra hành động $action: yêu cầu đăng nhập nếu chưa xác thực
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } elseif ($isLogin == FALSE) {
     $action = "dangnhap";
-} else {
+// } 
+// elseif($_SESSION["nguoidung"]["MaQ"] == 2){
+//     header("Location:../../public/");
+}
+else {
     $action = "macdinh";
 }
 $nd = new NGUOIDUNG();
 $q = new QUYEN();
 $dg = new DANHGIA();
+$dh = new DONHANG();
 switch ($action) {
     case "macdinh":
-
+        $donhang = $dh->laydanhsachdonhang();
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
+
+        $thanght = date("m");
+        $namht = date("Y");
+        // Tính tổng doanh thu theo tháng
+        $tongdt_thanght = 0;
+        foreach ($donhang as $d) {
+            $thangdh = date('m', strtotime($d['NgayGiaoHang']));
+            if ($thangdh == $thanght) {
+                $tongdt_thanght += $d["TongTien"];
+            }
+        }
+        // Tính tổng doanh thu theo năm
+        $tongdt_namht = 0;
+        foreach ($donhang as $d) {
+            $namdh = date('Y', strtotime($d['NgayGiaoHang']));
+            if ($namdh == $namht) {
+                $tongdt_namht += $d["TongTien"];
+            }
+        }
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
+        break;
+    case "hoso":
+        include("profile.php");
         break;
     case "dangnhap":
         include("login.php");
@@ -43,14 +78,21 @@ switch ($action) {
         if ($nd->kiemtranguoidunghople($tendangnhap, $matkhau) == TRUE) {
             $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($tendangnhap);
             if ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 1) {
+
+                // Đánh giá chưa được phản hồi 
+                $luotdg = 0;
+                foreach ($danhgia as $dg) {
+                    if ($dg["TraLoi"] == null) {
+                        $luotdg = $luotdg + 1;
+                    }
+                }
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2) {
                 header("Location:../../public/index.php");
-            }elseif($_SESSION["nguoidung"]["TrangThai"] == 0){
+            } elseif ($_SESSION["nguoidung"]["TrangThai"] == 0) {
                 $thongbao = "Tài khoản đã bị khóa";
                 include("login.php");
-            } 
-            else {
+            } else {
                 $thongbao = "Nhập sai mật khẩu hoặc tên đăng nhập";
                 include("login.php");
             }
@@ -110,23 +152,23 @@ switch ($action) {
         $hinhanh = "user_md.png"; // đường dẫn ảnh lưu trong db
         // $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
         // move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
-            //xử lý thêm 
-            $nguoidungmoi = new NGUOIDUNG();
-            $nguoidungmoi->setTenDangNhap($_POST["txttendn"]);
-            $nguoidungmoi->setSdt($_POST["sdt"]);
-            $nguoidungmoi->setMatKhau($_POST["txtmk"]);
-            $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);
-            $nguoidungmoi->setHoTen($_POST["txthoten"]);
-            $nguoidungmoi->setMaQ($_POST["quyen"]);
-            $nguoidungmoi->setTrangThai($_POST["trangthai"]);
-            $nguoidungmoi->setHinhAnh($hinhanh);
-            
-            // thêm
-            $nd->themnguoidung($nguoidungmoi);
-            // load người dùng
-            $quyen = $q->laydanhsachquyen();
-            $nguoidung = $nd->laydanhsachnguoidung();
-            include("login.php");
+        //xử lý thêm 
+        $nguoidungmoi = new NGUOIDUNG();
+        $nguoidungmoi->setTenDangNhap($_POST["txttendn"]);
+        $nguoidungmoi->setSdt($_POST["sdt"]);
+        $nguoidungmoi->setMatKhau($_POST["txtmk"]);
+        $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);
+        $nguoidungmoi->setHoTen($_POST["txthoten"]);
+        $nguoidungmoi->setMaQ($_POST["quyen"]);
+        $nguoidungmoi->setTrangThai($_POST["trangthai"]);
+        $nguoidungmoi->setHinhAnh($hinhanh);
+
+        // thêm
+        $nd->themnguoidung($nguoidungmoi);
+        // load người dùng
+        $quyen = $q->laydanhsachquyen();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        include("login.php");
         // }
         include("login.php");
         break;

@@ -1,58 +1,54 @@
 <?php include("../inc/top.php") ?>
-<section class="shop_section layout_padding">
-    <div class="row">
-        <div class="col-12 col-md-10 m-auto">
-            <div class="container card p-5">
-                <div class="heading_container heading_center">
-                    <h2>HỒ SƠ NGƯỜI DÙNG</h2>
+<!-- <section class="shop_section layout_padding"> -->
+<div class="col-12 col-md-10 m-auto">
+    <div class="container card p-5">
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                        <span class="font-weight-bold">Edogaru</span>
+                        <span class="text-black-50">edogaru@mail.com.my</span><span> </span>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" action="index.php">
-                        <input type="hidden" name="txtid" value="<?php echo $_SESSION['nguoidung']['id']; ?>">
-                        <input type="hidden" name="txthinhanh" value="<?php echo $_SESSION['nguoidung']['hinhanh']; ?>">
-                        <input type="hidden" name="action" value="xlhoso">
-                        <div class="text-center">
-                            <img class="img-thumbnail" src="
-                    <?php
-                    if ($_SESSION['nguoidung']['hinhanh'] == NULL) {
-                        echo '../../img/user/user.png';
-                    } else echo '../../img/user/' . $_SESSION['nguoidung']['hinhanh']; ?>" alt="<?php echo $_SESSION['nguoidung']['tennd'];  ?>" width="100px">
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
                         </div>
-                        <div class="my-3 mt-3">
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="txtemail" value="<?php echo $_SESSION['nguoidung']['email']; ?>" required>
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
+                            <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
                         </div>
-                        <div class="my-3">
-                            <label for="txtsdt" class="form-label">Số điện thoại:</label>
-                            <input type="number" class="form-control" id="sdt" placeholder="Số điện thoại" name="txtsdt" value="<?php echo $_SESSION['nguoidung']['sdt']; ?>" required>
+                        <div class="row mt-3">
+                            <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
+                            <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
+                            <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                            <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                            <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                            <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
+                            <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
+                            <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
                         </div>
-                        <div class="my-3">
-                            <label for="txtdiachi" class="form-label">Địa chỉ:</label>
-                            <input type="text" class="form-control" id="diachi" placeholder="Địa chỉ" name="txtdiachi" value="<?php echo $_SESSION['nguoidung']['diachi']; ?>" required>
+                        <div class="row mt-3">
+                            <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                            <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
                         </div>
-                        <div class="my-3">
-                            <label for="txttennd" class="form-label">Họ tên:</label>
-                            <input type="text" class="form-control" id="tennd" placeholder="Họ tên" name="txttennd" value="<?php echo $_SESSION['nguoidung']['tennd']; ?>" required>
-                        </div>
-                        <div class="my-3">
-                            <label for="fhinhanh" class="form-label">Đổi hình đại diện</label>
-                            <input type="file" class="form-control" name="fhinhanh">
-                        </div>
-                        <div class="form-check my-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember"> Remember me
-                            </label>
-                        </div>
-                        <div class="my-3 text-center">
-                            <input class="btn btn-primary" type="submit" value="Cập nhật">
-                            <input class="btn btn-warning" type="reset" value="Không">
-                        </div>
-                    </form>
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+                    </div>
                 </div>
-
+                <div class="col-md-4">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                        <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                        <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
+
+<!-- </section> -->
 <?php include("../inc/bottom.php") ?>

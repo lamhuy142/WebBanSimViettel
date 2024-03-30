@@ -1,4 +1,4 @@
-<?php 
+<?php
 // session_start();
 
 if (!isset($_SESSION["nguoidung"]))
@@ -24,18 +24,25 @@ switch ($action) {
     case "xem":
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        // $luotdg = 0;
+        // foreach ($danhgia as $dg) {
+        //     if ($dg["TraLoi"] == null) {
+        //         $luotdg = $luotdg + 1;
+        //     }
+        // }
         include("main.php");
         break;
     case "phanhoi":
-        if(isset($_GET["id"])){
+        if (isset($_GET["id"])) {
             $danhgia_ht = $dg->laydanhsachdanhgiatheoid($_GET["id"]);
             include("phanhoi.php");
-        }else{
+        } else {
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             include("main.php");
         }
-       
+
         break;
     case "xulyphanhoi":
         //xử lý thêm 
