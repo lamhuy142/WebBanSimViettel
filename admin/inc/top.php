@@ -19,7 +19,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/searchpanes/2.3.0/css/searchPanes.bootstrap5.css" rel="stylesheet">
@@ -35,7 +35,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <!-- css -->
     <link rel="stylesheet" href="../../admin/inc/css/css_upro.css">
+    <!-- <link rel="stylesheet" href="../../admin/inc/css/css_img_avt.css"> -->
+
 
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
 
@@ -273,6 +276,17 @@
                                                     <div class="small text-gray-500"><?php echo $n['HoTen']; ?></div>
                                                 </div>
                                             </a>
+                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <div class="dropdown-list-image mr-3">
+                                                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                                    <div class="status-indicator"></div>
+                                                </div>
+                                                <div>
+                                                    <div class="text-truncate">I have the photos that you ordered last month, how
+                                                        would you like them sent to you?</div>
+                                                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                                                </div>
+                                            </a>
                                 <?php }
                                     endforeach;
                                 endforeach;
@@ -320,19 +334,19 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo  $_SESSION["nguoidung"]["HoTen"]; ?></span>
-                                <img class="img-profile rounded-circle" src="../../img/user/<?php echo  $_SESSION["nguoidung"]["HinhAnh"]; ?>">
+                                <img class="img-profile rounded-circle" src="../../img/user/<?php echo  $_SESSION["nguoidung"]["HinhAnh"]; ?>?t=<?php echo time(); ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="../ktnguoidung/index.php?action=hoso&id=<?php echo $_SESSION["nguoidung"]["MaND"]; ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Hồ sơ người dùng
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <!-- data-toggle="modal" -->
                                 <a class="dropdown-item" href="../ktnguoidung/index.php?action=dangnhap">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Đăng xuất
                                 </a>
                             </div>
                         </li>

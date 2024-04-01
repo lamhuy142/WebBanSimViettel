@@ -123,7 +123,42 @@ class NGUOIDUNG
             exit();
         }
     }
-
+    public function laynguoidungtheoid($MaND)
+    {
+        $dbcon = DATABASE::connect();
+        $intMaND = (int)$MaND;
+        try {
+            //$sql = $dbcon->query("SELECT * FROM khuyenmai WHERE MaND=:MaND");
+            $sql = $dbcon->query("SELECT * FROM nguoidung WHERE MaND='" . $MaND . "'");
+            $sql->execute();
+            //$cmd = $dbcon->prepare($sql);
+            //$cmd->bindValue(":MaND", $MaND);
+            //echo ($cmd);
+            //$result = $cmd->fetch();
+            $result = $sql->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    // public function laydanhsachnguoidungtheoid($MaND)
+    // {
+    //     $db = DATABASE::connect();
+    //     try {
+    //         $sql = "SELECT * FROM nguoidung WHERE MaND=:MaND";
+    //         $cmd = $db->prepare($sql);
+    //         $cmd->bindValue(":MaND", $MaND);
+    //         $cmd->execute();
+    //         $ketqua = $cmd->fetchAll();
+    //         return $ketqua;
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
     // lấy tất cả ng dùng
     public function laydanhsachnguoidung()
     {
@@ -167,23 +202,23 @@ VALUES(:HoTen, :Sdt, :MatKhau, :TenDangNhap, :TrangThai, :HinhAnh, :MaQ, :DiaChi
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, TenDangNhap, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatnguoidung($MaND, $HoTen , $Sdt , $MatKhau , $TenDangNhap, $TrangThai, $HinhAnh, $MaQ, $DiaChi)
+    public function suanguoidung($nguoidung)
     {
-        $db = DATABASE::connect();
+        $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE nguoidung set HoTen=:HoTen, Sdt=:Sdt, MatKhau=:MatKhau, TenDangNhap=:TenDangNhap, TrangThai=:TrangThai, HinhAnh=:HinhAnh, MaQ=:MaQ, DiaChi=:DiaChi where MaND=MaND";
-            $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaND', $MaND);
-            $cmd->bindValue(':HoTen', $HoTen);
-            $cmd->bindValue(':Sdt', $Sdt);
-            $cmd->bindValue(':MatKhau', $MatKhau);
-            $cmd->bindValue(':TenDangNhap', $TenDangNhap);
-            $cmd->bindValue(':TrangThai', $TrangThai);
-            $cmd->bindValue(':HinhAnh', $HinhAnh);
-            $cmd->bindValue(':MaQ', $MaQ);
-            $cmd->bindValue(':DiaChi', $DiaChi);
-            $ketqua = $cmd->execute();
-            return $ketqua;
+            $sql = "UPDATE nguoidung SET TenDangNhap=:TenDangNhap, HoTen=:HoTen, Sdt=:Sdt, MatKhau=:MatKhau,MaQ=:MaQ,  TrangThai=:TrangThai, HinhAnh=:HinhAnh, DiaChi=:DiaChi WHERE MaND=:MaND";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(':TenDangNhap', $nguoidung->TenDangNhap);
+            $cmd->bindValue(':HoTen', $nguoidung->HoTen);
+            $cmd->bindValue(':Sdt', $nguoidung->Sdt);
+            $cmd->bindValue(':MatKhau', md5($nguoidung->MatKhau));
+            $cmd->bindValue(':TrangThai', $nguoidung->TrangThai);
+            $cmd->bindValue(':HinhAnh', $nguoidung->HinhAnh);
+            $cmd->bindValue(':DiaChi', $nguoidung->DiaChi);
+            $cmd->bindValue(':MaQ', $nguoidung->MaQ);
+            $cmd->bindValue(':MaND', $nguoidung->MaND);
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

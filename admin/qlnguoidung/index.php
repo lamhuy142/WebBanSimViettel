@@ -6,6 +6,7 @@ if (!isset($_SESSION["nguoidung"]))
 require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
+require("../../model/danhgia.php");
 
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
@@ -16,15 +17,32 @@ if (isset($_REQUEST["action"])) {
 
 $q = new QUYEN();
 $nd = new NGUOIDUNG();
+$dg = new DANHGIA();
 
 switch ($action) {
     case "xem":
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     case "themnd":
         $quyen = $q->laydanhsachquyen();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("themnguoidung.php");
         break;
     case "xulythemnd":
@@ -44,6 +62,14 @@ switch ($action) {
             $TrangThai = $_POST["txttrangthai"];
             $HinhAnh = basename($_FILES["fileanh"]["name"]);
             $quyen = $q->laydanhsachquyen();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("themnguoidung.php");
         }elseif($kiemtra1) {
             // Nếu số điện thoại đã tồn tại, hiển thị thông báo
@@ -56,6 +82,14 @@ switch ($action) {
             $TrangThai = $_POST["txttrangthai"];
             $HinhAnh = basename($_FILES["fileanh"]["name"]);
             $quyen = $q->laydanhsachquyen();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("themnguoidung.php");
         }elseif($kiemtra2){
             // Nếu email đã tồn tại, hiển thị thông báo
@@ -68,6 +102,15 @@ switch ($action) {
             $TrangThai = $_POST["txttrangthai"];
             $HinhAnh = basename($_FILES["fileanh"]["name"]);
             $quyen = $q->laydanhsachquyen();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null
+                ) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("themnguoidung.php");
         }
          else {
@@ -90,6 +133,14 @@ switch ($action) {
             // load người dùng
             $quyen = $q->laydanhsachquyen();
             $nguoidung = $nd->laydanhsachnguoidung();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("main.php");
         }
         
@@ -111,6 +162,14 @@ switch ($action) {
         // load người dùng
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     default:

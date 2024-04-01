@@ -11,6 +11,7 @@ require("../../model/donhang.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 require("../../model/sim.php");
+require("../../model/danhgia.php");
 
 
 // Xét xem có thao tác nào được chọn
@@ -25,26 +26,35 @@ $nd = new NGUOIDUNG();
 $q = new QUYEN();
 $dct = new DONHANG_CT();
 $s = new SIM();
+$dg = new DANHGIA();
 
 switch ($action) {
     case "xem":
-        // Kiểm tra xem có yêu cầu tìm kiếm mã đơn hàng không
-        // Kiểm tra và xử lý yêu cầu tìm kiếm mã đơn hàng
-        if (isset($_GET['txtMaDH'])) {
-            $maDH = $_GET['txtMaDH'];
-            $donhang_tk = $dh->timdonhangtheoid($maDH);
-            include("timkiem.php");
-        } else {
-            $donhang = $dh->laydanhsachdonhang();
-            $nguoidung = $nd->laydanhsachnguoidung();
-            include("main.php");
+
+        $donhang = $dh->laydanhsachdonhang();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
         }
-        
+        include("main.php");
         break;
     case "xemchitiet":
         $donhang = $dh->laydanhsachdonhang();
         $donhang_ct = $dct->laydanhsachdonhang_ct();
         $sim = $s->laydanhsachsim();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("chitietdonhang.php");
         break;
     case "khoa":
@@ -63,6 +73,14 @@ switch ($action) {
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
         $donhang = $dh->laydanhsachdonhang();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     case "hoantat":
@@ -86,6 +104,14 @@ switch ($action) {
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
         $donhang = $dh->laydanhsachdonhang();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     case "huydon":
@@ -101,6 +127,14 @@ switch ($action) {
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
         $donhang = $dh->laydanhsachdonhang();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     default:

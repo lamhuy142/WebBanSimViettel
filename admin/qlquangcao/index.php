@@ -8,6 +8,7 @@ require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 require("../../model/quangcao.php");
+require("../../model/danhgia.php");
 
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
@@ -19,13 +20,30 @@ if (isset($_REQUEST["action"])) {
 $q = new QUYEN();
 $nd = new NGUOIDUNG();
 $qc = new QUANGCAO();
+$dg = new DANHGIA();
 
 switch ($action) {
     case "xem":
         $quangcao = $qc->laydanhsachquangcao();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     case "themqc":
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("themquangcao.php");
         break;
     case "xulythemqc":
@@ -42,14 +60,38 @@ switch ($action) {
         $qc->themquangcao($quangcaomoi);
         // load người dùng
         $quangcao = $qc->laydanhsachquangcao();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     case "suaqc":
         if (isset($_GET["id"])) {
             $quangcao_ht = $qc->laydanhsachquangcaotheoid($_GET["id"]);
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("suaquangcao.php");
         } else {
             $quangcao = $qc->laydanhsachquangcao();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("main.php");
         }
         break;
@@ -74,6 +116,14 @@ switch ($action) {
         $qc->suaquangcao($sua);
         // load danh sách
         $quangcao = $qc->laydanhsachquangcao();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     case "khoa":
@@ -92,6 +142,14 @@ switch ($action) {
         }
         // load người dùng
         $quangcao = $qc->laydanhsachquangcao();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("main.php");
         break;
     default:

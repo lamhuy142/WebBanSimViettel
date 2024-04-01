@@ -9,7 +9,7 @@
             <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">DANH SÁCH PHẢN HỒI</h6>
         </div>
         <div class="card-body">
-            <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themnd">Thêm</a></p>
+            <!-- <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themnd">Thêm</a></p> -->
 
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

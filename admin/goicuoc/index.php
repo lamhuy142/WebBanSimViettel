@@ -7,10 +7,11 @@ header("location:../index.php");
 require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
-require("../../model/sim.php");
-require("../../model/loaisim.php");
 require("../../model/goicuoc.php");
 require("../../model/loaigoicuoc.php");
+require("../../model/sim.php");
+require("../../model/loaisim.php");
+require("../../model/danhgia.php");
 
 
 // Xét xem có thao tác nào được chọn
@@ -24,21 +25,46 @@ $s = new SIM();
 $gc = new GOICUOC();
 $ls = new LOAISIM();
 $l = new LOAIGOICUOC();
+$dg = new DANHGIA();
 
 switch ($action) {
     case "goicuoc":
         $loai = $l->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("goicuoc.php");
         break;
     case "loaigoicuoc":
         $loai = $l->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("loaigoicuoc.php");
         break;
     case "themsim":
         $loai = $ls->laydanhsachloaisim();
         $loaithuebao = $s->laydanhsachloaithuebao();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("themsim.php");
         break;
     case "xulythem":
@@ -59,6 +85,14 @@ switch ($action) {
         // load sản phẩm
         $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("sim.php");
         break;
     case "khoa":
@@ -78,10 +112,27 @@ switch ($action) {
         // load danh sách
         $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("sim.php");
+        
         break;
     case "themls":
         $goicuoc = $gc->laydanhsachgoicuoc();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("themloaisim.php");
         break;
     case "xulythemls":
@@ -104,6 +155,14 @@ switch ($action) {
         // load sản phẩm
         $loai = $ls->laydanhsachloaisim();
         $goicuoc = $gc->laydanhsachgoicuoc();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("loaisim.php");
         break;
     // case "xoa":
@@ -118,10 +177,26 @@ switch ($action) {
         if (isset($_GET["id"])) {
             $goicuoc_ht = $gc->laydanhsachgoicuoctheoid($_GET["id"]);
             $loai = $l->laydanhsachloaigoicuoc();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("suagoicuoc.php");
         } else {
             $loai = $l->laydanhsachloaigoicuoc();
             $goicuoc = $gc->laydanhsachgoicuoc();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("goicuoc.php");
         }
         break;
@@ -143,6 +218,14 @@ switch ($action) {
         // load danh sách
         $loai = $l->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("goicuoc.php");
         break;
     
@@ -150,9 +233,25 @@ switch ($action) {
         if (isset($_GET["id"])) {
             $loaigoicuoc_ht = $l->laydanhsachloaigoicuoctheoid($_GET["id"]);
             $loai = $l->laydanhsachloaigoicuoc();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("sualoaigoicuoc.php");
         } else {
             $loai = $l->laydanhsachloaigoicuoc();
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
             include("loaigoicuoc.php");
         }
         break;
@@ -170,6 +269,14 @@ switch ($action) {
         // load danh sách
         $loai = $ls->laydanhsachloaisim();
         $goicuoc = $gc->laydanhsachgoicuoc();
+        $danhgia = $dg->laydanhsachdanhgia();
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
         include("loaisim.php");
         break;
     default:

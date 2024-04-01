@@ -58,7 +58,85 @@ switch ($action) {
         include("main.php");
         break;
     case "hoso":
-        include("profile.php");
+        if (isset($_GET["id"])) {
+            $nguoidung_ht = $nd->laynguoidungtheoid($_GET["id"]);
+            $danhgia = $dg->laydanhsachdanhgia();
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($danhgia as $dg) {
+                if ($dg["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
+            }
+            include("profile.php");
+        } 
+        // include("profile.php");
+        break;
+    case "luuhoso":
+        
+        // gán dữ liệu từ form
+        $sua = new NGUOIDUNG();
+        $sua->setMaND($_POST["MaND"]);
+        $sua->setTrangThai($_POST["TrangThai"]);
+        $sua->setMaQ($_POST["MaQ"]);
+        $sua->setHoTen($_POST["txthoten"]);
+        $sua->setDiaChi($_POST["txtdiachi"]);
+        $sua->setSdt($_POST["sdt"]);
+        $sua->setTenDangNhap($_POST["txttendn"]);
+        $sua->setMatKhau($_POST["txtmk"]);
+        $sua->setHinhAnh($_POST["hinhanh"]);
+
+        if ($_FILES["filehinhanh"]["name"] != "") {
+            //xử lý load ảnh
+            $hinhanh = basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
+            $sua->sethinhanh($hinhanh);
+            $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
+            move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
+        }else{
+            //xử lý load ảnh
+            $hinhanh = basename($_FILES["hinhanh"]["name"]); // đường dẫn ảnh lưu trong db
+            $sua->sethinhanh($hinhanh);
+            $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
+            move_uploaded_file($_FILES["hinhanh"]["tmp_name"], $duongdan);
+                
+        }
+        // sửa
+        $nd->suanguoidung($sua);
+        // Sau khi lưu thành công, cập nhật thông tin hình ảnh mới vào session.
+        $hoten = $_POST["txthoten"];
+        $_SESSION["nguoidung"]["HinhAnh"] = $duongdan;
+        $_SESSION["nguoidung"]["HoTen"] = $hoten;
+        // load danh sách
+        $donhang = $dh->laydanhsachdonhang();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $danhgia = $dg->laydanhsachdanhgia();
+
+        $thanght = date("m");
+        $namht = date("Y");
+        // Tính tổng doanh thu theo tháng
+        $tongdt_thanght = 0;
+        foreach ($donhang as $d) {
+            $thangdh = date('m', strtotime($d['NgayGiaoHang']));
+            if ($thangdh == $thanght) {
+                $tongdt_thanght += $d["TongTien"];
+            }
+        }
+        // Tính tổng doanh thu theo năm
+        $tongdt_namht = 0;
+        foreach ($donhang as $d) {
+            $namdh = date('Y', strtotime($d['NgayGiaoHang']));
+            if ($namdh == $namht) {
+                $tongdt_namht += $d["TongTien"];
+            }
+        }
+        // Đánh giá chưa được phản hồi 
+        $luotdg = 0;
+        foreach ($danhgia as $dg) {
+            if ($dg["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
+            }
+        }
+        include("main.php");
         break;
     case "dangnhap":
         include("login.php");
@@ -79,6 +157,28 @@ switch ($action) {
             $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($tendangnhap);
             if ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 1) {
 
+                $donhang = $dh->laydanhsachdonhang();
+                $nguoidung = $nd->laydanhsachnguoidung();
+                $danhgia = $dg->laydanhsachdanhgia();
+
+                $thanght = date("m");
+                $namht = date("Y");
+                // Tính tổng doanh thu theo tháng
+                $tongdt_thanght = 0;
+                foreach ($donhang as $d) {
+                    $thangdh = date('m', strtotime($d['NgayGiaoHang']));
+                    if ($thangdh == $thanght) {
+                        $tongdt_thanght += $d["TongTien"];
+                    }
+                }
+                // Tính tổng doanh thu theo năm
+                $tongdt_namht = 0;
+                foreach ($donhang as $d) {
+                    $namdh = date('Y', strtotime($d['NgayGiaoHang']));
+                    if ($namdh == $namht) {
+                        $tongdt_namht += $d["TongTien"];
+                    }
+                }
                 // Đánh giá chưa được phản hồi 
                 $luotdg = 0;
                 foreach ($danhgia as $dg) {
@@ -86,6 +186,7 @@ switch ($action) {
                         $luotdg = $luotdg + 1;
                     }
                 }
+                
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2) {
                 header("Location:../../public/index.php");
