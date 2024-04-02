@@ -92,7 +92,8 @@ switch ($action) {
             $sua->sethinhanh($hinhanh);
             $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
             move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
-        }else{
+        }
+        else{
             //xử lý load ảnh
             $hinhanh = basename($_FILES["hinhanh"]["name"]); // đường dẫn ảnh lưu trong db
             $sua->sethinhanh($hinhanh);

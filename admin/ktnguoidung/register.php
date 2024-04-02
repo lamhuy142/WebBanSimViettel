@@ -75,7 +75,7 @@
                                 <!-- <a href="index.php?action=xulydangky" class="btn btn-primary btn-user btn-block">
                                     Đăng Ký
                                 </a> -->
-                                <input class="btn btn-primary" type="submit" value="Đăng Ký">
+                                <input class="btn btn-primary btn-user btn-block" type="submit" value="Đăng Ký">
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Đăng ký với Google
