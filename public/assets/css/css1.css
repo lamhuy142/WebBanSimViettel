@@ -1,0 +1,10 @@
+a.text-active:active{
+color: #EE0033 !important;
+}
+a.text-active:hover {
+    color: #EE0033 !important;
+}
+#active-mmenu {
+    color: #EE0033 !important;
+    /* Màu chữ khi menu đang active */
+}
