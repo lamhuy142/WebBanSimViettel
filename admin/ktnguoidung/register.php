@@ -38,40 +38,38 @@
                                 <input type="hidden" name="action" value="xulydangky">
                                 <input type="hidden" name="quyen" value="2">
                                 <input type="hidden" name="trangthai" value="1">
-                                <div class="form-group ">
-                                    <input type="text" class="form-control form-control-user has-validation" name="txthoten" id="exampleFirstName" placeholder="Họ tên" required>
-                                    <div class="valid-feedback">Hợp lệ.</div>
-                                    <div class="invalid-feedback">Điền đầy đủ họ tên.</div>
-                                </div>
                                 <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user has-validation" name="txthoten" id="exampleFirstName" placeholder="Họ tên" required>
+                                        <div class="valid-feedback">Hợp lệ.</div>
+                                        <div class="invalid-feedback">Điền đầy đủ họ tên.</div>
+                                    </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="number" class="form-control form-control-user has-validation" name="sdt" id="exampleFirstName" placeholder="Số điện thoại" required>
                                         <div class="valid-feedback">Hợp lệ.</div>
                                         <div class="invalid-feedback">Điền số điện thoại.</div>
                                     </div>
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user has-validation" name="txtdiachi" placeholder="Địa chỉ" required>
-                                        <div class="valid-feedback">Hợp lệ.</div>
-                                        <div class="invalid-feedback">Hãy nhập địa chỉ.</div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-user has-validation" name="txttendn" placeholder="Tên đăng nhập" required>
-                                    <div class="valid-feedback">Hợp lệ.</div>
-                                    <div class="invalid-feedback">Vui lòng nhập tên đăng nhập.</div>
                                 </div>
                                 <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user has-validation" name="txttendn" placeholder="Tên đăng nhập" required>
+                                        <div class="valid-feedback">Hợp lệ.</div>
+                                        <div class="invalid-feedback">Vui lòng nhập tên đăng nhập.</div>
+                                    </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user" name="txtmk" id="exampleInputPassword" placeholder="Mật khẩu" required>
                                         <div class="valid-feedback">Hợp lệ.</div>
                                         <div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" name="txtnhaplaimk" id="exampleRepeatPassword" placeholder="Nhập lại mật khẩu" required>
-                                        <div class="valid-feedback">Hợp lệ.</div>
-                                        <div class="invalid-feedback">Vui lòng xác nhận mật khẩu.</div>
-                                    </div>
+
                                 </div>
+                                <div class="form-group ">
+                                    <input type="text" class="form-control form-control-user has-validation" name="txtdiachi" placeholder="Địa chỉ" required>
+                                    <div class="valid-feedback">Hợp lệ.</div>
+                                    <div class="invalid-feedback">Hãy nhập địa chỉ.</div>
+                                </div>
+
+
                                 <!-- <a href="index.php?action=xulydangky" class="btn btn-primary btn-user btn-block">
                                     Đăng Ký
                                 </a> -->

@@ -26,6 +26,10 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/css1.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -54,23 +58,23 @@
                     <div class="menu-desktop">
                         <ul class="main-menu ">
                             <li class="text-active">
-                                <a class="text-active " id="<?php echo strpos($_SERVER["REQUEST_URI"], "index") !== false ? 'active-mmenu' : ''; ?>" href="index.php">Home</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "index") !== false ? 'active-mmenu' : ''; ?>" href="index.php">Home</a>
                             </li>
 
                             <li class=" text-active">
-                                <a class=" text-active " id="<?php echo strpos($_SERVER["REQUEST_URI"], "product") !== false ? 'active-mmenu' : ''; ?>" href="product.php">Shop</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "product") !== false ? 'active-mmenu' : ''; ?>" href="product.php">Shop</a>
                             </li>
 
                             <li class="text-active">
-                                <a class=" text-active " id="<?php echo strpos($_SERVER["REQUEST_URI"], "blog") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=blog">Blog</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "blog") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=blog">Blog</a>
                             </li>
 
                             <li class="text-active">
-                                <a class=" text-active " id="<?php echo strpos($_SERVER["REQUEST_URI"], "about") !== false ? 'active-mmenu' : ''; ?>" href="about.php">About</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "about") !== false ? 'active-mmenu' : ''; ?>" href="about.php">About</a>
                             </li>
 
                             <li class="text-active">
-                                <a class=" text-active " id="<?php echo strpos($_SERVER["REQUEST_URI"], "contact") !== false ? 'active-mmenu' : ''; ?>" href="contact.php">Contact</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "contact") !== false ? 'active-mmenu' : ''; ?>" href="contact.php">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -101,60 +105,32 @@
                                         Xin chào, <?php echo $_SESSION['nguoidung']['HoTen']; ?>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <li><button class="dropdown-item" type="button">
+                                        <li>
+                                            <button style="background-color: #FFFFFF;" class="dropdown-item " type="button">
                                                 <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=hoso&id=<?php echo $_SESSION['nguoidung']['MaND']; ?>">
                                                     Hồ sơ người dùng
                                                 </a>
-                                            </button></li>
-                                        <li><button class="dropdown-item" type="button">
+                                            </button>
+                                        </li>
+                                        <li><button style="background-color: #FFFFFF;" class="dropdown-item" type="button">
                                                 <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=dangxuat">
                                                     Đăng xuất
                                                 </a>
-                                            </button></li>
-                                    </ul>
-                                </div>
-                                <!-- <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item dropdown">
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <img class="img-profile rounded-circle" style="height:30px; width: 30px; " src="../img/user/<php echo $_SESSION['nguoidung']['HinhAnh']; ?>" alt="">
-                                                </div>
-                                                <div class="col-10">
-                                                    <a style="color: #576C8F;" class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <php echo $_SESSION["nguoidung"]["HoTen"]; ?>
-                                                    </a>
-                                                </div>
-
-                                            </div>
-                                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                                                <li><a class="dropdown-item" href="index.php?action=hoso&id=<php echo $_SESSION["nguoidung"]["id"] ?>">Profile</a></li>
-                                                <li><a class="dropdown-item" href="index.php?action=dangxuat">Logout</a></li>
-                                            </ul>
+                                            </button>
                                         </li>
                                     </ul>
-                                </div> -->
+                                </div>
                             </nav>
                         <?php } else { ?>
                             <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
                                 <div class=" icon-header-item cl2 hov-cl1 trans-04 p-lr-11" data-notify="2">
-                                    <i style="color: #576C9D;" class=" bi bi-person-fill"></i>
+                                    <a href="index.php?action=dangnhap">
+                                        <i style="color: #576C9D;" class=" bi bi-person-fill"></i>
+
+                                    </a>
                                 </div>
                             </div>
                         <?php } ?>
-                        <!-- <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-                            <div style="color:#576C8F ;" class=" icon-header-item  hov-cl1 trans-04 p-lr-11 dropdown-toggle" id="navbarDarkDropdownMenuLink" data-notify="2">
-                                <img class="img-profile rounded-circle" style="height:30px; width: 30px; " src="../img/user/<php echo $_SESSION['nguoidung']['HinhAnh']; ?>" alt="">
-                                <span class="h6"><php echo $_SESSION["nguoidung"]["HoTen"]; ?></span>
-                            </div>
-                            <ul class="dropdown-menu dropdown-menu-secondary" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href="index.php?action=hoso&id=<php echo $_SESSION["nguoidung"]["id"] ?>">Profile</a></li>
-                                <li><a class="dropdown-item" href="index.php?action=dangxuat">Logout</a></li>
-                            </ul>
-                        </div> -->
-
-
-
                         <div class="flex-c-m h-full p-lr-19">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
                                 <i style="color: #576C9D;" class="zmdi zmdi-menu"></i>

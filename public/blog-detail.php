@@ -64,10 +64,6 @@
 						<p class="stext-117 cl6 p-b-26">
 							<?php echo $khuyenmai_ht['MoTa']; ?>
 						</p>
-
-						<p class="stext-117 cl6 p-b-26">
-							<?php echo $khuyenmai_ht['MoTa']; ?> 
-						</p>
 					</div>
 
 					<div class="flex-w flex-t p-t-16">
