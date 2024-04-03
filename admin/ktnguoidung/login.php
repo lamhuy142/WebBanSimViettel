@@ -63,9 +63,9 @@
                                         </a>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="index.php?action=quenmatkhau">Quên mật khẩu?</a>
-                                    </div>
+                                    </div> -->
                                     <div class="text-center">
                                         <a class="small" href="index.php?action=dangky">Tạo một tài khoản!</a>
                                     </div>

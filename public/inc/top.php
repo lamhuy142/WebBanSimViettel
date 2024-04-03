@@ -26,6 +26,11 @@
     <link rel="stylesheet" type="text/css" href="./assets/css/css1.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <!--===============================================================================================-->
@@ -73,9 +78,15 @@
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m h-full">
                         <div class="flex-c-m h-full p-r-24">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-                                <i style="color: #576C9D;" class="zmdi zmdi-search"></i>
+                            <div class="input-group rounded">
+                                <input style="border-color: white;" type="search" class="text-action form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                <span class="input-group-text border-0" id="search-addon">
+                                    <!-- <i class="bi bi-search mt-n1"></i> -->
+                                </span>
                             </div>
+                            <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
+                                <i style="color: #576C9D;" class="zmdi zmdi-search"></i>
+                            </div> -->
                         </div>
 
                         <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
@@ -86,13 +97,20 @@
                         <?php if (isset($_SESSION["nguoidung"]) && !empty($_SESSION["nguoidung"]["HoTen"])) { ?>
                             <nav class="navbar navbar-expand-lg text-decoration-none ">
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Dropdown
+                                    <button style="color: #44494D;" class=" dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Xin chào, <?php echo $_SESSION['nguoidung']['HoTen']; ?>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <li><button class="dropdown-item" type="button">Action</button></li>
-                                        <li><button class="dropdown-item" type="button">Another action</button></li>
-                                        <li><button class="dropdown-item" type="button">Something else here</button></li>
+                                        <li><button class="dropdown-item" type="button">
+                                                <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=hoso&id=<?php echo $_SESSION['nguoidung']['MaND']; ?>">
+                                                    Hồ sơ người dùng
+                                                </a>
+                                            </button></li>
+                                        <li><button class="dropdown-item" type="button">
+                                                <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=dangxuat">
+                                                    Đăng xuất
+                                                </a>
+                                            </button></li>
                                     </ul>
                                 </div>
                                 <!-- <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">

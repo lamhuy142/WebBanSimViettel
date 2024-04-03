@@ -344,7 +344,7 @@
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <!-- data-toggle="modal" -->
-                                <a class="dropdown-item" href="../ktnguoidung/index.php?action=dangnhap">
+                                <a class="dropdown-item" href="../ktnguoidung/index.php?action=dangxuat">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đăng xuất
                                 </a>

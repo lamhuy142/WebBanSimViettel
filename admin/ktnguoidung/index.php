@@ -145,9 +145,13 @@ switch ($action) {
     case "dangky":
         include("register.php");
         break;
-    case "quenmatkhau":
-        include("forgot-password.php");
+    case "dangxuat":
+        unset($_SESSION["nguoidung"]);
+        include("login.php");
         break;
+    // case "quenmatkhau":
+    //     include("forgot-password.php");
+    //     break;
     case "xulydangnhap":
 
         $tendangnhap = $_POST["txtdangnhap"];

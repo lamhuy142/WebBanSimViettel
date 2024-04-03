@@ -11,6 +11,11 @@ require("../model/khuyenmai.php");
 $isLogin = isset($_SESSION["nguoidung"]);
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
+} elseif ($isLogin == FALSE) {
+    $action = "dangnhap";
+    // } 
+    // elseif($_SESSION["nguoidung"]["MaQ"] == 2){
+    //     header("Location:../../public/");
 } else {   // mặc định là xem danh sách
     $action = "macdinh";
 }
@@ -20,6 +25,17 @@ $ls = new LOAISIM();
 $km = new KHUYENMAI();
 
 switch ($action) {
+    case "dangnhap":
+        include("login.php");
+        break;
+    case "dangxuat":
+        unset($_SESSION["nguoidung"]);
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        include("main.php");
+        break;
     case "macdinh":
 
         $sim = $s->laydanhsachsim();
