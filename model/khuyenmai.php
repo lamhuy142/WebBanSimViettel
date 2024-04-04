@@ -4,13 +4,14 @@ class KHUYENMAI
     private $MaKM;
     private $MaLS;
     private $TenKM;
-    private $TieuDe;
     private $MoTa;
     private $HinhAnh;
     private $GiaTriKM;
     private $LoaiKM;
     private $NgayBD;
     private $NgayKT;
+    private $MaND;
+    private $NgayTao;
     private $TrangThai;
     
     
@@ -30,14 +31,7 @@ class KHUYENMAI
     {
         $this->MaLS = $value;
     }
-    public function getTieuDe()
-    {
-        return $this->TieuDe;
-    }
-    public function setTieuDe($value)
-    {
-        $this->TieuDe = $value;
-    }
+    
     public function getTenKM()
     {
         return $this->TenKM;
@@ -94,6 +88,22 @@ class KHUYENMAI
     {
         $this->NgayBD = $value;
     }
+    public function getMaND()
+    {
+        return $this->MaND;
+    }
+    public function setMaND($value)
+    {
+        $this->MaND = $value;
+    }
+    public function getNgayTao()
+    {
+        return $this->NgayTao;
+    }
+    public function setNgayTao($value)
+    {
+        $this->NgayTao = $value;
+    }
     public function getTrangThai()
     {
         return $this->TrangThai;
@@ -148,18 +158,19 @@ class KHUYENMAI
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO khuyenmai(MaLS, TenKM, TieuDe, MoTa, HinhAnh, GiaTriKM, LoaiKM, NgayBD, NgayKT, TrangThai) 
-VALUES(:MaLS, :TenKM, :TieuDe, :MoTa, :HinhAnh, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :TrangThai)";
+            $sql = "INSERT INTO khuyenmai(MaLS, TenKM, MoTa, HinhAnh, GiaTriKM, LoaiKM, NgayBD, NgayKT, MaND, NgayTao, TrangThai) 
+VALUES(:MaLS, :TenKM, :MoTa, :HinhAnh, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :MaND, :NgayTao, :TrangThai)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaLS', $khuyenmai->MaLS);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
-            $cmd->bindValue(':TieuDe', $khuyenmai->TieuDe);
             $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
             $cmd->bindValue(':HinhAnh', $khuyenmai->HinhAnh);
             $cmd->bindValue(':GiaTriKM', $khuyenmai->GiaTriKM);
             $cmd->bindValue(':LoaiKM', $khuyenmai->LoaiKM);
             $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
             $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
+            $cmd->bindValue(':MaND', $khuyenmai->MaND);
+            $cmd->bindValue(':NgayTao', $khuyenmai->NgayTao);
             $cmd->bindValue(':TrangThai', $khuyenmai->TrangThai);
             $result = $cmd->execute();
             return $result;
@@ -175,17 +186,18 @@ VALUES(:MaLS, :TenKM, :TieuDe, :MoTa, :HinhAnh, :GiaTriKM, :LoaiKM, :NgayBD, :Ng
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE khuyenmai SET MaLS=:MaLS, TenKM=:TenKM, TieuDe=:TieuDe, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT, TrangThai=:TrangThai WHERE MaKM=:MaKM";
+            $sql = "UPDATE khuyenmai SET MaLS=:MaLS, TenKM=:TenKM,MoTa=:MoTa, HinhAnh=:HinhAnh, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT, MaND=:MaND,  NgayTao=:NgayTao,  TrangThai=:TrangThai WHERE MaKM=:MaKM";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaLS', $khuyenmai->MaLS);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
-            $cmd->bindValue(':TieuDe', $khuyenmai->TieuDe);
             $cmd->bindValue(':MoTa', $khuyenmai->MoTa);
             $cmd->bindValue(':HinhAnh', $khuyenmai->HinhAnh);
             $cmd->bindValue(':GiaTriKM', $khuyenmai->GiaTriKM);
             $cmd->bindValue(':LoaiKM', $khuyenmai->LoaiKM);
             $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
             $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
+            $cmd->bindValue(':MaND', $khuyenmai->MaND);
+            $cmd->bindValue(':NgayTao', $khuyenmai->NgayTao);
             $cmd->bindValue(':TrangThai', $khuyenmai->TrangThai);
             $cmd->bindValue(':MaKM', $khuyenmai->MaKM);
             $result = $cmd->execute();

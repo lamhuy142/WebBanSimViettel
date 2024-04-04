@@ -17,13 +17,14 @@
                         <tr>
                             <th>Tên Khuyến Mãi</th>
                             <th>Loại Sim</th>
-                            <th>Tiêu Đề</th>
                             <th>Mô Tả</th>
                             <th>Hình Ảnh</th>
                             <th>Giá Trị</th>
                             <th>Loại Khuyến Mãi</th>
                             <th>Ngày Bắt Dầu</th>
                             <th>Ngày Kết Thúc</th>
+                            <th>Người Tạo</th>
+                            <th>Ngày Tạo</th>
                             <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
@@ -32,13 +33,14 @@
                         <tr>
                             <th>Tên Khuyến Mãi</th>
                             <th>Loại Sim</th>
-                            <th>Tiêu Đề</th>
                             <th>Mô Tả</th>
                             <th>Hình Ảnh</th>
                             <th>Giá Trị</th>
                             <th>Loại Khuyến Mãi</th>
                             <th>Ngày Bắt Dầu</th>
                             <th>Ngày Kết Thúc</th>
+                            <th>Người Tạo</th>
+                            <th>Ngày Tạo</th>
                             <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
@@ -46,50 +48,53 @@
                     <tbody>
                         <?php foreach ($khuyenmai as $km) :
                             foreach ($loaikhuyenmai as $l) :
-                            foreach ($loaisim as $ls) :
-                                if ($km["LoaiKM"] == $l["MaLKM"] && $ls["MaLS"] == $km["MaLS"]) { ?>
-                                    <tr>
-                                        <td><?php echo $km["TenKM"]; ?></td>
-                                        <td><?php echo $ls["TenLS"]; ?></td>
-                                        <td><?php echo $km["TieuDe"]; ?></td>
-                                        <td><?php echo $km["MoTa"]; ?></td>
-                                        <td><img width="50px" src="../../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="<?php echo $km["HinhAnh"]; ?>"></td>
-                                        <td><?php echo $km["GiaTriKM"]; ?></td>
-                                        <td><?php echo $l["TenLKM"]; ?></td>
-                                        <td><?php echo $km["NgayBD"]; ?></td>
-                                        <td><?php echo $km["NgayKT"]; ?></td>
-                                        <!-- Trạng Thái của chương trình khuyến mãi -->
-                                        <?php
-                                        if ($ngayht >= $km["NgayBD"] && $ngayht <= $km["NgayKT"] && $km["TrangThai"] == 1) { ?>
-                                            <td class="text-success font-weight-bold">Chương trình đang hoạt động</td>
-                                            <td>
-                                                <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
-                                                <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>&TrangThai=<?php echo $km['TrangThai']; ?>" class="btn btn-danger">Khóa</a>
-                                            </td>
-                                        <?php } elseif ($ngayht < $km["NgayBD"]) { ?>
-                                            <td class="text-warning font-weight-bold">Chương trình sẽ bắt đầu vào ngày <?php echo $km["NgayBD"]; ?></td>
-                                            <td>
-                                                <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
-                                                <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
-                                            </td>
-                                        <?php } elseif ($km["TrangThai"] == 0) { ?>
-                                            <td class="text-secondary font-weight-bold">Chương trình đã bị khóa</td>
-                                            <td>
-                                                <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
-                                                <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>&TrangThai=<?php echo $km['TrangThai']; ?>" class="btn btn-success">Mở</a>
-                                            </td>
-                                        <?php } else { ?>
-                                            <td class="text-dark font-weight-bold">Chương trình đã kết thúc</td>
-                                            <td>
-                                                <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
-                                                <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
-                                            </td>
+                                foreach ($nguoidung as $n) :
+                                    foreach ($loaisim as $ls) :
+                                        if ($km["LoaiKM"] == $l["MaLKM"] && $ls["MaLS"] == $km["MaLS"] && $n["MaND"] == $km["MaND"]) { ?>
+                                            <tr>
+                                                <td><?php echo $km["TenKM"]; ?></td>
+                                                <td><?php echo $ls["TenLS"]; ?></td>
+                                                <td><?php echo $km["MoTa"]; ?></td>
+                                                <td><img width="50px" src="../../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="<?php echo $km["HinhAnh"]; ?>"></td>
+                                                <td><?php echo $km["GiaTriKM"]; ?></td>
+                                                <td><?php echo $l["TenLKM"]; ?></td>
+                                                <td><?php echo $km["NgayBD"]; ?></td>
+                                                <td><?php echo $km["NgayKT"]; ?></td>
+                                                <td><?php echo $n["HoTen"]; ?></td>
+                                                <td><?php echo $km["NgayTao"]; ?></td>
+                                                <!-- Trạng Thái của chương trình khuyến mãi -->
+                                                <?php
+                                                if ($ngayht >= $km["NgayBD"] && $ngayht <= $km["NgayKT"] && $km["TrangThai"] == 1) { ?>
+                                                    <td class="text-success font-weight-bold">Chương trình đang hoạt động</td>
+                                                    <td>
+                                                        <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
+                                                        <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>&TrangThai=<?php echo $km['TrangThai']; ?>" class="btn btn-danger">Khóa</a>
+                                                    </td>
+                                                <?php } elseif ($ngayht < $km["NgayBD"]) { ?>
+                                                    <td class="text-warning font-weight-bold">Chương trình sẽ bắt đầu vào ngày <?php echo $km["NgayBD"]; ?></td>
+                                                    <td>
+                                                        <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
+                                                        <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
+                                                    </td>
+                                                <?php } elseif ($km["TrangThai"] == 0) { ?>
+                                                    <td class="text-secondary font-weight-bold">Chương trình đã bị khóa</td>
+                                                    <td>
+                                                        <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
+                                                        <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>&TrangThai=<?php echo $km['TrangThai']; ?>" class="btn btn-success">Mở</a>
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td class="text-dark font-weight-bold">Chương trình đã kết thúc</td>
+                                                    <td>
+                                                        <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
+                                                        <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
+                                                    </td>
 
-                                        <?php } ?>
-                                    </tr>
+                                                <?php } ?>
+                                            </tr>
                         <?php
-                                } //end if
-                            endforeach;
+                                        } //end if
+                                    endforeach;
+                                endforeach;
                             endforeach;
                         endforeach; ?>
                     </tbody>

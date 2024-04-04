@@ -13,7 +13,7 @@
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 		<span class="stext-109 cl4">
-			<?php echo $khuyenmai_ht["TieuDe"] ?>
+			<?php echo $khuyenmai_ht["TenKM"] ?>
 		</span>
 	</div>
 </div>
@@ -27,7 +27,7 @@
 				<div class="p-r-45 p-r-0-lg">
 					<!--  -->
 					<div class="wrap-pic-w how-pos5-parent">
-						<img src="../../img/khuyenmai/<?php echo $khuyenmai_ht['HinhAnh']; ?>" alt="IMG-BLOG">
+						<img src="../img/khuyenmai/<?php echo $khuyenmai_ht['HinhAnh']; ?>" alt="IMG-BLOG">
 
 						<!-- <div class="flex-col-c-m size-123 bg9 how-pos5">
 							<span class="ltext-107 cl2 txt-center">
@@ -58,7 +58,7 @@
 						</span>
 
 						<h4 class="ltext-109 cl2 p-b-28">
-							<?php echo $khuyenmai_ht['TieuDe']; ?>
+							<?php echo $khuyenmai_ht['TenKM']; ?>
 						</h4>
 
 						<p class="stext-117 cl6 p-b-26">
@@ -85,33 +85,15 @@
 					<!--  -->
 					<div class="p-t-40">
 						<h5 class="mtext-113 cl2 p-b-12">
-							Leave a Comment
+							Bình luận 
 						</h5>
-
-						<p class="stext-107 cl6 p-b-40">
-							Your email address will not be published. Required fields are marked *
-						</p>
-
-						<form>
+						<form methob="post">
+							<input type="hidden" name="action" value="danhgia" >
 							<div class="bor19 m-b-20">
-								<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="cmt" placeholder="Comment..."></textarea>
+								<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="danhgia" placeholder="Bình luận..."></textarea>
 							</div>
 
-							<div class="bor19 size-218 m-b-20">
-								<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="name" placeholder="Name *">
-							</div>
-
-							<div class="bor19 size-218 m-b-20">
-								<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="email" placeholder="Email *">
-							</div>
-
-							<div class="bor19 size-218 m-b-30">
-								<input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="web" placeholder="Website">
-							</div>
-
-							<button class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
-								Post Comment
-							</button>
+							<input type="submit" class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04" value="Đánh giá" ></input>
 						</form>
 					</div>
 				</div>

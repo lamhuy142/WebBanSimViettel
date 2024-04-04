@@ -18,7 +18,7 @@
 					<?php foreach ($khuyenmai as $km) : ?>
 						<div class="p-b-63">
 							<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="hov-img0 how-pos5-parent">
-								<img src="../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="IMG-BLOG">
+								<img class="img-thumbnail rounded" style="width:300px; height: 300px;" src="../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="">
 
 								<div class="flex-col-c-m size-123 bg9 how-pos5">
 									<span class="ltext-107 cl2 txt-center">
@@ -34,7 +34,7 @@
 							<div class="p-t-32">
 								<h4 class="p-b-15">
 									<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="ltext-108 cl2 hov-cl1 trans-04">
-										<?php echo $km["TieuDe"]; ?>
+										<?php echo $km["TenKM"]; ?>
 									</a>
 								</h4>
 

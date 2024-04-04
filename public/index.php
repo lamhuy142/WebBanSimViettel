@@ -1,10 +1,12 @@
-<?php 
+<?php
 // session_start();
 require("../model/database.php");
 require("../model/sim.php");
 require("../model/loaisim.php");
 require("../model/khuyenmai.php");
 require("../model/nguoidung.php");
+require("../model/goicuoc.php");
+require("../model/loaigoicuoc.php");
 
 
 
@@ -25,6 +27,8 @@ $s = new SIM();
 $ls = new LOAISIM();
 $km = new KHUYENMAI();
 $nd = new NGUOIDUNG();
+$gc = new GOICUOC();
+$lgc = new LOAIGOICUOC();
 
 switch ($action) {
     case "dangnhap":
@@ -41,12 +45,18 @@ switch ($action) {
             $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($tendangnhap);
             if ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 1) {
                 $sim = $s->laydanhsachsim();
+                $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+                $goicuoc = $gc->laydanhsachgoicuoc();
                 $thuebao = $s->laydanhsachloaithuebao();
                 $loaisim = $ls->laydanhsachloaisim();
                 $khuyenmai = $km->laydanhsachkhuyenmai();
-                
+
                 header("Location:../../WebBanSimViettel/admin/index.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2) {
+                $sim = $s->laydanhsachsim();
+                $thuebao = $s->laydanhsachloaithuebao();
+                $loaisim = $ls->laydanhsachloaisim();
+                $khuyenmai = $km->laydanhsachkhuyenmai();
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 0) {
                 $thongbao = "Tài khoản đã bị khóa";
@@ -125,7 +135,7 @@ switch ($action) {
         // thêm
         $nd->themnguoidung($nguoidungmoi);
         // load người dùng
-        
+
         include("login.php");
         // }
         include("login.php");
@@ -139,7 +149,8 @@ switch ($action) {
         include("main.php");
         break;
     case "macdinh":
-
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();

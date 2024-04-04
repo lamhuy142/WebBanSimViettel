@@ -33,6 +33,7 @@ switch ($action) {
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $ngayht = date("Y-m-d");
         $danhgia = $dg->laydanhsachdanhgia();
         // Đánh giá chưa được phản hồi 
