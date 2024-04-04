@@ -98,19 +98,103 @@
 						<h5 class="mtext-113 cl2 p-b-12">
 							Bình luận
 						</h5>
-						<form methob="post">
+						<form method="post">
 							<input type="hidden" name="action" value="danhgia">
 							<input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht['MaKM']; ?>">
 							<div class="bor19 m-b-20">
 								<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="danhgia" placeholder="Bình luận..."></textarea>
 							</div>
-
 							<input type="submit" class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04" value="Đánh giá"></input>
 						</form>
+
+						<!-- HIỂN THỊ BÌNH LUẬN -->
+
+						<!-- <div class="card-body">
+									<php foreach ($danhgia as $dg) :
+										foreach ($nguoidung as $nd) :
+											if ($dg["MaKM"] == $khuyenmai_ht["MaKM"] && $dg["MaND"] == $nd["MaND"]) :
+									?>
+												<div class="media mb-3" style="margin-top:50px;">
+													<img src="../img/user/<php echo $nd['HinhAnh']; ?>" class="mr-3 rounded-circle" alt="Ảnh đại diện" style="width: 64px; height: 64px;">
+													<div class="media-body">
+														<h6 class="mt-0"><php echo $nd['HoTen']; ?></h6>
+														<p class="mb-0"><php echo $dg['NoiDung']; ?></p>
+														<small class="text-muted"><php echo $dg['NgayDG']; ?></small>
+													</div>
+												</div>
+									<php
+											endif;
+										endforeach;
+									endforeach;
+									?>
+								</div> -->
+						<div style="margin-top: 50px;">
+							<?php foreach ($danhgia as $dg) :
+								foreach ($nguoidung as $nd) :
+									if ($dg["MaKM"] == $khuyenmai_ht["MaKM"] && $dg["MaND"] == $nd["MaND"]) : ?>
+										<div style="margin-top: 20px;" class="rounded-3 border border-dashed border-gray-300 w-100 p-7 p-lg-10 mb-10">
+											<div class="w-100 d-flex align-items-center justify-content-between mb-5">
+												<div class="d-flex align-items-center">
+													<!--begin::Author-->
+													<div class="symbol symbol-35px me-3">
+														<img class="symbol-label img-thumnail rounded-3" width="57px" height="64px" src="../img/user/<?php echo $nd['HinhAnh']; ?>" alt="">
+														<!-- <div class="symbol-label" style="background-image:url('../img/user/<php echo $nd['HinhAnh']; ?>')"></div> -->
+													</div>
+													<!--end::Author-->
+
+													<!--begin::Info-->
+													<div class="d-flex flex-column">
+														<!--begin::Text-->
+														<div class="d-flex align-items-center">
+															<!--begin::Username-->
+															<span class="text-dark fw-bold fs-7 me-3 lh-1">
+																<?php echo $nd['HoTen']; ?>
+															</span>
+															<!--end::Username-->
+														</div>
+														<!--end::Text-->
+
+														<!--begin::Date-->
+														<span class="text-gray-600 fw-semibold fs-8">
+															<?php echo $dg['NgayDG']; ?>
+														</span>
+														<!--end::Date-->
+													</div>
+													<!--end::Info-->
+												</div>
+												<div class="m-0">
+													<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7 me-2" data-kt-action="reply">Reply</button>
+												</div>
+											</div>
+											<p class="fw-normal fs-base text-gray-700 m-0 p-0" data-kt-element="comment-text" data-kt-original-text="Code tải về không giống demo">
+												<?php echo $dg['NoiDung']; ?>
+											</p>
+											<div data-kt-element="comment-edit">
+											</div>
+										</div>
+										<div id="kt_post_comment_81_wrapper" data-parent-id="81">
+
+											<div class="ps-5 ps-lg-10 2">
+												<!-- replies for the comment -->
+											</div>
+
+										</div>
+
+							<?php
+									endif;
+								endforeach;
+							endforeach;
+							?>
+						</div>
+
+
+
+
+
+
 					</div>
 				</div>
 			</div>
-
 			<div class="col-md-4 col-lg-3 p-b-80">
 				<div class="side-menu">
 					<div class="bor17 of-hidden pos-relative">

@@ -6,6 +6,7 @@ class DANHGIA
     private $MaKM;
     private $NoiDung;
     private $TraLoi;
+    private $NgayDG;
 
     
     public function getMaDG()
@@ -47,6 +48,14 @@ class DANHGIA
     public function setTraLoi($value)
     {
         $this->TraLoi = $value;
+    }
+    public function getNgayDG()
+    {
+        return $this->NgayDG;
+    }
+    public function setNgayDG($value)
+    {
+        $this->NgayDG = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -108,13 +117,13 @@ class DANHGIA
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO danhgia(MaND, MaKM, NoiDung) 
-VALUES(:MaND, :MaKM, :NoiDung)";
+            $sql = "INSERT INTO danhgia(MaND, MaKM, NoiDung, NgayDG) 
+VALUES(:MaND, :MaKM, :NoiDung, :NgayDG)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaND', $danhgia->MaND);
             $cmd->bindValue(':MaKM', $danhgia->MaKM);
             $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
-            $cmd->execute();
+            $cmd->bindValue(':NgayDG', $danhgia->NgayDG);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -129,12 +138,13 @@ VALUES(:MaND, :MaKM, :NoiDung)";
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE danhgia set MaND=:MaND,MaKM=:MaKM, NoiDung=:NoiDung  where MaDG=MaDG";
+            $sql = "UPDATE danhgia set MaND=:MaND,MaKM=:MaKM, NoiDung=:NoiDung, NgayDG=:NgayDG  where MaDG=MaDG";
             $cmd = $db->prepare($sql);
             $cmd->bindValue('MaDG', $danhgia->MaDG);
             $cmd->bindValue(':MaND', $danhgia->MaND);
             $cmd->bindValue(':MaKM', $danhgia->MaKM);
             $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
+            $cmd->bindValue(':NgayDG', $danhgia->NgayDG);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {

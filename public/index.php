@@ -106,7 +106,7 @@ switch ($action) {
             $HinhAnh = basename($_FILES["fileanh"]["name"]);
             $quyen = $q->laydanhsachquyen();
             include("register.php");
-        } 
+        }
         // elseif ($kiemtra2) {
         //     // Nếu email đã tồn tại, hiển thị thông báo
         //     echo "<script>alert('Tên đăng nhập đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập Tên đăng nhập khác.');</script>";
@@ -181,23 +181,63 @@ switch ($action) {
         $khuyenmai = $km->laydanhsachkhuyenmai();
         include("blog.php");
         break;
+        // case "danhgia":
+        //     if(isset($_POST["danhgia"]) && !empty($_POST["danhgia"])){
+        //         echo $_POST["danhgia"];
+        //         exit();
+        //         $nguoidung_dg = $_POST["danhgia"];
+        //         $moi = new DANHGIA();
+        //         $moi->setNoiDung($nguoidung_dg);
+        //         $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
+        //         $moi->setMaKM($_POST["MaKM"]);
+        //         $moi->setTraLoi(null);
+
+        //         $km->themkhuyenmai($moi);
+        //         $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
+        //         $danhgia = $dg->laydanhsachdanhgia();
+        //         $nguoidung = $nd->laydanhsachnguoidung();
+        //         $khuyenmai = $km->laydanhsachkhuyenmai();
+        //         include("blog-detail.php");
+        //     }else{
+        //         echo "không có đánh giá nào";
+        //         exit();
+        //         $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
+        //         $danhgia = $dg->laydanhsachdanhgia();
+        //         $nguoidung = $nd->laydanhsachnguoidung();
+        //         $khuyenmai = $km->laydanhsachkhuyenmai();
+        //         include("blog-detail.php");
+        //     }
+        //     $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
+        //     $danhgia = $dg->laydanhsachdanhgia();
+        //     $nguoidung = $nd->laydanhsachnguoidung();
+        //     $khuyenmai = $km->laydanhsachkhuyenmai();
+        //     include("blog-detail.php");
+        //     break;
     case "danhgia":
-        if(isset($_POST["danhgia"])){
+        if (isset($_POST["danhgia"]) && !empty($_POST["danhgia"])) {
             $nguoidung_dg = $_POST["danhgia"];
+            $ngaydg = date("Y-m-d");
             $moi = new DANHGIA();
             $moi->setNoiDung($nguoidung_dg);
             $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
             $moi->setMaKM($_POST["MaKM"]);
             $moi->setTraLoi(null);
+            $moi->setNgayDG($ngaydg);
 
-            $km->themkhuyenmai($moi);
+            // Thêm đánh giá mới vào cơ sở dữ liệu
+            $dg->themdanhgia($moi);
+        } else {
+            echo "Không có đánh giá nào được nhập.";
         }
+
+        // Load lại dữ liệu và bao gồm trang blog-detail.php
         $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         include("blog-detail.php");
         break;
+
     default:
         break;
 }
