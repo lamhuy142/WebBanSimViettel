@@ -79,15 +79,17 @@
             <div style="color: #576C8F;" class="sidebar-heading">
                 Quản Lý
             </div>
-
-            <!-- Nav Item - NGUOIDUNG -->
-            <li class="nav-item
+            <?php if ($_SESSION["nguoidung"]["MaQ"] == 1) { ?>
+                <!-- Nav Item - NGUOIDUNG -->
+                <li class="nav-item
             <?php if (strpos($_SERVER["REQUEST_URI"], "qlnguoidung") != false) echo "active"; ?>
             ">
-                <a style="color: #576C8F;" class="nav-link" href="../qlnguoidung/index.php?action=xem">
-                    <i style="color: #576C8F;" class="bi bi-person-badge-fill"></i>
-                    <span>Quản lý người dùng</span></a>
-            </li>
+                    <a style="color: #576C8F;" class="nav-link" href="../qlnguoidung/index.php?action=xem">
+                        <i style="color: #576C8F;" class="bi bi-person-badge-fill"></i>
+                        <span>Quản lý người dùng</span></a>
+                </li>
+            <?php } ?>
+
             <!-- Nav Item - SIM -->
             <li class="nav-item <?php if (strpos($_SERVER["REQUEST_URI"], "sim") != false) echo "active"; ?>">
                 <a style="color: #576C8F;" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
@@ -179,7 +181,9 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
+
                     <!-- Topbar Navbar -->
+                    <div> <a href="index.php?action=chuyentrang" class="btn btn-secondary">Trang Chủ</a> </div>
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->

@@ -28,8 +28,9 @@
                                 <div class="col-md-12"><label for="sdt" class="labels">Số Điện Thoại</label><input name="sdt" type="number" class="form-control" value="<?php echo $nguoidung_ht['Sdt'] ?>"></div>
                                 <div class="col-md-12"><label for="txtdiachi" class="labels">Địa Chỉ</label><input name="txtdiachi" type="text" class="form-control" value="<?php echo $nguoidung_ht["DiaChi"] ?>"></div>
                                 <div class="col-md-12"><label for="txttendn" class="labels">Tên Đăng Nhập</label><input name="txttendn" type="text" class="form-control" value="<?php echo $nguoidung_ht["TenDangNhap"] ?>"></div>
-                                <div class="col-md-12"><label for="txtmk" class="labels">Mật Khẩu</label><input name="txtmk" type="password" class="form-control" placeholder="education" value="<?php echo $nguoidung_ht["MatKhau"];?>"></div>
-                                
+                                <div class="col-md-12"><label for="txtmk" class="labels">Mật Khẩu</label><input name="txtmk" type="password" class="form-control" placeholder="Nhập mật khẩu mới nếu muốn đổi"></div>
+
+
                             </div>
                             <div class="mt-5 text-center"><button class="btn btn-success" type="submit">Lưu</botton>
                             </div>
@@ -52,7 +53,6 @@
                                             <input type="file" class="form-control" name="filehinhanh">
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

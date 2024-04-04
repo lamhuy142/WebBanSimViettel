@@ -51,8 +51,11 @@
                                         <td><?php echo $n["DiaChi"]; ?></td>
                                         <?php if ($q["MaQ"] == 1) { ?>
                                             <td class="text-success font-weight-bold"><?php echo $q["TenQ"]; ?></td>
-                                        <?php } else { ?>
+                                        <?php } elseif ($q["MaQ"] == 2) { ?>
                                             <td class="text-primary font-weight-bold"><?php echo $q["TenQ"]; ?></td>
+
+                                        <?php } elseif ($q["MaQ"] == 3) { ?>
+                                            <td class="text-warning font-weight-bold"><?php echo $q["TenQ"]; ?></td>
                                         <?php } ?>
                                         <td><?php echo $n["MatKhau"]; ?></td>
                                         <?php if ($n["TrangThai"] == 1) { ?>

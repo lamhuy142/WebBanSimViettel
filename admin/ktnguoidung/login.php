@@ -33,7 +33,7 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block "></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -54,21 +54,21 @@
                                         </div>
                                         <input type="hidden" name="action" value="xulydangnhap">
                                         <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng nhập">
-                                        <hr>
-                                        <a href="login/google-api-php-client-main/login.php" class="btn btn-google btn-user btn-block">
+                                        <!-- <hr> -->
+                                        <!-- <a href="login/google-api-php-client-main/login.php" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Đăng nhập với Google
                                         </a>
                                         <a href="#" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Đăng nhập với Facebook
-                                        </a>
+                                        </a> -->
                                     </form>
-                                    <hr>
+                                    <!-- <hr> -->
                                     <!-- <div class="text-center">
                                         <a class="small" href="index.php?action=quenmatkhau">Quên mật khẩu?</a>
                                     </div> -->
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="index.php?action=dangky">Tạo một tài khoản!</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
