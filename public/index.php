@@ -45,7 +45,7 @@ switch ($action) {
                 $loaisim = $ls->laydanhsachloaisim();
                 $khuyenmai = $km->laydanhsachkhuyenmai();
                 
-                header("Location:../../admin/index.php");
+                header("Location:../../WebBanSimViettel/admin/index.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2) {
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 0) {
