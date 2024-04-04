@@ -8,7 +8,7 @@
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 
-		<a href="blog.php" class="stext-109 cl8 hov-cl1 trans-04">
+		<a href="index.php?action=blog" class="stext-109 cl8 hov-cl1 trans-04">
 			Blog
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
@@ -26,34 +26,45 @@
 			<div class="col-md-8 col-lg-9 p-b-80">
 				<div class="p-r-45 p-r-0-lg">
 					<!--  -->
-					<div class="wrap-pic-w how-pos5-parent">
-						<img src="../img/khuyenmai/<?php echo $khuyenmai_ht['HinhAnh']; ?>" alt="IMG-BLOG">
-
-						<!-- <div class="flex-col-c-m size-123 bg9 how-pos5">
-							<span class="ltext-107 cl2 txt-center">
-								22
-							</span>
-
-							<span class="stext-109 cl3 txt-center">
-								Jan 2018
-							</span>
-						</div> -->
+					<div class=" how-pos5-parent">
+						<img class="img-thumnail rounded " width="394px" height="394px" src="../img/khuyenmai/<?php echo $khuyenmai_ht['HinhAnh']; ?>" alt="<?php echo $khuyenmai_ht['HinhAnh']; ?>">
 					</div>
 
 					<div class="p-t-32">
 						<span class="flex-w flex-m stext-111 cl2 p-b-19">
 							<span>
-								<span class="cl4">By</span> Admin
+								<?php foreach ($khuyenmai as $km) :
+									foreach ($nguoidung as $nd) :
+										if ($nd["MaND"] == $km["MaND"]) {
+								?>
+											<span class="cl4">By</span> <?php echo $nd['HoTen']; ?>
+								<?php }
+									endforeach;
+								endforeach;
+								?>
 								<span class="cl12 m-l-4 m-r-6">|</span>
 							</span>
 
 							<span>
-								22 Jan, 2018
+								<?php echo $khuyenmai_ht['NgayTao']; ?>
 								<span class="cl12 m-l-4 m-r-6">|</span>
 							</span>
 
 							<span>
-								8 Comments
+								<?php $tong = 0;
+
+								// Duyệt qua danh sách đánh giá
+								foreach ($danhgia as $dg) :
+									// Kiểm tra xem đánh giá có cùng MaKM với $km không
+									if ($dg["MaKM"] == $khuyenmai_ht["MaKM"]) {
+										// Nếu có, tăng biến đếm lên 1
+										$tong++;
+									}
+								endforeach;
+								?>
+
+								<!-- Hiển thị tổng số lượng đánh giá -->
+								<?php echo $tong; ?> Đánh giá
 							</span>
 						</span>
 
@@ -85,15 +96,16 @@
 					<!--  -->
 					<div class="p-t-40">
 						<h5 class="mtext-113 cl2 p-b-12">
-							Bình luận 
+							Bình luận
 						</h5>
 						<form methob="post">
-							<input type="hidden" name="action" value="danhgia" >
+							<input type="hidden" name="action" value="danhgia">
+							<input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht['MaKM']; ?>">
 							<div class="bor19 m-b-20">
 								<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="danhgia" placeholder="Bình luận..."></textarea>
 							</div>
 
-							<input type="submit" class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04" value="Đánh giá" ></input>
+							<input type="submit" class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04" value="Đánh giá"></input>
 						</form>
 					</div>
 				</div>

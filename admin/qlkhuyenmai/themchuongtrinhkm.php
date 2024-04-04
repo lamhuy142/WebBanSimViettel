@@ -17,14 +17,14 @@
                             <div class="invalid-feedback">Vui lòng điền tên khuyến mãi.</div>
                         </div>
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txttieude" class="form-label">Tiêu đề</label>
                             <input class="form-control" type="text" name="txttieude" required>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Vui lòng điền tiêu đề.</div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="optloai" class="form-label">Loại khuyến mãi</label>

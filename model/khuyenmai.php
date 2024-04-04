@@ -186,7 +186,7 @@ VALUES(:MaLS, :TenKM, :MoTa, :HinhAnh, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :Ma
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE khuyenmai SET MaLS=:MaLS, TenKM=:TenKM,MoTa=:MoTa, HinhAnh=:HinhAnh, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT, MaND=:MaND,  NgayTao=:NgayTao,  TrangThai=:TrangThai WHERE MaKM=:MaKM";
+            $sql = "UPDATE khuyenmai SET MaLS=:MaLS, TenKM=:TenKM,MoTa=:MoTa, HinhAnh=:HinhAnh, GiaTriKM=:GiaTriKM, LoaiKM=:LoaiKM, NgayBD=:NgayBD, NgayKT=:NgayKT,  NgayTao=:NgayTao,  TrangThai=:TrangThai WHERE MaKM=:MaKM";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaLS', $khuyenmai->MaLS);
             $cmd->bindValue(':TenKM', $khuyenmai->TenKM);
@@ -196,7 +196,7 @@ VALUES(:MaLS, :TenKM, :MoTa, :HinhAnh, :GiaTriKM, :LoaiKM, :NgayBD, :NgayKT, :Ma
             $cmd->bindValue(':LoaiKM', $khuyenmai->LoaiKM);
             $cmd->bindValue(':NgayBD', $khuyenmai->NgayBD);
             $cmd->bindValue(':NgayKT', $khuyenmai->NgayKT);
-            $cmd->bindValue(':MaND', $khuyenmai->MaND);
+            // $cmd->bindValue(':MaND', $khuyenmai->MaND);
             $cmd->bindValue(':NgayTao', $khuyenmai->NgayTao);
             $cmd->bindValue(':TrangThai', $khuyenmai->TrangThai);
             $cmd->bindValue(':MaKM', $khuyenmai->MaKM);

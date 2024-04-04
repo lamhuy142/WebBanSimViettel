@@ -20,12 +20,6 @@
                     </div>
                     <div class="col">
                         <div class="md-3 mt-3">
-                            <label for="txttieude" class="form-label">Tiêu đề</label>
-                            <input class="form-control" type="text" name="txttieude" value="<?php echo $khuyenmai_ht['TieuDe'] ?>">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
                             <label for="optloai" class="form-label">Loại sim</label>
                             <select class="form-select" name="optloai">
                                 <option value="">Chọn loại sim</option>

@@ -42,7 +42,7 @@
 
                             <h4 class="p-b-12">
                                 <a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="mtext-101 cl2 hov-cl1 trans-04">
-                                    <?php echo $km['TieuDe'] ?>
+                                    <?php echo $km['TenKM'] ?>
                                 </a>
                             </h4>
 

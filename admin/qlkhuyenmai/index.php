@@ -63,10 +63,12 @@ switch ($action) {
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
         $duongdan = "../../img/khuyenmai/" . $hinhanh; //nơi lưu file upload
         //xử lý thêm 
+        $ngaytao = date("Y-m-d");
         $khuyenmaimoi = new KHUYENMAI();
         $khuyenmaimoi->setTenKM($_POST["txttenkm"]);
         $khuyenmaimoi->setMaLS($_POST["optloaisim"]);
-        $khuyenmaimoi->setTieuDe($_POST["txttieude"]);
+        $khuyenmaimoi->setMaND($_SESSION["nguoidung"]["MaND"]);
+        $khuyenmaimoi->setNgayTao($ngaytao);
         $khuyenmaimoi->setLoaiKM($_POST["optloai"]);
         $khuyenmaimoi->setGiaTriKM($_POST["txtgiatri"]);
         $khuyenmaimoi->setMoTa($_POST["txtmota"]);
@@ -79,9 +81,10 @@ switch ($action) {
         // load người dùng
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $loaisim = $ls->laydanhsachloaisim();
-        $ngayht = date("Y-m-d");
         $danhgia = $dg->laydanhsachdanhgia();
+        $ngayht = date("Y-m-d");
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
         foreach ($danhgia as $dg) {
@@ -89,6 +92,7 @@ switch ($action) {
                 $luotdg = $luotdg + 1;
             }
         }
+        
         include("khuyenmai.php");
         break;
     case "sua":
@@ -113,8 +117,9 @@ switch ($action) {
             $khuyenmai = $km->laydanhsachkhuyenmai();
             $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
             $loaisim = $ls->laydanhsachloaisim();
-            $ngayht = date("Y-m-d");
+            $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
+            $ngayht = date("Y-m-d");
             // Đánh giá chưa được phản hồi 
             $luotdg = 0;
             foreach ($danhgia as $dg) {
@@ -122,6 +127,7 @@ switch ($action) {
                     $luotdg = $luotdg + 1;
                 }
             }
+            
             include("khuyenmai.php");
         }
         break;
@@ -136,7 +142,6 @@ switch ($action) {
         $sua->setMoTa($_POST["txtmota"]);
         $sua->setHinhAnh($_POST["hinhanh"]);
         $sua->setTrangThai($_POST["txttrangthai"]);
-        $sua->setTieuDe($_POST["txttieude"]);
         $sua->setGiaTriKM($_POST["txtgiatri"]);
         $sua->setLoaiKM($_POST["optloaikm"]);
         $sua->setNgayBD($_POST["ngaybd"]);
@@ -156,8 +161,9 @@ switch ($action) {
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
-        $ngayht = date("Y-m-d");
+        $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
+        $ngayht = date("Y-m-d");
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
         foreach ($danhgia as $dg) {
@@ -185,8 +191,9 @@ switch ($action) {
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
-        $ngayht = date("Y-m-d");
+        $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
+        $ngayht = date("Y-m-d");
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
         foreach ($danhgia as $dg) {

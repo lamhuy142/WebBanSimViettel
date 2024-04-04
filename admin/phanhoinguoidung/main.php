@@ -18,7 +18,6 @@
                             <th>Mã Người Dùng</th>
                             <th>Tên Người Dùng</th>
                             <th>Nội Dung</th>
-                            <th>Hình Ảnh</th>
                             <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
@@ -28,7 +27,6 @@
                             <th>Mã Người Dùng</th>
                             <th>Tên Người Dùng</th>
                             <th>Nội Dung</th>
-                            <th>Hình Ảnh</th>
                             <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
@@ -41,7 +39,6 @@
                                         <td><?php echo $d["MaND"]; ?></td>
                                         <td><?php echo $n["HoTen"]; ?></td>
                                         <td><?php echo $d["NoiDung"]; ?></td>
-                                        <td><img width="50px" src="../../img/user/<?php echo $d["urlHinhAnh"]; ?>" alt="<?php echo $d["urlHinhAnh"]; ?>"></td>
                                         <?php if ($d["TraLoi"] != null) { ?>
                                             <td class="text-success"><i class=" bi bi-check-circle-fill"></i> Đã trả lời</td>
                                         <?php } else { ?><td class="text-warning"><i class="bi bi-x-circle-fill"></i> Chưa trả lời</td> <?php } ?>

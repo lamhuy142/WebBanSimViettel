@@ -3,9 +3,9 @@ class DANHGIA
 {
     private $MaDG;
     private $MaND;
+    private $MaKM;
     private $NoiDung;
     private $TraLoi;
-    private $urlHinhAnh;
 
     
     public function getMaDG()
@@ -24,6 +24,14 @@ class DANHGIA
     {
         $this->MaND = $value;
     }
+    public function getMaKM()
+    {
+        return $this->MaKM;
+    }
+    public function setMaKM($value)
+    {
+        $this->MaKM = $value;
+    }
     public function getNoiDung()
     {
         return $this->NoiDung;
@@ -39,14 +47,6 @@ class DANHGIA
     public function setTraLoi($value)
     {
         $this->TraLoi = $value;
-    }
-    public function geturlHinhAnh()
-    {
-        return $this->urlHinhAnh;
-    }
-    public function seturlHinhAnh($value)
-    {
-        $this->urlHinhAnh = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -108,12 +108,12 @@ class DANHGIA
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO danhgia(MaND, NoiDung, urlHinhAnh) 
-VALUES(:MaND, :NoiDung, :urlHinhAnh)";
+            $sql = "INSERT INTO danhgia(MaND, MaKM, NoiDung) 
+VALUES(:MaND, :MaKM, :NoiDung)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaND', $danhgia->MaND);
+            $cmd->bindValue(':MaKM', $danhgia->MaKM);
             $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
-            $cmd->bindValue(':urlHinhAnh', $danhgia->urlHinhAnh);
             $cmd->execute();
             $result = $cmd->execute();
             return $result;
@@ -125,16 +125,16 @@ VALUES(:MaND, :NoiDung, :urlHinhAnh)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatdanhgia($MaDG,$MaND, $NoiDung, $urlHinhAnh)
+    public function capnhatdanhgia($danhgia)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE danhgia set MaND=:MaND, NoiDung=:NoiDung, urlHinhAnh  where MaDG=MaDG";
+            $sql = "UPDATE danhgia set MaND=:MaND,MaKM=:MaKM, NoiDung=:NoiDung  where MaDG=MaDG";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaDG', $MaDG);
-            $cmd->bindValue(':MaND', $MaND);
-            $cmd->bindValue(':NoiDung', $NoiDung);
-            $cmd->bindValue(':urlHinhAnh', $urlHinhAnh);
+            $cmd->bindValue('MaDG', $danhgia->MaDG);
+            $cmd->bindValue(':MaND', $danhgia->MaND);
+            $cmd->bindValue(':MaKM', $danhgia->MaKM);
+            $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {

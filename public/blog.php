@@ -15,53 +15,75 @@
 			<div class="col-md-8 col-lg-9 p-b-80">
 				<div class="p-r-45 p-r-0-lg">
 					<!-- item blog -->
-					<?php foreach ($khuyenmai as $km) : ?>
-						<div class="p-b-63">
-							<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="hov-img0 how-pos5-parent">
-								<img class="img-thumbnail rounded" style="width:300px; height: 300px;" src="../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="">
+					<?php foreach ($khuyenmai as $km) :
+						foreach ($nguoidung as $nd) :
 
-								<div class="flex-col-c-m size-123 bg9 how-pos5">
-									<span class="ltext-107 cl2 txt-center">
-										22
-									</span>
+							if ($nd["MaND"] == $km["MaND"]) {
+					?>
+								<div class="p-b-63">
+									<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="hov-img0 how-pos5-parent">
+										<img class="img-thumbnail rounded" style="width:300px; height: 300px;" src="../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="">
 
-									<span class="stext-109 cl3 txt-center">
-										Jan 2018
-									</span>
-								</div>
-							</a>
+										<div class="flex-col-c-m size-123 bg9 how-pos5">
+											<span class="ltext-107 cl2 txt-center">
+												<?php echo date('d', strtotime($km['NgayTao'])); ?>
+											</span>
 
-							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="ltext-108 cl2 hov-cl1 trans-04">
-										<?php echo $km["TenKM"]; ?>
+											<span class="stext-109 cl3 txt-center">
+												<?php echo date('F Y', strtotime($km['NgayTao'])); ?>
+											</span>
+										</div>
 									</a>
-								</h4>
 
-								<p class="stext-117 cl6">
-									<?php echo mb_substr($km["MoTa"], 0, 100) . "..."; ?> </p>
+									<div class="p-t-32">
+										<h4 class="p-b-15">
+											<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="ltext-108 cl2 hov-cl1 trans-04">
+												<?php echo $km["TenKM"]; ?>
+											</a>
+										</h4>
 
-								<div class="flex-w flex-sb-m p-t-18">
-									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span>
-											<span class="cl4">By</span> Admin
-											<span class="cl12 m-l-4 m-r-6">|</span>
-										</span>
+										<p class="stext-117 cl6">
+											<?php echo mb_substr($km["MoTa"], 0, 100) . "..."; ?> </p>
 
-										<span>
-											8 Comments
-										</span>
-									</span>
+										<div class="flex-w flex-sb-m p-t-18">
+											<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+												<span>
+													<span class="cl4">By</span>
+													<span class="cl12 m-l-4 m-r-6"><?php echo $nd['HoTen'] ?>|</span>
+												</span>
 
-									<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-										Continue Reading
+												<span>
+													<?php $tong = 0;
 
-										<i class="fa fa-long-arrow-right m-l-9"></i>
-									</a>
+													// Duyệt qua danh sách đánh giá
+													foreach ($danhgia as $dg) :
+														// Kiểm tra xem đánh giá có cùng MaKM với $km không
+														if ($dg["MaKM"] == $km["MaKM"]) {
+															// Nếu có, tăng biến đếm lên 1
+															$tong++;
+														}
+													endforeach;
+													?>
+
+													<!-- Hiển thị tổng số lượng đánh giá -->
+													<?php echo $tong; ?> Đánh giá
+												</span>
+											</span>
+
+											<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+												Continue Reading
+
+												<i class="fa fa-long-arrow-right m-l-9"></i>
+											</a>
+										</div>
+									</div>
 								</div>
-							</div>
-						</div>
-					<?php endforeach;  ?>
+					<?php
+							}
+						endforeach;
+					endforeach;
+
+					?>
 
 					<!-- Pagination -->
 					<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">

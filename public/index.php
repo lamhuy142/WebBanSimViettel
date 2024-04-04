@@ -7,6 +7,7 @@ require("../model/khuyenmai.php");
 require("../model/nguoidung.php");
 require("../model/goicuoc.php");
 require("../model/loaigoicuoc.php");
+require("../model/danhgia.php");
 
 
 
@@ -27,6 +28,7 @@ $s = new SIM();
 $ls = new LOAISIM();
 $km = new KHUYENMAI();
 $nd = new NGUOIDUNG();
+$dg = new DANHGIA();
 $gc = new GOICUOC();
 $lgc = new LOAIGOICUOC();
 
@@ -75,36 +77,37 @@ switch ($action) {
         // }
         break;
     case "xldangky":
-        // $sodienthoai = $_POST["sdt"];
-        // $tendangnhap = $_POST["txttendn"];
+        $sodienthoai = $_POST["sdt"];
+        $tendangnhap = $_POST["txttendn"];
 
-        // $kiemtra1 = $nd->kiemtraSdtTonTai($sodienthoai);
-        // $kiemtra2 = $nd->kiemtraTenDangNhapTonTai($tendangnhap);
+        $kiemtra1 = $nd->kiemtraSdtTonTai($sodienthoai);
+        $kiemtra2 = $nd->kiemtraTenDangNhapTonTai($tendangnhap);
 
-        // if (strlen($sodienthoai) < 10) {
-        //     echo "<script>alert('Số điện thoại phải tối thiểu 10 chữ số, Vui lòng nhập lại số điện thoại.');</script>";
-        //     $HoTen = $_POST["txthoten"];
-        //     $tendangnhap = $_POST["txttendn"];
-        //     $DiaChi = $_POST["txtdiachi"];
-        //     $MatKhau = $_POST["txtmatkhau"];
-        //     $MaQ = $_POST["optquyen"];
-        //     $TrangThai = $_POST["txttrangthai"];
-        //     $HinhAnh = basename($_FILES["fileanh"]["name"]);
-        //     $quyen = $q->laydanhsachquyen();
-        //     include("register.php");
-        // } elseif ($kiemtra1) {
-        //     // Nếu số điện thoại đã tồn tại, hiển thị thông báo
-        //     echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập số điện thoại khác.');</script>";
-        //     $HoTen = $_POST["txthoten"];
-        //     $tendangnhap = $_POST["txttendn"];
-        //     $DiaChi = $_POST["txtdiachi"];
-        //     $MatKhau = $_POST["txtmatkhau"];
-        //     $MaQ = $_POST["optquyen"];
-        //     $TrangThai = $_POST["txttrangthai"];
-        //     $HinhAnh = basename($_FILES["fileanh"]["name"]);
-        //     $quyen = $q->laydanhsachquyen();
-        //     include("register.php");
-        // } elseif ($kiemtra2) {
+        if (strlen($sodienthoai) < 10) {
+            echo "<script>alert('Số điện thoại phải tối thiểu 10 chữ số, Vui lòng nhập lại số điện thoại.');</script>";
+            $HoTen = $_POST["txthoten"];
+            $tendangnhap = $_POST["txttendn"];
+            $DiaChi = $_POST["txtdiachi"];
+            $MatKhau = $_POST["txtmatkhau"];
+            $MaQ = $_POST["optquyen"];
+            $TrangThai = $_POST["txttrangthai"];
+            $HinhAnh = basename($_FILES["fileanh"]["name"]);
+            $quyen = $q->laydanhsachquyen();
+            include("register.php");
+        } elseif ($kiemtra1) {
+            // Nếu số điện thoại đã tồn tại, hiển thị thông báo
+            echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập số điện thoại khác.');</script>";
+            $HoTen = $_POST["txthoten"];
+            $tendangnhap = $_POST["txttendn"];
+            $DiaChi = $_POST["txtdiachi"];
+            $MatKhau = $_POST["txtmatkhau"];
+            $MaQ = $_POST["optquyen"];
+            $TrangThai = $_POST["txttrangthai"];
+            $HinhAnh = basename($_FILES["fileanh"]["name"]);
+            $quyen = $q->laydanhsachquyen();
+            include("register.php");
+        } 
+        // elseif ($kiemtra2) {
         //     // Nếu email đã tồn tại, hiển thị thông báo
         //     echo "<script>alert('Tên đăng nhập đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập Tên đăng nhập khác.');</script>";
         //     $HoTen = $_POST["txthoten"];
@@ -160,6 +163,9 @@ switch ($action) {
     case "detail":
         if (isset($_GET["id"])) {
             $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
+            $danhgia = $dg->laydanhsachdanhgia();
+            $nguoidung = $nd->laydanhsachnguoidung();
+            $khuyenmai = $km->laydanhsachkhuyenmai();
             include("blog-detail.php");
         } else {
             $sim = $s->laydanhsachsim();
@@ -170,8 +176,27 @@ switch ($action) {
         }
         break;
     case "blog":
+        $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         include("blog.php");
+        break;
+    case "danhgia":
+        if(isset($_POST["danhgia"])){
+            $nguoidung_dg = $_POST["danhgia"];
+            $moi = new DANHGIA();
+            $moi->setNoiDung($nguoidung_dg);
+            $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
+            $moi->setMaKM($_POST["MaKM"]);
+            $moi->setTraLoi(null);
+
+            $km->themkhuyenmai($moi);
+        }
+        $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
+        $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        include("blog-detail.php");
         break;
     default:
         break;
