@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Home</title>
+    <title>Trang Chủ</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../../img/logo/favicon.png" />
@@ -62,23 +62,27 @@
                     <div class="menu-desktop">
                         <ul class="main-menu ">
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "index") !== false ? 'active-mmenu' : ''; ?>" href="index.php">Home</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "macdinh") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=macdinh">Trang Chủ</a>
                             </li>
 
                             <li class=" text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "product") !== false ? 'active-mmenu' : ''; ?>" href="product.php">Shop</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "bansim") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=bansim">Sim</a>
+                            </li>
+
+                            <li class=" text-active">
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "goicuoc") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=goicuoc">Gói cước</a>
                             </li>
 
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "blog") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=blog">Blog</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "khuyenmai") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=khuyenmai">Khuyến Mãi</a>
                             </li>
 
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "about") !== false ? 'active-mmenu' : ''; ?>" href="about.php">About</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "about") !== false ? 'active-mmenu' : ''; ?>" href="about.php">Thông Tin</a>
                             </li>
 
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "contact") !== false ? 'active-mmenu' : ''; ?>" href="contact.php">Contact</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "contact") !== false ? 'active-mmenu' : ''; ?>" href="contact.php">Liên Hệ</a>
                             </li>
                         </ul>
                     </div>

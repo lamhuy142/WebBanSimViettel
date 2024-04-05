@@ -179,12 +179,24 @@ switch ($action) {
             include("main.php");
         }
         break;
-    case "blog":
+    case "khuyenmai":
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
         include("blog.php");
+        break;
+    case "bansim":
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        include("sim.php");
+        break;
+    case "goicuoc":
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $loaisim = $ls->laydanhsachloaisim();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        include("goicuoc.php");
         break;
         // case "danhgia":
         //     if(isset($_POST["danhgia"]) && !empty($_POST["danhgia"])){
