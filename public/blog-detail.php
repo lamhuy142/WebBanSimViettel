@@ -108,37 +108,18 @@
 						</form>
 
 						<!-- HIỂN THỊ BÌNH LUẬN -->
-
-						<!-- <div class="card-body">
-									<php foreach ($danhgia as $dg) :
-										foreach ($nguoidung as $nd) :
-											if ($dg["MaKM"] == $khuyenmai_ht["MaKM"] && $dg["MaND"] == $nd["MaND"]) :
-									?>
-												<div class="media mb-3" style="margin-top:50px;">
-													<img src="../img/user/<php echo $nd['HinhAnh']; ?>" class="mr-3 rounded-circle" alt="Ảnh đại diện" style="width: 64px; height: 64px;">
-													<div class="media-body">
-														<h6 class="mt-0"><php echo $nd['HoTen']; ?></h6>
-														<p class="mb-0"><php echo $dg['NoiDung']; ?></p>
-														<small class="text-muted"><php echo $dg['NgayDG']; ?></small>
-													</div>
-												</div>
-									<php
-											endif;
-										endforeach;
-									endforeach;
-									?>
-								</div> -->
 						<div style="margin-top: 50px;">
-							<?php foreach ($danhgia as $dg) :
+							<?php
+							$i = 0;
+							foreach ($danhgia as $dg) :
 								foreach ($nguoidung as $nd) :
 									if ($dg["MaKM"] == $khuyenmai_ht["MaKM"] && $dg["MaND"] == $nd["MaND"]) : ?>
-										<div style="margin-top: 20px; padding:30px; border:0.5px dashed #E1E3EA;" class="rounded-3  border-gray-300 w-100 p-7 p-lg-10 mb-10">
+										<div style="margin-top: 20px; padding:15px; border:0.5px dashed #E1E3EA;" class="rounded-3  border-gray-300 w-100 p-7 p-lg-10 mb-10">
 											<div class="w-100 d-flex align-items-center justify-content-between mb-3">
 												<div class="d-flex align-items-center">
 													<!--begin::Author-->
 													<div class="symbol symbol-35px me-3">
 														<img class="symbol-label img-thumnail rounded-3" width="57px" height="64px" src="../img/user/<?php echo $nd['HinhAnh']; ?>" alt="">
-														<!-- <div class="symbol-label" style="background-image:url('../img/user/<php echo $nd['HinhAnh']; ?>')"></div> -->
 													</div>
 													<!--end::Author-->
 
@@ -163,35 +144,104 @@
 													<!--end::Info-->
 												</div>
 												<div class="m-0">
-													<button class="btn p-0 text-gray-600 fw-semibold cursor-pointer fs-7 me-2" data-kt-action="reply">Trả lời</button>
+													<p>
+														<?php if ($_SESSION["nguoidung"]["MaQ"] == 1) { ?>
+															<a style="color:#576C8F; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+																Trả lời
+															</a>
+														<?php } ?>
+
+													</p>
 												</div>
 											</div>
-											<p class="fw-normal fs-base text-gray-700 m-0 p-0" data-kt-element="comment-text" data-kt-original-text="Code tải về không giống demo">
+											<p class="fw-normal fs-base text-gray-700 m-0 p-0" data-kt-element="comment-text">
 												<?php echo $dg['NoiDung']; ?>
 											</p>
-											<div data-kt-element="comment-edit">
-											</div>
 										</div>
-										<div id="kt_post_comment_81_wrapper" data-parent-id="81">
-
-											<div class="ps-5 ps-lg-10 2">
-												<!-- replies for the comment -->
-											</div>
-
+										<div class="collapse" id="<?php echo $i; ?>">
+											<form method="post">
+												<input type="hidden" name="action" value="traloidanhgia">
+												<input type="hidden" name="MaDG" value="<?php echo $dg["MaDG"] ?>">
+												<input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht["MaKM"] ?>">
+												<input type="hidden" name="nguoiphanhoi" value="<?php echo $_SESSION["nguoidung"]["MaND"] ?>">
+												<div style="border:0.5px groove #E1E3EA;" class="rounded bor19 m-b-20 m-t-20">
+													<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="traloi" placeholder="Bình luận..."></textarea>
+												</div>
+												<p>
+													<a class="text-decoration-none btn btn-secondary m-l-2" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+														Hủy
+													</a>
+													<input style="color:#576C8F; background-color:#E7E7E7; border:1px solid #E7E7E7;" type="submit" value="Trả lời" class="text-decoration-none btn btn-secondary m-l-10" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+												</p>
+											</form>
 										</div>
 
+										<?php
+										foreach ($traloidanhgia as $t) :
+											if ($t["MaDG"] == $dg["MaDG"] && $t["MaND"] == $nd["MaND"]) {
+										?>
+												<!-- HIỂN THỊ TRẢ LỜI -->
+												<div class="ms-5 ms-lg-10">
+													<div id="kt_post_comment_96" data-kt-comment-id="96">
+														<div class="rounded-3 border border-dashed border-gray-300 w-100 p-7 p-lg-10 mb-10 mt-2">
+															<div class="w-100 d-flex align-items-center justify-content-between mb-4">
+																<div class="d-flex align-items-center mt-2 ml-2 ">
+																	<!--begin::Author-->
+																	<div class="symbol symbol-35px me-3">
+																		<img class="symbol-label img-thumnail rounded-3" width="20px" height="20px" src="../img/user/<?php echo $nd['HinhAnh']; ?>" alt="">
+																	</div>
+																	<!--end::Author-->
+
+																	<!--begin::Info-->
+																	<div class="d-flex flex-column">
+																		<!--begin::Text-->
+																		<div class="d-flex align-items-center">
+																			<!--begin::Username-->
+																			<span class="text-dark fw-bold fs-7 me-3 lh-1">
+																				<?php echo $nd['HoTen']; ?>
+																			</span>
+																			<!--end::Username-->
+																		</div>
+																		<!--end::Text-->
+
+																		<!--begin::Date-->
+																		<span class="text-gray-600 fw-semibold fs-8">
+																			<?php echo $t['NgayTL']; ?>
+																		</span>
+																		<!--end::Date-->
+																	</div>
+																	<!--end::Info-->
+																</div>
+																<!-- 																
+																<div class="m-2">
+																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7 me-2" data-kt-action="reply" fdprocessedid="y3z0lv">Reply</button>
+																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7 me-2" data-kt-action="edit" fdprocessedid="g1xils">Edit</button>
+																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7" data-kt-action="delete" data-kt-action-url="https://devs.keenthemes.com/comments/96" fdprocessedid="84vpsf">Delete</button>
+																</div> -->
+															</div>
+															<p class="fw-normal fs-base text-gray-700 m-2 p-0" data-kt-element="comment-text">
+																<?php echo $t['TraLoi']; ?>
+															</p>
+															<div data-kt-element="comment-edit"></div>
+														</div>
+														<div id="kt_post_comment_96_wrapper" data-parent-id="96">
+															<div class="ps-5 ps-lg-10 2">
+																<!-- replies for the comment -->
+															</div>
+														</div>
+													</div>
+												</div>
+										<?php
+											}
+										endforeach;
+										?>
 							<?php
+										$i++;
 									endif;
 								endforeach;
 							endforeach;
 							?>
 						</div>
-
-
-
-
-
-
 					</div>
 				</div>
 			</div>
@@ -207,39 +257,18 @@
 
 					<div class="p-t-55">
 						<h4 class="mtext-112 cl2 p-b-33">
-							Categories
+							Danh Mục
 						</h4>
 
 						<ul>
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									Fashion
-								</a>
-							</li>
+							<?php foreach ($loaisim as $ls) { ?>
+								<li class="bor18">
+									<a href="index.php?action=dstheoloaisim" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+										<?php echo $ls["TenLS"] ?>
+									</a>
+								</li>
+							<?php } ?>
 
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									Beauty
-								</a>
-							</li>
-
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									Street Style
-								</a>
-							</li>
-
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									Life Style
-								</a>
-							</li>
-
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									DIY & Crafts
-								</a>
-							</li>
 						</ul>
 					</div>
 

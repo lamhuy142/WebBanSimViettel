@@ -12,6 +12,7 @@ require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 require("../../model/sim.php");
 require("../../model/danhgia.php");
+require("../../model/traloidanhgia.php");
 
 
 // Xét xem có thao tác nào được chọn
@@ -27,6 +28,7 @@ $q = new QUYEN();
 $dct = new DONHANG_CT();
 $s = new SIM();
 $dg = new DANHGIA();
+$tl = new TRALOIDANHGIA();
 
 switch ($action) {
     case "xem":
@@ -34,10 +36,11 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }
@@ -48,10 +51,11 @@ switch ($action) {
         $donhang_ct = $dct->laydanhsachdonhang_ct();
         $sim = $s->laydanhsachsim();
         $danhgia = $dg->laydanhsachdanhgia();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }
@@ -74,10 +78,11 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }
@@ -105,10 +110,11 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }
@@ -128,10 +134,11 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }

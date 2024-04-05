@@ -15,39 +15,53 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Mã Người Dùng</th>
-                            <th>Tên Người Dùng</th>
+                            <th>Mã Khách Hàng</th>
+                            <th>Tên Khách Hàng</th>
                             <th>Nội Dung</th>
+                            <!-- <th>Trả Lời</th> -->
                             <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Mã Người Dùng</th>
-                            <th>Tên Người Dùng</th>
+                            <th>Mã Khách Hàng</th>
+                            <th>Tên Khách Hàng</th>
                             <th>Nội Dung</th>
+                            <!-- <th>Trả Lời</th> -->
                             <th>Trạng Thái</th>
                             <th>Hành Động</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php foreach ($danhgia as $d) :
+                            $traLoiFlag = false; // Biến flag để kiểm tra xem đã có phản hồi cho bản ghi hiện tại hay chưa
                             foreach ($nguoidung as $n) :
                                 if ($n["MaND"] == $d["MaND"]) { ?>
                                     <tr>
                                         <td><?php echo $d["MaND"]; ?></td>
                                         <td><?php echo $n["HoTen"]; ?></td>
                                         <td><?php echo $d["NoiDung"]; ?></td>
-                                        <?php if ($d["TraLoi"] != null) { ?>
-                                            <td class="text-success"><i class=" bi bi-check-circle-fill"></i> Đã trả lời</td>
-                                        <?php } else { ?><td class="text-warning"><i class="bi bi-x-circle-fill"></i> Chưa trả lời</td> <?php } ?>
+                                        <?php foreach ($traloidanhgia as $t) :
+                                            if ($t["TraLoi"] != null && $t["MaDG"] == $d["MaDG"]) {
+                                                $traLoiFlag = true; // Đánh dấu đã có phản hồi cho bản ghi hiện tại
+                                            }
+                                        endforeach; ?>
+                                        <td>
+                                            <?php if ($traLoiFlag) { ?>
+                                                <span class="text-success"><i class="bi bi-check-circle-fill"></i> Đã trả lời</span>
+                                            <?php } else { ?>
+                                                <span class="text-warning"><i class="bi bi-x-circle-fill"></i> Chưa trả lời</span>
+                                            <?php } ?>
+                                        </td>
                                         <td><a class="btn btn-primary" href="index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">Phản Hồi</a></td>
                                     </tr>
                         <?php
                                 } //end if
                             endforeach;
-                        endforeach; ?>
+                        endforeach;
+                        ?>
+
                     </tbody>
                 </table>
             </div>

@@ -5,6 +5,7 @@ require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 require("../../model/danhgia.php");
 require("../../model/donhang.php");
+require("../../model/traloidanhgia.php");
 
 // Biến $isLogin cho biết người dùng đăng nhập chưa
 $isLogin = isset($_SESSION["nguoidung"]);
@@ -23,6 +24,7 @@ $nd = new NGUOIDUNG();
 $q = new QUYEN();
 $dg = new DANHGIA();
 $dh = new DONHANG();
+$tl = new TRALOIDANHGIA();
 switch ($action) {
     case "macdinh":
         $donhang = $dh->laydanhsachdonhang();
@@ -47,10 +49,11 @@ switch ($action) {
                 $tongdt_namht += $d["TongTien"];
             }
         }
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }
@@ -63,10 +66,11 @@ switch ($action) {
         if (isset($_GET["id"])) {
             $nguoidung_ht = $nd->laynguoidungtheoid($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
+            $traloidanhgia = $tl->laydanhsachtraloidanhgia();
             // Đánh giá chưa được phản hồi 
             $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
+            foreach ($traloidanhgia as $tl) {
+                if ($tl["TraLoi"] == null) {
                     $luotdg = $luotdg + 1;
                 }
             }
@@ -124,10 +128,11 @@ switch ($action) {
                 $tongdt_namht += $d["TongTien"];
             }
         }
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }

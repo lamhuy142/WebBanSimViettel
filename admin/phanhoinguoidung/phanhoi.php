@@ -8,6 +8,7 @@
             <form method="post" enctype="multipart/form-data" action="index.php">
                 <input type="hidden" name="action" value="xulyphanhoi">
                 <input type="hidden" name="MaDG" value="<?php echo $danhgia_ht['MaDG']; ?>">
+                <input type="hidden" name="MaND" value="<?php echo $_SESSION['nguoidung']["MaND"]; ?>">
 
                 <div class="row">
                     <div class="col">

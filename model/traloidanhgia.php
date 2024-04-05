@@ -1,13 +1,29 @@
 <?php
-class DANHGIA
+class TRALOIDANHGIA
 {
+    private $MaTL;
+    private $TraLoi;
     private $MaDG;
     private $MaND;
-    private $MaKM;
-    private $NoiDung;
-    private $NgayDG;
+    private $NgayTL;
 
     
+    public function getMaTL()
+    {
+        return $this->MaTL;
+    }
+    public function setMaTL($value)
+    {
+        $this->MaTL = $value;
+    }
+    public function getTraLoi()
+    {
+        return $this->TraLoi;
+    }
+    public function setTraLoi($value)
+    {
+        $this->TraLoi = $value;
+    }
     public function getMaDG()
     {
         return $this->MaDG;
@@ -24,29 +40,13 @@ class DANHGIA
     {
         $this->MaND = $value;
     }
-    public function getMaKM()
+    public function getNgayTL()
     {
-        return $this->MaKM;
+        return $this->NgayTL;
     }
-    public function setMaKM($value)
+    public function setNgayTL($value)
     {
-        $this->MaKM = $value;
-    }
-    public function getNoiDung()
-    {
-        return $this->NoiDung;
-    }
-    public function setNoiDung($value)
-    {
-        $this->NoiDung = $value;
-    }
-    public function getNgayDG()
-    {
-        return $this->NgayDG;
-    }
-    public function setNgayDG($value)
-    {
-        $this->NgayDG = $value;
+        $this->NgayTL = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
 
@@ -71,13 +71,13 @@ class DANHGIA
     // }
 
     // lấy tất cả ng dùng
-    public function laydanhsachdanhgiatheoid($MaDG)
+    public function laydanhsachtraloidanhgiatheoid($MaTL)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM danhgia WHERE MaDG=:MaDG";
+            $sql = "SELECT * FROM traloidanhgia WHERE MaTL=:MaTL";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":MaDG", $MaDG);
+            $cmd->bindValue(":MaTL", $MaTL);
             $cmd->execute();
             $result = $cmd->fetch();
             return $result;
@@ -87,11 +87,11 @@ class DANHGIA
             exit();
         }
     }
-    public function laydanhsachdanhgia()
+    public function laydanhsachtraloidanhgia()
     {
         $db = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM danhgia ORDER BY MaDG DESC";
+            $sql = "SELECT * FROM traloidanhgia ORDER BY MaTL DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
             $ketqua = $cmd->fetchAll();
@@ -104,17 +104,17 @@ class DANHGIA
     }
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function themdanhgia($danhgia)
+    public function themtraloidanhgia($traloidanhgia)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO danhgia(MaND, MaKM, NoiDung, NgayDG) 
-VALUES(:MaND, :MaKM, :NoiDung, :NgayDG)";
+            $sql = "INSERT INTO traloidanhgia(TraLoi, MaDG, MaND, NgayTL) 
+VALUES(:TraLoi, :MaDG, :MaND, :NgayTL)";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaND', $danhgia->MaND);
-            $cmd->bindValue(':MaKM', $danhgia->MaKM);
-            $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
-            $cmd->bindValue(':NgayDG', $danhgia->NgayDG);
+            $cmd->bindValue(':TraLoi', $traloidanhgia->TraLoi);
+            $cmd->bindValue(':MaDG', $traloidanhgia->MaDG);
+            $cmd->bindValue(':MaND', $traloidanhgia->MaND);
+            $cmd->bindValue(':NgayTL', $traloidanhgia->NgayTL);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -125,17 +125,17 @@ VALUES(:MaND, :MaKM, :NoiDung, :NgayDG)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatdanhgia($danhgia)
+    public function capnhattraloidanhgia($traloidanhgia)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE danhgia set MaND=:MaND,MaKM=:MaKM, NoiDung=:NoiDung, NgayDG=:NgayDG  where MaDG=MaDG";
+            $sql = "UPDATE traloidanhgia set TraLoi=:TraLoi,MaDG=:MaDG, MaND=:MaND, NgayTL=:NgayTL  where MaTL=MaTL";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaDG', $danhgia->MaDG);
-            $cmd->bindValue(':MaND', $danhgia->MaND);
-            $cmd->bindValue(':MaKM', $danhgia->MaKM);
-            $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
-            $cmd->bindValue(':NgayDG', $danhgia->NgayDG);
+            $cmd->bindValue('MaTL', $traloidanhgia->MaTL);
+            $cmd->bindValue(':TraLoi', $traloidanhgia->TraLoi);
+            $cmd->bindValue(':MaDG', $traloidanhgia->MaDG);
+            $cmd->bindValue(':MaND', $traloidanhgia->MaND);
+            $cmd->bindValue(':NgayTL', $traloidanhgia->NgayTL);
             $ketqua = $cmd->execute();
             return $ketqua;
         } catch (PDOException $e) {
@@ -144,13 +144,13 @@ VALUES(:MaND, :MaKM, :NoiDung, :NgayDG)";
             exit();
         }
     }
-    public function capnhattraloi($MaDG, $TraLoi, $NguoiTL)
+    public function capnhattraloi($MaTL, $TraLoi, $NguoiTL)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE danhgia set TraLoi=:TraLoi, NguoiTL=:NguoiTL where MaDG=:MaDG";
+            $sql = "UPDATE traloidanhgia set TraLoi=:TraLoi, NguoiTL=:NguoiTL where MaTL=:MaTL";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue(':MaDG', $MaDG);
+            $cmd->bindValue(':MaTL', $MaTL);
             $cmd->bindValue(':TraLoi', $TraLoi);
             $cmd->bindValue(':NguoiTL', $NguoiTL);
             $ketqua = $cmd->execute();
@@ -179,14 +179,14 @@ VALUES(:MaND, :MaKM, :NoiDung, :NgayDG)";
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doiNoiDung($MaND, $NoiDung)
+    // public function doiMaND($TraLoi, $MaND)
     // {
     //     $db = DATABASE::connect();
     //     try {
-    //         $sql = "UPDATE baiviet set NoiDung=:NoiDung where MaND=:MaND";
+    //         $sql = "UPDATE baiviet set MaND=:MaND where TraLoi=:TraLoi";
     //         $cmd = $db->prepare($sql);
+    //         $cmd->bindValue(':TraLoi', $TraLoi);
     //         $cmd->bindValue(':MaND', $MaND);
-    //         $cmd->bindValue(':NoiDung', $NoiDung);
     //         $ketqua = $cmd->execute();
     //         return $ketqua;
     //     } catch (PDOException $e) {

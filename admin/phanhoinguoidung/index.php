@@ -8,6 +8,7 @@ require("../../model/database.php");
 require("../../model/nguoidung.php");
 require("../../model/quyen.php");
 require("../../model/danhgia.php");
+require("../../model/traloidanhgia.php");
 
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
@@ -19,15 +20,17 @@ if (isset($_REQUEST["action"])) {
 $q = new QUYEN();
 $nd = new NGUOIDUNG();
 $dg = new DANHGIA();
+$tl = new TRALOIDANHGIA();
 
 switch ($action) {
     case "xem":
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }
@@ -37,43 +40,48 @@ switch ($action) {
         if (isset($_GET["id"])) {
             $danhgia_ht = $dg->laydanhsachdanhgiatheoid($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
+            $traloidanhgia = $tl->laydanhsachtraloidanhgia();
             // Đánh giá chưa được phản hồi 
             $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
+            foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
             }
+        }
             include("phanhoi.php");
         } else {
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
-            $danhgia = $dg->laydanhsachdanhgia();
+            $traloidanhgia = $tl->laydanhsachtraloidanhgia();
             // Đánh giá chưa được phản hồi 
             $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
+            foreach ($traloidanhgia as $tl) {
+            if ($tl["TraLoi"] == null) {
+                $luotdg = $luotdg + 1;
             }
+        }
             include("main.php");
         }
 
         break;
     case "xulyphanhoi":
         //xử lý thêm 
-        // $moi = new DANHGIA();
-        $MaDG = $_POST["MaDG"];
-        $TraLoi = $_POST["txttraloi"];
+        $moi = new TRALOIDANHGIA();
+        $ngaytl = date("Y-m-d");
+        $moi->setTraLoi($_POST["txttraloi"]);
+        $moi->setMaDG($_POST["MaDG"]);
+        $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
+        $moi->setNgayTL($ngaytl);
         // thêm
-        $dg->capnhattraloi($MaDG, $TraLoi);
+        $tl->themtraloidanhgia($moi);
         // load người dùng
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null
+        foreach ($traloidanhgia as $t) {
+            if ($t["TraLoi"] == null
             ) {
                 $luotdg = $luotdg + 1;
             }
@@ -100,8 +108,8 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         // Đánh giá chưa được phản hồi 
         $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null) {
+        foreach ($traloidanhgia as $t) {
+            if ($t["TraLoi"] == null) {
                 $luotdg = $luotdg + 1;
             }
         }

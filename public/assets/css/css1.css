@@ -14,3 +14,12 @@ a.text-active:hover {
     color: #EE0033 !important;
     /* Màu chữ khi menu đang active */
 }
+/* Ẩn nút "Trả lời" khi collapse được mở rộng */
+.collapse.show+.reply-button {
+    display: none;
+}
+
+/* Hiển thị lại nút "Trả lời" khi collapse được thu gọn */
+.collapse:not(.show)+.reply-button {
+    display: block;
+}

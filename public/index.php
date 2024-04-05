@@ -8,6 +8,7 @@ require("../model/nguoidung.php");
 require("../model/goicuoc.php");
 require("../model/loaigoicuoc.php");
 require("../model/danhgia.php");
+require("../model/traloidanhgia.php");
 
 
 
@@ -31,6 +32,7 @@ $nd = new NGUOIDUNG();
 $dg = new DANHGIA();
 $gc = new GOICUOC();
 $lgc = new LOAIGOICUOC();
+$tl = new TRALOIDANHGIA();
 
 switch ($action) {
     case "dangnhap":
@@ -165,7 +167,9 @@ switch ($action) {
             $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
             $nguoidung = $nd->laydanhsachnguoidung();
+            $loaisim = $ls->laydanhsachloaisim();
             $khuyenmai = $km->laydanhsachkhuyenmai();
+            $traloidanhgia = $tl->laydanhsachtraloidanhgia();
             include("blog-detail.php");
         } else {
             $sim = $s->laydanhsachsim();
@@ -179,6 +183,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $khuyenmai = $km->laydanhsachkhuyenmai();
+        $loaisim = $ls->laydanhsachloaisim();
         include("blog.php");
         break;
         // case "danhgia":
@@ -221,7 +226,6 @@ switch ($action) {
             $moi->setNoiDung($nguoidung_dg);
             $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
             $moi->setMaKM($_POST["MaKM"]);
-            $moi->setTraLoi(null);
             $moi->setNgayDG($ngaydg);
 
             // Thêm đánh giá mới vào cơ sở dữ liệu
@@ -235,9 +239,28 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $khuyenmai = $km->laydanhsachkhuyenmai();
+        $loaisim = $ls->laydanhsachloaisim();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         include("blog-detail.php");
         break;
-
+    case "traloidanhgia":
+        $moi = new TRALOIDANHGIA();
+        $ngaytl = date("Y-m-d");
+        $moi->setTraLoi($_POST["traloi"]);
+        $moi->setMaDG($_POST["MaDG"]);
+        $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
+        $moi->setNgayTL($ngaytl);
+        // thêm
+        $tl->themtraloidanhgia($moi);
+        // load 
+        $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        $loaisim = $ls->laydanhsachloaisim();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        include("blog-detail.php");
+        break;
     default:
         break;
 }
