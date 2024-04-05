@@ -280,7 +280,7 @@
                                                     <div class="small text-gray-500"><?php echo $n['HoTen']; ?></div>
                                                 </div>
                                             </a>
-                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                            <!-- <a class="dropdown-item d-flex align-items-center" href="#">
                                                 <div class="dropdown-list-image mr-3">
                                                     <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                                     <div class="status-indicator"></div>
@@ -290,7 +290,7 @@
                                                         would you like them sent to you?</div>
                                                     <div class="small text-gray-500">Jae Chun · 1d</div>
                                                 </div>
-                                            </a>
+                                            </a> -->
                                 <?php }
                                     endforeach;
                                 endforeach;

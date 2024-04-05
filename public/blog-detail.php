@@ -132,8 +132,8 @@
 							<?php foreach ($danhgia as $dg) :
 								foreach ($nguoidung as $nd) :
 									if ($dg["MaKM"] == $khuyenmai_ht["MaKM"] && $dg["MaND"] == $nd["MaND"]) : ?>
-										<div style="margin-top: 20px;" class="rounded-3 border border-dashed border-gray-300 w-100 p-7 p-lg-10 mb-10">
-											<div class="w-100 d-flex align-items-center justify-content-between mb-5">
+										<div style="margin-top: 20px; padding:30px; border:0.5px dashed #E1E3EA;" class="rounded-3  border-gray-300 w-100 p-7 p-lg-10 mb-10">
+											<div class="w-100 d-flex align-items-center justify-content-between mb-3">
 												<div class="d-flex align-items-center">
 													<!--begin::Author-->
 													<div class="symbol symbol-35px me-3">
@@ -163,7 +163,7 @@
 													<!--end::Info-->
 												</div>
 												<div class="m-0">
-													<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7 me-2" data-kt-action="reply">Reply</button>
+													<button class="btn p-0 text-gray-600 fw-semibold cursor-pointer fs-7 me-2" data-kt-action="reply">Trả lời</button>
 												</div>
 											</div>
 											<p class="fw-normal fs-base text-gray-700 m-0 p-0" data-kt-element="comment-text" data-kt-original-text="Code tải về không giống demo">
