@@ -11,7 +11,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 		</a>
 
 		<span class="stext-109 cl4">
-			sim
+			gói cước
 		</span>
 	</div>
 </div>
@@ -268,63 +268,13 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					</h3>
 				</div>
 
-				<!-- Tab02 -->
-				<div class="tab01">
-					<!-- Nav tabs -->
-					<ul class="nav nav-tabs" role="tablist">
-						<?php foreach ($loaigoicuoc as $lgc) : ?>
-							<li class="nav-item p-b-10">
-								<a id="<?php echo $lgc['MaLGC'] ?>_tab" class="nav-link <?php if (strpos($_SERVER["REQUEST_URI"], $lgc['MaLGC']) !== false || $lgc['MaLGC'] == 2) echo "active"; ?>" data-toggle="tab" href="#<?php echo $lgc['MaLGC'] ?>" role="tab"><?php echo $lgc['TenLGC'] ?></a>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-
-					<!-- Tab content -->
-					<div class="tab-content p-t-50">
-						<?php foreach ($loaigoicuoc as $lgc) : ?>
-							<div class="tab-pane fade <?php if (strpos($_SERVER["REQUEST_URI"], $lgc['MaLGC']) !== false || $lgc['MaLGC'] == 2) echo "show active"; ?>" id="<?php echo $lgc['MaLGC'] ?>" role="tabpanel">
-								<?php foreach ($goicuoc as $gc) : ?>
-									<?php if ($gc["MaLGC"] == $lgc["MaLGC"]) : ?>
-										<div class="wrap-slick2">
-											<div class="slick2">
-												<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-													<!-- Block2 -->
-													<div class="block2">
-														<div class="block2-pic hov-img0">
-															<img src="images/product-03.jpg" alt="IMG-PRODUCT">
-															<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-																Quick View
-															</a>
-														</div>
-														<div class="block2-txt flex-w flex-t p-t-14">
-															<div class="block2-txt-child1 flex-col-l ">
-																<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-																	<?php echo $gc["Ten"] ?>
-																</a>
-																<span class="stext-105 cl3">
-																	<?php echo $gc["Gia"] ?>
-																</span>
-															</div>
-															<div class="block2-txt-child2 flex-r p-t-3">
-																<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-																	<?php echo mb_substr($gc["MoTa"], 0, 100) . "..."; ?>
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									<?php endif; ?>
-								<?php endforeach; ?>
-							</div>
-						<?php endforeach; ?>
-					</div>
-				</div>
+				
+				<!-- Hiện gói  cước -->
 				<div class="row">
 					<?php foreach ($goicuoc as $gc) : ?>
 						<div class="card" style="width: 18rem;">
 							<div class="block2-pic hov-img0">
+								<h5 class="card-title"><?php echo $gc["Ten"] ?></h5>
 								<img class="card-img-top" src="../img/goicuoc/gc.png" alt="img">
 								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 									Quick View
@@ -332,7 +282,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 							</div>
 
 							<div class="card-body">
-								<h5 class="card-title"><?php echo $gc["Gia"] ?></h5>
+								<h5 class="card-title"><?php echo $gc["Ten"] ?></h5>
 								<p><?php echo $gc["Gia"] ?></p>
 								<p class="card-text">
 									<?php echo mb_substr($gc["MoTa"], 0, 100) . "..."; ?>

@@ -5,7 +5,7 @@
     <title>Trang Chủ</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../../img/logo/favicon.png" />
+    <link rel="icon" href="../img/logo/favicon.png" />
 
     <!--===================================link CSS============================================================-->
     <!-- <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css"> wamp\www\WebBanSimViettel\public\assets-->
@@ -55,7 +55,7 @@
 
                     <!-- Logo desktop -->
                     <a href="#" class="navbar-brand">
-                        <img class="mx-auto d-block" src="../img/logo/logo_home_new.png" width="100" height="40" alt="LogoViettel">
+                        <img class="mx-auto d-block" src="../img/logo/theo.png" width="150" height="100" alt="LogoViettel">
                     </a>
 
                     <!-- Menu desktop -->
