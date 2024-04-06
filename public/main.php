@@ -28,19 +28,22 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 									<div class="block2-pic hov-img0">
 										<img class="card-img-top" src="../img/goicuoc/gc.png" alt="img">
 
-										<a href="index.php?action=xemchitiet&id=<?php echo $gc['MaGC'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+										<a href="index.php?action=chitietgoicuoc&id=<?php echo $gc['MaGC'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 "> <!--js-show-modal1-->
 											Xem chi tiết
 										</a>
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
 										<div class="block2-txt-child1 flex-col-l ">
-											<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+											<a href="product-detail.html" class="text-decoration-none stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 												<?php echo $gc["Ten"] ?>
 											</a>
 
 											<span class="stext-105 cl3">
-												<?php echo $gc["Gia"] ?>
+												<?php echo number_format($gc["Gia"]); ?>
+											</span>
+											<span class="stext-105 cl3">
+												<?php echo mb_substr($gc["MoTa"], 0, 30) . "..."; ?>
 											</span>
 										</div>
 
@@ -50,6 +53,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 												<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
 											</a>
 										</div>
+										<a class="btn js-show-modal1">Đăng ký</a>
 									</div>
 								</div>
 							</div>
@@ -58,9 +62,10 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 				</div>
 			</div>
 		</div>
-		<!-- Tab content <php echo mb_substr($gc["MoTa"], 0, 30) . "..."; ?>-->
+		<!-- Tab content -->
 	</div>
 </section>
+
 <!-- Blog -->
 <?php include("inc/blog.php") ?>
 

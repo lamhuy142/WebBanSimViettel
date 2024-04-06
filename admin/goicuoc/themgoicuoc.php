@@ -17,14 +17,24 @@
                         <div class="invalid-feedback">Vui lòng điền tên gói cước.</div>
                     </div>
                     <div class="col md-3 mt-3">
-                        <label for="txtdungluong" class="form-label">Dung lượng</label>
-                        <input class="form-control" type="number" name="txtdungluong" required>
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Hãy nhập dung lượng gói cước.</div>
+                        <label for="optloaigc" class="form-label">Loại gói cước</label>
+                        <select class="form-control form-select" required name="optloaigc">
+                            <option value="">Chọn loại gói cước</option>
+                            <?php foreach ($loai as $l) : ?>
+                                <option value="<?php echo $l['MaLGC']; ?>"><?php echo $l['TenLGC']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback">Vui lòng chọn loại gói cước.</div>
                     </div>
                     <div class="col md-3 mt-3">
-                        <label for="txtthoigianhieuluc" class="form-label">Thời gian hiệu lực</label>
-                        <input class="form-control" type="text" name="txtthoigianhieuluc" required>
+                        <label for="txtgiatrikm" class="form-label">Giá trị khuyến mãi</label>
+                        <input class="form-control" type="number" name="txtgiatrikm" required>
+                        <div class="valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Hãy nhập giá trị khuyến mãi.</div>
+                    </div>
+                    <div class="col md-3 mt-3">
+                        <label for="txtthoihan" class="form-label">Thời hạn</label>
+                        <input class="form-control" type="text" name="txtthoihan" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập thời hạn của gói cước.</div>
                     </div>

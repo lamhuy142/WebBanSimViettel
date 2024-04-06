@@ -61,6 +61,8 @@ switch ($action) {
                 $thuebao = $s->laydanhsachloaithuebao();
                 $loaisim = $ls->laydanhsachloaisim();
                 $khuyenmai = $km->laydanhsachkhuyenmai();
+                $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+                $goicuoc = $gc->laydanhsachgoicuoc();
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 0) {
                 $thongbao = "Tài khoản đã bị khóa";
@@ -151,6 +153,8 @@ switch ($action) {
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
         include("main.php");
         break;
     case "macdinh":
@@ -176,6 +180,8 @@ switch ($action) {
             $thuebao = $s->laydanhsachloaithuebao();
             $loaisim = $ls->laydanhsachloaisim();
             $khuyenmai = $km->laydanhsachkhuyenmai();
+            $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+            $goicuoc = $gc->laydanhsachgoicuoc();
             include("main.php");
         }
         break;
@@ -193,8 +199,8 @@ switch ($action) {
         include("sim.php");
         break;
     case "goicuoc":
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
         $loaisim = $ls->laydanhsachloaisim();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();
         include("goicuoc.php");
         break;
@@ -272,6 +278,14 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         include("blog-detail.php");
+        break;
+    case "chitietgoicuoc":
+        if(isset($_GET["id"])){
+            $goicuoc_ht = $gc->laygoicuoctheoid($_GET["id"]);
+            $loaisim = $ls->laydanhsachloaisim();
+            include("chitietgoicuoc.php");
+        }
+        include("chitietgoicuoc.php");
         break;
     default:
         break;

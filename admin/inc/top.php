@@ -59,7 +59,7 @@
 
             <!-- Sidebar - Brand -->
             <a href="#" class="navbar-brand">
-                <img class="mx-auto d-block" src="../../img/logo/logo_home_new.png" width="100" height="40" alt="LogoViettel">
+                <img class="mx-auto d-block" src="../../img/logo/theo.png" width="150" height="70" alt="LogoViettel">
             </a>
 
             <!-- Divider -->

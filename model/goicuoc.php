@@ -87,7 +87,7 @@ class GOICUOC
     //         exit();
     //     }
     // }
-    public function laydanhsachgoicuoctheoid($MaGC)
+    public function laygoicuoctheoid($MaGC)
     {
         $dbcon = DATABASE::connect();
         try {
@@ -140,18 +140,19 @@ class GOICUOC
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO goicuoc(MaLGC, Ten, MoTa, Gia, GiaTriKM, ThoiHan) 
-VALUES(:MaLGC, :Ten, :MoTa, :Gia, :GiaTiKM, :ThoiHan)";
+            $sql = "INSERT INTO goicuoc(MaLGC, Ten, MoTa, Gia, GiaTriKM, ThoiHan) VALUES(:MaLGC, :Ten, :MoTa, :Gia, :GiaTriKM, :ThoiHan)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaLGC', $goicuoc->MaLGC);
             $cmd->bindValue(':Ten', $goicuoc->Ten);
             $cmd->bindValue(':MoTa', $goicuoc->MoTa);
             $cmd->bindValue(':ThoiHan', $goicuoc->ThoiHan);
             $cmd->bindValue(':Gia', $goicuoc->Gia);
-            $cmd->bindValue(':GiaTriKM', $goicuoc->Gia);
-            $cmd->execute();
+            $cmd->bindValue(':GiaTriKM', $goicuoc->GiaTriKM);
+            
             $result = $cmd->execute();
+
             return $result;
+            
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
