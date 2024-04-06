@@ -268,26 +268,28 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					</h3>
 				</div>
 
-				
+
 				<!-- Hiện gói  cước -->
-				<div class="row">
+				<div style="column-gap: 1rem; column-count: 4;" class="card-columns">
 					<?php foreach ($goicuoc as $gc) : ?>
-						<div class="card" style="width: 18rem;">
+						<div style="margin-bottom: 1rem; " class="card mr-2 mb-2" style="width: 18rem;">
 							<div class="block2-pic hov-img0">
-								<h5 class="card-title"><?php echo $gc["Ten"] ?></h5>
+								<!-- <h5 class="card-title"><php echo $gc["Ten"] ?></h5> -->
 								<img class="card-img-top" src="../img/goicuoc/gc.png" alt="img">
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									Quick View
+								<a href="index.php?action=chitietgoicuoc&id=<?php echo $gc['MaGC'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 "> <!--js-show-modal1-->
+									Xem chi tiết
 								</a>
 							</div>
 
 							<div class="card-body">
 								<h5 class="card-title"><?php echo $gc["Ten"] ?></h5>
-								<p><?php echo $gc["Gia"] ?></p>
+								<p><?php echo number_format($gc["Gia"]); ?>đ</p>
 								<p class="card-text">
-									<?php echo mb_substr($gc["MoTa"], 0, 100) . "..."; ?>
+									<span class="stext-105 cl3">
+										<?php echo mb_substr($gc["MoTa"], 0, 30) . "..."; ?>
+									</span>
 								</p>
-								<a href="#" class="btn btn-primary">Đăng ký</a>
+								<a style="background-color:white; " class="border rounded btn js-show-modal1">Đăng ký</a>
 							</div>
 						</div>
 					<?php endforeach; ?>
