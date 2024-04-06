@@ -151,21 +151,21 @@ VALUES(:TenLS, :MaGC, :GiaGoc, :GiaBan, :LuotMua)";
     //         exit();
     //     }
     // }
-    // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($TenLS, $TrangThai)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenLS=:TenLS";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':TenLS', $TenLS);
-    //         $cmd->bindValue(':TrangThai', $TrangThai);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    // Đổi trạng thái (0 khóa, 1 kích hoạt)
+    public function doitrangthai($MaLS, $TrangThai)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE loaisim set TrangThai=:TrangThai where MaLS=:MaLS";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaLS', $MaLS);
+            $cmd->bindValue(':TrangThai', $TrangThai);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

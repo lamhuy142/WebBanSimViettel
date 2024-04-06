@@ -9,6 +9,7 @@ require("../model/goicuoc.php");
 require("../model/loaigoicuoc.php");
 require("../model/danhgia.php");
 require("../model/traloidanhgia.php");
+require("../model/giohang_ct.php");
 
 
 
@@ -33,8 +34,82 @@ $dg = new DANHGIA();
 $gc = new GOICUOC();
 $lgc = new LOAIGOICUOC();
 $tl = new TRALOIDANHGIA();
+$gh = new GIOHANG_CT();
 
 switch ($action) {
+    case "macdinh":
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        include("main.php");
+        break;
+    case "khuyenmai":
+        $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        $loaisim = $ls->laydanhsachloaisim();
+        include("blog.php");
+        break;
+    case "sim":
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        include("sim.php");
+        break;
+    case "goicuoc":
+        $loaisim = $ls->laydanhsachloaisim();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        include("goicuoc.php");
+        break;
+    case "thongtin":
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        include("about.php");
+        break;
+    case "lienhe":
+        $loaisim = $ls->laydanhsachloaisim();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        include("contact.php");
+        break;
+    case "themvaogio":
+        $moi = new GIOHANG_CT();
+        $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
+        $moi->setMaS($_GET["MaSim"]);
+        $moi->setSL(1);
+        $moi->setDonGia($_GET["DonGia"]);
+
+        $gh->themgiohang_ct($moi);
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        include("main.php");
+        break;
+    case "xemgiohang":
+        $loaisim = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        $giohang = $gh->laydanhsachgiohang_ct();
+        include("shoping-cart.php");
+        break;
+    case "hoantatthanhtoan":
+        // xóa giỏ hàng
+        $loaisim = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        $giohang = $gh->laydanhsachgiohang_ct();
+        include("shoping-cart.php");
+        break;
     case "dangnhap":
         include("login.php");
         break;
@@ -157,15 +232,7 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         include("main.php");
         break;
-    case "macdinh":
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        $sim = $s->laydanhsachsim();
-        $thuebao = $s->laydanhsachloaithuebao();
-        $loaisim = $ls->laydanhsachloaisim();
-        $khuyenmai = $km->laydanhsachkhuyenmai();
-        include("main.php");
-        break;
+
     case "detail":
         if (isset($_GET["id"])) {
             $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
@@ -185,25 +252,7 @@ switch ($action) {
             include("main.php");
         }
         break;
-    case "khuyenmai":
-        $danhgia = $dg->laydanhsachdanhgia();
-        $nguoidung = $nd->laydanhsachnguoidung();
-        $khuyenmai = $km->laydanhsachkhuyenmai();
-        $loaisim = $ls->laydanhsachloaisim();
-        include("blog.php");
-        break;
-    case "bansim":
-        $sim = $s->laydanhsachsim();
-        $thuebao = $s->laydanhsachloaithuebao();
-        $loaisim = $ls->laydanhsachloaisim();
-        include("sim.php");
-        break;
-    case "goicuoc":
-        $loaisim = $ls->laydanhsachloaisim();
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        include("goicuoc.php");
-        break;
+
         // case "danhgia":
         //     if(isset($_POST["danhgia"]) && !empty($_POST["danhgia"])){
         //         echo $_POST["danhgia"];
@@ -280,7 +329,7 @@ switch ($action) {
         include("blog-detail.php");
         break;
     case "chitietgoicuoc":
-        if(isset($_GET["id"])){
+        if (isset($_GET["id"])) {
             $goicuoc_ht = $gc->laygoicuoctheoid($_GET["id"]);
             $loaisim = $ls->laydanhsachloaisim();
             include("chitietgoicuoc.php");

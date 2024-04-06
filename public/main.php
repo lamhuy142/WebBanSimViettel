@@ -7,7 +7,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 ?>
 
 
-
+<!-- GÓI CƯỚC  -->
 <!-- <div class="tab-content p-t-50">
 			
 			<div class="tab-pane fade show active" id="best-seller" role="tabpanel">
@@ -56,11 +56,13 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 			</div>
 		</div>
 		Tab content -->
+<!-- ======================================= -->
+
 <!-- Hiện gói  cước -->
 <!-- Goi cuoc -->
 <section class="sec-product bg0 p-t-100 p-b-50">
 	<div class="container">
-		<?php foreach ($loaigoicuoc as $lgc) : 
+		<?php foreach ($loaigoicuoc as $lgc) :
 			$i = 0; ?>
 			<div class="heading_container heading_center p-4">
 				<h2 class="">
@@ -69,7 +71,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 			</div>
 			<div class="row">
 				<?php foreach ($goicuoc as $gc) :
-					if ($lgc["MaLGC"] == $gc["MaLGC"] && $i < 4 ) { 
+					if ($lgc["MaLGC"] == $gc["MaLGC"] && $i < 4) {
 						$i++; ?>
 						<div class="col-sm-6 col-md-4 col-lg-3 mb-4"> <!--Thêm lớp mb-4 để tạo khoảng cách giữa các card-->
 							<div class="card">
@@ -95,8 +97,69 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 				endforeach; ?>
 			</div>
 		<?php endforeach; ?>
+		<div class="btn-box">
+			<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=goicuoc">
+				Xem Tất Cả
+			</a>
+		</div>
 	</div>
 </section>
+
+<section>
+	<div class="container">
+		<div class="heading_container heading_center p-4">
+			<div class="row align-items-center">
+				<div class="col">
+					<h2 class="">
+						<a class="text-decoration-none text-muted" href="">Sim Số</a>
+					</h2>
+					<div class="row mb-10">
+						<div class="col-1">
+							<a style="color:#979797;" id="active-mmenu" href="">Trả trước</a>
+						</div>
+						<div class="col-1">
+							<a style="color:#979797;" class="" href="">Trả sau</a>
+						</div>
+					</div>
+					<table class="table">
+						<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
+							<tr>
+								<th scope="col">STT</th>
+								<th scope="col">Sim Số</th>
+								<th scope="col">Giá Sim</th>
+								<th scope="col">Chọn Mua</th>
+							</tr>
+						</thead>
+						<?php
+						foreach ($sim as $s) :
+							foreach ($loaisim as $ls) :
+								if ($ls["MaLS"] == $s["MaLS"]) {
+						?>
+									<tbody>
+										<tr class="table-hover-bg-factor">
+											<td scope="row"><?php echo $s['MaSim'] ?></td>
+											<td><?php echo $s['SoSim'] ?></td>
+											<td><?php echo number_format($ls['GiaBan']);  ?></td>
+											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $ls['GiaBan'] ?>">Chọn Mua</a></td>
+										</tr>
+									</tbody>
+						<?php
+								}
+							endforeach;
+						endforeach;
+						?>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="btn-box d-flex justify-content-end mt-3">
+			<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=bansim">
+				Xem Tất Cả
+			</a>
+		</div>
+	</div>
+</section>
+
 
 
 <!-- Blog -->

@@ -1,3 +1,13 @@
+<?php
+$giohang = $gh->laydanhsachgiohang_ct();
+//đếm tổng giỏ hàng
+$tong_gh = 0;
+foreach ($giohang as $g) :
+    if ($g["MaND"] == $_SESSION["nguoidung"]["MaND"]) {
+        $tong_gh = $tong_gh + 1;
+    }
+endforeach;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +76,7 @@
                             </li>
 
                             <li class=" text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "bansim") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=bansim">Sim</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "sim") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=sim">Sim</a>
                             </li>
 
                             <li class=" text-active">
@@ -78,11 +88,11 @@
                             </li>
 
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "about") !== false ? 'active-mmenu' : ''; ?>" href="about.php">Thông Tin</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "thongtin") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=thongtin">Thông Tin</a>
                             </li>
 
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "contact") !== false ? 'active-mmenu' : ''; ?>" href="contact.php">Liên Hệ</a>
+                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "lienhe") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=lienhe">Liên Hệ</a>
                             </li>
                         </ul>
                     </div>
@@ -102,21 +112,27 @@
                         </div>
 
                         <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
-                                <i style="color: #576C8F;" class="zmdi zmdi-shopping-cart"></i>
+                            <div class="icon-header-item cl2 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo $tong_gh ?>">
+                                <i style="color: #EF0033;" class="zmdi zmdi-shopping-cart"></i>
                             </div>
                         </div>
                         <?php if (isset($_SESSION["nguoidung"]) && !empty($_SESSION["nguoidung"]["HoTen"])) { ?>
                             <nav class="navbar navbar-expand-lg text-decoration-none ">
                                 <div class="dropdown">
                                     <button style="color: #44494D;" class=" dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Xin chào, <?php echo $_SESSION['nguoidung']['HoTen']; ?>
+                                        Xin chào, <?php echo mb_substr($_SESSION['nguoidung']['HoTen'], 0, 10) . "..."; ?>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                         <li>
                                             <button style="background-color: #FFFFFF;" class="dropdown-item " type="button">
                                                 <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=hoso&id=<?php echo $_SESSION['nguoidung']['MaND']; ?>">
                                                     Hồ sơ người dùng
+                                                </a>
+                                            </button>
+                                        </li>
+                                        <li><button style="background-color: #FFFFFF;" class="dropdown-item" type="button">
+                                                <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=xemdonhang">
+                                                    Đơn hàng đã mua
                                                 </a>
                                             </button>
                                         </li>
@@ -165,7 +181,7 @@
                 </div>
 
                 <div class="flex-c-m h-full p-lr-10 bor5">
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo $tong_gh ?>">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
                 </div>
@@ -380,12 +396,12 @@
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">
-                        <a href="shoping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                            View Cart
+                        <a href="index.php?action=xemgiohang" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                            Xem giỏ hàng
                         </a>
 
                         <a href="shoping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                            Check Out
+                            Thanh toán
                         </a>
                     </div>
                 </div>

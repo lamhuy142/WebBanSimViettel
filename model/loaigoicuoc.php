@@ -74,11 +74,10 @@ class LOAIGOICUOC
         $db = DATABASE::connect();
         try {
             $sql = "INSERT INTO loaigoicuoc(TenLGC, TrangThai) 
-VALUES(:TenLGC)";
+VALUES(:TenLGC, :TrangThai)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':TenLGC', $loaigoicuoc->TenLGC);
             $cmd->bindValue(':TrangThai', $loaigoicuoc->TrangThai);
-            $cmd->execute();
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -89,13 +88,13 @@ VALUES(:TenLGC)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatloaigoicuoc($MaLGC)
+    public function sualoaigoicuoc($MaLGC)
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE loaigoicuoc set TenLGC=:TenLGC, TrangThai=:TrangThai  where MaLGC=MaLGC";
+            $sql = "UPDATE loaigoicuoc set TenLGC=:TenLGC, TrangThai=:TrangThai  where MaLGC=:MaLGC";
             $cmd = $db->prepare($sql);
-            $cmd->bindValue('MaLGC', $MaLGC->MaLGC);
+            $cmd->bindValue(':MaLGC', $MaLGC->MaLGC);
             $cmd->bindValue(':TenLGC', $MaLGC->TenLGC);
             $cmd->bindValue(':TrangThai', $MaLGC->TrangThai);
             $ketqua = $cmd->execute();
@@ -123,21 +122,22 @@ VALUES(:TenLGC)";
     //         exit();
     //     }
     // }
-    // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($TenLGC, $TrangThai)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where TenLGC=:TenLGC";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':TenLGC', $TenLGC);
-    //         $cmd->bindValue(':TrangThai', $TrangThai);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    // Đổi trạng thái (0 khóa, 1 kích hoạt)
+    public function doitrangthai($MaLGC, $TrangThai)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE loaigoicuoc set TrangThai=:TrangThai where MaLGC=:MaLGC";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaLGC', $MaLGC);
+            $cmd->bindValue(':TrangThai', $TrangThai);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    
 }

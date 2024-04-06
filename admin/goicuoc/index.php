@@ -96,7 +96,7 @@ switch ($action) {
         }
         include("goicuoc.php");
         break;
-    case "khoa":
+    case "khoalgc":
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
         if (isset($_REQUEST["TrangThai"]))
@@ -105,14 +105,13 @@ switch ($action) {
             $trangthai = "1";
         if ($trangthai == "1") {
             $trangthai = 0;
-            $s->doitrangthai($id, $trangthai);
+            $l->doitrangthai($id, $trangthai);
         } else {
             $trangthai = 1;
-            $s->doitrangthai($id, $trangthai);
+            $l->doitrangthai($id, $trangthai);
         }
         // load danh sách
-        $loai = $ls->laydanhsachloaisim();
-        $sim = $s->laydanhsachsim();
+        $loai = $l->laydanhsachloaigoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
@@ -122,10 +121,10 @@ switch ($action) {
                 $luotdg = $luotdg + 1;
             }
         }
-        include("sim.php");
+        include("loaigoicuoc.php");
         
         break;
-    case "themls":
+    case "themlgc":
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
@@ -136,9 +135,9 @@ switch ($action) {
                 $luotdg = $luotdg + 1;
             }
         }
-        include("themloaisim.php");
+        include("themloaigoicuoc.php");
         break;
-    case "xulythemls":
+    case "xulythemlgc":
         
         // $SoSim = $_POST["txtsosim"];
         // $DungLuong = $_POST["txtdungluong"];
@@ -146,17 +145,14 @@ switch ($action) {
         // $GiaGoc = $_POST["txtgiagoc"];
         // $GiaBan = $_POST["txtgiaban"];
         //xử lý thêm mặt hàng
-        $moi = new LOAISIM();
-        $moi->setTenLS($_POST["txttenloaisim"]);
-        $moi->setGiaBan($_POST["giaban"]);
-        $moi->setGiaGoc($_POST["giagoc"]);
-        $moi->setMaGC($_POST["optloaicuoc"]);
-        $moi->setLuotMua($_POST["luotmua"]);
+        $moi = new LOAIGOICUOC();
+        $moi->setTenLGC($_POST["txttenlgc"]);
+        $moi->setTrangThai($_POST["opttrangthai"]);
         // thêm
-        $ls->themloaisim($moi);
+        $l->themloaigoicuoc($moi);
 
         // load sản phẩm
-        $loai = $ls->laydanhsachloaisim();
+        $loai = $l->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
@@ -167,7 +163,7 @@ switch ($action) {
                 $luotdg = $luotdg + 1;
             }
         }
-        include("loaisim.php");
+        include("loaigoicuoc.php");
         break;
     // case "xoa":
     //     $xoa = new SIM();
@@ -265,17 +261,14 @@ switch ($action) {
         break;
     case "xulysualgc": // lưu dữ liệu sửa mới vào db
         // gán dữ liệu từ form
-        $sua = new LOAISIM();
-        $sua->setMaLS($_POST["MaLS"]);
-        $sua->setTenLS($_POST["txttenloaisim"]);
-        $sua->setMaGC($_POST["optloaigoicuoc"]);
-        $sua->setGiaGoc($_POST["txtgiagoc"]);
-        $sua->setGiaBan($_POST["txtgiaban"]);
-        $sua->setLuotMua($_POST["txtluotmua"]);
+        $sua = new LOAIGOICUOC();
+        $sua->setMaLGC($_POST["MaLGC"]);
+        $sua->setTenLGC($_POST["txtten"]);
+        $sua->setTrangThai($_POST["opttrangthai"]);
         // sửa
-        $ls->sualoaisim($sua);
+        $l->sualoaigoicuoc($sua);
         // load danh sách
-        $loai = $ls->laydanhsachloaisim();
+        $loai = $l->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
@@ -286,7 +279,7 @@ switch ($action) {
                 $luotdg = $luotdg + 1;
             }
         }
-        include("loaisim.php");
+        include("loaigoicuoc.php");
         break;
     default:
         break;

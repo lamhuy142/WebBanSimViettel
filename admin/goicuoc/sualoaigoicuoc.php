@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <form class="was-validated" method="post" action="index.php" enctype="multipart/form-data">
-                <input type="hidden" name="action" value="xulysuagc">
+                <input type="hidden" name="action" value="xulysualgc">
                 <input type="hidden" name="MaLGC" value="<?php echo $loaigoicuoc_ht["MaLGC"]; ?>">
                 <div class="row g-3">
                     <div class="col my-3">
@@ -22,15 +22,17 @@
                             <option value="">Chọn trạng thái</option>
                             <?php if ($loaigoicuoc_ht["TrangThai"] == 0) { ?>
                                 <option value="<?php echo $loaigoicuoc_ht["TrangThai"] ?>" <?php echo "selected"; ?>>Tắt</option>
+                                <option value="1">Bật</option>
                             <?php } else { ?>
                                 <option value="<?php echo $loaigoicuoc_ht["TrangThai"] ?>" <?php echo "selected"; ?>>Bật</option>
+                                <option value="0">Tắt</option>
                             <?php } ?>
                         </select>
                     </div>
                 </div>
                 </br>
                 <div class="my-3">
-                    <a href="index.php?action=sim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
+                    <a href="index.php?action=loaigoicuoc" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input class="btn btn-primary" type="submit" value="Lưu">
                     <input class="btn btn-warning" type="reset" value="Hủy">
                 </div>

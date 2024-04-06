@@ -324,7 +324,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
 											<td><?php echo number_format($l['GiaBan']);  ?></td>
-											<td><a style="background-color: #EF0033; color: white;" class="btn" href="">Mua Ngay</a></td>
+											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio">Chọn Mua</a></td>
 										</tr>
 									</tbody>
 							<?php

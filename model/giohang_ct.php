@@ -3,7 +3,7 @@ class GIOHANG_CT
 {
     private $MaGH;
     private $MaND;
-    private $MaLS;
+    private $MaS;
     private $SL;
     private $DonGia;
     
@@ -15,13 +15,13 @@ class GIOHANG_CT
     {
         $this->MaGH = $value;
     }
-    public function getMaLS()
+    public function getMaS()
     {
-        return $this->MaLS;
+        return $this->MaS;
     }
-    public function setMaLS($value)
+    public function setMaS($value)
     {
-        $this->MaLS = $value;
+        $this->MaS = $value;
     }
     public function getDonGia()
     {
@@ -50,24 +50,7 @@ class GIOHANG_CT
     // khai báo các thuộc tính (SV tự viết)
 
 
-    // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    
 
     // lấy tất cả ng dùng
     public function laydanhsachgiohang_ct()
@@ -91,15 +74,14 @@ class GIOHANG_CT
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO giohang_ct(MaGH, MaND, MaLS, SL, DonGia) 
-VALUES(:MaGH, :MaLS, :SL, :DonGia)";
+            $sql = "INSERT INTO giohang_ct(MaGH, MaND, MaS, SL, DonGia) 
+VALUES(:MaGH,:MaND, :MaS, :SL, :DonGia)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaGH', $giohang_ct->MaGH);
             $cmd->bindValue(':MaND', $giohang_ct->MaND);
-            $cmd->bindValue(':MaLS', $giohang_ct->MaLS);
+            $cmd->bindValue(':MaS', $giohang_ct->MaS);
             $cmd->bindValue(':SL', $giohang_ct->SL);
             $cmd->bindValue(':DonGia', $giohang_ct->DonGia);
-            $cmd->execute();
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -110,18 +92,33 @@ VALUES(:MaGH, :MaLS, :SL, :DonGia)";
     }
     // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    public function capnhatgiohang_ct($MaGH, $MaLS, $SL, $DonGia, $TongGia) 
+    public function capnhatgiohang_ct($MaGH, $MaS, $SL, $DonGia, $TongGia) 
     {
         $db = DATABASE::connect();
         try {
-            $sql = "UPDATE giohang_ct set MaLS=:MaLS, SL=:SL, DonGia=:DonGia where = MaGH=:MaGH ";
+            $sql = "UPDATE giohang_ct set MaS=:MaS, SL=:SL, DonGia=:DonGia where = MaGH=:MaGH ";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaGH', $MaGH);
-            $cmd->bindValue(':MaLS', $MaLS);
+            $cmd->bindValue(':MaS', $MaS);
             $cmd->bindValue(':SL', $SL);
             $cmd->bindValue(':DonGia', $DonGia);
             $ketqua = $cmd->execute();
             return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function xoagiohang_ct($giohang_ct)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "DELETE FROM giohang_ct WHERE MaND=:MaND";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaND", $giohang_ct->MaND);
+            $result = $cmd->execute();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";

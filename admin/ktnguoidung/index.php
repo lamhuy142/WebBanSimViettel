@@ -183,10 +183,11 @@ switch ($action) {
                         $tongdt_namht += $d["TongTien"];
                     }
                 }
+                $traloidanhgia = $tl->laydanhsachtraloidanhgia();
                 // Đánh giá chưa được phản hồi 
                 $luotdg = 0;
-                foreach ($danhgia as $dg) {
-                    if ($dg["TraLoi"] == null) {
+                foreach ($traloidanhgia as $tl) {
+                    if ($tl["TraLoi"] == null) {
                         $luotdg = $luotdg + 1;
                     }
                 }

@@ -1,7 +1,7 @@
 <?php include("inc/top.php") ?>
 
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-02.jpg');">
+<section class="bg-img1 txt-center p-lr-15 p-tb-5" style="background-image: url('images/bg-02.jpg');">
 	<h2 class="ltext-105 cl0 txt-center">
 		Blog
 	</h2>
@@ -71,7 +71,7 @@
 											</span>
 
 											<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-												Continue Reading
+												Xem bài viết
 
 												<i class="fa fa-long-arrow-right m-l-9"></i>
 											</a>
