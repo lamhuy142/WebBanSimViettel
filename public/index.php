@@ -186,18 +186,6 @@ switch ($action) {
         $khuyenmai = $km->laydanhsachkhuyenmai();
         include("main.php");
         break;
-
-        // //lập đơn hàng và đơn hàng chi tiết
-        // //tính tổng tiền 
-
-
-
-
-        // $loaisim = $ls->laydanhsachloaisim();
-        // $sim = $s->laydanhsachsim();
-        // $giohang = $gh->laydanhsachgiohang_ct();
-        // include("shoping-cart.php");
-        // break;
     case "dangnhap":
         include("login.php");
         break;
@@ -340,39 +328,6 @@ switch ($action) {
             include("main.php");
         }
         break;
-
-        // case "danhgia":
-        //     if(isset($_POST["danhgia"]) && !empty($_POST["danhgia"])){
-        //         echo $_POST["danhgia"];
-        //         exit();
-        //         $nguoidung_dg = $_POST["danhgia"];
-        //         $moi = new DANHGIA();
-        //         $moi->setNoiDung($nguoidung_dg);
-        //         $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
-        //         $moi->setMaKM($_POST["MaKM"]);
-        //         $moi->setTraLoi(null);
-
-        //         $km->themkhuyenmai($moi);
-        //         $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
-        //         $danhgia = $dg->laydanhsachdanhgia();
-        //         $nguoidung = $nd->laydanhsachnguoidung();
-        //         $khuyenmai = $km->laydanhsachkhuyenmai();
-        //         include("blog-detail.php");
-        //     }else{
-        //         echo "không có đánh giá nào";
-        //         exit();
-        //         $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
-        //         $danhgia = $dg->laydanhsachdanhgia();
-        //         $nguoidung = $nd->laydanhsachnguoidung();
-        //         $khuyenmai = $km->laydanhsachkhuyenmai();
-        //         include("blog-detail.php");
-        //     }
-        //     $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
-        //     $danhgia = $dg->laydanhsachdanhgia();
-        //     $nguoidung = $nd->laydanhsachnguoidung();
-        //     $khuyenmai = $km->laydanhsachkhuyenmai();
-        //     include("blog-detail.php");
-        //     break;
     case "danhgia":
         if (isset($_POST["danhgia"]) && !empty($_POST["danhgia"])) {
             $nguoidung_dg = $_POST["danhgia"];
@@ -423,6 +378,78 @@ switch ($action) {
             include("chitietgoicuoc.php");
         }
         include("chitietgoicuoc.php");
+        break;
+    case "hoso":
+        // $id = $_SESSION["nguoidung"]["id"];
+        // $sogio = $gh->demgiohang($id);
+        include("hoso.php");
+        break;
+    case "xlhoso":
+        $sua = new NGUOIDUNG();
+        $id = $_POST["txtid"];
+        $email = $_POST["txtemail"];
+        $sdt = $_POST["txtsdt"];
+        $tennd = $_POST["txttennd"];
+        $hinhanh = $_POST["txthinhanh"];
+        $diachi = $_POST["txtdiachi"];
+
+        // if ($_FILES["fhinhanh"]["name"] != null) {
+        //     $hinhanh = basename($_FILES["fhinhanh"]["name"]);
+        //     $duongdan = "../img/user/" . $hinhanh;
+        //     move_uploaded_file($_FILES["fhinhanh"]["tmp_name"], $duongdan);
+        // }
+
+        // $nd->capnhatnguoidung($id, $email, $sdt, $tennd, $hinhanh, $diachi);
+        // $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
+        // $giohang = laygiohang();
+        include("profile.php");
+        break;
+    case "xemdonhang":
+        $loaisim = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
+        $donhang = $dh->laydanhsachdonhang();
+        $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
+        include("donhang.php");
+        break;
+    case "hoantat":
+
+        if (isset($_REQUEST["id"]))
+        $id = $_REQUEST["id"];
+        if (isset($_REQUEST["TrangThai"]))
+        $tinhtrang = $_REQUEST["TrangThai"];
+        else
+            $tinhtrang = "1";
+        if ($tinhtrang == "1") {
+            $tinhtrang = 2;
+            $dh->doitrangthai($id, $tinhtrang);
+        }
+        //cập nhật thời gian giao hàng khi nhấn nút hoàn tất
+        $donhanght = new DONHANG();
+        $currentDateTime = date('Y-m-d H:i:s');
+        $dh->capnhatngaygiaohang($id, $currentDateTime);
+
+        // load hóa đơn
+        $loaisim = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
+        $donhang = $dh->laydanhsachdonhang();
+        $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
+        include("donhang.php");
+        break;
+    case "huydon":
+        if (isset($_REQUEST["id"]))
+            $id = $_REQUEST["id"];
+        if (isset($_REQUEST["tinhtrang"]))
+        $tinhtrang = $_REQUEST["tinhtrang"];
+        else
+            $tinhtrang = "1";
+        $tinhtrang = 3;
+        $dh->doitrangthai($id, $tinhtrang);
+        // load hóa đơn
+        $loaisim = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
+        $donhang = $dh->laydanhsachdonhang();
+        $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
+        include("donhang.php");
         break;
     default:
         break;

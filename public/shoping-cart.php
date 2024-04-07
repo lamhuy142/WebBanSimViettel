@@ -74,35 +74,6 @@
 					</div> -->
 				</div>
 			</div>
-
-
-
-			<!-- lấy danh sách mã sim -->
-			<?php
-			$mas = array();
-			foreach ($giohang as $gh) :
-				foreach ($sim as $s) :
-					if ($gh["MaS"] == $s["MaSim"]) {
-						$mas[] = $gh["MaS"];
-						$str_mas = implode(",", $mas)
-			?>
-						<input type="hidden" name="MaS" value="<?php echo $str_mas; ?>">
-			<?php	}
-				endforeach;
-			endforeach;
-			?>
-			<!-- lấy danh sách mã giỏ hàng  -->
-			<?php
-			$magh = array();
-			foreach ($giohang as $gh) :
-				if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"]) {
-					$magh[] = $gh["MaGH"];
-					$str_magh = implode(",", $magh)
-			?>
-					<input type="hidden" name="MaGH" value="<?php echo $str_magh; ?>">
-			<?php	}
-			endforeach;
-			?>
 			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 				<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 					<h4 class="mtext-109 cl2 p-b-30">

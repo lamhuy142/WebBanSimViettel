@@ -96,12 +96,12 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 				<?php }
 				endforeach; ?>
 			</div>
+			<div class="btn-box d-flex justify-content-end mt-3">
+				<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=goicuoc">
+					Xem Tất Cả
+				</a>
+			</div>
 		<?php endforeach; ?>
-		<div class="btn-box">
-			<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=goicuoc">
-				Xem Tất Cả
-			</a>
-		</div>
 	</div>
 </section>
 
@@ -133,7 +133,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						<?php
 						foreach ($sim as $s) :
 							foreach ($loaisim as $ls) :
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1)  {
+								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1) {
 						?>
 									<tbody>
 										<tr class="table-hover-bg-factor">
@@ -153,7 +153,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 			</div>
 		</div>
 		<div class="btn-box d-flex justify-content-end mt-3">
-			<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=bansim">
+			<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=sim">
 				Xem Tất Cả
 			</a>
 		</div>
