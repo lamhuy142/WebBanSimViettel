@@ -33,7 +33,7 @@
                     <tbody>
                         <?php foreach ($donhang_ct as $d) :
                             foreach($sim as $s):
-                            if($s["MaSim"] == $d["MaS"]){ ?>
+                            if($s["MaSim"] == $d["MaS"] && $donhang_ht["MaDH"] == $d["MaDH"]){ ?>
                                     <tr>
                                         <td><?php echo $d["MaDH_CT"]; ?></td>
                                         <td><?php echo $d["MaDH"]; ?></td>

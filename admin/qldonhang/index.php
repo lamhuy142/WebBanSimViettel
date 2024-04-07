@@ -47,18 +47,25 @@ switch ($action) {
         include("main.php");
         break;
     case "xemchitiet":
-        $donhang = $dh->laydanhsachdonhang();
-        $donhang_ct = $dct->laydanhsachdonhang_ct();
-        $sim = $s->laydanhsachsim();
-        $danhgia = $dg->laydanhsachdanhgia();
-        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
+        if(isset($_GET["id"])){
+            $madh = $_GET["id"];
+            $donhang_ht= $dh->laydonhangtheoid($madh);
+            $donhang = $dh->laydanhsachdonhang();
+            $donhang_ct = $dct->laydanhsachdonhang_ct();
+            $sim = $s->laydanhsachsim();
+            $danhgia = $dg->laydanhsachdanhgia();
+            $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+    
+            // Đánh giá chưa được phản hồi 
+            $luotdg = 0;
+            foreach ($traloidanhgia as $tl) {
+                if ($tl["TraLoi"] == null) {
+                    $luotdg = $luotdg + 1;
+                }
             }
+            include("chitietdonhang.php");
         }
+        echo "Không có MaDH nào";
         include("chitietdonhang.php");
         break;
     case "khoa":

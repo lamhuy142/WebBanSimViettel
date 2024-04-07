@@ -139,16 +139,16 @@ switch ($action) {
         // lưu chi tiết đơn hàng
         $mas = $gh->laymasimtheond($nguoidung_id);
         foreach ($mas as $ms) :
-            $dongia = $gh->laydongiatheomas($ms);
-            $dhct_moi = new DONHANG_CT();
-            $dhct_moi->setMaDH($dh_id);
-            $dhct_moi->setMaS($ms);
-            $dhct_moi->setDonGia($dongia);
-            $dhct_moi->setSoLuong(1);
-            $dhct_moi->setThanhTien($dongia);
-            $dh_ct->themdonhang_ct($dhct_moi);
-            //đổi trạng thái sim
-            if (isset($ms)) {
+            if (!empty($ms) && isset($ms)) {
+                $dongia = $gh->laydongiatheomas($ms);
+                $dhct_moi = new DONHANG_CT();
+                $dhct_moi->setMaDH($dh_id);
+                $dhct_moi->setMaS($ms);
+                $dhct_moi->setDonGia($dongia);
+                $dhct_moi->setSoLuong(1);
+                $dhct_moi->setThanhTien($dongia);
+                $dh_ct->themdonhang_ct($dhct_moi);
+                //đổi trạng thái sim
                 $trangthai = 1;
                 $s->doitrangthai($ms, $trangthai);
             }
@@ -157,14 +157,17 @@ switch ($action) {
 
         // xóa giỏ hàng
         $giohang_nd = $gh->laygiohangtheond($nguoidung_id);
+        
         if (isset($giohang_nd)) {
             foreach ($giohang_nd as $gh_nd) :
+                // print_r($gh_nd["MaGH"]);
+                // exit();
                 // lấy dòng muốn xóa
                 $xoa = new GIOHANG_CT();
-                $xoa->setMaGH($gh_nd);
+                $xoa->setMaGH($gh_nd["MaGH"]);
                 // xóa
                 $gh->xoagiohang_ct($xoa);
-                
+
             endforeach;
         } else {
             // Xử lý trường hợp không tồn tại MaGH

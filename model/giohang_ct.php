@@ -72,7 +72,7 @@ class GIOHANG_CT
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":MaND", $MaND);
             $cmd->execute();
-            $result = $cmd->fetch();
+            $result = $cmd->fetchAll();
             return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();

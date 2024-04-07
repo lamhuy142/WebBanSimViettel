@@ -89,7 +89,7 @@ class DONHANG
     // }
 
 
-    public function timdonhangtheoid($MaND)
+    public function laydonhangtheoid($MaND)
     {
         $dbcon = DATABASE::connect();
         try {
