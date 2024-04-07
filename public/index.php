@@ -122,7 +122,7 @@ switch ($action) {
     case "luudonhang":
         $nguoidung_id = $_SESSION["nguoidung"]["MaND"];
         // lưu đơn hàng
-        // $dh = new DONHANG();
+
         $ngayhd = date("Y-m-d");
         $tongtien = $gh->tinhtongtientheond($nguoidung_id);
 
@@ -138,8 +138,15 @@ switch ($action) {
 
         // lưu chi tiết đơn hàng
         $mas = $gh->laymasimtheond($nguoidung_id);
+        $da_thay_doi_trang_thai = false;
         foreach ($mas as $ms) :
-            if (!empty($ms) && isset($ms)) {
+            if (!empty($ms) && isset($ms) && !$da_thay_doi_trang_thai) {
+                //đổi trạng thái sim
+                $da_thay_doi_trang_thai = true; // Đánh dấu rằng đã thay đổi trạng thái cho ít nhất một sim
+                $trangthai = 0;
+                $s->doitrangthai($ms, $trangthai);
+            }
+                //thêm chi tiết đơn hàng
                 $dongia = $gh->laydongiatheomas($ms);
                 $dhct_moi = new DONHANG_CT();
                 $dhct_moi->setMaDH($dh_id);
@@ -148,16 +155,12 @@ switch ($action) {
                 $dhct_moi->setSoLuong(1);
                 $dhct_moi->setThanhTien($dongia);
                 $dh_ct->themdonhang_ct($dhct_moi);
-                //đổi trạng thái sim
-                $trangthai = 1;
-                $s->doitrangthai($ms, $trangthai);
-            }
         endforeach;
 
 
         // xóa giỏ hàng
         $giohang_nd = $gh->laygiohangtheond($nguoidung_id);
-        
+
         if (isset($giohang_nd)) {
             foreach ($giohang_nd as $gh_nd) :
                 // print_r($gh_nd["MaGH"]);

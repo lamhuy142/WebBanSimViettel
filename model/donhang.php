@@ -89,13 +89,13 @@ class DONHANG
     // }
 
 
-    public function laydonhangtheoid($MaND)
+    public function laydonhangtheoid($MaDH)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM nguoidung WHERE MaND=:MaND";
+            $sql = "SELECT * FROM donhang WHERE MaDH=:MaDH";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":MaND", $MaND);
+            $cmd->bindValue(":MaDH", $MaDH);
             $cmd->execute();
             $result = $cmd->fetch();
             return $result;
