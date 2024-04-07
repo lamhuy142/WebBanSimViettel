@@ -178,7 +178,8 @@
 
 										<?php
 										foreach ($traloidanhgia as $t) :
-											if ($t["MaDG"] == $dg["MaDG"] ) {
+										foreach ($nguoidung as $nd_tl) :
+											if ($t["MaDG"] == $dg["MaDG"] && $t["MaND"] == $nd_tl["MaND"]) {
 										?>
 												<!-- HIỂN THỊ TRẢ LỜI -->
 												<div class="ms-5 ms-lg-10">
@@ -188,7 +189,7 @@
 																<div class="d-flex align-items-center mt-2 ml-2 ">
 																	<!--begin::Author-->
 																	<div class="symbol symbol-35px me-3">
-																		<img class="symbol-label img-thumnail rounded-3" width="20px" height="20px" src="../img/user/<?php echo $_SESSION['nguoidung']['HinhAnh']; ?>" alt="">
+																		<img class="symbol-label img-thumnail rounded-3" width="20px" height="20px" src="../img/user/<?php echo $nd_tl['HinhAnh']; ?>" alt="">
 																	</div>
 																	<!--end::Author-->
 
@@ -198,7 +199,7 @@
 																		<div class="d-flex align-items-center">
 																			<!--begin::Username-->
 																			<span class="text-dark fw-bold fs-7 me-3 lh-1">
-																				<?php echo $_SESSION['nguoidung']['HoTen']; ?>
+																				<?php echo $nd_tl["HoTen"]; ?>
 																			</span>
 																			<!--end::Username-->
 																		</div>
@@ -233,6 +234,7 @@
 												</div>
 										<?php
 											}
+										endforeach;
 										endforeach;
 										?>
 							<?php
