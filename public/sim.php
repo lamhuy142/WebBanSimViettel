@@ -318,7 +318,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 							</thead>
 							<?php foreach ($sim as $s) :
 								// Kiểm tra nếu sim không thuộc loại được chọn thì bỏ qua
-								if ($s['MaLS'] == $l['MaLS'] && ($selectedOption == 'all' || $selectedOption == $s['TrangThai'])) { ?>
+								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && ($selectedOption == 'all' || $selectedOption == $s['TinhTrang'])) { ?>
 									<tbody>
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>

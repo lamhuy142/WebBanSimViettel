@@ -10,6 +10,8 @@ require("../model/loaigoicuoc.php");
 require("../model/danhgia.php");
 require("../model/traloidanhgia.php");
 require("../model/giohang_ct.php");
+require("../model/donhang.php");
+require("../model/donhang_ct.php");
 
 
 
@@ -35,6 +37,9 @@ $gc = new GOICUOC();
 $lgc = new LOAIGOICUOC();
 $tl = new TRALOIDANHGIA();
 $gh = new GIOHANG_CT();
+$dh = new DONHANG();
+$dh_ct = new DONHANG_CT();
+$ngay_ht = date("Y-m-d");
 
 switch ($action) {
     case "macdinh":
@@ -94,19 +99,64 @@ switch ($action) {
         include("main.php");
         break;
     case "xemgiohang":
-        $loaisim = $ls->laydanhsachloaisim();
-        $sim = $s->laydanhsachsim();
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        $giohang = $gh->laydanhsachgiohang_ct();
-        include("shoping-cart.php");
+        if (isset($_SESSION["nguoidung"])) {
+            $loaisim = $ls->laydanhsachloaisim();
+            $sim = $s->laydanhsachsim();
+            $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+            $goicuoc = $gc->laydanhsachgoicuoc();
+            $giohang = $gh->laydanhsachgiohang_ct();
+            include("shoping-cart.php");
+        }
+
         break;
-    case "hoantatthanhtoan":
+    case "dathang":
         // xóa giỏ hàng
+        if (isset($_POST["MaGH"])) {
+            $magh = explode(",", $_POST["MaGH"]);
+            foreach ($magh as $gh_nd) :
+                // lấy dòng muốn xóa
+                $xoa = new GIOHANG_CT();
+                $xoa->setMaGH($gh_nd);
+                // xóa
+                $lmp->xoaloaimypham($xoa);
+            endforeach;
+        }
+        //lập đơn hàng và đơn hàng chi tiết
+
+        $dh_moi = new DONHANG();
+        $dh_moi->setMaND($_POST["MaND"]);
+        $dh_moi->setNgayDatHang($ngay_ht);
+        $dh_moi->setNgayGiaoHang(null);
+        $dh_moi->setTongTien($_POST["tongtien"]);
+        $dh_moi->setGhiChu(null);
+        $dh_moi->setTrangThai(0);
+        $dh_id = $dh->themdonhang($dh_moi);
+
+
+        if (isset($_POST["MaS"])) {
+            $mas = explode(",", $_POST["MaS"]);
+            foreach ($mas as $ms) :
+                $sim = $s->laydanhsachsimtheoid($ms);
+                $dongia = $sim["DonGia"];
+                $dhct_moi = new DONHANG_CT();
+                $dhct_moi->setMaDH($dh_id);
+                $dhct_moi->setMaS($ms);
+                $dhct_moi->setDonGia($dongia);
+                $dhct_moi->setSoLuong(1);
+                $dhct_moi->setThanhTien($dongia);
+            endforeach;
+        }
+        //đổi trạng thái sim
+        if (isset($_POST["MaS"])) {
+            $mas = explode(",", $_POST["MaS"]);
+            foreach ($mas as $ms) :
+                $trangthai = 1;
+                $s->doitrangthai($ms, $trangthai);
+            endforeach;
+        }
+
         $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-        $goicuoc = $gc->laydanhsachgoicuoc();
         $giohang = $gh->laydanhsachgiohang_ct();
         include("shoping-cart.php");
         break;

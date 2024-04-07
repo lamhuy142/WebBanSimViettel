@@ -128,7 +128,7 @@ class DONHANG
         $db = DATABASE::connect();
         try {
             $sql = "INSERT INTO donhang(MaND, NgayDatHang, NgayGiaoHang, TongTien, GhiChu, TrangThai) 
-VALUES(:MaND, :NgayGiaoHang, :TongTien, :GhiChu)";
+VALUES(:MaND, :NgayDatHang, :NgayGiaoHang, :TongTien, :GhiChu, :TrangThai)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaND', $donhang->MaND);
             $cmd->bindValue(':NgayDatHang', $donhang->NgayDatHang);
@@ -136,7 +136,6 @@ VALUES(:MaND, :NgayGiaoHang, :TongTien, :GhiChu)";
             $cmd->bindValue(':TongTien', $donhang->TongTien);
             $cmd->bindValue(':GhiChu', $donhang->GhiChu);
             $cmd->bindValue(':TrangThai', $donhang->TrangThai);
-            $cmd->execute();
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

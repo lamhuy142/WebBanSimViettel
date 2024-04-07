@@ -1,12 +1,14 @@
 <?php
-$giohang = $gh->laydanhsachgiohang_ct();
-//đếm tổng giỏ hàng
-$tong_gh = 0;
-foreach ($giohang as $g) :
-    if ($g["MaND"] == $_SESSION["nguoidung"]["MaND"]) {
-        $tong_gh = $tong_gh + 1;
-    }
-endforeach;
+if (isset($_SESSION["nguoidung"])) {
+    $giohang = $gh->laydanhsachgiohang_ct();
+    //đếm tổng giỏ hàng
+    $tong_gh = 0;
+    foreach ($giohang as $g) :
+        if ($g["MaND"] == $_SESSION["nguoidung"]["MaND"]) {
+            $tong_gh = $tong_gh + 1;
+        }
+    endforeach;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,12 +112,14 @@ endforeach;
                                 <i style="color: #576C9D;" class="zmdi zmdi-search"></i>
                             </div> -->
                         </div>
-
-                        <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-                            <div class="icon-header-item cl2 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo $tong_gh ?>">
-                                <i style="color: #EF0033;" class="zmdi zmdi-shopping-cart"></i>
+                        <?php if (isset($_SESSION["nguoidung"])) {
+                        ?>
+                            <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                                <div class="icon-header-item cl2 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo $tong_gh ?>">
+                                    <i style="color: #EF0033;" class="zmdi zmdi-shopping-cart"></i>
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
                         <?php if (isset($_SESSION["nguoidung"]) && !empty($_SESSION["nguoidung"]["HoTen"])) { ?>
                             <nav class="navbar navbar-expand-lg text-decoration-none ">
                                 <div class="dropdown">
@@ -179,12 +183,13 @@ endforeach;
                         <i class="zmdi zmdi-search"></i>
                     </div>
                 </div>
-
-                <div class="flex-c-m h-full p-lr-10 bor5">
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo $tong_gh ?>">
-                        <i class="zmdi zmdi-shopping-cart"></i>
+                <?php if (isset($_SESSION["nguoidung"])) { ?>
+                    <div class="flex-c-m h-full p-lr-10 bor5">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo $tong_gh ?>">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
 
             <!-- Button show menu -->
@@ -331,7 +336,7 @@ endforeach;
         <div class="header-cart flex-col-l p-l-65 p-r-25">
             <div class="header-cart-title flex-w flex-sb-m p-b-8">
                 <span class="mtext-103 cl2">
-                    Your Cart
+                    Giỏ Hàng
                 </span>
 
                 <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
@@ -341,68 +346,57 @@ endforeach;
 
             <div class="header-cart-content flex-w js-pscroll">
                 <ul class="header-cart-wrapitem w-full">
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="./images/item-cart-01.jpg" alt="IMG">
-                        </div>
+                    <?php
+                    $i = 0;
+                    foreach ($giohang as $gh) :
+                        foreach ($sim as $s) :
+                            // foreach ($loaisim as $ls) :
+                            if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
+                                $i++; ?>
+                                <li class="header-cart-item flex-w flex-t m-b-12">
+                                    <div class="header-cart-item-img">
+                                        <span><?php echo $i; ?></span>
+                                    </div>
+                                    <div class="header-cart-item-txt p-t-8">
+                                        <a href="#" style="color:black;" class=" header-cart-item-name m-b-18 text-decoration-none trans-04">
+                                            <?php echo $s["SoSim"]; ?>
+                                        </a>
 
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                White Shirt Pleat
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $19.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="./images/item-cart-02.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Converse All Star
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $39.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="./images/item-cart-03.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Nixon Porter Leather
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $17.00
-                            </span>
-                        </div>
-                    </li>
+                                        <span class="header-cart-item-info">
+                                            <?php echo $gh["SL"]; ?> x <?php echo number_format($gh["DonGia"]); ?>đ
+                                        </span>
+                                    </div>
+                                </li>
+                    <?php }
+                        endforeach;
+                    endforeach;
+                    ?>
                 </ul>
 
                 <div class="w-full">
                     <div class="header-cart-total w-full p-tb-40">
-                        Total: $75.00
+                        Tổng tiền:
+                        <?php
+                        $tongtien = 0;
+                        foreach ($giohang as $gh) :
+                            foreach ($sim as $s) :
+                                if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
+                                    $tongtien = $tongtien + $gh["DonGia"];
+                                }
+                            endforeach;
+                        endforeach;
+                        echo number_format($tongtien) . 'đ';
+                        ?>
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">
-                        <a href="index.php?action=xemgiohang" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                        <a href="index.php?action=xemgiohang" style="color:white;" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 text-decoration-none p-lr-15 trans-04 m-r-8 m-b-10">
                             Xem giỏ hàng
                         </a>
 
-                        <a href="shoping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                        <!-- <a href="shoping-cart.php" style="color:white;" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 text-decoration-none p-lr-15 trans-04 m-b-10">
                             Thanh toán
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>

@@ -111,7 +111,6 @@ VALUES(:MaDH, :MaS, :DonGia, :SoLuong, :ThanhTien)";
             $cmd->bindValue(':DonGia', $donhang_ct->DonGia);
             $cmd->bindValue(':SoLuong', $donhang_ct->SoLuong);
             $cmd->bindValue(':ThanhTien', $donhang_ct->ThanhTien);
-            $cmd->execute();
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

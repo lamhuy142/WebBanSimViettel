@@ -145,7 +145,7 @@
 												</div>
 												<div class="m-0">
 													<p>
-														<?php if ($_SESSION["nguoidung"]["MaQ"] == 1) { ?>
+														<?php if (isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["MaQ"] == 1) { ?>
 															<a style="color:#576C8F; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
 																Trả lời
 															</a>
@@ -178,7 +178,7 @@
 
 										<?php
 										foreach ($traloidanhgia as $t) :
-											if ($t["MaDG"] == $dg["MaDG"] && $t["MaND"] == $nd["MaND"]) {
+											if ($t["MaDG"] == $dg["MaDG"] ) {
 										?>
 												<!-- HIỂN THỊ TRẢ LỜI -->
 												<div class="ms-5 ms-lg-10">
@@ -188,7 +188,7 @@
 																<div class="d-flex align-items-center mt-2 ml-2 ">
 																	<!--begin::Author-->
 																	<div class="symbol symbol-35px me-3">
-																		<img class="symbol-label img-thumnail rounded-3" width="20px" height="20px" src="../img/user/<?php echo $nd['HinhAnh']; ?>" alt="">
+																		<img class="symbol-label img-thumnail rounded-3" width="20px" height="20px" src="../img/user/<?php echo $_SESSION['nguoidung']['HinhAnh']; ?>" alt="">
 																	</div>
 																	<!--end::Author-->
 
@@ -198,7 +198,7 @@
 																		<div class="d-flex align-items-center">
 																			<!--begin::Username-->
 																			<span class="text-dark fw-bold fs-7 me-3 lh-1">
-																				<?php echo $nd['HoTen']; ?>
+																				<?php echo $_SESSION['nguoidung']['HoTen']; ?>
 																			</span>
 																			<!--end::Username-->
 																		</div>

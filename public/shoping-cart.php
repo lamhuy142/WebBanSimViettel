@@ -73,12 +73,49 @@
 				</div>
 			</div>
 			<form method="post">
-				<input type="hidden" name="action" value="hoantatthanhtoan">
-				<input type="hidden" name="MaS" value="">
+				<input type="hidden" name="action" value="dathang">
+				<input type="hidden" name="MaND" value="<?php echo $_SESSION["nguoidung"]["MaND"]; ?>">
+				<?php
+				$tongtien = 0;
+				foreach ($giohang as $gh) :
+					foreach ($sim as $s) :
+						if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
+							$tongtien = $tongtien + $gh["DonGia"];
+						}
+					endforeach;
+				endforeach;
+				echo '<input type="hidden" name="tongtien" value="' . number_format($tongtien) . '">';
+				?>
+				<!-- lấy danh sách mã sim -->
+				<?php
+				$mas = array();
+				foreach ($giohang as $gh) :
+				foreach ($sim as $s) :
+					if ($gh["MaS"] == $s["MaSim"]) {
+						$mas[] = $gh["MaS"];
+						$str_mas = implode($mas)
+				?>
+						<input type="hidden" name="MaS" value="<?php echo $str_mas; ?>">
+				<?php	}
+				endforeach;
+				endforeach;
+				?>
+				<!-- lấy danh sách mã giỏ hàng -->
+				<?php
+				$magh = array();
+				foreach ($giohang as $gh) :
+					if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"]) {
+						$magh[] = $gh["MaGH"];
+						$str_magh = implode($magh)
+				?>
+						<input type="hidden" name="MaGH" value="<?php echo $str_magh; ?>">
+				<?php	}
+				endforeach;
+				?>
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
-							Thành Tiền
+							Tính Tiền
 						</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">
@@ -114,7 +151,6 @@
 
 							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 								<p class="stext-111 cl6 p-t-2">
-									There are no shipping methods available. Please double check your address, or contact us if you need any help.
 								</p>
 
 								<div class="p-t-15">
@@ -152,7 +188,7 @@
 						<div class="flex-w flex-t p-t-27 p-b-33">
 							<div class="size-208">
 								<span class="mtext-101 cl2">
-									Total:
+									Tổng số tiền:
 								</span>
 							</div>
 
@@ -173,9 +209,7 @@
 							</div>
 						</div>
 
-						<input type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-						Hoàn tất thanh toán
-						</input>
+						<input type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" value="Đặt hàng"></input>
 					</div>
 				</div>
 			</form>

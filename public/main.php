@@ -133,7 +133,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						<?php
 						foreach ($sim as $s) :
 							foreach ($loaisim as $ls) :
-								if ($ls["MaLS"] == $s["MaLS"]) {
+								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1)  {
 						?>
 									<tbody>
 										<tr class="table-hover-bg-factor">
