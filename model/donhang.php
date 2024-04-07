@@ -134,6 +134,8 @@ VALUES(:MaND, :NgayDatHang, :NgayGiaoHang, :TongTien, :GhiChu, :TrangThai)";
             $cmd->bindValue(':NgayDatHang', $donhang->NgayDatHang);
             $cmd->bindValue(':NgayGiaoHang', $donhang->NgayGiaoHang);
             $cmd->bindValue(':TongTien', $donhang->TongTien);
+            // print_r($donhang->TongTien);
+            // exit();
             $cmd->bindValue(':GhiChu', $donhang->GhiChu);
             $cmd->bindValue(':TrangThai', $donhang->TrangThai);
             $result = $cmd->execute();

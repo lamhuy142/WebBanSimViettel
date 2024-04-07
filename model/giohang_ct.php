@@ -48,6 +48,87 @@ class GIOHANG_CT
         $this->SL = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
+    public function laygiohangtheoid($MaGH)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM giohang_ct WHERE MaGH=:MaGH";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaGH", $MaGH);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function laygiohangtheond($MaND)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM giohang_ct WHERE MaND=:MaND";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaND", $MaND);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function laymasimtheond($MaND)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT MaS FROM giohang_ct WHERE MaND=:MaND";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaND", $MaND);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function laydongiatheomas($MaS)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT DonGia FROM giohang_ct WHERE MaS=:MaS";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaS", $MaS);
+            $cmd->execute();
+            $result = $cmd->fetch(PDO::FETCH_ASSOC); // Sử dụng PDO::FETCH_ASSOC để lấy mảng kết quả với tên cột
+            return $result['DonGia']; // Trả về giá trị của cột "DonGia"
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
+    public function tinhtongtientheond($MaND)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT sum(DonGia) AS TongTien FROM giohang_ct WHERE MaND=:MaND";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaND", $MaND);
+            $cmd->execute();
+            $result = $cmd->fetch(PDO::FETCH_ASSOC); // Sử dụng PDO::FETCH_ASSOC để lấy mảng kết quả với tên cột
+            return $result['TongTien']; // Trả về giá trị của cột "TongTien"
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 
 
     
@@ -114,9 +195,9 @@ VALUES(:MaGH,:MaND, :MaS, :SL, :DonGia)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "DELETE FROM giohang_ct WHERE MaND=:MaND";
+            $sql = "DELETE FROM giohang_ct WHERE MaGH=:MaGH";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":MaND", $giohang_ct->MaND);
+            $cmd->bindValue(":MaGH", $giohang_ct->MaGH);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {

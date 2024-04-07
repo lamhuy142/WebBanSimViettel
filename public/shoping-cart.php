@@ -16,7 +16,9 @@
 
 
 <!-- Shoping Cart -->
-<form class="bg0 p-t-75 p-b-85">
+<form method="post" class="bg0 p-t-75 p-b-85">
+	<input type="hidden" name="action" value="dathang">
+	<input type="hidden" name="MaND" value="<?php echo $_SESSION["nguoidung"]["MaND"]; ?>">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -72,147 +74,134 @@
 					</div> -->
 				</div>
 			</div>
-			<form method="post">
-				<input type="hidden" name="action" value="dathang">
-				<input type="hidden" name="MaND" value="<?php echo $_SESSION["nguoidung"]["MaND"]; ?>">
-				<?php
-				$tongtien = 0;
-				foreach ($giohang as $gh) :
-					foreach ($sim as $s) :
-						if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
-							$tongtien = $tongtien + $gh["DonGia"];
-						}
-					endforeach;
-				endforeach;
-				echo '<input type="hidden" name="tongtien" value="' . number_format($tongtien) . '">';
-				?>
-				<!-- lấy danh sách mã sim -->
-				<?php
-				$mas = array();
-				foreach ($giohang as $gh) :
+
+
+
+			<!-- lấy danh sách mã sim -->
+			<?php
+			$mas = array();
+			foreach ($giohang as $gh) :
 				foreach ($sim as $s) :
 					if ($gh["MaS"] == $s["MaSim"]) {
 						$mas[] = $gh["MaS"];
-						$str_mas = implode($mas)
-				?>
+						$str_mas = implode(",", $mas)
+			?>
 						<input type="hidden" name="MaS" value="<?php echo $str_mas; ?>">
-				<?php	}
+			<?php	}
 				endforeach;
-				endforeach;
-				?>
-				<!-- lấy danh sách mã giỏ hàng -->
-				<?php
-				$magh = array();
-				foreach ($giohang as $gh) :
-					if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"]) {
-						$magh[] = $gh["MaGH"];
-						$str_magh = implode($magh)
-				?>
-						<input type="hidden" name="MaGH" value="<?php echo $str_magh; ?>">
-				<?php	}
-				endforeach;
-				?>
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-						<h4 class="mtext-109 cl2 p-b-30">
-							Tính Tiền
-						</h4>
+			endforeach;
+			?>
+			<!-- lấy danh sách mã giỏ hàng  -->
+			<?php
+			$magh = array();
+			foreach ($giohang as $gh) :
+				if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"]) {
+					$magh[] = $gh["MaGH"];
+					$str_magh = implode(",", $magh)
+			?>
+					<input type="hidden" name="MaGH" value="<?php echo $str_magh; ?>">
+			<?php	}
+			endforeach;
+			?>
+			<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+				<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+					<h4 class="mtext-109 cl2 p-b-30">
+						Tính Tiền
+					</h4>
 
-						<div class="flex-w flex-t bor12 p-b-13">
-							<div class="size-208">
-								<span class="stext-110 cl2">
-									Tổng:
-								</span>
-							</div>
+					<div class="flex-w flex-t bor12 p-b-13">
+						<div class="size-208">
+							<span class="stext-110 cl2">
+								Tổng:
+							</span>
+						</div>
 
-							<div class="size-209">
-								<span class="mtext-110 cl2">
-									<?php
-									$tongtien = 0;
-									foreach ($giohang as $gh) :
-										foreach ($sim as $s) :
-											if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
-												$tongtien = $tongtien + $gh["DonGia"];
-											}
-										endforeach;
+						<div class="size-209">
+							<span class="mtext-110 cl2">
+								<?php
+								$tongtien = 0;
+								foreach ($giohang as $gh) :
+									foreach ($sim as $s) :
+										if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
+											$tongtien = $tongtien + $gh["DonGia"];
+										}
 									endforeach;
-									echo number_format($tongtien) . 'đ';
-									?>
-								</span>
-							</div>
+								endforeach;
+								echo number_format($tongtien) . 'đ';
+								?>
+							</span>
 						</div>
-
-						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-							<div class="size-208 w-full-ssm">
-								<span class="stext-110 cl2">
-									Shipping:
-								</span>
-							</div>
-
-							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-								<p class="stext-111 cl6 p-t-2">
-								</p>
-
-								<div class="p-t-15">
-									<span class="stext-112 cl8">
-										Calculate Shipping
-									</span>
-
-									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-										<select class="js-select2" name="time">
-											<option>Select a country...</option>
-											<option>USA</option>
-											<option>UK</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-
-									<div class="bor8 bg0 m-b-12">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State /  country">
-									</div>
-
-									<div class="bor8 bg0 m-b-22">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
-									</div>
-
-									<div class="flex-w">
-										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-											Update Totals
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<div class="flex-w flex-t p-t-27 p-b-33">
-							<div class="size-208">
-								<span class="mtext-101 cl2">
-									Tổng số tiền:
-								</span>
-							</div>
-
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-									<?php
-									$tongtien = 0;
-									foreach ($giohang as $gh) :
-										foreach ($sim as $s) :
-											if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
-												$tongtien = $tongtien + $gh["DonGia"];
-											}
-										endforeach;
-									endforeach;
-									echo number_format($tongtien) . 'đ';
-									?>
-								</span>
-							</div>
-						</div>
-
-						<input type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" value="Đặt hàng"></input>
 					</div>
+
+					<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+						<div class="size-208 w-full-ssm">
+							<span class="stext-110 cl2">
+								Shipping:
+							</span>
+						</div>
+
+						<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
+							<p class="stext-111 cl6 p-t-2">
+							</p>
+
+							<div class="p-t-15">
+								<span class="stext-112 cl8">
+									Calculate Shipping
+								</span>
+
+								<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+									<select class="js-select2" name="time">
+										<option>Select a country...</option>
+										<option>USA</option>
+										<option>UK</option>
+									</select>
+									<div class="dropDownSelect2"></div>
+								</div>
+
+								<div class="bor8 bg0 m-b-12">
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State /  country">
+								</div>
+
+								<div class="bor8 bg0 m-b-22">
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
+								</div>
+
+								<div class="flex-w">
+									<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
+										Update Totals
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="flex-w flex-t p-t-27 p-b-33">
+						<div class="size-208">
+							<span class="mtext-101 cl2">
+								Tổng số tiền:
+							</span>
+						</div>
+
+						<div class="size-209 p-t-1">
+							<span class="mtext-110 cl2">
+								<?php
+								$tongtien = 0;
+								foreach ($giohang as $gh) :
+									foreach ($sim as $s) :
+										if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
+											$tongtien = $tongtien + $gh["DonGia"];
+										}
+									endforeach;
+								endforeach;
+								echo number_format($tongtien) . 'đ';
+								?>
+							</span>
+						</div>
+					</div>
+					<input type="submit" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" value="Đặt hàng"></input>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 </form>
