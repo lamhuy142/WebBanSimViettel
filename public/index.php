@@ -133,7 +133,8 @@ switch ($action) {
         $dh_moi->setTongTien($tongtien);
         $dh_moi->setGhiChu(null);
         $dh_moi->setTrangThai(0);
-        $dh_id = $dh->themdonhang($dh_moi);
+        $dh->themdonhang($dh_moi);
+        $dh_id = $dh->laymadhvuathem();
 
         // lưu chi tiết đơn hàng
         $mas = $gh->laymasimtheond($nguoidung_id);
@@ -171,8 +172,12 @@ switch ($action) {
             // Hoặc thực hiện hành động khác như điều hướng người dùng...
         }
 
-        $loai = $lmp->layloaimypham();
-        $mypham = $mp->laymypham();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
         include("main.php");
         break;
 

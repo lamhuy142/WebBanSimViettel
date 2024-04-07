@@ -105,6 +105,22 @@ class DONHANG
             exit();
         }
     }
+    public function laymadhvuathem()
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "SELECT MaDH FROM donhang ORDER BY MaDH DESC LIMIT 1";
+            $cmd = $db->prepare($sql);
+            $cmd->execute();
+            $ketqua = $cmd->fetch(PDO::FETCH_ASSOC);
+            return $ketqua['MaDH'];
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
     // lấy tất cả ng dùng
     public function laydanhsachdonhang()
     {
