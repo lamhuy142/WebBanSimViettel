@@ -60,7 +60,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 
 <!-- Hiện gói  cước -->
 <!-- Goi cuoc -->
-<section class="sec-product bg0 p-t-100 p-b-50">
+<section class=" bg0 p-t-100 p-b-50">
 	<div class="container">
 		<?php foreach ($loaigoicuoc as $lgc) :
 			$i = 0; ?>
@@ -95,11 +95,11 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						</div>
 				<?php }
 				endforeach; ?>
-			</div>
-			<div class="btn-box d-flex justify-content-end mt-3">
-				<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=goicuoc">
-					Xem Tất Cả
-				</a>
+				<div class="btn-box d-flex justify-content-end mt-3">
+					<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=goicuoc">
+						Xem Tất Cả
+					</a>
+				</div>
 			</div>
 		<?php endforeach; ?>
 	</div>
@@ -115,13 +115,13 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					</h2>
 					<div class="row mb-10">
 						<div class="col-1">
-							<a style="color:#979797;" id="active-mmenu" href="">Trả trước</a>
+							<a style="color:#979797;" id="traTruocLink" id="active-mmenu" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
 						</div>
 						<div class="col-1">
-							<a style="color:#979797;" class="" href="">Trả sau</a>
+							<a style="color:#979797;" id="traSauLink active-mmenu" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
 						</div>
 					</div>
-					<table class="table">
+					<table class="table" id="simTable">
 						<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
 							<tr>
 								<th scope="col">STT</th>
@@ -131,9 +131,15 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 							</tr>
 						</thead>
 						<?php
+						$type = isset($_GET['type']) ? $_GET['type'] : '';
 						foreach ($sim as $s) :
 							foreach ($loaisim as $ls) :
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1) {
+								// Giả sử bạn có một trường trong database của sim là 'LoaiThueBao' lưu trữ là 'prepaid' hoặc 'postpaid'
+								$isPrepaid = ($s['LoaiThueBao'] == '1');
+								$shouldShow = ($type == '1' && $isPrepaid) || ($type == '0' && !$isPrepaid);
+
+								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $shouldShow) {
+									// if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1) {
 						?>
 									<tbody>
 										<tr class="table-hover-bg-factor">
@@ -149,6 +155,26 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						endforeach;
 						?>
 					</table>
+					<script>
+						document.addEventListener('DOMContentLoaded', function() {
+							var filterLinks = document.querySelectorAll('.filter-link');
+							filterLinks.forEach(function(link) {
+								link.addEventListener('click', function(e) {
+									e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+									var type = this.getAttribute('data-type');
+									fetch(`index.php?type=${type} #simTable`)
+										.then(response => response.text())
+										.then(html => {
+											var parser = new DOMParser();
+											var doc = parser.parseFromString(html, 'text/html');
+											var newTable = doc.querySelector('#simTable');
+											document.querySelector('#simTable').innerHTML = newTable.innerHTML;
+										})
+										.catch(err => console.log(err));
+								});
+							});
+						});
+					</script>
 				</div>
 			</div>
 		</div>
