@@ -87,7 +87,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 							</div>
 						</div>
 
-						<table class="table" id="simTable1" >
+						<table class="table" id="simTable1">
 							<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
 								<tr>
 									<th scope=" col">STT</th>
@@ -104,7 +104,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
 											<td><?php echo number_format($l['GiaBan']);  ?></td>
-											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio">Chọn Mua</a></td>
+											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $ls['GiaBan'] ?>">Chọn Mua</a></td>
 										</tr>
 									</tbody>
 							<?php

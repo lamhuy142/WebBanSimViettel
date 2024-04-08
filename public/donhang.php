@@ -64,10 +64,13 @@
 													</td>
 												<?php } elseif ($dh["TrangThai"] == 1) { ?>
 													<td class="text-success font-weight-bold">Đang vận chuyển</td>
-													<div class="col">
-														<a href="index.php?action=hoantat&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-warning">Hoàn tất</a>
-													</div>
-												<?php } elseif ($dh["TrangThai"] == 2) { ?><td class="text-success font-weight-bold">Hoàn tất đơn hàng</td>
+													<td>
+														<div class="col">
+															<a href="index.php?action=hoantat&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-warning">Hoàn tất</a>
+														</div>
+													</td>
+												<?php } elseif ($dh["TrangThai"] == 2) { ?>
+													<td class="text-success font-weight-bold">Giao hàng thành công</td>
 												<?php } elseif ($dh["TrangThai"] == 3) { ?>
 													<td class="text-danger font-weight-bold">Đơn đã hủy</td>
 												<?php } ?>

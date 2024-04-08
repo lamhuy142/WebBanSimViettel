@@ -72,7 +72,7 @@
                                             <td class="text-success font-weight-bold">Chuẩn bị hàng </td>
                                         <?php } elseif ($dh["TrangThai"] == 1) { ?>
                                             <td class="text-success font-weight-bold">Đang vận chuyển</td>
-                                        <?php } elseif ($dh["TrangThai"] == 2) { ?><td class="text-success font-weight-bold">Hoàn tất đơn hàng</td>
+                                        <?php } elseif ($dh["TrangThai"] == 2) { ?><td class="text-success font-weight-bold">Giao hàng thành công</td>
                                         <?php } elseif ($dh["TrangThai"] == 3) { ?>
                                             <td class="text-danger font-weight-bold">Đơn đã hủy</td>
                                         <?php } ?>
@@ -89,9 +89,9 @@
                                                 </div>
                                             <?php } elseif ($dh["TrangThai"] == 1) { ?>
                                                 <div class="row">
-                                                    <div class="col">
-                                                        <a href="index.php?action=hoantat&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-warning">Hoàn tất</a>
-                                                    </div>
+                                                    <!-- <div class="col">
+                                                        <a href="index.php?action=hoantat&id=<php echo $dh['MaDH']; ?>&TrangThai=<php echo $dh['TrangThai']; ?>" class="btn btn-warning">Hoàn tất</a>
+                                                    </div> -->
                                                     <!-- <div class="col">
                                                         <a href="index.php?action=huydon&id=<php echo $dh['MaDH']; ?>&TrangThai=<php echo $dh['TrangThai']; ?>" class="btn btn-secondary">Hủy đơn</a>
                                                     </div> -->
