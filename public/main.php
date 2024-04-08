@@ -113,14 +113,27 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					<h2 class="">
 						<a class="text-decoration-none text-muted" href="">Sim Số</a>
 					</h2>
+					<style>
+						a.filter-link:active {
+							color: #EF0033 !important;
+							/* Màu đỏ */
+						}
+
+						a.filter-link {
+							color: #979797 !important;
+							/* Màu mặc định */
+						}
+					</style>
+
 					<div class="row mb-10">
 						<div class="col-1">
-							<a style="color:#979797;" id="traTruocLink" id="active-mmenu" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
+							<a id="traTruocLink" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
 						</div>
 						<div class="col-1">
-							<a style="color:#979797;" id="traSauLink active-mmenu" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
+							<a id="traSauLink" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
 						</div>
 					</div>
+
 					<table class="table" id="simTable">
 						<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
 							<tr>
@@ -135,10 +148,10 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						foreach ($sim as $s) :
 							foreach ($loaisim as $ls) :
 								// Giả sử bạn có một trường trong database của sim là 'LoaiThueBao' lưu trữ là 'prepaid' hoặc 'postpaid'
-								$isPrepaid = ($s['LoaiThueBao'] == '1');
-								$shouldShow = ($type == '1' && $isPrepaid) || ($type == '0' && !$isPrepaid);
+								$loaithuebao = ($s['LoaiThueBao'] == '1');
+								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
 
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $shouldShow) {
+								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) {
 									// if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1) {
 						?>
 									<tbody>
@@ -155,26 +168,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						endforeach;
 						?>
 					</table>
-					<script>
-						document.addEventListener('DOMContentLoaded', function() {
-							var filterLinks = document.querySelectorAll('.filter-link');
-							filterLinks.forEach(function(link) {
-								link.addEventListener('click', function(e) {
-									e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
-									var type = this.getAttribute('data-type');
-									fetch(`index.php?type=${type} #simTable`)
-										.then(response => response.text())
-										.then(html => {
-											var parser = new DOMParser();
-											var doc = parser.parseFromString(html, 'text/html');
-											var newTable = doc.querySelector('#simTable');
-											document.querySelector('#simTable').innerHTML = newTable.innerHTML;
-										})
-										.catch(err => console.log(err));
-								});
-							});
-						});
-					</script>
+
 				</div>
 			</div>
 		</div>

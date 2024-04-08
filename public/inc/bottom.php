@@ -163,7 +163,7 @@
 						<div class="size-204 flex-w flex-m respon6-next">
 							<div class="row justify-content-end">
 								<div class="col-md-6">
-									<a style="background-color:light; border:1px solid black;" class="text-dark btn js-hide-modal1" >Hủy</a>
+									<a style="background-color:light; border:1px solid black;" class="text-dark btn js-hide-modal1">Hủy</a>
 								</div>
 								<div class="col-md-6">
 									<a style="color:#44494D; background-color:#DEE6EE;" class="btn " href="index.php?action=dangkygoicuoc">Đăng ký</a>
@@ -337,7 +337,48 @@
 		filterSim('all');
 	</script> -->
 	<!-- SEARCH=========================== -->
-
+	<script>
+		// lọc trả trước trả sau
+		document.addEventListener('DOMContentLoaded', function() {
+			var filterLinks = document.querySelectorAll('.filter-link');
+			filterLinks.forEach(function(link) {
+				link.addEventListener('click', function(e) {
+					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+					var type = this.getAttribute('data-type');
+					fetch(`index.php?type=${type} #simTable`)
+						.then(response => response.text())
+						.then(html => {
+							var parser = new DOMParser();
+							var doc = parser.parseFromString(html, 'text/html');
+							var newTable = doc.querySelector('#simTable');
+							document.querySelector('#simTable').innerHTML = newTable.innerHTML;
+						})
+						.catch(err => console.log(err));
+				});
+			});
+		});
+	</script>
+	<!-- <script>
+		// lọc trả trước trả sau
+		document.addEventListener('DOMContentLoaded', function() {
+			var filterLinks = document.querySelectorAll('.filter-link');
+			filterLinks.forEach(function(link) {
+				link.addEventListener('click', function(e) {
+					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+					var type = this.getAttribute('data-type');
+					fetch(`index.php?type=${type} #simTable1`)
+						.then(response => response.text())
+						.then(html => {
+							var parser = new DOMParser();
+							var doc = parser.parseFromString(html, 'text/html');
+							var newTable = doc.querySelector('#simTable1');
+							document.querySelector('#simTable1').innerHTML = newTable.innerHTML;
+						})
+						.catch(err => console.log(err));
+				});
+			});
+		});
+	</script> -->
 
 	</body>
 

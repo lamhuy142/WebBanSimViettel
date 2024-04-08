@@ -4,6 +4,9 @@ color: #EE0033 !important;
 a.text-active:hover {
     color: #EE0033 !important;
 }
+.text-active:active {
+    color: #EE0033 !important;
+}
 /* .text-active:active{
     border-color: #EE0033 !important;
 }
