@@ -382,26 +382,39 @@ switch ($action) {
     case "hoso":
         // $id = $_SESSION["nguoidung"]["id"];
         // $sogio = $gh->demgiohang($id);
+        $loaisim = $ls->laydanhsachloaisim();
         include("hoso.php");
         break;
     case "xlhoso":
+        // gán dữ liệu từ form
         $sua = new NGUOIDUNG();
-        $id = $_POST["txtid"];
-        $email = $_POST["txtemail"];
-        $sdt = $_POST["txtsdt"];
-        $tennd = $_POST["txttennd"];
-        $hinhanh = $_POST["txthinhanh"];
-        $diachi = $_POST["txtdiachi"];
+        $sua->setMaND($_POST["MaND"]);
+        $sua->setTrangThai($_POST["TrangThai"]);
+        $sua->setMaQ($_POST["MaQ"]);
+        $sua->setHoTen($_POST["txthoten"]);
+        $sua->setDiaChi($_POST["txtdiachi"]);
+        $sua->setSdt($_POST["sdt"]);
+        $sua->setTenDangNhap($_POST["txttendn"]);
+        $sua->setMatKhau($_POST["txtmk"]);
+        $sua->setHinhAnh($_POST["hinhanh"]);
 
-        // if ($_FILES["fhinhanh"]["name"] != null) {
-        //     $hinhanh = basename($_FILES["fhinhanh"]["name"]);
-        //     $duongdan = "../img/user/" . $hinhanh;
-        //     move_uploaded_file($_FILES["fhinhanh"]["tmp_name"], $duongdan);
-        // }
-
-        // $nd->capnhatnguoidung($id, $email, $sdt, $tennd, $hinhanh, $diachi);
-        // $_SESSION["nguoidung"] = $nd->laythongtinnguoidung($email);
-        // $giohang = laygiohang();
+        if ($_FILES["filehinhanh"]["name"] != "") {
+            //xử lý load ảnh
+            $hinhanh = basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
+            $sua->sethinhanh($hinhanh);
+            $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
+            move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
+            $_SESSION["nguoidung"]["HinhAnh"] = $hinhanh; // Cập nhật hình ảnh mới vào session
+        }
+        // sửa
+        $nd->suanguoidung($sua);
+        // Sau khi lưu thành công, cập nhật thông tin hình ảnh mới vào session.
+        $hoten = $_POST["txthoten"];
+        $_SESSION["nguoidung"]["HoTen"] = $hoten;
+        // load danh sách
+        $donhang = $dh->laydanhsachdonhang();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $danhgia = $dg->laydanhsachdanhgia();
         include("profile.php");
         break;
     case "xemdonhang":
