@@ -81,27 +81,26 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 										Xem chi tiết
 									</a>
 								</div>
+
 								<div class="card-body">
 									<h5 class="card-title"><?php echo $gc["Ten"] ?></h5>
 									<p><?php echo number_format($gc["Gia"]); ?>đ</p>
-									<p class="card-text">
-										<span class="stext-105 cl3">
-											<?php echo mb_substr($gc["MoTa"], 0, 30) . "..."; ?>
-										</span>
-									</p>
+									
 									<a style="background-color:white; " class="border rounded btn js-show-modal1">Đăng ký</a>
 								</div>
+
 							</div>
 						</div>
 				<?php }
 				endforeach; ?>
-				<div class="btn-box d-flex justify-content-end mt-3">
-					<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=goicuoc">
-						Xem Tất Cả
-					</a>
-				</div>
+
 			</div>
 		<?php endforeach; ?>
+		<div class="btn-box d-flex justify-content-end mt-3">
+			<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=goicuoc">
+				Xem Tất Cả
+			</a>
+		</div>
 	</div>
 </section>
 

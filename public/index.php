@@ -141,20 +141,20 @@ switch ($action) {
         $dh_id = $dh->laymadhvuathem();
 
         // lưu chi tiết đơn hàng
-        $mas = $gh->laymasimtheond($nguoidung_id);
-        $da_thay_doi_trang_thai = false;
-        foreach ($mas as $ms) :
-            if (!empty($ms) && isset($ms) && !$da_thay_doi_trang_thai) {
+        $soluong = $gh->laygiohangtheond($nguoidung_id);
+        // print_r($soluong);
+        // exit();
+        foreach ($soluong as $sl) :
+            if (!empty($sl["MaS"]) && isset($sl["MaS"])) {
                 //đổi trạng thái sim
-                $da_thay_doi_trang_thai = true; // Đánh dấu rằng đã thay đổi trạng thái cho ít nhất một sim
                 $trangthai = 0;
-                $s->doitrangthai($ms, $trangthai);
+                $s->doitrangthai($sl["MaS"], $trangthai);
             }
                 //thêm chi tiết đơn hàng
-                $dongia = $gh->laydongiatheomas($ms);
+                $dongia = $gh->laydongiatheomas($sl["MaS"]);
                 $dhct_moi = new DONHANG_CT();
                 $dhct_moi->setMaDH($dh_id);
-                $dhct_moi->setMaS($ms);
+                $dhct_moi->setMaS($sl["MaS"]);
                 $dhct_moi->setDonGia($dongia);
                 $dhct_moi->setSoLuong(1);
                 $dhct_moi->setThanhTien($dongia);
