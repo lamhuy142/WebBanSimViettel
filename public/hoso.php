@@ -52,7 +52,7 @@
                             </div>
                             <div class="my-3 text-center">
                                 <input class="btn btn-primary" type="submit" value="Cập nhật">
-                                <input class="btn btn-warning" type="reset" value="Không">
+                                <!-- <input class="btn btn-warning" type="reset" value="Không"> -->
                             </div>
                         </form>
                     </div>

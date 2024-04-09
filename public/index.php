@@ -51,6 +51,10 @@ switch ($action) {
         $khuyenmai = $km->laydanhsachkhuyenmai();
         include("main.php");
         break;
+    case "chuyentrang":
+        header("Location:../../WebBanSimViettel/admin/index.php");
+        break;
+        
     case "khuyenmai":
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
@@ -207,7 +211,7 @@ switch ($action) {
                 $khuyenmai = $km->laydanhsachkhuyenmai();
 
                 header("Location:../../WebBanSimViettel/admin/index.php");
-            } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2) {
+            } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2 || $_SESSION["nguoidung"]["MaQ"] == 3) {
                 $sim = $s->laydanhsachsim();
                 $thuebao = $s->laydanhsachloaithuebao();
                 $loaisim = $ls->laydanhsachloaisim();
@@ -407,9 +411,9 @@ switch ($action) {
         if ($_FILES["fhinhanh"]["name"] != null) {
             //xử lý load ảnh
             $hinhanh = basename($_FILES["fhinhanh"]["name"]); // đường dẫn ảnh lưu trong db
-            $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
+            $duongdan = "../img/user/" . $hinhanh; //nơi lưu file upload
             move_uploaded_file($_FILES["fhinhanh"]["tmp_name"], $duongdan);
-            // $_SESSION["nguoidung"]["HinhAnh"] = $hinhanh; // Cập nhật hình ảnh mới vào session
+            $_SESSION["nguoidung"]["HinhAnh"] = $hinhanh; // Cập nhật hình ảnh mới vào session
         }
         
         // sửa
