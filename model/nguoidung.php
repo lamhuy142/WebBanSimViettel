@@ -225,6 +225,27 @@ VALUES(:HoTen, :Sdt, :MatKhau, :TenDangNhap, :TrangThai, :HinhAnh, :MaQ, :DiaChi
             exit();
         }
     }
+    public function capnhatnguoidung($MaND,$HoTen, $TenDangNhap, $Sdt, $MatKhau, $HinhAnh, $DiaChi)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE nguoidung set TenDangNhap=:TenDangNhap, HoTen=:HoTen,Sdt=:Sdt, MatKhau=:MatKhau, HinhAnh=:HinhAnh, DiaChi=:DiaChi where MaND=:MaND";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':TenDangNhap', $TenDangNhap);
+            $cmd->bindValue(':HoTen', $HoTen);
+            $cmd->bindValue(':Sdt', $Sdt);
+            $cmd->bindValue(':MatKhau', md5($MatKhau));
+            $cmd->bindValue(':HinhAnh', $HinhAnh);
+            $cmd->bindValue(':DiaChi', $DiaChi);
+            $cmd->bindValue(':MaND', $MaND);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // Đổi mật khẩu
     public function doiMatKhau($TenDangNhap, $MatKhau)
     {

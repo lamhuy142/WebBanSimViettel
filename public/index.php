@@ -380,34 +380,40 @@ switch ($action) {
         include("chitietgoicuoc.php");
         break;
     case "hoso":
-        // $id = $_SESSION["nguoidung"]["id"];
-        // $sogio = $gh->demgiohang($id);
         $loaisim = $ls->laydanhsachloaisim();
         include("hoso.php");
         break;
     case "xlhoso":
         // gán dữ liệu từ form
         $sua = new NGUOIDUNG();
-        $sua->setMaND($_POST["MaND"]);
-        $sua->setTrangThai($_POST["TrangThai"]);
-        $sua->setMaQ($_POST["MaQ"]);
-        $sua->setHoTen($_POST["txthoten"]);
-        $sua->setDiaChi($_POST["txtdiachi"]);
-        $sua->setSdt($_POST["sdt"]);
-        $sua->setTenDangNhap($_POST["txttendn"]);
-        $sua->setMatKhau($_POST["txtmk"]);
-        $sua->setHinhAnh($_POST["hinhanh"]);
+        $MaND = $_POST["MaND"];
+        $TenDangNhap = $_POST["txttendn"];
+        $Sdt = $_POST["sdt"];
+        $HoTen = $_POST["txthoten"];
+        $HinhAnh = $_POST["HinhAnh"];
+        $DiaChi = $_POST["txtdiachi"];
+        $MatKhau = $_POST["txtmk"];
 
-        if ($_FILES["filehinhanh"]["name"] != "") {
+        // $sua->setMaND($_POST["MaND"]);
+        // $sua->setTrangThai($_POST["TrangThai"]);
+        // $sua->setMaQ($_POST["MaQ"]);
+        // $sua->setHoTen($_POST["txthoten"]);
+        // $sua->setDiaChi($_POST["txtdiachi"]);
+        // $sua->setSdt($_POST["sdt"]);
+        // $sua->setTenDangNhap($_POST["txttendn"]);
+        // $sua->setMatKhau($_POST["txtmk"]);
+        // $sua->setHinhAnh($_POST["HinhAnh"]);
+        
+        if ($_FILES["fhinhanh"]["name"] != null) {
             //xử lý load ảnh
-            $hinhanh = basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
-            $sua->sethinhanh($hinhanh);
+            $hinhanh = basename($_FILES["fhinhanh"]["name"]); // đường dẫn ảnh lưu trong db
             $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
-            move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
-            $_SESSION["nguoidung"]["HinhAnh"] = $hinhanh; // Cập nhật hình ảnh mới vào session
+            move_uploaded_file($_FILES["fhinhanh"]["tmp_name"], $duongdan);
+            // $_SESSION["nguoidung"]["HinhAnh"] = $hinhanh; // Cập nhật hình ảnh mới vào session
         }
+        
         // sửa
-        $nd->suanguoidung($sua);
+        $nd->capnhatnguoidung($MaND, $HoTen, $TenDangNhap, $Sdt, $MatKhau, $HinhAnh, $DiaChi);
         // Sau khi lưu thành công, cập nhật thông tin hình ảnh mới vào session.
         $hoten = $_POST["txthoten"];
         $_SESSION["nguoidung"]["HoTen"] = $hoten;
@@ -415,7 +421,8 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
-        include("profile.php");
+        $loaisim = $ls->laydanhsachloaisim();
+        include("hoso.php");
         break;
     case "xemdonhang":
         $loaisim = $ls->laydanhsachloaisim();
