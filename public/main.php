@@ -146,12 +146,11 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						$type = isset($_GET['type']) ? $_GET['type'] : '';
 						foreach ($sim as $s) :
 							foreach ($loaisim as $ls) :
-								// Giả sử bạn có một trường trong database của sim là 'LoaiThueBao' lưu trữ là 'prepaid' hoặc 'postpaid'
+								
 								$loaithuebao = ($s['LoaiThueBao'] == '1');
 								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
 
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) {
-									// if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1) {
+								if($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) {
 						?>
 									<tbody>
 										<tr class="table-hover-bg-factor">

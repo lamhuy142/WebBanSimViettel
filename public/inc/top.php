@@ -9,6 +9,7 @@ if (isset($_SESSION["nguoidung"])) {
         }
     endforeach;
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,13 +141,13 @@ if (isset($_SESSION["nguoidung"])) {
                                                 </a>
                                             </button>
                                         </li>
-                                        <?php if($_SESSION["nguoidung"]["MaQ"] == 1 || $_SESSION["nguoidung"]["MaQ"] == 3 ){ ?>
-                                        <li><button style="background-color: #FFFFFF;" class="dropdown-item" type="button">
-                                                <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=chuyentrang">
-                                                    Trang quản trị
-                                                </a>
-                                            </button>
-                                        </li>
+                                        <?php if ($_SESSION["nguoidung"]["MaQ"] == 1 || $_SESSION["nguoidung"]["MaQ"] == 3) { ?>
+                                            <li><button style="background-color: #FFFFFF;" class="dropdown-item" type="button">
+                                                    <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=chuyentrang">
+                                                        Trang quản trị
+                                                    </a>
+                                                </button>
+                                            </li>
                                         <?php } ?>
                                         <li><button style="background-color: #FFFFFF;" class="dropdown-item" type="button">
                                                 <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=dangxuat">

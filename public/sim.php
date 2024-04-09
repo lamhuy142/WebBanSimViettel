@@ -1,5 +1,4 @@
 <?php include("inc/top.php");
-$selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptions'] : 'all';
 
 ?>
 <!-- breadcrumb -->
@@ -9,7 +8,6 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 			Trang chủ
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
-
 		<span class="stext-109 cl4">
 			sim
 		</span>
@@ -55,9 +53,8 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					<ul class="nav nav-tabs" role="tablist">
 						<?php foreach ($loaisim as $l) : ?>
 							<li class="nav-item p-b-10">
-								<a id="<?php echo $l['MaLS'] ?>_tab" class="nav-link  
-		<?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false  || $l['MaLS'] == 3) echo "active"; ?>
-		" data-toggle="tab" href="#<?php echo $l['MaLS'] ?>" role="tab"><?php echo $l['TenLS'] ?></a>
+								<a id="<?php echo $l['MaLS'] ?>_tab" class="nav-link
+								<?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false  || $l['MaLS'] == 3) echo "active"; ?>" data-toggle="tab" href="#<?php echo $l['MaLS'] ?>" role="tab"><?php echo $l['TenLS'] ?></a>
 							</li>
 						<?php endforeach; ?>
 					</ul>
@@ -96,15 +93,20 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 									<th scope="col">Chọn Mua</th>
 								</tr>
 							</thead>
-							<?php foreach ($sim as $s) :
+							
+							<?php
+							$type = isset($_GET['type']) ? $_GET['type'] : '';
+							foreach ($sim as $s) :
+								$loaithuebao = ($s['LoaiThueBao'] == '1');
+								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
 								// Kiểm tra nếu sim không thuộc loại được chọn thì bỏ qua
-								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && ($selectedOption == 'all' || $selectedOption == $s['TinhTrang'])) { ?>
+								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && $hienthi) { ?>
 									<tbody>
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
 											<td><?php echo number_format($l['GiaBan']);  ?></td>
-											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $ls['GiaBan'] ?>">Chọn Mua</a></td>
+											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $l['GiaBan'] ?>">Chọn Mua</a></td>
 										</tr>
 									</tbody>
 							<?php

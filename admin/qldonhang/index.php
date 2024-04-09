@@ -50,9 +50,11 @@ switch ($action) {
         header("Location:../../public/index.php");
         break;
     case "xemchitiet":
-        if(isset($_GET["id"])){
+        if(isset($_GET["id"]) && isset($_GET["MaND"])){
             $madh = $_GET["id"];
+            $mand = $_GET["MaND"];
             $donhang_ht= $dh->laydonhangtheoid($madh);
+            $nguoidung_ht= $nd->laynguoidungtheoid($mand);
             $donhang = $dh->laydanhsachdonhang();
             $donhang_ct = $dct->laydanhsachdonhang_ct();
             $sim = $s->laydanhsachsim();
