@@ -36,6 +36,9 @@ switch ($action) {
         }
         include("main.php");
         break;
+    case "chuyentrang":
+        header("Location:../../public/index.php");
+        break;
     case "phanhoi":
         if (isset($_GET["id"])) {
             $danhgia_ht = $dg->laydanhsachdanhgiatheoid($_GET["id"]);

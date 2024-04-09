@@ -66,7 +66,7 @@ if (isset($_SESSION["nguoidung"])) {
                 <nav style="background-color: #E7E7E7;" class="limiter-menu-desktop p-l-45">
 
                     <!-- Logo desktop -->
-                    <a href="#" class="navbar-brand">
+                    <a href="index.php?action=macdinh" class="navbar-brand">
                         <img class="mx-auto d-block" src="../img/logo/theo.png" width="150" height="100" alt="LogoViettel">
                     </a>
 

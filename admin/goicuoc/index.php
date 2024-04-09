@@ -44,6 +44,9 @@ switch ($action) {
         }
         include("goicuoc.php");
         break;
+    case "chuyentrang":
+        header("Location:../../public/index.php");
+        break;
     case "loaigoicuoc":
         $loai = $l->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();

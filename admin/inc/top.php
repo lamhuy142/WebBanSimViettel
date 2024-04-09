@@ -58,7 +58,7 @@
         <ul style="background-color: #E7E7E7;" class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a href="#" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                 <img class="mx-auto d-block" src="../../img/logo/theo.png" width="150" height="70" alt="LogoViettel">
             </a>
 
@@ -183,7 +183,6 @@
                     </button>
 
                     <!-- Topbar Navbar -->
-                    <div> <a href="index.php?action=chuyentrang" class="btn btn-secondary">Trang Chủ</a> </div>
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -345,6 +344,10 @@
                                 <a class="dropdown-item" href="../ktnguoidung/index.php?action=hoso&id=<?php echo $_SESSION["nguoidung"]["MaND"]; ?>">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Hồ sơ người dùng
+                                </a>
+                                <a class="dropdown-item" href="index.php?action=chuyentrang">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Trang Chủ
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <!-- data-toggle="modal" -->

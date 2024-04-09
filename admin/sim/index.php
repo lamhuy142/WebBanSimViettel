@@ -42,6 +42,9 @@ switch ($action) {
         }
         include("sim.php");
         break;
+    case "chuyentrang":
+        header("Location:../../public/index.php");
+        break;
     case "loaisim":
         $loai = $ls->laydanhsachloaisim();
         $goicuoc = $gc->laydanhsachgoicuoc();

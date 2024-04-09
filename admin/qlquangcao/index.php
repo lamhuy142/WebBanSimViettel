@@ -38,6 +38,9 @@ switch ($action) {
         }
         include("main.php");
         break;
+    case "chuyentrang":
+        header("Location:../../public/index.php");
+        break;
     case "themqc":
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();

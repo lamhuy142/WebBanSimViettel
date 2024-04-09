@@ -48,6 +48,9 @@ switch ($action) {
         }
         include("khuyenmai.php");
         break;
+    case "chuyentrang":
+        header("Location:../../public/index.php");
+        break;
     case "themkm":
         $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();

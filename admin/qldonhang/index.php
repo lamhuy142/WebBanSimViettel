@@ -46,6 +46,9 @@ switch ($action) {
         }
         include("main.php");
         break;
+    case "chuyentrang":
+        header("Location:../../public/index.php");
+        break;
     case "xemchitiet":
         if(isset($_GET["id"])){
             $madh = $_GET["id"];
