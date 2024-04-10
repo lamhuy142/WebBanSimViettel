@@ -333,7 +333,7 @@ switch ($action) {
         }
         break;
     case "danhgia":
-        if (isset($_POST["danhgia"]) && !empty($_POST["danhgia"])) {
+        if (isset($_POST["danhgia"]) && !empty($_POST["danhgia"])) { 
             $nguoidung_dg = $_POST["danhgia"];
             $ngaydg = date("Y-m-d");
             $moi = new DANHGIA();

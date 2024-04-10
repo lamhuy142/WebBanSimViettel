@@ -108,8 +108,7 @@ class DANHGIA
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO danhgia(MaND, MaKM, NoiDung, NgayDG) 
-VALUES(:MaND, :MaKM, :NoiDung, :NgayDG)";
+            $sql = "INSERT INTO danhgia(MaND, MaKM, NoiDung, NgayDG) VALUES(:MaND, :MaKM, :NoiDung, :NgayDG)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':MaND', $danhgia->MaND);
             $cmd->bindValue(':MaKM', $danhgia->MaKM);
