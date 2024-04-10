@@ -39,13 +39,7 @@ switch ($action) {
         $ngayht = date("Y-m-d");
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("khuyenmai.php");
         break;
     case "chuyentrang":
@@ -56,13 +50,7 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("themchuongtrinhkm.php");
         break;
     case "xulythemkm":
@@ -93,13 +81,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         
         include("khuyenmai.php");
         break;
@@ -113,13 +95,7 @@ switch ($action) {
                 exit();
             }
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            
             include("suakhuyenmai.php");
         } else {
             $khuyenmai = $km->laydanhsachkhuyenmai();
@@ -128,14 +104,7 @@ switch ($action) {
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             $ngayht = date("Y-m-d");
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
-            
+           
             include("khuyenmai.php");
         }
         break;
@@ -152,6 +121,7 @@ switch ($action) {
         $sua->setTrangThai($_POST["txttrangthai"]);
         $sua->setGiaTriKM($_POST["txtgiatri"]);
         $sua->setLoaiKM($_POST["optloaikm"]);
+        $sua->setNgayTao($_POST["ngaytao"]);
         $sua->setNgayBD($_POST["ngaybd"]);
         $sua->setNgayKT($_POST["ngaykt"]);
 
@@ -173,13 +143,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("khuyenmai.php");
         break;
     case "khoa":
@@ -204,13 +168,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("khuyenmai.php");
         break;
         //-----------------------------------------------------------------
@@ -218,13 +176,7 @@ switch ($action) {
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("loaikhuyenmai.php");
         break;
     case "themloaikm":
@@ -250,38 +202,19 @@ switch ($action) {
         // load người dùng
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($danhgia as $dg) {
-            if ($dg["TraLoi"] == null
-            ) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("loaikhuyenmai.php");
         break;
     case "sualoaikm":
         if (isset($_GET["id"])) {
             $loai_ht = $lkm->laydanhsachloaikmtheoid($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            
             include("sualoaikm.php");
         } else {
             $loai = $lkm->laydanhsachloaikhuyenmai();
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            
             include("loaikhuyenmai.php");
         }
         break;
@@ -300,13 +233,7 @@ switch ($action) {
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("loaikhuyenmai.php");
         break;
     case "khoaloaikm":
@@ -326,13 +253,7 @@ switch ($action) {
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("loaikhuyenmai.php");
         break;
     default:

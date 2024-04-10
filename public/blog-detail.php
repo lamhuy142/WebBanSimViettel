@@ -119,7 +119,7 @@
 												<div class="d-flex align-items-center">
 													<!--begin::Author-->
 													<div class="symbol symbol-35px me-3">
-														<img class="symbol-label img-thumnail rounded-3" width="57px" height="64px" src="../img/user/<?php echo $nd['HinhAnh']; ?>" alt="">
+														<img class="symbol-label img-thumnail rounded-circle" width="57px" height="64px" src="../img/user/<?php echo $nd['HinhAnh']; ?>" alt="">
 													</div>
 													<!--end::Author-->
 
@@ -128,7 +128,7 @@
 														<!--begin::Text-->
 														<div class="d-flex align-items-center">
 															<!--begin::Username-->
-															<span class="text-dark fw-bold fs-7 me-3 lh-1">
+															<span class="text-dark fw-bold fs-12 me-3 lh-1">
 																<?php echo $nd['HoTen']; ?>
 															</span>
 															<!--end::Username-->
@@ -136,8 +136,8 @@
 														<!--end::Text-->
 
 														<!--begin::Date-->
-														<span class="text-gray-600 fw-semibold fs-8">
-															<?php echo $dg['NgayDG']; ?>
+														<span class="text-gray-600 fw-semibold fs-10">
+															<?php echo date('d-M-Y', strtotime($dg['NgayDG'])); ?>
 														</span>
 														<!--end::Date-->
 													</div>
@@ -178,63 +178,63 @@
 
 										<?php
 										foreach ($traloidanhgia as $t) :
-										foreach ($nguoidung as $nd_tl) :
-											if ($t["MaDG"] == $dg["MaDG"] && $t["MaND"] == $nd_tl["MaND"]) {
+											foreach ($nguoidung as $nd_tl) :
+												if ($t["MaDG"] == $dg["MaDG"] && $t["MaND"] == $nd_tl["MaND"]) {
 										?>
-												<!-- HIỂN THỊ TRẢ LỜI -->
-												<div class="ms-5 ms-lg-10">
-													<div id="kt_post_comment_96" data-kt-comment-id="96">
-														<div class="rounded-3 border border-dashed border-gray-300 w-100 p-7 p-lg-10 mb-10 mt-2">
-															<div class="w-100 d-flex align-items-center justify-content-between mb-4">
-																<div class="d-flex align-items-center mt-2 ml-2 ">
-																	<!--begin::Author-->
-																	<div class="symbol symbol-35px me-3">
-																		<img class="symbol-label img-thumnail rounded-3" width="20px" height="20px" src="../img/user/<?php echo $nd_tl['HinhAnh']; ?>" alt="">
-																	</div>
-																	<!--end::Author-->
-
-																	<!--begin::Info-->
-																	<div class="d-flex flex-column">
-																		<!--begin::Text-->
-																		<div class="d-flex align-items-center">
-																			<!--begin::Username-->
-																			<span class="text-dark fw-bold fs-7 me-3 lh-1">
-																				<?php echo $nd_tl["HoTen"]; ?>
-																			</span>
-																			<!--end::Username-->
+													<!-- HIỂN THỊ TRẢ LỜI -->
+													<div class="ms-5 ms-lg-10">
+														<div id="kt_post_comment_96" data-kt-comment-id="96">
+															<div class="rounded-3 border border-dashed border-gray-300 w-100 p-7 p-lg-10 mb-10 mt-2">
+																<div class="w-100 d-flex align-items-center justify-content-between mb-4">
+																	<div class="d-flex align-items-center mt-2 ml-2 ">
+																		<!--begin::Author-->
+																		<div class="symbol symbol-35px me-3">
+																			<img class="symbol-label img-thumnail rounded-circle" width="20px" height="20px" src="../img/user/<?php echo $nd_tl['HinhAnh']; ?>" alt="">
 																		</div>
-																		<!--end::Text-->
+																		<!--end::Author-->
 
-																		<!--begin::Date-->
-																		<span class="text-gray-600 fw-semibold fs-8">
-																			<?php echo $t['NgayTL']; ?>
-																		</span>
-																		<!--end::Date-->
+																		<!--begin::Info-->
+																		<div class="d-flex flex-column">
+																			<!--begin::Text-->
+																			<div class="d-flex align-items-center">
+																				<!--begin::Username-->
+																				<span class="text-dark fw-bold fs-12 me-3 lh-1">
+																					<?php echo $nd_tl["HoTen"]; ?>
+																				</span>
+																				<!--end::Username-->
+																			</div>
+																			<!--end::Text-->
+
+																			<!--begin::Date-->
+																			<span class="text-gray-600 fw-semibold fs-10">
+																				<?php echo date('d-M-Y', strtotime($t['NgayTL'])); ?>
+																			</span>
+																			<!--end::Date-->
+																		</div>
+																		<!--end::Info-->
 																	</div>
-																	<!--end::Info-->
-																</div>
-																<!-- 																
+																	<!-- 																
 																<div class="m-2">
 																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7 me-2" data-kt-action="reply" fdprocessedid="y3z0lv">Reply</button>
 																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7 me-2" data-kt-action="edit" fdprocessedid="g1xils">Edit</button>
 																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7" data-kt-action="delete" data-kt-action-url="https://devs.keenthemes.com/comments/96" fdprocessedid="84vpsf">Delete</button>
 																</div> -->
+																</div>
+																<p class="fw-normal fs-base text-gray-700 m-2 p-0" data-kt-element="comment-text">
+																	<?php echo $t['TraLoi']; ?>
+																</p>
+																<div data-kt-element="comment-edit"></div>
 															</div>
-															<p class="fw-normal fs-base text-gray-700 m-2 p-0" data-kt-element="comment-text">
-																<?php echo $t['TraLoi']; ?>
-															</p>
-															<div data-kt-element="comment-edit"></div>
-														</div>
-														<div id="kt_post_comment_96_wrapper" data-parent-id="96">
-															<div class="ps-5 ps-lg-10 2">
-																<!-- replies for the comment -->
+															<div id="kt_post_comment_96_wrapper" data-parent-id="96">
+																<div class="ps-5 ps-lg-10 2">
+																	<!-- replies for the comment -->
+																</div>
 															</div>
 														</div>
 													</div>
-												</div>
 										<?php
-											}
-										endforeach;
+												}
+											endforeach;
 										endforeach;
 										?>
 							<?php

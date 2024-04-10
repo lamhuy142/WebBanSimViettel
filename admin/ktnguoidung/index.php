@@ -51,12 +51,9 @@ switch ($action) {
         }
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        // foreach ($danhgia as $d) {
+        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]); 
+        // }
         include("main.php");
         break;
     case "chuyentrang":
@@ -68,12 +65,12 @@ switch ($action) {
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
             // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($traloidanhgia as $tl) {
-                if ($tl["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            // $luotdg = 0;
+            // foreach ($traloidanhgia as $tl) {
+            //     if ($tl["TraLoi"] == null) {
+            //         $luotdg = $luotdg + 1;
+            //     }
+            // }
             include("profile.php");
         }
         // include("profile.php");
@@ -130,20 +127,17 @@ switch ($action) {
         }
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        // foreach ($danhgia as $d) {
+        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
+        // }
         include("main.php");
         break;
     case "dangnhap":
         include("login.php");
         break;
-    // case "dangky":
-    //     include("register.php");
-    //     break;
+        // case "dangky":
+        //     include("register.php");
+        //     break;
     case "dangxuat":
         unset($_SESSION["nguoidung"]);
         include("login.php");
@@ -185,12 +179,9 @@ switch ($action) {
                 }
                 $traloidanhgia = $tl->laydanhsachtraloidanhgia();
                 // Đánh giá chưa được phản hồi 
-                $luotdg = 0;
-                foreach ($traloidanhgia as $tl) {
-                    if ($tl["TraLoi"] == null) {
-                        $luotdg = $luotdg + 1;
-                    }
-                }
+                // foreach ($danhgia as $d) {
+                //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
+                // }
 
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2) {
@@ -211,73 +202,7 @@ switch ($action) {
         //     include("login.php");
         // }
         break;
-    // case "xulydangky":
-    //     // $sodienthoai = $_POST["sdt"];
-    //     // $tendangnhap = $_POST["txttendn"];
-
-    //     // $kiemtra1 = $nd->kiemtraSdtTonTai($sodienthoai);
-    //     // $kiemtra2 = $nd->kiemtraTenDangNhapTonTai($tendangnhap);
-
-    //     // if (strlen($sodienthoai) < 10) {
-    //     //     echo "<script>alert('Số điện thoại phải tối thiểu 10 chữ số, Vui lòng nhập lại số điện thoại.');</script>";
-    //     //     $HoTen = $_POST["txthoten"];
-    //     //     $tendangnhap = $_POST["txttendn"];
-    //     //     $DiaChi = $_POST["txtdiachi"];
-    //     //     $MatKhau = $_POST["txtmatkhau"];
-    //     //     $MaQ = $_POST["optquyen"];
-    //     //     $TrangThai = $_POST["txttrangthai"];
-    //     //     $HinhAnh = basename($_FILES["fileanh"]["name"]);
-    //     //     $quyen = $q->laydanhsachquyen();
-    //     //     include("register.php");
-    //     // } elseif ($kiemtra1) {
-    //     //     // Nếu số điện thoại đã tồn tại, hiển thị thông báo
-    //     //     echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập số điện thoại khác.');</script>";
-    //     //     $HoTen = $_POST["txthoten"];
-    //     //     $tendangnhap = $_POST["txttendn"];
-    //     //     $DiaChi = $_POST["txtdiachi"];
-    //     //     $MatKhau = $_POST["txtmatkhau"];
-    //     //     $MaQ = $_POST["optquyen"];
-    //     //     $TrangThai = $_POST["txttrangthai"];
-    //     //     $HinhAnh = basename($_FILES["fileanh"]["name"]);
-    //     //     $quyen = $q->laydanhsachquyen();
-    //     //     include("register.php");
-    //     // } elseif ($kiemtra2) {
-    //     //     // Nếu email đã tồn tại, hiển thị thông báo
-    //     //     echo "<script>alert('Tên đăng nhập đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập Tên đăng nhập khác.');</script>";
-    //     //     $HoTen = $_POST["txthoten"];
-    //     //     $Sdt = $_POST["sdt"];
-    //     //     $DiaChi = $_POST["txtdiachi"];
-    //     //     $MatKhau = $_POST["txtmatkhau"];
-    //     //     $MaQ = $_POST["optquyen"];
-    //     //     $TrangThai = $_POST["txttrangthai"];
-    //     //     $HinhAnh = basename($_FILES["fileanh"]["name"]);
-    //     //     $quyen = $q->laydanhsachquyen();
-    //     //     include("register.php");
-    //     // } else {
-    //     //xử lý load ảnh
-    //     $hinhanh = "user_md.png"; // đường dẫn ảnh lưu trong db
-    //     // $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
-    //     // move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
-    //     //xử lý thêm 
-    //     $nguoidungmoi = new NGUOIDUNG();
-    //     $nguoidungmoi->setTenDangNhap($_POST["txttendn"]);
-    //     $nguoidungmoi->setSdt($_POST["sdt"]);
-    //     $nguoidungmoi->setMatKhau($_POST["txtmk"]);
-    //     $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);
-    //     $nguoidungmoi->setHoTen($_POST["txthoten"]);
-    //     $nguoidungmoi->setMaQ($_POST["quyen"]);
-    //     $nguoidungmoi->setTrangThai($_POST["trangthai"]);
-    //     $nguoidungmoi->setHinhAnh($hinhanh);
-
-    //     // thêm
-    //     $nd->themnguoidung($nguoidungmoi);
-    //     // load người dùng
-    //     $quyen = $q->laydanhsachquyen();
-    //     $nguoidung = $nd->laydanhsachnguoidung();
-    //     include("login.php");
-    //     // }
-    //     include("login.php");
-    //     break;
+        
     default:
         break;
 }

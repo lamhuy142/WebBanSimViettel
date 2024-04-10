@@ -1,4 +1,8 @@
 <!-- <php session_start(); ?> -->
+<?php
+// Đánh giá chưa được phản hồi
+$luotdg = $dg->soluongchuatraloi();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -209,10 +213,10 @@
                         <!-- <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                Counter - Alerts 
+                                Counter - Alerts
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                             Dropdown - Alerts 
+                             Dropdown - Alerts
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Alerts Center
@@ -268,7 +272,8 @@
                                 </h6>
                                 <?php foreach ($danhgia as $d) :
                                     foreach ($nguoidung as $n) :
-                                        if ($n["MaND"] == $d["MaND"]) { ?>
+                                        if ($n["MaND"] == $d["MaND"]) {
+                                ?>
                                             <a class="dropdown-item d-flex align-items-center" href="../phanhoinguoidung/index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">
                                                 <div class="dropdown-list-image mr-3">
                                                     <img class="rounded-circle" src="../../img/user/<?php echo $n['HinhAnh']; ?>" alt="...">
@@ -279,54 +284,10 @@
                                                     <div class="small text-gray-500"><?php echo $n['HoTen']; ?></div>
                                                 </div>
                                             </a>
-                                            <!-- <a class="dropdown-item d-flex align-items-center" href="#">
-                                                <div class="dropdown-list-image mr-3">
-                                                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                                    <div class="status-indicator"></div>
-                                                </div>
-                                                <div>
-                                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                                        would you like them sent to you?</div>
-                                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                                </div>
-                                            </a> -->
                                 <?php }
                                     endforeach;
                                 endforeach;
                                 ?>
-                                <!-- <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a> -->
                                 <a class="dropdown-item text-center small text-gray-500" href="../phanhoinguoidung/index.php?action=xem">Read More Messages</a>
                             </div>
                         </li>
@@ -346,7 +307,7 @@
                                     Hồ sơ người dùng
                                 </a>
                                 <a class="dropdown-item" href="index.php?action=chuyentrang">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    <i class="bi bi-file-earmark-fill fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Trang Chủ
                                 </a>
                                 <div class="dropdown-divider"></div>

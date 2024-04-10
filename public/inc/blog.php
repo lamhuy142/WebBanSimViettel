@@ -8,7 +8,12 @@
         </div>
 
         <div class="row">
-            <?php foreach ($khuyenmai as $km) : ?>
+            <?php 
+            foreach ($khuyenmai as $km) : 
+            foreach ($nguoidung as $nd) : 
+                if($nd["MaND"] == $km["MaND"]){
+                
+                ?>
                 <div class="col-sm-6 col-md-4 p-b-40">
                     <div class="blog-item">
                         <div class="hov-img0">
@@ -25,7 +30,7 @@
                                     </span>
 
                                     <span class="cl5">
-                                        Người viết
+                                        <?php echo $nd['HoTen'] ?>
                                     </span>
                                 </span>
 
@@ -35,7 +40,7 @@
                                     </span>
 
                                     <span class="cl5">
-                                        Ngày viết
+                                        <?php echo $km['NgayTao'] ?>
                                     </span>
                                 </span>
                             </div>
@@ -52,7 +57,12 @@
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php 
+                }
+            endforeach; 
+            endforeach; 
+            
+            ?>
         </div>
     </div>
 </section>

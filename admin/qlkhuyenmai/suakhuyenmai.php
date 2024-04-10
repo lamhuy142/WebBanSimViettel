@@ -58,6 +58,12 @@
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">
+                            <label for="ngaytao" class="form-label">Ngày tạo</label>
+                            <input class="form-control" type="date" name="ngaytao" value="<?php echo $khuyenmai_ht['NgayTao']; ?>"> <!-- ? date('d/m/Y', strtotime($khuyenmai_ht['NgayBD'])) :  '' -->
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="md-3 mt-3">
                             <label for="ngaybd" class="form-label">Ngày bắt đầu</label>
                             <input class="form-control" type="date" name="ngaybd" value="<?php echo $khuyenmai_ht['NgayBD']; ?>"> <!-- ? date('d/m/Y', strtotime($khuyenmai_ht['NgayBD'])) :  '' -->
                         </div>
@@ -65,7 +71,7 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="ngaykt" class="form-label">Ngày kết thúc</label>
-                            <input class="form-control" type="date" name="ngaykt" value="<?php echo $khuyenmai_ht['NgayKT'] ;  ?>">
+                            <input class="form-control" type="date" name="ngaykt" value="<?php echo $khuyenmai_ht['NgayKT'];  ?>">
                         </div>
                     </div>
                 </div>

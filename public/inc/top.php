@@ -136,7 +136,7 @@ if (isset($_SESSION["nguoidung"])) {
                                             </button>
                                         </li>
                                         <li><button style="background-color: #FFFFFF;" class="dropdown-item" type="button">
-                                                <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=xemdonhang">
+                                                <a style="color: black;" class="text-active text-decoration-none" href="index.php?action=xemdondamua">
                                                     Đơn hàng đã mua
                                                 </a>
                                             </button>

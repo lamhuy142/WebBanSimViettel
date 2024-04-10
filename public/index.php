@@ -49,6 +49,7 @@ switch ($action) {
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
+        $nguoidung = $nd->laydanhsachnguoidung();
         include("main.php");
         break;
     case "chuyentrang":
@@ -428,15 +429,17 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         include("hoso.php");
         break;
-    case "xemdonhang":
+    case "xemdondamua":
         $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
+        $donhang_nd = $dh->laydonhangtheomand($_SESSION["nguoidung"]["MaND"]);
         $donhang = $dh->laydanhsachdonhang();
         $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
-        include("donhang.php");
+        // print_r($donhang_ct);
+        // exit();
+        include("dondamua.php");
         break;
     case "hoantat":
-
         if (isset($_REQUEST["id"]))
         $id = $_REQUEST["id"];
         if (isset($_REQUEST["TrangThai"]))
@@ -457,7 +460,7 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         $donhang = $dh->laydanhsachdonhang();
         $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
-        include("donhang.php");
+        include("dondamua.php");
         break;
     case "huydon":
         if (isset($_REQUEST["id"]))
@@ -473,8 +476,17 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         $donhang = $dh->laydanhsachdonhang();
         $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
-        include("donhang.php");
+        include("dondamua.php");
         break;
+        case "xemtheoloai":
+            if(isset($_GET["MaLGC"])){
+                $loaigc_ht = $lgc->laydanhsachloaigoicuoctheoid($_GET["MaLGC"]);
+                $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+                $goicuoc = $gc->laydanhsachgoicuoc();
+                $loaisim = $ls->laydanhsachloaisim();
+                include("xemtheoloaigc.php");
+            }
+            break;
     default:
         break;
 }

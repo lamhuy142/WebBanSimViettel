@@ -87,6 +87,22 @@ class GOICUOC
     //         exit();
     //     }
     // }
+    // public function laygoicuoctheoloai($MaLGC)
+    // {
+    //     $dbcon = DATABASE::connect();
+    //     try {
+    //         $sql = "SELECT * FROM goicuoc WHERE MaLGC=:MaLGC";
+    //         $cmd = $dbcon->prepare($sql);
+    //         $cmd->bindValue(":MaLGC", $MaLGC);
+    //         $cmd->execute();
+    //         $result = $cmd->fetch();
+    //         return $result;
+    //     } catch (PDOException $e) {
+    //         $error_message = $e->getMessage();
+    //         echo "<p>Lỗi truy vấn: $error_message</p>";
+    //         exit();
+    //     }
+    // }
     public function laygoicuoctheoid($MaGC)
     {
         $dbcon = DATABASE::connect();

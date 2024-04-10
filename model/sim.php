@@ -8,9 +8,9 @@ class SIM
     private $HinhAnh;
     private $TinhTrang;
     private $LoaiThueBao;
-   
-    
-    
+
+
+
     public function getMaSim()
     {
         return $this->MaSim;
@@ -67,28 +67,27 @@ class SIM
     {
         $this->LoaiThueBao = $value;
     }
-    
-    // khai báo các thuộc tính (SV tự viết)
 
 
-    // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    function timkiemsim($dauSo, $duoiSo)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM sim WHERE so_sim LIKE :dauSo%:duoiSo";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":dauSo", $dauSo);
+            $cmd->bindValue(":duoiSo", $duoiSo);
+            $cmd->execute();
+            $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
+
 
     // lấy tất cả ng dùng
     public function laydanhsachsim()

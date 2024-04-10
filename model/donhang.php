@@ -88,7 +88,22 @@ class DONHANG
     //     }
     // }
 
-
+    public function laydonhangtheomand($MaND)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM donhang WHERE MaND=:MaND";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaND", $MaND);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     public function laydonhangtheoid($MaDH)
     {
         $dbcon = DATABASE::connect();
