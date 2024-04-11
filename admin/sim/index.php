@@ -63,9 +63,10 @@ switch ($action) {
         $dssim = $s->laydanhsachsim();
         foreach($dssim as $kt):
             if($kt["SoSim"] == $_POST["txtsosim"]){
-                
+                echo "<script>alert('Số điện thoại đã tồn tại, Vui lòng nhập lại số điện thoại khác.');</script>";
             }
         endforeach;
+        include("themsim.php");
         //xử lý load ảnh
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
         $duongdan = "../../img/sim/" . $hinhanh; //nơi lưu file upload

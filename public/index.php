@@ -421,16 +421,6 @@ switch ($action) {
         $DiaChi = $_POST["txtdiachi"];
         $MatKhau = $_POST["txtmk"];
 
-        // $sua->setMaND($_POST["MaND"]);
-        // $sua->setTrangThai($_POST["TrangThai"]);
-        // $sua->setMaQ($_POST["MaQ"]);
-        // $sua->setHoTen($_POST["txthoten"]);
-        // $sua->setDiaChi($_POST["txtdiachi"]);
-        // $sua->setSdt($_POST["sdt"]);
-        // $sua->setTenDangNhap($_POST["txttendn"]);
-        // $sua->setMatKhau($_POST["txtmk"]);
-        // $sua->setHinhAnh($_POST["HinhAnh"]);
-
         if ($_FILES["fhinhanh"]["name"] != null) {
             //xử lý load ảnh
             $hinhanh = basename($_FILES["fhinhanh"]["name"]); // đường dẫn ảnh lưu trong db
