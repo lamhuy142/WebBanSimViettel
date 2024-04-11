@@ -93,14 +93,31 @@
 									<th scope="col">Chọn Mua</th>
 								</tr>
 							</thead>
-							
+
 							<?php
-							$type = isset($_GET['type']) ? $_GET['type'] : '';
+							// if (isset($_GET['type'])) {
+							// 	$type = $_GET['type'];
+							// } else {
+							// 	$type = '';
+							// }
+							// $type = isset($_GET['type']) ? $_GET['type'] : '';
+
 							foreach ($sim as $s) :
-								$loaithuebao = ($s['LoaiThueBao'] == '1');
-								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
+								// if ($s['LoaiThueBao'] == '1') {
+								// 	$loaithuebao = true;
+								// } else {
+								// 	$loaithuebao = false;
+								// }
+								// if ($loaithuebao == true && $type == 1 ) {
+								// 	$hienthi = true;
+								// }elseif($loaithuebao == false && $type == 0){
+								// 	$hienthi = true;
+								// }
+								// $loaithuebao = ($s['LoaiThueBao'] == '1');
+								// $hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
 								// Kiểm tra nếu sim không thuộc loại được chọn thì bỏ qua
-								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && $hienthi) { ?>
+								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 ){?> 
+								<!-- && $hienthi) { ?> -->
 									<tbody>
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>

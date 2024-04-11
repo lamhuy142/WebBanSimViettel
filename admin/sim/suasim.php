@@ -51,7 +51,7 @@
                     <div class="col my-3">
                         <label>Hình ảnh</label><br>
                         <input type="hidden" name="hinhanh" value="<?php echo $sim_ht["HinhAnh"]; ?>">
-                        <img src="../../img/sim/<?php echo $sim_ht["HinhAnh"]; ?>" width="100px" class="img-thumbnail">
+                        <!-- <img src="../../img/sim/<php echo $sim_ht["HinhAnh"]; ?>" width="100px" class="img-thumbnail"> -->
                         <p>
                             <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                                 Đổi hình ảnh

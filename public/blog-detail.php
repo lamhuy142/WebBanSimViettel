@@ -189,7 +189,7 @@
 																	<div class="d-flex align-items-center mt-2 ml-2 ">
 																		<!--begin::Author-->
 																		<div class="symbol symbol-35px me-3">
-																			<img class="symbol-label img-thumnail rounded-circle" width="20px" height="20px" src="../img/user/<?php echo $nd_tl['HinhAnh']; ?>" alt="">
+																			<img class="symbol-label img-thumnail rounded-circle" width="20px" height="20px" src="../img/logo/favicon.png" alt="">
 																		</div>
 																		<!--end::Author-->
 
@@ -199,7 +199,7 @@
 																			<div class="d-flex align-items-center">
 																				<!--begin::Username-->
 																				<span class="text-dark fw-bold fs-12 me-3 lh-1">
-																					<?php echo $nd_tl["HoTen"]; ?>
+																					Viettel
 																				</span>
 																				<!--end::Username-->
 																			</div>

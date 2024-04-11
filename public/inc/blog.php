@@ -9,9 +9,11 @@
 
         <div class="row">
             <?php 
+            $i=0;
             foreach ($khuyenmai as $km) : 
             foreach ($nguoidung as $nd) : 
-                if($nd["MaND"] == $km["MaND"]){
+                if($nd["MaND"] == $km["MaND"] && $i<3){
+                    $i++;
                 
                 ?>
                 <div class="col-sm-6 col-md-4 p-b-40">
@@ -58,6 +60,7 @@
                     </div>
                 </div>
             <?php 
+            
                 }
             endforeach; 
             endforeach; 

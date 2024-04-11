@@ -305,37 +305,6 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="./assets/js/main.js"></script>
-
-	<!-- <script>
-		// Hàm để hiển thị hoặc ẩn các sim dựa trên lựa chọn trả trước hoặc trả sau
-		function filterSim(type) {
-			// Lặp qua tất cả các sim
-			var simItems = document.querySelectorAll('.tab-pane');
-			simItems.forEach(function(item) {
-				// Lấy ra loại của sim (trả trước hoặc trả sau) từ attribute data-type
-				var simType = item.getAttribute('data-type');
-				// Nếu loại sim không khớp với lựa chọn của người dùng, ẩn sim đó
-				if (type !== 'all' && type !== simType) {
-					item.style.display = 'none';
-				} else {
-					// Nếu loại sim khớp với lựa chọn của người dùng, hiển thị sim đó
-					item.style.display = 'block';
-				}
-			});
-		}
-
-		// Lắng nghe sự kiện khi người dùng thay đổi lựa chọn trả trước hoặc trả sau
-		var radioOptions = document.querySelectorAll('input[name="inlineRadioOptions"]');
-		radioOptions.forEach(function(option) {
-			option.addEventListener('change', function() {
-				var type = this.value; // Lấy ra giá trị của lựa chọn (trả trước hoặc trả sau)
-				filterSim(type); // Gọi hàm để lọc và hiển thị các sim phù hợp với lựa chọn
-			});
-		});
-
-		// Hiển thị tất cả các sim khi trang được tải lần đầu
-		filterSim('all');
-	</script> -->
 	<!-- SEARCH=========================== -->
 	<script>
 		// lọc trả trước trả sau
@@ -358,27 +327,6 @@
 			});
 		});
 	</script>
-	<!-- <script>
-		// lọc trả trước trả sau
-		document.addEventListener('DOMContentLoaded', function() {
-			var filterLinks = document.querySelectorAll('.filter-link');
-			filterLinks.forEach(function(link) {
-				link.addEventListener('click', function(e) {
-					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
-					var type = this.getAttribute('data-type');
-					fetch(`index.php?type=${type} #simTable1`)
-						.then(response => response.text())
-						.then(html => {
-							var parser = new DOMParser();
-							var doc = parser.parseFromString(html, 'text/html');
-							var newTable = doc.querySelector('#simTable1');
-							document.querySelector('#simTable1').innerHTML = newTable.innerHTML;
-						})
-						.catch(err => console.log(err));
-				});
-			});
-		});
-	</script> -->
 
 	</body>
 

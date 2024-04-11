@@ -37,13 +37,7 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("main.php");
         break;
     case "chuyentrang":
@@ -61,13 +55,7 @@ switch ($action) {
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
     
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($traloidanhgia as $tl) {
-                if ($tl["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            
             include("chitietdonhang.php");
         }
         echo "Không có MaDH nào";
@@ -91,13 +79,7 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("main.php");
         break;
     case "hoantat":
@@ -123,13 +105,7 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("main.php");
         break;
     case "huydon":
@@ -147,13 +123,7 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("main.php");
         break;
     default:

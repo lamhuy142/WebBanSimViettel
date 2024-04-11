@@ -55,7 +55,7 @@ switch ($action) {
     case "chuyentrang":
         header("Location:../../WebBanSimViettel/admin/index.php");
         break;
-        
+
     case "khuyenmai":
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
@@ -151,15 +151,15 @@ switch ($action) {
                 $trangthai = 0;
                 $s->doitrangthai($sl["MaS"], $trangthai);
             }
-                //thêm chi tiết đơn hàng
-                $dongia = $gh->laydongiatheomas($sl["MaS"]);
-                $dhct_moi = new DONHANG_CT();
-                $dhct_moi->setMaDH($dh_id);
-                $dhct_moi->setMaS($sl["MaS"]);
-                $dhct_moi->setDonGia($dongia);
-                $dhct_moi->setSoLuong(1);
-                $dhct_moi->setThanhTien($dongia);
-                $dh_ct->themdonhang_ct($dhct_moi);
+            //thêm chi tiết đơn hàng
+            $dongia = $gh->laydongiatheomas($sl["MaS"]);
+            $dhct_moi = new DONHANG_CT();
+            $dhct_moi->setMaDH($dh_id);
+            $dhct_moi->setMaS($sl["MaS"]);
+            $dhct_moi->setDonGia($dongia);
+            $dhct_moi->setSoLuong(1);
+            $dhct_moi->setThanhTien($dongia);
+            $dh_ct->themdonhang_ct($dhct_moi);
         endforeach;
 
 
@@ -334,7 +334,7 @@ switch ($action) {
         }
         break;
     case "danhgia":
-        if (isset($_POST["danhgia"]) && !empty($_POST["danhgia"])) { 
+        if (isset($_POST["danhgia"]) && !empty($_POST["danhgia"])) {
             $nguoidung_dg = $_POST["danhgia"];
             $ngaydg = date("Y-m-d");
             $moi = new DANHGIA();
@@ -408,7 +408,7 @@ switch ($action) {
         // $sua->setTenDangNhap($_POST["txttendn"]);
         // $sua->setMatKhau($_POST["txtmk"]);
         // $sua->setHinhAnh($_POST["HinhAnh"]);
-        
+
         if ($_FILES["fhinhanh"]["name"] != null) {
             //xử lý load ảnh
             $hinhanh = basename($_FILES["fhinhanh"]["name"]); // đường dẫn ảnh lưu trong db
@@ -416,7 +416,7 @@ switch ($action) {
             move_uploaded_file($_FILES["fhinhanh"]["tmp_name"], $duongdan);
             $_SESSION["nguoidung"]["HinhAnh"] = $hinhanh; // Cập nhật hình ảnh mới vào session
         }
-        
+
         // sửa
         $nd->capnhatnguoidung($MaND, $HoTen, $TenDangNhap, $Sdt, $MatKhau, $HinhAnh, $DiaChi);
         // Sau khi lưu thành công, cập nhật thông tin hình ảnh mới vào session.
@@ -441,9 +441,9 @@ switch ($action) {
         break;
     case "hoantat":
         if (isset($_REQUEST["id"]))
-        $id = $_REQUEST["id"];
+            $id = $_REQUEST["id"];
         if (isset($_REQUEST["TrangThai"]))
-        $tinhtrang = $_REQUEST["TrangThai"];
+            $tinhtrang = $_REQUEST["TrangThai"];
         else
             $tinhtrang = "1";
         if ($tinhtrang == "1") {
@@ -466,7 +466,7 @@ switch ($action) {
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
         if (isset($_REQUEST["tinhtrang"]))
-        $tinhtrang = $_REQUEST["tinhtrang"];
+            $tinhtrang = $_REQUEST["tinhtrang"];
         else
             $tinhtrang = "1";
         $tinhtrang = 3;
@@ -478,15 +478,18 @@ switch ($action) {
         $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
         include("dondamua.php");
         break;
-        case "xemtheoloai":
-            if(isset($_GET["MaLGC"])){
-                $loaigc_ht = $lgc->laydanhsachloaigoicuoctheoid($_GET["MaLGC"]);
-                $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-                $goicuoc = $gc->laydanhsachgoicuoc();
-                $loaisim = $ls->laydanhsachloaisim();
-                include("xemtheoloaigc.php");
-            }
-            break;
+    case "xemtheoloai":
+        if (isset($_GET["MaLGC"])) {
+            $loaigc_ht = $lgc->laydanhsachloaigoicuoctheoid($_GET["MaLGC"]);
+            $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+            $goicuoc = $gc->laydanhsachgoicuoc();
+            $loaisim = $ls->laydanhsachloaisim();
+            include("xemtheoloaigc.php");
+        }
+        break;
+    case "timkiemsim":
+        
+        break;
     default:
         break;
 }
