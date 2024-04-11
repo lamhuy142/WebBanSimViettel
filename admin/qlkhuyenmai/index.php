@@ -1,4 +1,4 @@
-<?php 
+<?php
 // session_start();
 
 if (!isset($_SESSION["nguoidung"]))
@@ -39,7 +39,6 @@ switch ($action) {
         $ngayht = date("Y-m-d");
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
         include("khuyenmai.php");
         break;
     case "chuyentrang":
@@ -50,7 +49,8 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("themchuongtrinhkm.php");
         break;
     case "xulythemkm":
@@ -81,8 +81,8 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
-        
+
+
         include("khuyenmai.php");
         break;
     case "sua":
@@ -90,12 +90,13 @@ switch ($action) {
             $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_GET["id"]);
             $loaikhuyenmai = $lkm->laydanhsachloaikhuyenmai();
             $loaisim = $ls->laydanhsachloaisim();
-            if($khuyenmai_ht == false){
+            if ($khuyenmai_ht == false) {
                 echo "Không có dữ liệu";
                 exit();
             }
+            $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
-            
+
             include("suakhuyenmai.php");
         } else {
             $khuyenmai = $km->laydanhsachkhuyenmai();
@@ -104,7 +105,7 @@ switch ($action) {
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             $ngayht = date("Y-m-d");
-           
+
             include("khuyenmai.php");
         }
         break;
@@ -143,7 +144,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+
         include("khuyenmai.php");
         break;
     case "khoa":
@@ -168,7 +169,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+
         include("khuyenmai.php");
         break;
         //-----------------------------------------------------------------
@@ -176,19 +177,21 @@ switch ($action) {
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaikhuyenmai.php");
         break;
     case "themloaikm":
         $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        // // Đánh giá chưa được phản hồi 
+        // $luotdg = 0;
+        // foreach ($traloidanhgia as $tl) {
+        //     if ($tl["TraLoi"] == null) {
+        //         $luotdg = $luotdg + 1;
+        //     }
+        // }
         include("themloaikm.php");
         break;
     case "xulythemloaikm":
@@ -202,19 +205,22 @@ switch ($action) {
         // load người dùng
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
-        
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaikhuyenmai.php");
         break;
     case "sualoaikm":
         if (isset($_GET["id"])) {
             $loai_ht = $lkm->laydanhsachloaikmtheoid($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
-            
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("sualoaikm.php");
         } else {
             $loai = $lkm->laydanhsachloaikhuyenmai();
             $danhgia = $dg->laydanhsachdanhgia();
-            
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("loaikhuyenmai.php");
         }
         break;
@@ -233,14 +239,15 @@ switch ($action) {
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaikhuyenmai.php");
         break;
     case "khoaloaikm":
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
         if (isset($_REQUEST["TrangThai"]))
-        $trangthai = $_REQUEST["TrangThai"];
+            $trangthai = $_REQUEST["TrangThai"];
         else
             $trangthai = "1";
         if ($trangthai == "1") {
@@ -253,7 +260,8 @@ switch ($action) {
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaikhuyenmai.php");
         break;
     default:

@@ -15,6 +15,11 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 				<h2 class="">
 					<a class="text-decoration-none text-muted" href=""><?php echo $lgc["TenLGC"] ?></a>
 				</h2>
+				<div class="btn-box d-flex justify-content-end mt-3">
+					<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=xemtheoloai&MaLGC=<?php echo $lgc["MaLGC"] ?>">
+						Xem Tất Cả
+					</a>
+				</div>
 			</div>
 			<div class="row">
 				<?php foreach ($goicuoc as $gc) :
@@ -40,11 +45,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						</div>
 				<?php }
 				endforeach; ?>
-				<div class="btn-box d-flex justify-content-end mt-3">
-					<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=xemtheoloai&MaLGC=<?php echo $lgc["MaLGC"] ?>">
-						Xem Tất Cả
-					</a>
-				</div>
+
 			</div>
 		<?php endforeach; ?>
 
@@ -59,6 +60,11 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					<h2 class="">
 						<a class="text-decoration-none text-muted" href="">Sim Số</a>
 					</h2>
+					<div class="btn-box d-flex justify-content-end mt-3">
+						<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=sim">
+							Xem Tất Cả
+						</a>
+					</div>
 					<style>
 						a.filter-link:active {
 							color: #EF0033 !important;
@@ -117,11 +123,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 				</div>
 			</div>
 		</div>
-		<div class="btn-box d-flex justify-content-end mt-3">
-			<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=sim">
-				Xem Tất Cả
-			</a>
-		</div>
+
 	</div>
 </section>
 

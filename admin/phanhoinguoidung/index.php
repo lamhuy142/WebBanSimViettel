@@ -28,12 +28,8 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("main.php");
         break;
     case "chuyentrang":
@@ -44,25 +40,13 @@ switch ($action) {
             $danhgia_ht = $dg->laydanhsachdanhgiatheoid($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("phanhoi.php");
-        } else {
+        }else {
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
             include("main.php");
         }
 
@@ -81,14 +65,6 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $t) {
-            if ($t["TraLoi"] == null
-            ) {
-                $luotdg = $luotdg + 1;
-            }
-        }
         include("main.php");
         break;
     case "khoa":
@@ -109,13 +85,6 @@ switch ($action) {
         $quyen = $q->laydanhsachquyen();
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $t) {
-            if ($t["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
         include("main.php");
         break;
     default:

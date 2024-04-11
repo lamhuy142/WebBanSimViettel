@@ -32,34 +32,36 @@ $tl = new TRALOIDANHGIA();
 
 switch ($action) {
     case "xem":
-
         $donhang = $dh->laydanhsachdonhang();
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
         include("main.php");
         break;
     case "chuyentrang":
         header("Location:../../public/index.php");
         break;
     case "xemchitiet":
-        if(isset($_GET["id"]) && isset($_GET["MaND"])){
+        if (isset($_GET["id"]) && isset($_GET["MaND"])) {
             $madh = $_GET["id"];
             $mand = $_GET["MaND"];
-            $donhang_ht= $dh->laydonhangtheoid($madh);
-            $nguoidung_ht= $nd->laynguoidungtheoid($mand);
+            $donhang_ht = $dh->laydonhangtheoid($madh);
+            $nguoidung_ht = $nd->laynguoidungtheoid($mand);
             $donhang = $dh->laydanhsachdonhang();
             $donhang_ct = $dct->laydanhsachdonhang_ct();
             $sim = $s->laydanhsachsim();
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-    
-            
+            $nguoidung = $nd->laydanhsachnguoidung();
             include("chitietdonhang.php");
         }
         echo "Không có MaDH nào";
-        include("chitietdonhang.php");
+        // $nguoidung = $nd->laydanhsachnguoidung();
+        $donhang = $dh->laydanhsachdonhang();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $danhgia = $dg->laydanhsachdanhgia();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        include("main.php");
         break;
     case "khoa":
 
@@ -79,7 +81,7 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+
         include("main.php");
         break;
     case "hoantat":
@@ -105,7 +107,7 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+
         include("main.php");
         break;
     case "huydon":
@@ -123,7 +125,7 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        
+
         include("main.php");
         break;
     default:

@@ -18,16 +18,10 @@
 <div class="bg0 m-t-23 p-b-140">
 	<div class="container">
 		<div class="flex-w flex-sb-m p-b-20">
-			<div class="flex-w flex-c-m m-tb-10">
-				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
-					<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
-					<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-					Search
-				</div>
-			</div>
+
 
 			<!-- Search product -->
-			<div class="dis-none panel-search w-full p-t-10 p-b-15">
+			<!-- <div class="dis-none panel-search w-full p-t-10 p-b-15">
 				<div class="bor8 dis-flex p-l-15">
 					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 						<i class="zmdi zmdi-search"></i>
@@ -35,7 +29,7 @@
 
 					<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 		<section class="sec-product bg0 p-t-20 p-b-50">
@@ -60,6 +54,27 @@
 					</ul>
 				</div>
 			</div>
+			<div class="row mx-auto" style=" width: 200px;">
+				<div class="col-6">
+					<a id="traTruocLink" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
+				</div>
+				<div class="col-6">
+					<a id="traSauLink" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
+				</div>
+			</div>
+			<form action="" method="post">
+				<input type="hidden" name="action" value="timkiemsim" > 
+				<div class="row input-group">
+					<div class="col-4 flex-w flex-c-m m-tb-10">
+						<input type="text" placeholder="Tìm kiếm" name="timkiem" class="form-control">
+						<input style="width:85px; margin-left:3px;" class="btn btn-primary " type="submit" name="" id="" value="tìm kiếm">
+					</div>
+					<div class="col">
+					</div>
+				</div>
+			</form>
+
+
 			<div class="tab-content p-t-50">
 				<?php foreach ($loaisim as $l) : ?>
 					<!-- - -->
@@ -75,14 +90,7 @@
 								<label class="form-check-label" for="inlineRadio2"> Trả Sau</label>
 							</div>
 						</div> -->
-						<div class="row mx-auto" style=" width: 200px;">
-							<div class="col-6">
-								<a id="traTruocLink" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
-							</div>
-							<div class="col-6">
-								<a id="traSauLink" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
-							</div>
-						</div>
+
 
 						<table class="table" id="simTable1">
 							<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
@@ -95,35 +103,22 @@
 							</thead>
 
 							<?php
-							// if (isset($_GET['type'])) {
-							// 	$type = $_GET['type'];
-							// } else {
-							// 	$type = '';
-							// }
+
 							// $type = isset($_GET['type']) ? $_GET['type'] : '';
 
 							foreach ($sim as $s) :
-								// if ($s['LoaiThueBao'] == '1') {
-								// 	$loaithuebao = true;
-								// } else {
-								// 	$loaithuebao = false;
-								// }
-								// if ($loaithuebao == true && $type == 1 ) {
-								// 	$hienthi = true;
-								// }elseif($loaithuebao == false && $type == 0){
-								// 	$hienthi = true;
-								// }
+
 								// $loaithuebao = ($s['LoaiThueBao'] == '1');
 								// $hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
 								// Kiểm tra nếu sim không thuộc loại được chọn thì bỏ qua
-								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 ){?> 
-								<!-- && $hienthi) { ?> -->
+								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1) { ?>
+									<!-- && $hienthi) { ?> -->
 									<tbody>
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
 											<td><?php echo number_format($l['GiaBan']);  ?></td>
-											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $l['GiaBan'] ?>">Chọn Mua</a></td>
+											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogiohang&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $l['GiaBan'] ?>">Chọn Mua</a></td>
 										</tr>
 									</tbody>
 							<?php
@@ -133,9 +128,9 @@
 					</div>
 				<?php endforeach; ?>
 			</div>
+		</section>
 	</div>
 </div>
-</section>
 
 <!-- Load more -->
 <div class="flex-c-m flex-w w-full p-t-45 p-b-30">

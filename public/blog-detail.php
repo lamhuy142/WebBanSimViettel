@@ -8,7 +8,7 @@
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 
-		<a href="index.php?action=blog" class="stext-109 cl8 hov-cl1 trans-04">
+		<a href="index.php?action=khuyenmai" class="stext-109 cl8 hov-cl1 trans-04">
 			Blog
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
@@ -189,7 +189,7 @@
 																	<div class="d-flex align-items-center mt-2 ml-2 ">
 																		<!--begin::Author-->
 																		<div class="symbol symbol-35px me-3">
-																			<img class="symbol-label img-thumnail rounded-circle" width="20px" height="20px" src="../img/logo/favicon.png" alt="">
+																			<img class="symbol-label img-thumnail rounded-circle" style="width: 20px; height:20px;" src="../img/logo/favicon.png" alt="">
 																		</div>
 																		<!--end::Author-->
 
@@ -261,7 +261,6 @@
 						<h4 class="mtext-112 cl2 p-b-33">
 							Danh Mục
 						</h4>
-
 						<ul>
 							<?php foreach ($loaisim as $ls) { ?>
 								<li class="bor18">
@@ -270,15 +269,12 @@
 									</a>
 								</li>
 							<?php } ?>
-
 						</ul>
 					</div>
-
 					<div class="p-t-65">
 						<h4 class="mtext-112 cl2 p-b-33">
 							Featured Products
 						</h4>
-
 						<ul>
 							<li class="flex-w flex-t p-b-30">
 								<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">

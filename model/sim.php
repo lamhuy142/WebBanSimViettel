@@ -69,13 +69,30 @@ class SIM
     }
 
 
-    function timkiemsim($dauSo, $duoiSo)
+    function timkiemsimtheodauso($dauSo)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM sim WHERE so_sim LIKE :dauSo%:duoiSo";
+            $sql = "SELECT * FROM sim WHERE so_sim LIKE :dauSo%";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":dauSo", $dauSo);
+            // $cmd->bindValue(":duoiSo", $duoiSo);
+            $cmd->execute();
+            $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    function timkiemsimtheoduoiso($duoiSo)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM sim WHERE so_sim LIKE %:duoiSo";
+            $cmd = $dbcon->prepare($sql);
+            // $cmd->bindValue(":dauSo", $dauSo);
             $cmd->bindValue(":duoiSo", $duoiSo);
             $cmd->execute();
             $result = $cmd->fetchAll(PDO::FETCH_ASSOC);

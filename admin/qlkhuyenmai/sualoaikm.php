@@ -26,8 +26,8 @@
                             <label for="opttrangthai" class="form-label">Trạng Thái</label>
                             <select class="form-select" name="opttrangthai">
                                 <option value="">Chọn loại trạng thái</option>
-                                    <option value="<?php echo $loai_ht["TrangThai"]; ?>" <?php if ($loai_ht["TrangThai"] == 0) echo "selected"; ?>>Hoạt Động</option>
-                                    <option value="<?php echo $loai_ht["TrangThai"]; ?>" <?php if ($loai_ht["TrangThai"] == 1) echo "selected"; ?>>Dừng</option>
+                                    <option value="<?php echo $loai_ht["TrangThai"]; ?>" <?php if ($loai_ht["TrangThai"] == 1) echo "selected"; ?>>Hoạt Động</option>
+                                    <option value="<?php echo $loai_ht["TrangThai"]; ?>" <?php if ($loai_ht["TrangThai"] == 0) echo "selected"; ?>>Dừng</option>
                             </select>
                         </div>
                     </div>

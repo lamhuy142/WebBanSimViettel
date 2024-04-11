@@ -69,6 +69,12 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         include("sim.php");
         break;
+    case "dstheoloaisim":
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        include("sim.php");
+        break;
     case "goicuoc":
         $loaisim = $ls->laydanhsachloaisim();
         $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
@@ -102,6 +108,22 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         include("main.php");
+        break;
+    case "themvaogiohang":
+        $moi = new GIOHANG_CT();
+        $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
+        $moi->setMaS($_GET["MaSim"]);
+        $moi->setSL(1);
+        $moi->setDonGia($_GET["DonGia"]);
+
+        $gh->themgiohang_ct($moi);
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        $sim = $s->laydanhsachsim();
+        $thuebao = $s->laydanhsachloaithuebao();
+        $loaisim = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        include("sim.php");
         break;
     case "xemgiohang":
         if (isset($_SESSION["nguoidung"])) {
@@ -488,7 +510,11 @@ switch ($action) {
         }
         break;
     case "timkiemsim":
-        
+        if(isset($_POST["timkiem"])){
+            print_r($_POST["timkiem"]);
+            exit();
+
+        }
         break;
     default:
         break;

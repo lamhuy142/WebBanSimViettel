@@ -27,13 +27,7 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("main.php");
         break;
     case "chuyentrang":
@@ -43,13 +37,8 @@ switch ($action) {
         $quyen = $q->laydanhsachquyen();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("themnguoidung.php");
         break;
     case "xulythemnd":
@@ -70,13 +59,8 @@ switch ($action) {
             $HinhAnh = basename($_FILES["fileanh"]["name"]);
             $quyen = $q->laydanhsachquyen();
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            $nguoidung = $nd->laydanhsachnguoidung();
+            
             include("themnguoidung.php");
         }elseif($kiemtra1) {
             // Nếu số điện thoại đã tồn tại, hiển thị thông báo
@@ -90,13 +74,8 @@ switch ($action) {
             $HinhAnh = basename($_FILES["fileanh"]["name"]);
             $quyen = $q->laydanhsachquyen();
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("themnguoidung.php");
         }elseif($kiemtra2){
             // Nếu email đã tồn tại, hiển thị thông báo
@@ -110,14 +89,8 @@ switch ($action) {
             $HinhAnh = basename($_FILES["fileanh"]["name"]);
             $quyen = $q->laydanhsachquyen();
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null
-                ) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            $nguoidung = $nd->laydanhsachnguoidung();
+            
             include("themnguoidung.php");
         }
          else {
@@ -141,13 +114,7 @@ switch ($action) {
             $quyen = $q->laydanhsachquyen();
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            
             include("main.php");
         }
         
@@ -171,13 +138,7 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        
         include("main.php");
         break;
     default:

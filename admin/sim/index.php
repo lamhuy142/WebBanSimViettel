@@ -26,12 +26,14 @@ $gc = new GOICUOC();
 $ls = new LOAISIM();
 $dg = new DANHGIA();
 $tl = new TRALOIDANHGIA();
+$nd = new NGUOIDUNG();
 
 switch ($action) {
     case "sim":
         $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         
         include("sim.php");
@@ -44,19 +46,15 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaisim.php");
         break;
     case "themsim":
         $loai = $ls->laydanhsachloaisim();
         $loaithuebao = $s->laydanhsachloaithuebao();
         $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         
         include("themsim.php");
@@ -81,6 +79,7 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         
         include("sim.php");
         break;
@@ -102,6 +101,7 @@ switch ($action) {
         $loai = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         
         include("sim.php");
@@ -109,6 +109,7 @@ switch ($action) {
     case "themls":
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         
         include("themloaisim.php");
@@ -134,6 +135,7 @@ switch ($action) {
         $loai = $ls->laydanhsachloaisim();
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         
         include("loaisim.php");
@@ -151,6 +153,7 @@ switch ($action) {
             $sim_ht = $s->laydanhsachsimtheoid($_GET["id"]);
             $loai = $ls->laydanhsachloaisim();
             $loaithuebao = $s->laydanhsachloaithuebao();
+        $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             
             include("suasim.php");
@@ -158,6 +161,7 @@ switch ($action) {
             $sim = $s->laydanhsachsim();
             $loai = $ls->laydanhsachloaisim();
             $loaithuebao = $s->laydanhsachloaithuebao();
+        $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             // Đánh giá chưa được phản hồi 
             $luotdg = 0;
@@ -196,6 +200,7 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         $loaithuebao = $s->laydanhsachloaithuebao();
         $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         
         include("sim.php");
@@ -206,12 +211,14 @@ switch ($action) {
             $loaisim_ht = $ls->laydanhsachloaisimtheoid($_GET["id"]);
             $loai = $ls->laydanhsachloaisim();
             $goicuoc = $gc->laydanhsachgoicuoc();
+        $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             
             include("sualoaisim.php");
         } else {
             $loai = $ls->laydanhsachloaisim();
             $goicuoc = $gc->laydanhsachgoicuoc();
+        $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             
             include("loaisim.php");
@@ -232,6 +239,7 @@ switch ($action) {
         $loai = $ls->laydanhsachloaisim();
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         
         include("loaisim.php");

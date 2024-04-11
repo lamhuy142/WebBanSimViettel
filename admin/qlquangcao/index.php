@@ -29,13 +29,8 @@ switch ($action) {
         $quangcao = $qc->laydanhsachquangcao();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("main.php");
         break;
     case "chuyentrang":
@@ -44,13 +39,8 @@ switch ($action) {
     case "themqc":
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("themquangcao.php");
         break;
     case "xulythemqc":
@@ -69,37 +59,22 @@ switch ($action) {
         $quangcao = $qc->laydanhsachquangcao();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("main.php");
         break;
     case "suaqc":
         if (isset($_GET["id"])) {
             $quangcao_ht = $qc->laydanhsachquangcaotheoid($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("suaquangcao.php");
         } else {
             $quangcao = $qc->laydanhsachquangcao();
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("main.php");
         }
         break;
@@ -126,13 +101,8 @@ switch ($action) {
         $quangcao = $qc->laydanhsachquangcao();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("main.php");
         break;
     case "khoa":
@@ -153,13 +123,8 @@ switch ($action) {
         $quangcao = $qc->laydanhsachquangcao();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        $luotdg = 0;
-        foreach ($traloidanhgia as $tl) {
-            if ($tl["TraLoi"] == null) {
-                $luotdg = $luotdg + 1;
-            }
-        }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("main.php");
         break;
     default:

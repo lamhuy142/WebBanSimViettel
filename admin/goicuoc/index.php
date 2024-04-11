@@ -15,6 +15,7 @@ require("../../model/danhgia.php");
 require("../../model/traloidanhgia.php");
 
 
+
 // Xét xem có thao tác nào được chọn
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
@@ -28,6 +29,8 @@ $ls = new LOAISIM();
 $l = new LOAIGOICUOC();
 $dg = new DANHGIA();
 $tl = new TRALOIDANHGIA();
+$nd = new NGUOIDUNG();
+
 
 switch ($action) {
     case "goicuoc":
@@ -35,10 +38,8 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("goicuoc.php");
         break;
     case "chuyentrang":
@@ -49,20 +50,16 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaigoicuoc.php");
         break;
     case "themgoicuoc":
         $loai = $l->laydanhsachloaigoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("themgoicuoc.php");
         break;
     case "xulythemgc":
@@ -81,10 +78,8 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("goicuoc.php");
         break;
     case "khoalgc":
@@ -105,10 +100,8 @@ switch ($action) {
         $loai = $l->laydanhsachloaigoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaigoicuoc.php");
         
         break;
@@ -116,10 +109,8 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("themloaigoicuoc.php");
         break;
     case "xulythemlgc":
@@ -141,40 +132,26 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaigoicuoc.php");
         break;
-    // case "xoa":
-    //     $xoa = new SIM();
-    //     $xoa->setMaSim($_GET["id"]);
-    //     $sim = $s->xoasim($xoa);
-    //     $loaisim = $ls->laydanhsachloaisim();
-    //     $sim = $s->laydanhsachsim();
-    //     include("sim.php");
-    //     break;
     case "suagc":
         if (isset($_GET["id"])) {
             $goicuoc_ht = $gc->laygoicuoctheoid($_GET["id"]);
             $loai = $l->laydanhsachloaigoicuoc();
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-            // Đánh giá chưa được phản hồi 
-            // foreach ($danhgia as $d) {
-            //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-            // }
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("suagoicuoc.php");
         } else {
             $loai = $l->laydanhsachloaigoicuoc();
             $goicuoc = $gc->laydanhsachgoicuoc();
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-            // Đánh giá chưa được phản hồi 
-            // foreach ($danhgia as $d) {
-            //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-            // }
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("goicuoc.php");
         }
         break;
@@ -198,10 +175,8 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("goicuoc.php");
         break;
     
@@ -211,18 +186,14 @@ switch ($action) {
             $loai = $l->laydanhsachloaigoicuoc();
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-            // Đánh giá chưa được phản hồi 
-            // foreach ($danhgia as $d) {
-            //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-            // }
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("sualoaigoicuoc.php");
         } else {
             $loai = $l->laydanhsachloaigoicuoc();
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            // foreach ($danhgia as $d) {
-            //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-            // }
+            $nguoidung = $nd->laydanhsachnguoidung();
+
             include("loaigoicuoc.php");
         }
         break;
@@ -239,10 +210,8 @@ switch ($action) {
         $goicuoc = $gc->laydanhsachgoicuoc();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
+        $nguoidung = $nd->laydanhsachnguoidung();
+
         include("loaigoicuoc.php");
         break;
     default:

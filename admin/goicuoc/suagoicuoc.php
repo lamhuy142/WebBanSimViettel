@@ -52,7 +52,7 @@
                 </div>
                 </br>
                 <div class="my-3">
-                    <a href="index.php?action=sim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
+                    <a href="index.php?action=goicuoc" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input class="btn btn-primary" type="submit" value="Lưu">
                     <input class="btn btn-warning" type="reset" value="Hủy">
                 </div>

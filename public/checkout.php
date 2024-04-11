@@ -8,14 +8,14 @@
         </a>
 
         <span class="stext-109 cl4">
-            Đặt hàng
+            Thông tin đặt hàng
         </span>
     </div>
 </div>
 <!-- Checkout Page Start -->
 <div class="container-fluid py-5">
     <div class="container py-5">
-        <h1 class="mb-4">Đặt Hàng
+        <h1 class="mb-4">Thông Tin Đặt Hàng
             <?php if (isset($_SESSION["nguoidung"])) { ?></h1>
         <form action="index.php" method="post">
             <input type="hidden" name="MaND" value="<?php echo $_SESSION["nguoidung"]["MaND"]; ?>">
