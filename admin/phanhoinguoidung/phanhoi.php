@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 style="color: #EA0029;" class="m-0 font-weight-bold">THÊM NGƯỜI DÙNG</h6>
+            <h6 style="color: #EA0029;" class="m-0 font-weight-bold">PHẢN HỒI NGƯỜI DÙNG</h6>
         </div>
         <div class="card-body">
             <form method="post" enctype="multipart/form-data" action="index.php">
@@ -20,10 +20,16 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txttraloi" class="form-label">Trả lời đánh giá</label>
-                            <textarea id="editor1" rows="5" class="form-control" name="txttraloi"><?php echo $danhgia_ht["TraLoi"]; ?></textarea>
+                            <?php
+                            if ($trangthai == 1) { ?>
+                                <textarea id="editor1" rows="5" class="form-control" name="txttraloi"><?php echo $traloi["TraLoi"]; ?></textarea>
+                            <?php } else { ?>
+                                <textarea id="editor1" rows="5" class="form-control" name="txttraloi"></textarea>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
+
                 <div class="md-3 mt-3">
                     <a href="index.php?action=xem" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input type="submit" value="Trả Lời" class="btn btn-success"></input>

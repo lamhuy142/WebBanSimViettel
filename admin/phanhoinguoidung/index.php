@@ -38,8 +38,12 @@ switch ($action) {
     case "phanhoi":
         if (isset($_GET["id"])) {
             $danhgia_ht = $dg->laydanhsachdanhgiatheoid($_GET["id"]);
+            $trangthai = $dg->kiemtradanhgia($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+            $traloi = $tl->traloidanhgiatheomadg($_GET["id"]);
+            // print_r($traloi);
+            // exit();
             $nguoidung = $nd->laydanhsachnguoidung();
 
             include("phanhoi.php");

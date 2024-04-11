@@ -60,7 +60,12 @@ switch ($action) {
         include("themsim.php");
         break;
     case "xulythem":
-        
+        $dssim = $s->laydanhsachsim();
+        foreach($dssim as $kt):
+            if($kt["SoSim"] == $_POST["txtsosim"]){
+                
+            }
+        endforeach;
         //xử lý load ảnh
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
         $duongdan = "../../img/sim/" . $hinhanh; //nơi lưu file upload

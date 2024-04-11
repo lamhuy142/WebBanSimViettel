@@ -49,27 +49,22 @@ class TRALOIDANHGIA
         $this->NgayTL = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
-
-
-    // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
-
+    public function traloidanhgiatheomadg($MaDG)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM traloidanhgia WHERE MaDG=:MaDG";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaDG", $MaDG);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     // lấy tất cả ng dùng
     public function laydanhsachtraloidanhgiatheoid($MaTL)
     {
