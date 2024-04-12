@@ -5,7 +5,7 @@
                 <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-decoration-none text-muted" href="">Khuyến Mãi</a>
             </h2>
             <div class="btn-box d-flex justify-content-end mt-3">
-                <a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033;" class="text-decoration-none" href="index.php?action=khuyenmai">
+                <a  style="color:#EF0033 !important;" class="text-decoration-none" href="index.php?action=khuyenmai">
                     Xem Tất Cả
                 </a>
             </div>
