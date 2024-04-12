@@ -68,21 +68,27 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					<style>
 						a.filter-link:active {
 							color: #EF0033 !important;
-							/* Màu đỏ */
+						}
+
+						a.filter-link:hover,
+						a.filter-link:focus {
+							color: #EF0033;
+							text-decoration: none ;
 						}
 
 						a.filter-link {
-							color: #979797 !important;
-							/* Màu mặc định */
+							color: #979797;
+							text-decoration: none ;
 						}
 					</style>
 
+
 					<div class="row mb-10">
 						<div class="col-1">
-							<a id="traTruocLink" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
+							<a id="traTruocLink" class="filter-link text-decoration-none" href="index.php?type=1" data-type="1">Trả trước</a>
 						</div>
 						<div class="col-1">
-							<a id="traSauLink" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
+							<a id="traSauLink" class="filter-link text-decoration-none" href="index.php?type=0" data-type="0">Trả sau</a>
 						</div>
 					</div>
 
@@ -97,6 +103,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						</thead>
 						<?php
 						$type = isset($_GET['type']) ? $_GET['type'] : '';
+						// $type = 0;
 						foreach ($sim as $s) :
 							foreach ($loaisim as $ls) :
 
