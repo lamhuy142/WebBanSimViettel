@@ -2,7 +2,7 @@
 
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../img/gioithieu/banner-static.png');">
-	<h2 class="ltext-105 cl0 txt-center">
+	<h2 style="font-family: 'Tilt Neon', sans-serif !important;" class="ltext-105 cl0 txt-center">
 		Contact
 	</h2>
 </section>
@@ -14,7 +14,7 @@
 		<div class="flex-w flex-tr">
 			<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
 				<form>
-					<h4 class="mtext-105 cl2 txt-center p-b-30">
+					<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-105 cl2 txt-center p-b-30">
 						Hỗ trợ khách hàng
 					</h4>
 
@@ -24,10 +24,10 @@
 					</div>
 
 					<div class="bor8 m-b-30">
-						<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="Bạn cần hỗ trợ gì?"></textarea>
+						<textarea style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="Bạn cần hỗ trợ gì?"></textarea>
 					</div>
 
-					<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
+					<button style="font-family: 'Tilt Neon', sans-serif !important;" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
 						Gửi
 					</button>
 				</form>
@@ -40,11 +40,11 @@
 					</span>
 
 					<div class="size-212 p-t-2">
-						<span class="mtext-110 cl2">
+						<span style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-110 cl2">
 							Địa chỉ
 						</span>
 
-						<p class="stext-115 cl6 size-213 p-t-18">
+						<p style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-115 cl6 size-213 p-t-18">
 							Viettel An Giang, 269b Nguyễn Thái Học, Mỹ Hoà, Thành phố Long Xuyên, An Giang
 						</p>
 					</div>
@@ -56,11 +56,11 @@
 					</span>
 
 					<div class="size-212 p-t-2">
-						<span class="mtext-110 cl2">
+						<span style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-110 cl2">
 							Số điện thoại
 						</span>
 
-						<p class="stext-115 cl1 size-213 p-t-18">
+						<p style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-115 cl1 size-213 p-t-18">
 							+84 2966250025
 						</p>
 					</div>
@@ -72,11 +72,11 @@
 					</span>
 
 					<div class="size-212 p-t-2">
-						<span class="mtext-110 cl2">
+						<span style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-110 cl2">
 							Hỗ trợ
 						</span>
 
-						<p class="stext-115 cl1 size-213 p-t-18">
+						<p style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-115 cl1 size-213 p-t-18">
 							avt@gmail.com
 						</p>
 					</div>

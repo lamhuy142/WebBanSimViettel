@@ -2,10 +2,10 @@
     <div class="container">
         <div class="p-b-66">
             <h2 class="">
-                <a class="text-decoration-none text-muted" href="">Khuyến Mãi</a>
+                <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-decoration-none text-muted" href="">Khuyến Mãi</a>
             </h2>
             <div class="btn-box d-flex justify-content-end mt-3">
-                <a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=khuyenmai">
+                <a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033;" class="text-decoration-none" href="index.php?action=khuyenmai">
                     Xem Tất Cả
                 </a>
             </div>
@@ -31,33 +31,33 @@
                                 <div class="p-t-15">
                                     <div class="stext-107 flex-w p-b-14">
                                         <span class="m-r-3">
-                                            <span class="cl4">
+                                            <span style="font-family: 'Tilt Neon', sans-serif !important;" class="cl4">
                                                 By
                                             </span>
 
-                                            <span class="cl5">
+                                            <span style="font-family: 'Tilt Neon', sans-serif !important;" class="cl5">
                                                 <?php echo $nd['HoTen'] ?>
                                             </span>
                                         </span>
 
                                         <span>
-                                            <span class="cl4">
+                                            <span style="font-family: 'Tilt Neon', sans-serif !important;" class="cl4">
                                                 on
                                             </span>
 
-                                            <span class="cl5">
+                                            <span style="font-family: 'Tilt Neon', sans-serif !important;" class="cl5">
                                                 <?php echo $km['NgayTao'] ?>
                                             </span>
                                         </span>
                                     </div>
 
                                     <h4 class="p-b-12">
-                                        <a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="mtext-101 cl2 hov-cl1 trans-04">
+                                        <a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="mtext-101 cl2 hov-cl1 trans-04">
                                             <?php echo $km['TenKM'] ?>
                                         </a>
                                     </h4>
 
-                                    <p class="stext-108 cl6">
+                                    <p style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-108 cl6">
                                         <?php echo mb_substr($km["MoTa"], 0, 100) . "..."; ?>
                                     </p>
                                 </div>

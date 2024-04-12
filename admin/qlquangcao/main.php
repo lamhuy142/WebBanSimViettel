@@ -12,7 +12,7 @@
             <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themqc">Thêm</a></p>
 
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Mã Quảng Cáo</th>

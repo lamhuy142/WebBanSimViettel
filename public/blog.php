@@ -25,11 +25,11 @@
 										<img class="img-thumbnail rounded" style="width:300px; height: 300px;" src="../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="">
 
 										<div class="flex-col-c-m size-123 bg9 how-pos5">
-											<span class="ltext-107 cl2 txt-center">
+											<span style="font-family: 'Tilt Neon', sans-serif !important;" class="ltext-107 cl2 txt-center">
 												<?php echo date('d', strtotime($km['NgayTao'])); ?>
 											</span>
 
-											<span class="stext-109 cl3 txt-center">
+											<span style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-109 cl3 txt-center">
 												<?php echo date('F Y', strtotime($km['NgayTao'])); ?>
 											</span>
 										</div>
@@ -37,7 +37,7 @@
 
 									<div class="p-t-32">
 										<h4 class="p-b-15">
-											<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="ltext-108 cl2 hov-cl1 trans-04">
+											<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="ltext-108 cl2 hov-cl1 trans-04">
 												<?php echo $km["TenKM"]; ?>
 											</a>
 										</h4>
@@ -47,12 +47,12 @@
 
 										<div class="flex-w flex-sb-m p-t-18">
 											<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-												<span>
+												<span style="font-family: 'Tilt Neon', sans-serif !important;">
 													<span class="cl4">By</span>
 													<span class="cl12 m-l-4 m-r-6"><?php echo $nd['HoTen'] ?>|</span>
 												</span>
 
-												<span>
+												<span style="font-family: 'Tilt Neon', sans-serif !important;">
 													<?php $tong = 0;
 
 													// Duyệt qua danh sách đánh giá
@@ -70,7 +70,7 @@
 												</span>
 											</span>
 
-											<a href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+											<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
 												Xem bài viết
 
 												<i class="fa fa-long-arrow-right m-l-9"></i>
@@ -109,14 +109,14 @@
 					</div>
 
 					<div class="p-t-55">
-						<h4 class="mtext-112 cl2 p-b-33">
+						<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-112 cl2 p-b-33">
 							Danh Mục
 						</h4>
 
 						<ul>
 							<?php foreach ($loaisim as $ls) { ?>
 								<li class="bor18">
-									<a href="index.php?action=dstheoloaisim" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=dstheoloaisim" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										<?php echo $ls["TenLS"] ?>
 									</a>
 								</li>

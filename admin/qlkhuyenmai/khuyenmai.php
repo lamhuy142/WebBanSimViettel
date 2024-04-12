@@ -12,7 +12,7 @@
             <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themkm">Thêm</a></p>
 
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="datatable3" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Tên Khuyến Mãi</th>
@@ -54,7 +54,7 @@
                                             <tr>
                                                 <td><?php echo $km["TenKM"]; ?></td>
                                                 <td><?php echo $ls["TenLS"]; ?></td>
-                                                <td><?php echo $km["MoTa"]; ?></td>
+                                                <td><?php echo mb_substr($km["MoTa"], 0, 90) . "..."  ; ?></td>
                                                 <td><img width="50px" src="../../img/khuyenmai/<?php echo $km["HinhAnh"]; ?>" alt="<?php echo $km["HinhAnh"]; ?>"></td>
                                                 <td><?php echo $km["GiaTriKM"]; ?></td>
                                                 <td><?php echo $l["TenLKM"]; ?></td>
@@ -70,11 +70,11 @@
                                                         <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
                                                         <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>&TrangThai=<?php echo $km['TrangThai']; ?>" class="btn btn-danger">Khóa</a>
                                                     </td>
-                                                <?php } elseif ($ngayht < $km["NgayBD"]) { ?>
+                                                <?php } elseif ($ngayht < $km["NgayBD"] && $km["TrangThai"] == 1) { ?>
                                                     <td class="text-warning font-weight-bold">Chương trình sẽ bắt đầu vào ngày <?php echo $km["NgayBD"]; ?></td>
                                                     <td>
                                                         <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
-                                                        <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
+                                                        <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>&TrangThai=<?php echo $km['TrangThai']; ?>" class="btn btn-danger">Khóa</a>
                                                     </td>
                                                 <?php } elseif ($km["TrangThai"] == 0) { ?>
                                                     <td class="text-secondary font-weight-bold">Chương trình đã bị khóa</td>
@@ -82,11 +82,11 @@
                                                         <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
                                                         <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>&TrangThai=<?php echo $km['TrangThai']; ?>" class="btn btn-success">Mở</a>
                                                     </td>
-                                                <?php } else { ?>
+                                                <?php } elseif($ngayht > $km["NgayKT"] && $km["TrangThai"] == 0 || $ngayht > $km["NgayKT"] && $km["TrangThai"] == 1) { ?>
                                                     <td class="text-dark font-weight-bold">Chương trình đã kết thúc</td>
                                                     <td>
                                                         <a href="index.php?action=sua&id=<?php echo $km['MaKM']; ?>" class="btn btn-warning">Sửa</a>
-                                                        <a href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>" class="btn btn-danger">Khóa</a>
+                                                        <a aria-disabled="#444966" href="index.php?action=khoa&id=<?php echo $km['MaKM']; ?>&TrangThai=<?php echo $km['TrangThai']; ?>" class="btn btn-danger">Khóa</a>
                                                     </td>
 
                                                 <?php } ?>

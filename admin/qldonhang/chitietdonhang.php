@@ -41,19 +41,19 @@
                     </p>
                 </div>
                 <div class="col-2">
-                    <p style="font-weight: 600;">Ngày giao: 
-                    <?php if ($donhang_ht["TrangThai"] == 2) {
-                        echo date('d/m/Y', strtotime($donhang_ht["NgayGiaoHang"])); 
-                        }elseif($donhang_ht["TrangThai"] == 3){
+                    <p style="font-weight: 600;">Ngày giao:
+                        <?php if ($donhang_ht["TrangThai"] == 2) {
+                            echo date('d/m/Y', strtotime($donhang_ht["NgayGiaoHang"]));
+                        } elseif ($donhang_ht["TrangThai"] == 3) {
                             echo "<span class='text-secondary'>Đơn đã hủy</span>";
-                        }?></p>
+                        } ?></p>
                 </div>
             </div>
 
 
 
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Số Sim</th>

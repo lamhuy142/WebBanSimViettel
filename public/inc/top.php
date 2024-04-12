@@ -51,13 +51,22 @@ if (isset($_SESSION["nguoidung"])) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
+    <!-- font chữ  -->
+    <!-- <link rel="stylesheet" href="https://fonts.google.com/share?selection.family=Tilt+Neon"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
 
 
     <!-- Hiển thị đánh giá -->
     <!--===============================================================================================-->
 </head>
+<!-- <style>
+    body {
+        font-family: 'Tilt Neon', sans-serif !important;
+    }
+</style> -->
 
-<body class="animsition">
+
+<body style="font-family: 'Tilt Neon', sans-serif !important;" class="animsition">
 
     <!-- Header -->
     <header class="header-v2">
@@ -75,27 +84,27 @@ if (isset($_SESSION["nguoidung"])) {
                     <div class="menu-desktop">
                         <ul class="main-menu ">
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "macdinh") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=macdinh">Trang Chủ</a>
+                                <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "macdinh") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=macdinh">Trang Chủ</a>
                             </li>
 
                             <li class=" text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "sim") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=sim">Sim</a>
+                                <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "sim") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=sim">Sim</a>
                             </li>
 
                             <li class=" text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "goicuoc") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=goicuoc">Gói cước</a>
+                                <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "goicuoc") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=goicuoc">Gói cước</a>
                             </li>
 
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "khuyenmai") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=khuyenmai">Khuyến Mãi</a>
+                                <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "khuyenmai") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=khuyenmai">Khuyến Mãi</a>
                             </li>
 
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "thongtin") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=thongtin">Thông Tin</a>
+                                <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "thongtin") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=thongtin">Thông Tin</a>
                             </li>
 
                             <li class="text-active">
-                                <a class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "lienhe") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=lienhe">Liên Hệ</a>
+                                <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-active text-decoration-none " id="<?php echo strpos($_SERVER["REQUEST_URI"], "lienhe") !== false ? 'active-mmenu' : ''; ?>" href="index.php?action=lienhe">Liên Hệ</a>
                             </li>
                         </ul>
                     </div>
@@ -344,7 +353,7 @@ if (isset($_SESSION["nguoidung"])) {
 
         <div class="header-cart flex-col-l p-l-65 p-r-25">
             <div class="header-cart-title flex-w flex-sb-m p-b-8">
-                <span class="mtext-103 cl2">
+                <span style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-103 cl2">
                     Giỏ Hàng
                 </span>
 
@@ -383,7 +392,7 @@ if (isset($_SESSION["nguoidung"])) {
                 </ul>
 
                 <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
+                    <div style="font-family: 'Tilt Neon', sans-serif !important;" class="header-cart-total w-full p-tb-40">
                         Tổng tiền:
                         <?php
                         $tongtien = 0;
@@ -399,7 +408,7 @@ if (isset($_SESSION["nguoidung"])) {
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">
-                        <a href="index.php?action=xemgiohang" style="color:white;" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 text-decoration-none p-lr-15 trans-04 m-r-8 m-b-10">
+                        <a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=xemgiohang" style="color:white;" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 text-decoration-none p-lr-15 trans-04 m-r-8 m-b-10">
                             Xem giỏ hàng
                         </a>
 

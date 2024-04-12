@@ -3,14 +3,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
+					<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-301 cl0 p-b-30">
 						Danh Mục Sim
 					</h4>
 
 					<ul>
 						<?php foreach ($loaisim as $ls) { ?>
 							<li class="p-b-10">
-								<a href="index.php?action=dstheoloaisim" class="stext-107 cl7 hov-cl1 trans-04">
+								<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=dstheoloaisim" class="stext-107 cl7 hov-cl1 trans-04">
 									<?php echo $ls["TenLS"] ?>
 								</a>
 							</li>
@@ -19,43 +19,25 @@
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
+					<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-301 cl0 p-b-30">
 						Hỗ Trợ
 					</h4>
 
 					<ul>
 						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+							<a style="font-family: 'Tilt Neon', sans-serif !important;" href="#" class="stext-107 cl7 hov-cl1 trans-04">
 								Track Order
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Returns
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								Shipping
-							</a>
-						</li>
-
-						<li class="p-b-10">
-							<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-								FAQs
 							</a>
 						</li>
 					</ul>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
+					<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-301 cl0 p-b-30">
 						Thông Tin Liên Lạc
 					</h4>
 
-					<p class="stext-107 cl7 size-201">
+					<p style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-107 cl7 size-201">
 						Có câu hỏi nào không? Hãy cho chúng tôi biết tại cửa hàng tại tầng 8, 379 Hudson St, New York, NY 10018 hoặc gọi cho chúng tôi theo số 0111222333
 					</p>
 
@@ -75,7 +57,7 @@
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
-					<h4 class="stext-301 cl0 p-b-30">
+					<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-301 cl0 p-b-30">
 						Newsletter
 					</h4>
 
@@ -86,7 +68,7 @@
 						</div>
 
 						<div class="p-t-18">
-							<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+							<button style="font-family: 'Tilt Neon', sans-serif !important;" class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
 								Subscribe
 							</button>
 						</div>
@@ -128,17 +110,7 @@
 		</span>
 	</div>
 
-	<!-- Modal1 -->
-	<!-- hiện modal theo thông tin gói cước chưa được -->
-	<!-- <div id="goi-cuoc-data" style="display: none;">
-		<php foreach ($goicuoc as $gc) : ?>
-			<div class="goi-cuoc" data-ma-goi-cuoc="<php echo $gc['MaGC']; ?>">
-				<h4 class="ten"><php echo $gc['Ten']; ?></h4>
-				<span class="gia"><php echo number_format($gc['Gia']); ?></span>
-				<p class="mo-ta"><php echo $gc['MoTa']; ?></p>
-			</div>
-		<php endforeach; ?>
-	</div> -->
+
 	<div class="mwrap-modal1 wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
@@ -150,10 +122,10 @@
 
 
 				<div class="p-r-50 p-t-5 p-lr-0-lg">
-					<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+					<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-105 cl2 js-name-detail p-b-14">
 						Xác nhận mua gói cước
 					</h4>
-					<span class="mtext-106 cl2">
+					<span style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-106 cl2">
 						Nhập số điện thoại muốn đăng ký gói cước
 					</span>
 					<input class="form-control mt-2" type="text" name="sdt" placeholder="Số điện thoại">
@@ -311,16 +283,81 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			var filterLinks = document.querySelectorAll('.filter-link');
 			filterLinks.forEach(function(link) {
+				// Gắn một sự kiện click cho mỗi phần tử filter-link. Khi phần tử này được click, hàm callback được gọi.
+				link.addEventListener('click', function(e) {
+					e.preventDefault(); // ngăn chặn trình duyệt chuyển hướng đến URL
+					//Lấy giá trị của thuộc tính data-type từ phần tử <a> được click. 
+					var type = this.getAttribute('data-type');
+					//Sử dụng API Fetch để gửi yêu cầu HTTP GET đến URL index.php?type=${type}, 
+					//trong đó ${type} là giá trị của thuộc tính data-type từ phần tử <a> được click. 
+					//Khi nhận được phản hồi từ server, nó sẽ chọn phần tử có id là #simTable từ nội dung HTML phản hồi.
+					fetch(`index.php?type=${type} #simTable`)
+						//Xử lý phản hồi từ server dưới dạng văn bản.
+						.then(response => response.text())
+						//Khi phản hồi đã được chuyển thành văn bản, nó sẽ tiếp tục xử lý dữ liệu văn bản này.
+						.then(html => {
+							//: Tạo một đối tượng DOMParser và sử dụng nó để phân tích chuỗi văn bản HTML thành một tài liệu HTML DOM.
+							var parser = new DOMParser();
+							var doc = parser.parseFromString(html, 'text/html');
+							//Tìm phần tử có id là #simTable trong tài liệu HTML mới.
+							var newTable = doc.querySelector('#simTable');
+							//Thay đổi nội dung của phần tử có id là #simTable trong tài liệu HTML hiện tại bằng nội dung của phần tử tìm thấy trong tài liệu HTML mới.
+							document.querySelector('#simTable').innerHTML = newTable.innerHTML;
+						})
+						//Bắt lỗi nếu có bất kỳ lỗi nào xảy ra trong quá trình này và in ra nó trong console của trình duyệt.
+						.catch(err => console.log(err));
+				});
+			});
+		});
+		document.addEventListener('DOMContentLoaded', function() {
+			var filterLinks = document.querySelectorAll('.filter-link');
+			filterLinks.forEach(function(link) {
 				link.addEventListener('click', function(e) {
 					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
 					var type = this.getAttribute('data-type');
-					fetch(`index.php?type=${type} #simTable`)
+					fetch(`index.php?type=${type} #simTable1`)
 						.then(response => response.text())
 						.then(html => {
 							var parser = new DOMParser();
 							var doc = parser.parseFromString(html, 'text/html');
-							var newTable = doc.querySelector('#simTable');
-							document.querySelector('#simTable').innerHTML = newTable.innerHTML;
+							var newTable = doc.querySelector('#simTable1');
+							document.querySelector('#simTable1').innerHTML = newTable.innerHTML;
+						})
+						.catch(err => console.log(err));
+				});
+			});
+		});
+		document.addEventListener('DOMContentLoaded', function() {
+			var filterLinks = document.querySelectorAll('.filter-link');
+			filterLinks.forEach(function(link) {
+				link.addEventListener('click', function(e) {
+					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+					var type = this.getAttribute('data-type');
+					fetch(`index.php?type=${type} #simTable2`)
+						.then(response => response.text())
+						.then(html => {
+							var parser = new DOMParser();
+							var doc = parser.parseFromString(html, 'text/html');
+							var newTable = doc.querySelector('#simTable2');
+							document.querySelector('#simTable2').innerHTML = newTable.innerHTML;
+						})
+						.catch(err => console.log(err));
+				});
+			});
+		});
+		document.addEventListener('DOMContentLoaded', function() {
+			var filterLinks = document.querySelectorAll('.filter-link');
+			filterLinks.forEach(function(link) {
+				link.addEventListener('click', function(e) {
+					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
+					var type = this.getAttribute('data-type');
+					fetch(`index.php?type=${type} #simTable3`)
+						.then(response => response.text())
+						.then(html => {
+							var parser = new DOMParser();
+							var doc = parser.parseFromString(html, 'text/html');
+							var newTable = doc.querySelector('#simTable3');
+							document.querySelector('#simTable3').innerHTML = newTable.innerHTML;
 						})
 						.catch(err => console.log(err));
 				});

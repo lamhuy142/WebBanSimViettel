@@ -3,16 +3,16 @@
 <!-- breadcrumb -->
 <div class="container">
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-		<a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
-			Home
+		<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
+			Trang chủ
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 
-		<a href="index.php?action=khuyenmai" class="stext-109 cl8 hov-cl1 trans-04">
+		<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=khuyenmai" class="stext-109 cl8 hov-cl1 trans-04">
 			Blog
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
-		<span class="stext-109 cl4">
+		<span style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-109 cl4">
 			<?php echo $khuyenmai_ht["TenKM"] ?>
 		</span>
 	</div>
@@ -32,25 +32,27 @@
 
 					<div class="p-t-32">
 						<span class="flex-w flex-m stext-111 cl2 p-b-19">
-							<span>
-								<?php foreach ($khuyenmai as $km) :
+							<span style="font-family: 'Tilt Neon', sans-serif !important;">
+								<?php
+								$hoten = '';
+								foreach ($khuyenmai as $km) :
 									foreach ($nguoidung as $nd) :
 										if ($nd["MaND"] == $km["MaND"]) {
-								?>
-											<span class="cl4">By</span> <?php echo $nd['HoTen']; ?>
-								<?php }
+											$hoten = $nd['HoTen'];
+										}
 									endforeach;
 								endforeach;
 								?>
+								<span style="font-family: 'Tilt Neon', sans-serif !important;" class="cl4">By</span> <?php echo $hoten; ?>
 								<span class="cl12 m-l-4 m-r-6">|</span>
 							</span>
 
-							<span>
+							<span style="font-family: 'Tilt Neon', sans-serif !important;">
 								<?php echo $khuyenmai_ht['NgayTao']; ?>
 								<span class="cl12 m-l-4 m-r-6">|</span>
 							</span>
 
-							<span>
+							<span style="font-family: 'Tilt Neon', sans-serif !important;">
 								<?php $tong = 0;
 
 								// Duyệt qua danh sách đánh giá
@@ -68,43 +70,27 @@
 							</span>
 						</span>
 
-						<h4 class="ltext-109 cl2 p-b-28">
+						<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="ltext-109 cl2 p-b-28">
 							<?php echo $khuyenmai_ht['TenKM']; ?>
 						</h4>
 
-						<p class="stext-117 cl6 p-b-26">
+						<p style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-117 cl6 p-b-26">
 							<?php echo $khuyenmai_ht['MoTa']; ?>
 						</p>
 					</div>
 
-					<div class="flex-w flex-t p-t-16">
-						<span class="size-216 stext-116 cl8 p-t-4">
-							Tags
-						</span>
-
-						<div class="flex-w size-217">
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Streetstyle
-							</a>
-
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Crafts
-							</a>
-						</div>
-					</div>
-
 					<!--  -->
 					<div class="p-t-40">
-						<h5 class="mtext-113 cl2 p-b-12">
+						<h5 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-113 cl2 p-b-12">
 							Bình luận
 						</h5>
 						<form method="post">
 							<input type="hidden" name="action" value="danhgia">
 							<input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht['MaKM']; ?>">
 							<div class="bor19 m-b-20">
-								<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="danhgia" placeholder="Bình luận..."></textarea>
+								<textarea style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="danhgia" placeholder="Bình luận..."></textarea>
 							</div>
-							<input type="submit" class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04" value="Đánh giá"></input>
+							<input style="font-family: 'Tilt Neon', sans-serif !important;" type="submit" class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04" value="Đánh giá"></input>
 						</form>
 
 						<!-- HIỂN THỊ BÌNH LUẬN -->
@@ -128,7 +114,7 @@
 														<!--begin::Text-->
 														<div class="d-flex align-items-center">
 															<!--begin::Username-->
-															<span class="text-dark fw-bold fs-12 me-3 lh-1">
+															<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-dark fw-bold fs-12 me-3 lh-1">
 																<?php echo $nd['HoTen']; ?>
 															</span>
 															<!--end::Username-->
@@ -136,7 +122,7 @@
 														<!--end::Text-->
 
 														<!--begin::Date-->
-														<span class="text-gray-600 fw-semibold fs-10">
+														<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-gray-600 fw-semibold fs-10">
 															<?php echo date('d-M-Y', strtotime($dg['NgayDG'])); ?>
 														</span>
 														<!--end::Date-->
@@ -146,7 +132,7 @@
 												<div class="m-0">
 													<p>
 														<?php if (isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["MaQ"] == 1) { ?>
-															<a style="color:#576C8F; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+															<a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#576C8F; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
 																Trả lời
 															</a>
 														<?php } ?>
@@ -154,7 +140,7 @@
 													</p>
 												</div>
 											</div>
-											<p class="fw-normal fs-base text-gray-700 m-0 p-0" data-kt-element="comment-text">
+											<p style="font-family: 'Tilt Neon', sans-serif !important;" class="fw-normal fs-base text-gray-700 m-0 p-0" data-kt-element="comment-text">
 												<?php echo $dg['NoiDung']; ?>
 											</p>
 										</div>
@@ -165,13 +151,13 @@
 												<input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht["MaKM"] ?>">
 												<input type="hidden" name="nguoiphanhoi" value="<?php echo $_SESSION["nguoidung"]["MaND"] ?>">
 												<div style="border:0.5px groove #E1E3EA;" class="rounded bor19 m-b-20 m-t-20">
-													<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="traloi" placeholder="Bình luận..."></textarea>
+													<textarea style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="traloi" placeholder="Bình luận..."></textarea>
 												</div>
 												<p>
-													<a class="text-decoration-none btn btn-secondary m-l-2" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+													<a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-decoration-none btn btn-secondary m-l-2" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
 														Hủy
 													</a>
-													<input style="color:#576C8F; background-color:#E7E7E7; border:1px solid #E7E7E7;" type="submit" value="Trả lời" class="text-decoration-none btn btn-secondary m-l-10" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+													<input style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#576C8F; background-color:#E7E7E7; border:1px solid #E7E7E7;" type="submit" value="Trả lời" class="text-decoration-none btn btn-secondary m-l-10" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
 												</p>
 											</form>
 										</div>
@@ -184,7 +170,7 @@
 													<!-- HIỂN THỊ TRẢ LỜI -->
 													<div class="ms-5 ms-lg-10">
 														<div id="kt_post_comment_96" data-kt-comment-id="96">
-															<div class="rounded-3 border border-dashed border-gray-300 w-100 p-7 p-lg-10 mb-10 mt-2">
+															<div style="padding-left: 7px !important;" class="rounded-3 border border-dashed border-gray-300 w-100 p-7 pl-7 p-lg-10 mb-10 mt-2">
 																<div class="w-100 d-flex align-items-center justify-content-between mb-4">
 																	<div class="d-flex align-items-center mt-2 ml-2 ">
 																		<!--begin::Author-->
@@ -198,7 +184,7 @@
 																			<!--begin::Text-->
 																			<div class="d-flex align-items-center">
 																				<!--begin::Username-->
-																				<span class="text-dark fw-bold fs-12 me-3 lh-1">
+																				<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-dark fw-bold fs-12 me-3 lh-1">
 																					Viettel
 																				</span>
 																				<!--end::Username-->
@@ -206,19 +192,13 @@
 																			<!--end::Text-->
 
 																			<!--begin::Date-->
-																			<span class="text-gray-600 fw-semibold fs-10">
+																			<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-gray-600 fw-semibold fs-10">
 																				<?php echo date('d-M-Y', strtotime($t['NgayTL'])); ?>
 																			</span>
 																			<!--end::Date-->
 																		</div>
 																		<!--end::Info-->
 																	</div>
-																	<!-- 																
-																<div class="m-2">
-																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7 me-2" data-kt-action="reply" fdprocessedid="y3z0lv">Reply</button>
-																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7 me-2" data-kt-action="edit" fdprocessedid="g1xils">Edit</button>
-																	<button class="btn p-0 text-gray-600 text-hover-primary fw-semibold cursor-pointer fs-7" data-kt-action="delete" data-kt-action-url="https://devs.keenthemes.com/comments/96" fdprocessedid="84vpsf">Delete</button>
-																</div> -->
 																</div>
 																<p class="fw-normal fs-base text-gray-700 m-2 p-0" data-kt-element="comment-text">
 																	<?php echo $t['TraLoi']; ?>
@@ -258,13 +238,13 @@
 					</div>
 
 					<div class="p-t-55">
-						<h4 class="mtext-112 cl2 p-b-33">
+						<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-112 cl2 p-b-33">
 							Danh Mục
 						</h4>
 						<ul>
 							<?php foreach ($loaisim as $ls) { ?>
 								<li class="bor18">
-									<a href="index.php?action=dstheoloaisim" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=dstheoloaisim" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
 										<?php echo $ls["TenLS"] ?>
 									</a>
 								</li>

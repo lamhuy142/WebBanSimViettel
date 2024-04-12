@@ -1,10 +1,13 @@
 <?php include("inc/top.php");
+
 // <!-- Slider -->
 include("inc/sider.php");
 // <!-- Banner -->
 include("inc/banner.php");
 $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptions'] : 'all';
 ?>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME" chat-title="Test" agent-id="fc9a4396-d40f-461c-ac16-1fdabafc04e8" language-code="en"></df-messenger>
 <!-- Hiện gói  cước -->
 <!-- Goi cuoc -->
 <section class=" bg0 p-t-100 p-b-50">
@@ -66,21 +69,33 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						</a>
 					</div>
 					<style>
-						a.filter-link:active {
-							color: #EF0033 !important;
+						/* Loại bỏ border-bottom mặc định của liên kết */
+						a.filter-link {
+							color: #979797;
+							text-decoration: none;
+							border-bottom: none;
+							/* Loại bỏ border-bottom */
 						}
 
+						/* Màu và border-bottom khi hover hoặc focus */
 						a.filter-link:hover,
 						a.filter-link:focus {
 							color: #EF0033;
-							text-decoration: none ;
+							text-decoration: none;
+							border-bottom: none;
+							/* Loại bỏ border-bottom */
 						}
 
-						a.filter-link {
-							color: #979797;
-							text-decoration: none ;
+						/* Màu khi liên kết đang được nhấn */
+						a.filter-link:active {
+							color: #EF0033 !important;
+							text-decoration: none !important;
+							border-bottom: none !important;
+							/* Loại bỏ border-bottom */
 						}
 					</style>
+
+
 
 
 					<div class="row mb-10">
@@ -107,16 +122,29 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						foreach ($sim as $s) :
 							foreach ($loaisim as $ls) :
 
+
+
 								$loaithuebao = ($s['LoaiThueBao'] == '1');
 								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
 
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) {
-						?>
+								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) { ?>
 									<tbody>
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
-											<td><?php echo number_format($ls['GiaBan']);  ?></td>
+											<?php
+											$giaban = $ls["GiaBan"]; // Lưu giá gốc của sim
+											foreach ($khuyenmai as $km) :
+												if ($km["MaLS"] == $s["MaLS"] && $km["TrangThai"] == 1) {
+													$giaban = $ls["GiaBan"] * $km["GiaTriKM"] / 100; ?>
+												<?php } ?>
+											<?php endforeach; ?>
+											<?php if ($giaban != $ls["GiaBan"]) { ?>
+												<td class="text-danger"><?php echo number_format($giaban); ?></td>
+
+											<?php } else { ?>
+												<td><?php echo number_format($giaban); ?></td>
+											<?php } ?>
 											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $ls['GiaBan'] ?>">Chọn Mua</a></td>
 										</tr>
 									</tbody>
@@ -137,6 +165,6 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 
 
 <!-- Blog -->
-<?php include("inc/blog.php") ?>
+<?php include("inc/blog-main.php") ?>
 
 <?php include("inc/bottom.php") ?>

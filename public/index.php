@@ -20,11 +20,8 @@ $isLogin = isset($_SESSION["nguoidung"]);
 if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } elseif ($isLogin == FALSE) {
-    $action = "dangnhap";
-    // } 
-    // elseif($_SESSION["nguoidung"]["MaQ"] == 2){
-    //     header("Location:../../public/");
-} else {   // mặc định là xem danh sách
+    $action = "macdinh";
+}else {   // mặc định là xem danh sách
     $action = "macdinh";
 }
 
@@ -66,12 +63,14 @@ switch ($action) {
     case "sim":
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
         include("sim.php");
         break;
     case "dstheoloaisim":
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
         include("sim.php");
         break;
@@ -94,6 +93,9 @@ switch ($action) {
         include("contact.php");
         break;
     case "themvaogio":
+        if($isLogin == FALSE){
+            include("login.php");
+        }
         $moi = new GIOHANG_CT();
         $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
         $moi->setMaS($_GET["MaSim"]);
@@ -212,6 +214,18 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         include("main.php");
+        break;
+    case "xoamotsim":
+        if (isset($_GET["id"])) {
+            $xoa = $_GET["id"];
+            $gh->xoagiohangtheosim($xoa);
+        }
+        $loaisim = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        $giohang = $gh->laydanhsachgiohang_ct();
+        include("shoping-cart.php");
         break;
     case "dangnhap":
         include("login.php");
@@ -500,10 +514,9 @@ switch ($action) {
         }
         break;
     case "timkiemsim":
-        if(isset($_POST["timkiem"])){
+        if (isset($_POST["timkiem"])) {
             print_r($_POST["timkiem"]);
             exit();
-
         }
         break;
     default:

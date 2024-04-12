@@ -41,15 +41,9 @@ $luotdg = $dg->soluongchuatraloi();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
     <!-- css -->
     <link rel="stylesheet" href="../../admin/inc/css/css_upro.css">
-    <!-- <link rel="stylesheet" href="../../admin/inc/css/css_img_avt.css"> -->
 
 
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
-
-    <!-- <script src="ckeditor5/ckeditor.js"></script>
-    <script src="ckfinder/ckfinder.js"></script> -->
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script> -->
-
 
 </head>
 

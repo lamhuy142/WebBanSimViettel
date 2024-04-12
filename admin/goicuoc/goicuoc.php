@@ -11,7 +11,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <p><a style="background-color: #EA0029; color: white;" class="btn " href="index.php?action=themgoicuoc">Thêm</a></p>
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="datatable4" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th scope="col">Tên Gói Cước</th>
