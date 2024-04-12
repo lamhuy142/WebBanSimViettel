@@ -5,7 +5,7 @@
                 <a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-decoration-none text-muted" href="">Khuyến Mãi</a>
             </h2>
             <div class="btn-box d-flex justify-content-end mt-3">
-                <a  style="color:#EF0033 !important;" class="text-decoration-none" href="index.php?action=khuyenmai">
+                <a style="color:#EF0033 !important;" class="text-decoration-none" href="index.php?action=khuyenmai">
                     Xem Tất Cả
                 </a>
             </div>
@@ -52,7 +52,7 @@
                                     </div>
 
                                     <h4 class="p-b-12">
-                                        <a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="mtext-101 cl2 hov-cl1 trans-04">
+                                        <a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033 !important;" href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="">
                                             <?php echo $km['TenKM'] ?>
                                         </a>
                                     </h4>
@@ -74,3 +74,10 @@
         </div>
     </div>
 </section>
+<style>
+    a.mtext:hover,
+    a.mtext:focus,
+    a.mtext:active {
+        color: #EF0033 !important;
+    }
+</style>
