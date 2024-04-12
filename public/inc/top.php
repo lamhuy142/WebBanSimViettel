@@ -111,17 +111,7 @@ if (isset($_SESSION["nguoidung"])) {
 
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m h-full">
-                        <div class="flex-c-m h-full p-r-24">
-                            <div class="input-group rounded">
-                                <input style="border-color: white;" type="search" class="text-action form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                                <span class="input-group-text border-0" id="search-addon">
-                                    <!-- <i class="bi bi-search mt-n1"></i> -->
-                                </span>
-                            </div>
-                            <!-- <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-                                <i style="color: #576C9D;" class="zmdi zmdi-search"></i>
-                            </div> -->
-                        </div>
+                        
                         <?php if (isset($_SESSION["nguoidung"])) {
                         ?>
                             <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
