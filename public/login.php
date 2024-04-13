@@ -14,8 +14,8 @@
 </head>
 
 <body>
-    <section class="vh-50 gradient-custom">
-        <div class="container py-5 h-100">
+    <section style="background-image: url(../img/gioithieu/headbg.png);background-size: cover; background-position: center;" class=" vh-50 ">
+        <div class=" container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-50">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">

@@ -516,8 +516,8 @@ switch ($action) {
     case "timkiemsim":
         if (isset($_POST["timkiem"])) {
             $tukhoa = $_POST["timkiem"];
-            $vitri = strpos($tukhoa, '*');
-            $tk = str_replace("*", "", $tukhoa);
+            $vitri = strpos($tukhoa, '*');// vị trí của dấu * trong chuỗi
+            $tk = str_replace("*", "", $tukhoa);// đổi * thành khoảng trắng trong chuỗi 
             // print_r($tukhoa);
             // echo "<br>";
             // print_r($vitri);
@@ -526,8 +526,12 @@ switch ($action) {
             // exit();
             if ($vitri == 0) {
                 $sim = $s->timkiemsimtheoduoiso($tk);
-                // print_r($sim);
-                // exit();
+                $thuebao = $s->laydanhsachloaithuebao();
+                $khuyenmai = $km->laydanhsachkhuyenmai();
+                $loaisim = $ls->laydanhsachloaisim();
+                include("timkiemsim.php");
+            }elseif($vitri != 0){
+                $sim = $s->timkiemsimtheodauso($tk);
                 $thuebao = $s->laydanhsachloaithuebao();
                 $khuyenmai = $km->laydanhsachkhuyenmai();
                 $loaisim = $ls->laydanhsachloaisim();

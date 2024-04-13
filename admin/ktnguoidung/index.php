@@ -50,10 +50,7 @@ switch ($action) {
             }
         }
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]); 
-        // }
+        
         include("main.php");
         break;
     case "chuyentrang":
@@ -64,13 +61,7 @@ switch ($action) {
             $nguoidung_ht = $nd->laynguoidungtheoid($_GET["id"]);
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-            // Đánh giá chưa được phản hồi 
-            // $luotdg = 0;
-            // foreach ($traloidanhgia as $tl) {
-            //     if ($tl["TraLoi"] == null) {
-            //         $luotdg = $luotdg + 1;
-            //     }
-            // }
+           
             include("profile.php");
         }
         // include("profile.php");

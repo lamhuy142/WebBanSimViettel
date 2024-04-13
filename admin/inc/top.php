@@ -266,6 +266,7 @@ $luotdg = $dg->soluongchuatraloi();
                                 </h6>
                                 <?php foreach ($danhgia as $d) :
                                     foreach ($nguoidung as $n) :
+                                    // foreach ($traloidanhgia as $tl) :
                                         if ($n["MaND"] == $d["MaND"]) {
                                 ?>
                                             <a class="dropdown-item d-flex align-items-center" href="../phanhoinguoidung/index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">
@@ -279,10 +280,11 @@ $luotdg = $dg->soluongchuatraloi();
                                                 </div>
                                             </a>
                                 <?php }
+                                    // endforeach;
                                     endforeach;
                                 endforeach;
                                 ?>
-                                <a class="dropdown-item text-center small text-gray-500" href="../phanhoinguoidung/index.php?action=xem">Read More Messages</a>
+                                <!-- <a class="dropdown-item text-center small text-gray-500" href="../phanhoinguoidung/index.php?action=xem">Read More Messages</a> -->
                             </div>
                         </li>
 

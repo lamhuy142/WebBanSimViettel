@@ -3,10 +3,22 @@
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../img/gioithieu/banner-static.png');">
 	<h2 style="font-family: 'Tilt Neon', sans-serif !important;" class="ltext-105 cl0 txt-center">
-		Contact
+		Liên Hệ
 	</h2>
 </section>
+<!-- breadcrumb -->
+<div class="container">
+	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+		<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
+			Trang chủ
+			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+		</a>
 
+		<span style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-109 cl4">
+			Liên hệ
+		</span>
+	</div>
+</div>
 
 <!-- Content page -->
 <section class="bg0 p-t-104 p-b-116">

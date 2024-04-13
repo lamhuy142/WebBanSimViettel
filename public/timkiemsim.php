@@ -68,7 +68,7 @@
 						<div class="row input-group">
 							<div class="col-4 flex-w flex-c-m m-tb-10">
 								<input type="text" placeholder="Tìm kiếm" name="timkiem" class="form-control">
-								<input style="width:85px; margin-left:3px;" class="btn btn-primary " type="submit" name="" id="" value="tìm kiếm">
+								<input style="width:85px; margin-left:3px; background-color:#EF0033; color:white;" class="btn" type="submit" name="" id="" value="tìm kiếm">
 							</div>
 							<div class="col">
 							</div>

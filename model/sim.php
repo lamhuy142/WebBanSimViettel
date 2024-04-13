@@ -73,9 +73,9 @@ class SIM
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT * FROM sim WHERE SoSim LIKE :dauSo%";
+            $sql = "SELECT * FROM sim WHERE SoSim LIKE :dauSo";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":dauSo", $dauSo);
+            $cmd->bindValue(":dauSo", "$dauSo%");
             // $cmd->bindValue(":duoiSo", $duoiSo);
             $cmd->execute();
             $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
@@ -92,7 +92,7 @@ class SIM
         try {
             $sql = "SELECT * FROM sim WHERE SoSim LIKE :duoiSo";
             $cmd = $dbcon->prepare($sql);
-            $cmd->bindValue(":duoiSo", "%$duoiSo%");
+            $cmd->bindValue(":duoiSo", "%$duoiSo");
             $cmd->execute();
             $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
             return $result;

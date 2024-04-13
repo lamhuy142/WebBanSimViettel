@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background-image: url(../../img/gioithieu/headbg.png);" class="">
 
     <div class="container">
 
@@ -33,11 +33,11 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block "></div>
+                            <div style="background-image: url(../../img/gioithieu/vt.png); background-size: cover; background-position: center;" class="col-lg-6 d-none d-lg-block "></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Đăng Nhập</h1>
                                     </div>
                                     <form class="user" method="post">
                                         <div class="form-group">
@@ -46,29 +46,15 @@
                                         <div class="form-group">
                                             <input type="password" name="txtpassword" class=" form-control form-control-user" id="exampleInputPassword" placeholder="Nhập mật khẩu..." required>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Nhớ</label>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <input type="hidden" name="action" value="xulydangnhap">
-                                        <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng nhập">
-                                        <!-- <hr> -->
-                                        <!-- <a href="login/google-api-php-client-main/login.php" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Đăng nhập với Google
-                                        </a>
-                                        <a href="#" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Đăng nhập với Facebook
-                                        </a> -->
+                                        <input style="background-color: #ff0033; color:white;" type="submit" class="btn  btn-user btn-block" value="Đăng nhập">
                                     </form>
-                                    <!-- <hr> -->
-                                    <!-- <div class="text-center">
-                                        <a class="small" href="index.php?action=quenmatkhau">Quên mật khẩu?</a>
-                                    </div> -->
-                                    <!-- <div class="text-center">
-                                        <a class="small" href="index.php?action=dangky">Tạo một tài khoản!</a>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
