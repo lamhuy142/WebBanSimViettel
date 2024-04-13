@@ -281,6 +281,13 @@
 	<script>
 		// lọc trả trước trả sau
 		document.addEventListener('DOMContentLoaded', function() {
+			// // Tìm thẻ <a> có id là traTruocLink
+			// const defaultLink = document.querySelector('#traTruocLink');
+
+			// // Nếu thẻ tồn tại, gọi hàm click() để mô phỏng sự kiện click
+			// if (defaultLink) {
+			// 	defaultLink.click();
+			// }
 			var filterLinks = document.querySelectorAll('.filter-link');
 			filterLinks.forEach(function(link) {
 				// Gắn một sự kiện click cho mỗi phần tử filter-link. Khi phần tử này được click, hàm callback được gọi.
