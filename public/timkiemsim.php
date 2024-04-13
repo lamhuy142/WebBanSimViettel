@@ -1,59 +1,25 @@
 <?php include("inc/top.php");
 
-// <!-- Slider -->
-include("inc/sider.php");
-// <!-- Banner -->
-include("inc/banner.php");
-$selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptions'] : 'all';
 ?>
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger intent="WELCOME" chat-title="Test" agent-id="fc9a4396-d40f-461c-ac16-1fdabafc04e8" language-code="en"></df-messenger>
-<!-- Hiện gói  cước -->
-<!-- Goi cuoc -->
-<section class=" bg0 p-t-100 p-b-50">
-	<div class="container">
-		<?php foreach ($loaigoicuoc as $lgc) :
-			$i = 0; ?>
-			<div class="heading_container heading_center p-4">
-				<h2 class="">
-					<a class="text-decoration-none text-muted" href=""><?php echo $lgc["TenLGC"] ?></a>
-				</h2>
-				<div class="btn-box d-flex justify-content-end mt-3">
-					<a style="color:#EF0033;" class="text-decoration-none" href="index.php?action=xemtheoloaigc&MaLGC=<?php echo $lgc["MaLGC"] ?>">
-						Xem Tất Cả
-					</a>
-				</div>
-			</div>
-			<div class="row">
-				<?php foreach ($goicuoc as $gc) :
-					if ($lgc["MaLGC"] == $gc["MaLGC"] && $i < 4) {
-						$i++; ?>
-						<div class="col-sm-6 col-md-4 col-lg-3 mb-4"> <!--Thêm lớp mb-4 để tạo khoảng cách giữa các card-->
-							<div class="card">
-								<div class="block2-pic hov-img0">
-									<img class="card-img-top" src="../img/goicuoc/gc.png" alt="img">
-									<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=chitietgoicuoc&id=<?php echo $gc['MaGC'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-										Xem chi tiết
-									</a>
-								</div>
+<!-- breadcrumb -->
+<div class="container">
+	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+		<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
+			Trang chủ
+			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+		</a>
 
-								<div class="card-body">
-									<h5 class="card-title"><?php echo $gc["Ten"] ?></h5>
-									<p><?php echo number_format($gc["Gia"]); ?>đ</p>
-
-									<a style="background-color:white; " class="border rounded btn js-show-modal1">Đăng ký</a>
-								</div>
-
-							</div>
-						</div>
-				<?php }
-				endforeach; ?>
-
-			</div>
-		<?php endforeach; ?>
-
+		<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=sim" class="stext-109 cl8 hov-cl1 trans-04">
+			Sim
+			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+		</a>
+		<span style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-109 cl4">
+			Tìm kiếm
+		</span>
 	</div>
-</section>
+</div>
+
+<!-- Product -->
 
 <section>
 	<div class="container">
@@ -96,16 +62,27 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					</style>
 
 
-
-
-					<div class="row mb-10">
+					<!-- TÌM KIẾM SIM -->
+					<form action="" method="post">
+						<input type="hidden" name="action" value="timkiemsim">
+						<div class="row input-group">
+							<div class="col-4 flex-w flex-c-m m-tb-10">
+								<input type="text" placeholder="Tìm kiếm" name="timkiem" class="form-control">
+								<input style="width:85px; margin-left:3px;" class="btn btn-primary " type="submit" name="" id="" value="tìm kiếm">
+							</div>
+							<div class="col">
+							</div>
+						</div>
+					</form>
+					<!-- TRẢ TRƯỚC TRẢ SAU  -->
+					<!-- <div class="row mb-10">
 						<div class="col-1">
 							<a id="traTruocLink" class="filter-link text-decoration-none" href="index.php?type=1" data-type="1">Trả trước</a>
 						</div>
 						<div class="col-1">
 							<a id="traSauLink" class="filter-link text-decoration-none" href="index.php?type=0" data-type="0">Trả sau</a>
 						</div>
-					</div>
+					</div> -->
 
 					<table class="table" id="simTable">
 						<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
@@ -121,13 +98,10 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						// $type = 0;
 						foreach ($sim as $s) :
 							foreach ($loaisim as $ls) :
-
-
-
 								$loaithuebao = ($s['LoaiThueBao'] == '1');
 								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
-
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) { ?>
+								// && $hienthi
+								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1) { ?>
 									<tbody>
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
@@ -154,17 +128,21 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						endforeach;
 						?>
 					</table>
-
 				</div>
 			</div>
 		</div>
-
 	</div>
 </section>
 
 
+<!-- Load more -->
+<!-- <div class="flex-c-m flex-w w-full p-t-45 p-b-30">
+	<a style="font-family: 'Tilt Neon', sans-serif !important;" href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+		Load More
+	</a>
+</div> -->
+</div>
+</div>
 
-<!-- Blog -->
-<?php include("inc/blog-main.php") ?>
 
 <?php include("inc/bottom.php") ?>

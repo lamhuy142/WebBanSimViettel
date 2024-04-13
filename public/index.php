@@ -21,7 +21,7 @@ if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } elseif ($isLogin == FALSE) {
     $action = "macdinh";
-}else {   // mặc định là xem danh sách
+} else {   // mặc định là xem danh sách
     $action = "macdinh";
 }
 
@@ -67,13 +67,13 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         include("sim.php");
         break;
-    case "dstheoloaisim":
-        $sim = $s->laydanhsachsim();
-        $thuebao = $s->laydanhsachloaithuebao();
-        $khuyenmai = $km->laydanhsachkhuyenmai();
-        $loaisim = $ls->laydanhsachloaisim();
-        include("sim.php");
-        break;
+        // case "dstheoloaisim":
+        //     $sim = $s->laydanhsachsim();
+        //     $thuebao = $s->laydanhsachloaithuebao();
+        //     $khuyenmai = $km->laydanhsachkhuyenmai();
+        //     $loaisim = $ls->laydanhsachloaisim();
+        //     include("sim.php");
+        //     break;
     case "goicuoc":
         $loaisim = $ls->laydanhsachloaisim();
         $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
@@ -93,7 +93,7 @@ switch ($action) {
         include("contact.php");
         break;
     case "themvaogio":
-        if($isLogin == FALSE){
+        if ($isLogin == FALSE) {
             include("login.php");
         }
         $moi = new GIOHANG_CT();
@@ -504,7 +504,7 @@ switch ($action) {
         $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
         include("dondamua.php");
         break;
-    case "xemtheoloai":
+    case "xemtheoloaigc":
         if (isset($_GET["MaLGC"])) {
             $loaigc_ht = $lgc->laydanhsachloaigoicuoctheoid($_GET["MaLGC"]);
             $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
@@ -515,8 +515,24 @@ switch ($action) {
         break;
     case "timkiemsim":
         if (isset($_POST["timkiem"])) {
-            print_r($_POST["timkiem"]);
-            exit();
+            $tukhoa = $_POST["timkiem"];
+            $vitri = strpos($tukhoa, '*');
+            $tk = str_replace("*", "", $tukhoa);
+            // print_r($tukhoa);
+            // echo "<br>";
+            // print_r($vitri);
+            // echo "<br>";
+            // print_r($tk);
+            // exit();
+            if ($vitri == 0) {
+                $sim = $s->timkiemsimtheoduoiso($tk);
+                // print_r($sim);
+                // exit();
+                $thuebao = $s->laydanhsachloaithuebao();
+                $khuyenmai = $km->laydanhsachkhuyenmai();
+                $loaisim = $ls->laydanhsachloaisim();
+                include("timkiemsim.php");
+            }
         }
         break;
     default:

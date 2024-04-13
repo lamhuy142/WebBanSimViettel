@@ -48,18 +48,20 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						if ($gc["MaLGC"] == $loaigc_ht["MaLGC"]) {
 					?>
 							<div class=" col-sm-6 col-md-4 col-lg-3 mb-4"> <!-- style="margin-bottom: 1rem; style="width: 18rem;"class="card mr-2 mb-2" -->
-								<div class="block2-pic hov-img0">
-									<!-- <h5 class="card-title"><php echo $gc["Ten"] ?></h5> -->
-									<img class="card-img-top" src="../img/goicuoc/gc.png" alt="img">
-									<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=chitietgoicuoc&id=<?php echo $gc['MaGC'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 "> <!--js-show-modal1-->
-										Xem chi tiết
-									</a>
-								</div>
+								<div class="card">
+									<div class="block2-pic hov-img0">
+										<!-- <h5 class="card-title"><php echo $gc["Ten"] ?></h5> -->
+										<img class="card-img-top" src="../img/goicuoc/gc.png" alt="img">
+										<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=chitietgoicuoc&id=<?php echo $gc['MaGC'] ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 "> <!--js-show-modal1-->
+											Xem chi tiết
+										</a>
+									</div>
 
-								<div class="card-body">
-									<h5 style="font-family: 'Tilt Neon', sans-serif !important;" class="card-title"><?php echo $gc["Ten"] ?></h5>
-									<p><?php echo number_format($gc["Gia"]); ?>đ</p>
-									<a style="background-color:white; " class="border rounded btn js-show-modal1">Đăng ký</a>
+									<div class="card-body">
+										<h5 style="font-family: 'Tilt Neon', sans-serif !important;" class="card-title"><?php echo $gc["Ten"] ?></h5>
+										<p><?php echo number_format($gc["Gia"]); ?>đ</p>
+										<a style="background-color:white; " class="border rounded btn js-show-modal1">Đăng ký</a>
+									</div>
 								</div>
 							</div>
 					<?php }
