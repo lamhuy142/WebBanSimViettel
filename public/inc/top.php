@@ -59,12 +59,12 @@ if (isset($_SESSION["nguoidung"])) {
     <!-- Hiển thị đánh giá -->
     <!--===============================================================================================-->
 </head>
-<!-- <style>
-    body {
-        font-family: 'Tilt Neon', sans-serif !important;
-    }
-</style> -->
 
+<!-- 
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME" chat-title="Test" agent-id="fc9a4396-d40f-461c-ac16-1fdabafc04e8" language-code="en"></df-messenger> -->
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME" chat-title="ViChat" agent-id="9ec64812-29d0-47d0-b211-fb51ca18a7af" language-code="vi"></df-messenger>
 
 <body style="font-family: 'Tilt Neon', sans-serif !important;" class="animsition">
 
@@ -111,7 +111,7 @@ if (isset($_SESSION["nguoidung"])) {
 
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m h-full">
-                        
+
                         <?php if (isset($_SESSION["nguoidung"])) {
                         ?>
                             <div class="flex-c-m h-full p-l-18 p-r-25 bor5">

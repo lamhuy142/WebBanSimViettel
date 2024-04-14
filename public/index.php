@@ -341,12 +341,13 @@ switch ($action) {
         break;
     case "dangxuat":
         unset($_SESSION["nguoidung"]);
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-        $goicuoc = $gc->laydanhsachgoicuoc();
+        $nguoidung = $nd->laydanhsachnguoidung();
         include("main.php");
         break;
 

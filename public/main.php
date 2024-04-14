@@ -6,8 +6,6 @@ include("inc/sider.php");
 include("inc/banner.php");
 $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptions'] : 'all';
 ?>
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger intent="WELCOME" chat-title="Test" agent-id="fc9a4396-d40f-461c-ac16-1fdabafc04e8" language-code="en"></df-messenger>
 <!-- Hiện gói  cước -->
 <!-- Goi cuoc -->
 <section class=" bg0 p-t-100 p-b-50">

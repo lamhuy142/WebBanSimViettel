@@ -4,7 +4,7 @@
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../img/gioithieu/banner-static.png');">
 	<h2 style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033;" class="ltext-105 cl0 txt-center">
-		Thông Tin
+		
 	</h2>
 </section>
 <!-- breadcrumb -->
@@ -22,7 +22,7 @@
 </div>
 
 <!-- Content page -->
-<section style="background-color: #EF0033 !important;" class="bg0 p-t-75 p-b-120">
+<section class="bg0 p-t-75 p-b-120">
 	<div class="container">
 		<div class="row p-b-148 tab-content">
 			<div id="muc1" class="tab-pane active col-md-7 col-lg-8">
