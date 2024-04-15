@@ -58,6 +58,7 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
         include("blog.php");
         break;
     case "sim":
@@ -77,6 +78,7 @@ switch ($action) {
     case "goicuoc":
         $loaisim = $ls->laydanhsachloaisim();
         $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+        $sim = $s->laydanhsachsim();
         $goicuoc = $gc->laydanhsachgoicuoc();
         include("goicuoc.php");
         break;
@@ -90,6 +92,7 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();
+        $sim = $s->laydanhsachsim();
         include("contact.php");
         break;
     case "themvaogio":
@@ -359,6 +362,8 @@ switch ($action) {
             $loaisim = $ls->laydanhsachloaisim();
             $khuyenmai = $km->laydanhsachkhuyenmai();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+            $sim = $s->laydanhsachsim();
+
             include("blog-detail.php");
         } else {
             $sim = $s->laydanhsachsim();
@@ -393,6 +398,8 @@ switch ($action) {
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        $sim = $s->laydanhsachsim();
+
         include("blog-detail.php");
         break;
     case "traloidanhgia":
@@ -410,6 +417,7 @@ switch ($action) {
         $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
+        $sim = $s->laydanhsachsim();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         include("blog-detail.php");
         break;
@@ -417,8 +425,10 @@ switch ($action) {
         if (isset($_GET["id"])) {
             $goicuoc_ht = $gc->laygoicuoctheoid($_GET["id"]);
             $loaisim = $ls->laydanhsachloaisim();
+            $sim = $s->laydanhsachsim();
             include("chitietgoicuoc.php");
         }
+        $sim = $s->laydanhsachsim();
         include("chitietgoicuoc.php");
         break;
     case "hoso":
@@ -517,8 +527,8 @@ switch ($action) {
     case "timkiemsim":
         if (isset($_POST["timkiem"])) {
             $tukhoa = $_POST["timkiem"];
-            $vitri = strpos($tukhoa, '*');// vị trí của dấu * trong chuỗi
-            $tk = str_replace("*", "", $tukhoa);// đổi * thành khoảng trắng trong chuỗi 
+            $vitri = strpos($tukhoa, '*'); // vị trí của dấu * trong chuỗi
+            $tk = str_replace("*", "", $tukhoa); // đổi * thành khoảng trắng trong chuỗi 
             // print_r($tukhoa);
             // echo "<br>";
             // print_r($vitri);
@@ -531,7 +541,7 @@ switch ($action) {
                 $khuyenmai = $km->laydanhsachkhuyenmai();
                 $loaisim = $ls->laydanhsachloaisim();
                 include("timkiemsim.php");
-            }elseif($vitri != 0){
+            } elseif ($vitri != 0) {
                 $sim = $s->timkiemsimtheodauso($tk);
                 $thuebao = $s->laydanhsachloaithuebao();
                 $khuyenmai = $km->laydanhsachkhuyenmai();
