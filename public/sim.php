@@ -38,6 +38,7 @@
 								<a style="font-family: 'Tilt Neon', sans-serif !important;" id="" class="nav-link
 								<?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false  || $l['MaLS'] == 3) echo "active"; ?>" data-toggle="tab" href="#<?php echo $l['MaLS'] ?>"><?php echo $l['TenLS'] ?></a> <!--role="tab"-->
 							</li>
+
 						<?php endforeach; ?>
 					</ul>
 				</div>
@@ -57,25 +58,27 @@
 
 
 			<div class="tab-content p-t-50">
-				<?php foreach ($loaisim as $l) :
-					if ($l["MaLS"] == 2) { ?>
-						<div class="row mx-auto" style=" width: 200px;">
-							<div class="col-6">
-								<a id="traTruocLink" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
-							</div>
-							<div class="col-6">
-								<a id="traSauLink" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
-							</div>
-						</div>
-					<?php } ?>
-					<!-- - -->
+
+				<!-- if ($l["MaLS"] == 2) { ?> -->
+				<div class="row mx-auto" style=" width: 200px;">
+					<div class="col-6">
+						<a id="traTruocLink" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
+					</div>
+					<div class="col-6">
+						<a id="traSauLink" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
+					</div>
+				</div>
+				<!-- <php } ?> -->
+				<!-- - -->
+				<?php foreach ($loaisim as $l) : ?>
 					<!-- || $l['MaLS'] == 3 -->
 					<div class="tab-pane fade  <?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false || $l['MaLS'] == 3) echo "show active"; ?>" id="<?php echo $l["MaLS"] ?>" role="tabpanel">
 						<!-- SIM DATA -->
 						<table class="table" id="simTable<?php echo $l["MaLS"] ?>">
+
 							<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
 								<tr>
-									<th scope=" col">STT</th>
+									<th scope="col">STT</th>
 									<th scope="col">Sim Số</th>
 									<th scope="col">Giá Sim</th>
 									<th scope="col">Chọn Mua</th>
@@ -84,15 +87,16 @@
 
 							<?php
 
-							$type = isset($_GET['type']) ? $_GET['type'] : '';
+							// $type = isset($_GET['type']) ? $_GET['type'] : '';
 
 							foreach ($sim as $s) :
-								$loaithuebao = ($s['LoaiThueBao'] == '1');
-								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
+								// foreach ($loaisim as $l) :
+								// $loaithuebao = ($s['LoaiThueBao'] == '1');
+								// $hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
 								// Kiểm tra nếu sim không thuộc loại được chọn thì bỏ qua
 								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && $s["MaSim"] != null) { ?> <!-- && $hienthi) { ?> -->
 									<tbody>
-										<tr class="table-hover-bg-factor">
+										<tr class="table-hover-bg-factor" data-type="<?php echo $s['LoaiThueBao']; ?>">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
 											<?php
@@ -115,10 +119,13 @@
 							<?php
 								}
 							endforeach;
+							// endforeach;
 							?>
 						</table>
 					</div>
-				<?php endforeach; ?>
+				<?php endforeach;
+
+				?>
 			</div>
 		</section>
 	</div>
@@ -132,6 +139,44 @@
 </div> -->
 </div>
 </div>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const filterLinks = document.querySelectorAll('.filter-link');
+		const simTypeLinks = document.querySelectorAll('.nav-link'); // Selector cho các liên kết loại sim
+
+		filterLinks.forEach(link => {
+			link.addEventListener('click', function(e) {
+				e.preventDefault();
+				const type = this.dataset.type; // '1' cho trả trước, '0' cho trả sau
+
+				document.querySelectorAll('[id^="simTable"]').forEach(table => {
+					const rows = table.querySelectorAll('tbody tr');
+
+					rows.forEach(row => {
+						if (row.dataset.type === type || type === 'all') {
+							row.style.display = '';
+						} else {
+							row.style.display = 'none';
+						}
+					});
+				});
+			});
+		});
+
+		// Thêm sự kiện click cho các liên kết loại sim
+		simTypeLinks.forEach(link => {
+			link.addEventListener('click', function(e) {
+				// Khi một loại sim được chọn, reset bảng hiển thị tất cả các hàng
+				document.querySelectorAll('[id^="simTable"]').forEach(table => {
+					const rows = table.querySelectorAll('tbody tr');
+					rows.forEach(row => {
+						row.style.display = ''; // Hiển thị tất cả các hàng
+					});
+				});
+			});
+		});
+	});
+</script>
 
 
 <?php include("inc/bottom.php") ?>
