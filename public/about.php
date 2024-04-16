@@ -36,19 +36,19 @@
 							<span style="font-size:14px;"><span style="font-family: 'Tilt Neon', sans-serif !important;">- Top 15 doanh nghiệp viễn thông phát triển nhanh nhất thế giới,</span></span>
 						</p>
 						<p>
-							<span style="font-family: 'Tilt Neon', sans-serif !important;" sans-serif; font-size: 14px;">- Xếp thứ 28 trên top 150 nhà mạng có giá trị nhất thế giới, với giá trị thương hiệu đạt 5,8 tỷ USD, đứng số 1 tại Đông Nam Á và thứ 9 tại Châu Á</span>
+							<span style="font-family: 'Tilt Neon', sans-serif !important;"><span style="font-size:14px;"> - Xếp thứ 28 trên top 150 nhà mạng có giá trị nhất thế giới, với giá trị thương hiệu đạt 5,8 tỷ USD, đứng số 1 tại Đông Nam Á và thứ 9 tại Châu Á</span></span>
 						</p>
 						<p>
-							<span style="font-family: 'Tilt Neon', sans-serif !important;" sans-serif; font-size: 14px;">- Chứng nhận “Best in Test” từ Công ty đo kiểm viễn thông hàng đầu thế giới Umlaut 2020</span>
+							<span style="font-family: 'Tilt Neon', sans-serif !important;"><span style="font-size:14px;"> - Chứng nhận “Best in Test” từ Công ty đo kiểm viễn thông hàng đầu thế giới Umlaut 2020</span></span>
 						</p>
 						<p>
-							<span style="font-family: 'Tilt Neon', sans-serif !important;" sans-serif; font-size: 14px;">- Giải Bạc sản phẩm viễn thông mới xuất sắc nhất của giải thưởng Kinh doanh quốc tế 2020 cho gói data siêu tốc ST15K</span>
+							<span style="font-family: 'Tilt Neon', sans-serif !important;"><span style="font-size:14px;"> - Giải Bạc sản phẩm viễn thông mới xuất sắc nhất của giải thưởng Kinh doanh quốc tế 2020 cho gói data siêu tốc ST15K</span></span>
 						</p>
 						<p>
-							<span style="font-family: 'Tilt Neon', sans-serif !important;" sans-serif; font-size: 14px;">- Nhà cung cấp dịch vụ của năm tại các thị trường đang phát triển năm 2009 và Nhà cung cấp dịch vụ data di động tốt nhất Việt Nam – 2019 (Frost &amp; Sullivan)</span>
+							<span style="font-family: 'Tilt Neon', sans-serif !important;"><span style="font-size:14px;"> - Nhà cung cấp dịch vụ của năm tại các thị trường đang phát triển năm 2009 và Nhà cung cấp dịch vụ data di động tốt nhất Việt Nam – 2019 (Frost &amp; Sullivan)</span></span>
 						</p>
 						<p>
-							<span style="font-family: 'Tilt Neon', sans-serif !important;" sans-serif; font-size: 14px;">- Giải bạc hạng mục "Dịch vụ khách hàng mới của năm“ trong hệ thống giải thưởng quốc tế Stevie Awards 2014 cho Dịch vụ tổng đài tiếng dân tộc.</span>
+							<span style="font-family: 'Tilt Neon', sans-serif !important;"><span style="font-size:14px;"> - Giải bạc hạng mục "Dịch vụ khách hàng mới của năm“ trong hệ thống giải thưởng quốc tế Stevie Awards 2014 cho Dịch vụ tổng đài tiếng dân tộc.</span></span>
 						</p>
 					</div>
 					</p>

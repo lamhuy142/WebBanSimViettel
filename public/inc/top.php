@@ -54,7 +54,7 @@ if (isset($_SESSION["nguoidung"])) {
     <!-- FONT CHỮ ---------------------------- -->
     <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
     <!-- SLIDE------------------------ -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Hiển thị đánh giá -->
     <!--===============================================================================================-->

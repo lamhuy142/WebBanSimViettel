@@ -38,7 +38,6 @@
 								<a style="font-family: 'Tilt Neon', sans-serif !important;" id="" class="nav-link
 								<?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false  || $l['MaLS'] == 3) echo "active"; ?>" data-toggle="tab" href="#<?php echo $l['MaLS'] ?>"><?php echo $l['TenLS'] ?></a> <!--role="tab"-->
 							</li>
-
 						<?php endforeach; ?>
 					</ul>
 				</div>
@@ -75,10 +74,9 @@
 					<div class="tab-pane fade  <?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false || $l['MaLS'] == 3) echo "show active"; ?>" id="<?php echo $l["MaLS"] ?>" role="tabpanel">
 						<!-- SIM DATA -->
 						<table class="table" id="simTable<?php echo $l["MaLS"] ?>">
-
 							<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
 								<tr>
-									<th scope="col">STT</th>
+									<th scope=" col">STT</th>
 									<th scope="col">Sim Số</th>
 									<th scope="col">Giá Sim</th>
 									<th scope="col">Chọn Mua</th>
@@ -97,7 +95,7 @@
 								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && $s["MaSim"] != null) { ?> <!-- && $hienthi) { ?> -->
 									<tbody>
 										<tr class="table-hover-bg-factor" data-type="<?php echo $s['LoaiThueBao']; ?>">
-											<td scope="row"><?php echo $s['MaSim'] ?></td>
+											<td scope=" row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
 											<?php
 											$giaban = $l["GiaBan"]; // Lưu giá gốc của sim
@@ -139,6 +137,7 @@
 </div> -->
 </div>
 </div>
+
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const filterLinks = document.querySelectorAll('.filter-link');
@@ -177,6 +176,4 @@
 		});
 	});
 </script>
-
-
 <?php include("inc/bottom.php") ?>

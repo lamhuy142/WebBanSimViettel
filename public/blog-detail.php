@@ -267,9 +267,12 @@
 								if ($k["MaKM"] != $khuyenmai_ht["MaKM"] && $i < 3) {
 									$i++; ?>
 									<li class="flex-w flex-t p-b-30">
-										<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $k['MaKM'] ?>" class=" wrao-pic-w size-214 hov-ovelay1 m-r-20">
+										<!-- <a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $k['MaKM'] ?>" class=" wrao-pic-w size-214 hov-ovelay1 m-r-20"> -->
+										<div class="mr-3">
+
 											<img width="50px" height="50px" class="thumnail" src="../img/khuyenmai/<?php echo $k['HinhAnh']; ?>" alt="PRODUCT">
-										</a>
+										</div>
+										<!-- </a> -->
 
 										<div class="size-215 flex-col-t p-t-8">
 											<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $k['MaKM'] ?>" class="stext-116 cl8 hov-cl1 trans-04">
