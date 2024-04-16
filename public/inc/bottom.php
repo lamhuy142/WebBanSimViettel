@@ -75,30 +75,6 @@
 					</form>
 				</div>
 			</div>
-
-			<div class="p-t-40">
-				<div class="flex-c-m flex-w p-b-18">
-					<a href="#" class="m-all-1">
-						<img src="./images/icons/icon-pay-01.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="./images/icons/icon-pay-02.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="./images/icons/icon-pay-03.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="./images/icons/icon-pay-04.png" alt="ICON-PAY">
-					</a>
-
-					<a href="#" class="m-all-1">
-						<img src="./images/icons/icon-pay-05.png" alt="ICON-PAY">
-					</a>
-				</div>
-			</div>
 		</div>
 	</footer>
 
@@ -117,7 +93,7 @@
 		<div class="container">
 			<div style="padding-left:25px;" class="mbg bg0 p-t-30 p-b-30 p-lr-15-lg how-pos3-parent">
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
-					<img src="./images/icons/icon-close.png" alt="CLOSE">
+					<img src="../img/icons/icon-close.png" alt="CLOSE">
 				</button>
 
 
@@ -138,7 +114,7 @@
 									<a style="background-color:light; border:1px solid black;" class="text-dark btn js-hide-modal1">Hủy</a>
 								</div>
 								<div class="col-md-6">
-									<a style="color:#44494D; background-color:#DEE6EE;" class="btn " href="index.php?action=dangkygoicuoc">Đăng ký</a>
+									<a style="color:#44494D; background-color:#DEE6EE;" class="btn " href="index.php?action=macdinh">Đăng ký</a>
 								</div>
 							</div>
 						</div>
@@ -169,7 +145,9 @@
 			padding: 20px;
 		}
 	</style>
-
+	<!-- SLIDE--------------------------------------- -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<!--====================================login===========================================================-->
 	<script src="../../admin/inc/js/sb-admin-2.min.js"></script>
 
@@ -312,60 +290,6 @@
 							document.querySelector('#simTable').innerHTML = newTable.innerHTML;
 						})
 						//Bắt lỗi nếu có bất kỳ lỗi nào xảy ra trong quá trình này và in ra nó trong console của trình duyệt.
-						.catch(err => console.log(err));
-				});
-			});
-		});
-		document.addEventListener('DOMContentLoaded', function() {
-			var filterLinks = document.querySelectorAll('.filter-link');
-			filterLinks.forEach(function(link) {
-				link.addEventListener('click', function(e) {
-					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
-					var type = this.getAttribute('data-type');
-					fetch(`index.php?type=${type} #simTable1`)
-						.then(response => response.text())
-						.then(html => {
-							var parser = new DOMParser();
-							var doc = parser.parseFromString(html, 'text/html');
-							var newTable = doc.querySelector('#simTable1');
-							document.querySelector('#simTable1').innerHTML = newTable.innerHTML;
-						})
-						.catch(err => console.log(err));
-				});
-			});
-		});
-		document.addEventListener('DOMContentLoaded', function() {
-			var filterLinks = document.querySelectorAll('.filter-link');
-			filterLinks.forEach(function(link) {
-				link.addEventListener('click', function(e) {
-					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
-					var type = this.getAttribute('data-type');
-					fetch(`index.php?type=${type} #simTable2`)
-						.then(response => response.text())
-						.then(html => {
-							var parser = new DOMParser();
-							var doc = parser.parseFromString(html, 'text/html');
-							var newTable = doc.querySelector('#simTable2');
-							document.querySelector('#simTable2').innerHTML = newTable.innerHTML;
-						})
-						.catch(err => console.log(err));
-				});
-			});
-		});
-		document.addEventListener('DOMContentLoaded', function() {
-			var filterLinks = document.querySelectorAll('.filter-link');
-			filterLinks.forEach(function(link) {
-				link.addEventListener('click', function(e) {
-					e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ <a>
-					var type = this.getAttribute('data-type');
-					fetch(`index.php?type=${type} #simTable3`)
-						.then(response => response.text())
-						.then(html => {
-							var parser = new DOMParser();
-							var doc = parser.parseFromString(html, 'text/html');
-							var newTable = doc.querySelector('#simTable3');
-							document.querySelector('#simTable3').innerHTML = newTable.innerHTML;
-						})
 						.catch(err => console.log(err));
 				});
 			});

@@ -9,7 +9,7 @@
 		</a>
 
 		<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=khuyenmai" class="stext-109 cl8 hov-cl1 trans-04">
-			Blog
+			Khuyến mãi
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 		<span style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-109 cl4">
@@ -132,7 +132,7 @@
 												<div class="m-0">
 													<p>
 														<?php if (isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["MaQ"] == 1) { ?>
-															<a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#576C8F; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+															<a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033 !important; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
 																Trả lời
 															</a>
 														<?php } ?>
@@ -229,213 +229,48 @@
 			</div>
 			<div class="col-md-4 col-lg-3 p-b-80">
 				<div class="side-menu">
-					<div class="bor17 of-hidden pos-relative">
-						<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
-
-						<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-							<i class="zmdi zmdi-search"></i>
-						</button>
-					</div>
-
 					<div class="p-t-55">
 						<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-112 cl2 p-b-33">
 							Danh Mục
 						</h4>
 						<ul>
-							<?php foreach ($loaisim as $ls) { ?>
-								<li class="bor18">
-									<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=dstheoloaisim" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-										<?php echo $ls["TenLS"] ?>
-									</a>
-								</li>
-							<?php } ?>
+							<li class="bor18">
+								<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=sim" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									Sim
+								</a>
+							</li>
+							<li class="bor18">
+								<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=goicuoc" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									Gói cước
+								</a>
+							</li>
 						</ul>
 					</div>
 					<div class="p-t-65">
-						<h4 class="mtext-112 cl2 p-b-33">
-							Featured Products
+						<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-112 cl2 p-b-33">
+							Khuyến mãi
 						</h4>
 						<ul>
-							<li class="flex-w flex-t p-b-30">
-								<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-									<img src="images/product-min-01.jpg" alt="PRODUCT">
-								</a>
+							<?php
+							$i = 0;
+							foreach ($khuyenmai as $k) :
+								if ($k["MaKM"] != $khuyenmai_ht["MaKM"] && $i < 3) {
+									$i++; ?>
+									<li class="flex-w flex-t p-b-30">
+										<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $k['MaKM'] ?>" class=" wrao-pic-w size-214 hov-ovelay1 m-r-20">
+											<img width="50px" height="50px" class="thumnail" src="../img/khuyenmai/<?php echo $k['HinhAnh']; ?>" alt="PRODUCT">
+										</a>
 
-								<div class="size-215 flex-col-t p-t-8">
-									<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-										White Shirt With Pleat Detail Back
-									</a>
-
-									<span class="stext-116 cl6 p-t-20">
-										$19.00
-									</span>
-								</div>
-							</li>
-
-							<li class="flex-w flex-t p-b-30">
-								<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-									<img src="images/product-min-02.jpg" alt="PRODUCT">
-								</a>
-
-								<div class="size-215 flex-col-t p-t-8">
-									<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-										Converse All Star Hi Black Canvas
-									</a>
-
-									<span class="stext-116 cl6 p-t-20">
-										$39.00
-									</span>
-								</div>
-							</li>
-
-							<li class="flex-w flex-t p-b-30">
-								<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-									<img src="images/product-min-03.jpg" alt="PRODUCT">
-								</a>
-
-								<div class="size-215 flex-col-t p-t-8">
-									<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-										Nixon Porter Leather Watch In Tan
-									</a>
-
-									<span class="stext-116 cl6 p-t-20">
-										$17.00
-									</span>
-								</div>
-							</li>
+										<div class="size-215 flex-col-t p-t-8">
+											<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $k['MaKM'] ?>" class="stext-116 cl8 hov-cl1 trans-04">
+												<?php echo $k["TenKM"]; ?>
+											</a>
+										</div>
+									</li>
+							<?php
+								}
+							endforeach; ?>
 						</ul>
-					</div>
-
-					<div class="p-t-55">
-						<h4 class="mtext-112 cl2 p-b-20">
-							Archive
-						</h4>
-
-						<ul>
-							<li class="p-b-7">
-								<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-									<span>
-										July 2018
-									</span>
-
-									<span>
-										(9)
-									</span>
-								</a>
-							</li>
-
-							<li class="p-b-7">
-								<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-									<span>
-										June 2018
-									</span>
-
-									<span>
-										(39)
-									</span>
-								</a>
-							</li>
-
-							<li class="p-b-7">
-								<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-									<span>
-										May 2018
-									</span>
-
-									<span>
-										(29)
-									</span>
-								</a>
-							</li>
-
-							<li class="p-b-7">
-								<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-									<span>
-										April 2018
-									</span>
-
-									<span>
-										(35)
-									</span>
-								</a>
-							</li>
-
-							<li class="p-b-7">
-								<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-									<span>
-										March 2018
-									</span>
-
-									<span>
-										(22)
-									</span>
-								</a>
-							</li>
-
-							<li class="p-b-7">
-								<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-									<span>
-										February 2018
-									</span>
-
-									<span>
-										(32)
-									</span>
-								</a>
-							</li>
-
-							<li class="p-b-7">
-								<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-									<span>
-										January 2018
-									</span>
-
-									<span>
-										(21)
-									</span>
-								</a>
-							</li>
-
-							<li class="p-b-7">
-								<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-									<span>
-										December 2017
-									</span>
-
-									<span>
-										(26)
-									</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-
-					<div class="p-t-50">
-						<h4 class="mtext-112 cl2 p-b-27">
-							Tags
-						</h4>
-
-						<div class="flex-w m-r--5">
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Fashion
-							</a>
-
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Lifestyle
-							</a>
-
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Denim
-							</a>
-
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Streetstyle
-							</a>
-
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Crafts
-							</a>
-						</div>
 					</div>
 				</div>
 			</div>

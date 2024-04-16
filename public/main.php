@@ -98,6 +98,9 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 
 					<div class="row mb-10">
 						<div class="col-1">
+							<a id="all" style="color: #E7E7E7;" class="text-decoration-none" href="index.php?type=all">Tất cả</a>
+						</div>
+						<div class="col-1">
 							<a id="traTruocLink" class="filter-link text-decoration-none" href="index.php?type=1" data-type="1">Trả trước</a>
 						</div>
 						<div class="col-1">
@@ -115,6 +118,17 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 							</tr>
 						</thead>
 						<?php
+						$type = isset($_GET['type']) ? $_GET['type'] : 'all';
+
+						foreach ($sim as $s) :
+							foreach ($loaisim as $ls) :
+
+								$loaithuebao = ($s['LoaiThueBao'] == '1');
+								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao) || ($type == 'all');
+
+								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) {
+						?>
+									<!-- <php
 						$type = isset($_GET['type']) ? $_GET['type'] : '';
 						// $type = 0;
 						foreach ($sim as $s) :
@@ -125,7 +139,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 								$loaithuebao = ($s['LoaiThueBao'] == '1');
 								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
 
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) { ?>
+								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) { ?> -->
 									<tbody>
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>

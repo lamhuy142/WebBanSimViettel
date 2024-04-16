@@ -276,30 +276,4 @@
     $('.js-hide-modal1').on('click',function(){
         $('.js-modal1').removeClass('show-modal1');
     });
-//    $(document).ready(function() {
-//     $('.js-show-modal1').on('click', function(e) {
-//         e.preventDefault();
-//         var maGoiCuoc = $(this).data('goi-cuoc'); // Lấy mã gói cước từ thuộc tính dữ liệu
-//         var modalContent = ''; // Chuỗi chứa nội dung modal
-
-//         Tìm gói cước tương ứng với mã gói cước từ cấu trúc HTML
-//         var goiCuoc = $('#goi-cuoc-data').find('[data-ma-goi-cuoc="' + maGoiCuoc + '"]');
-//         if (goiCuoc.length > 0) {
-//             Lấy thông tin gói cước từ cấu trúc HTML và thêm vào nội dung modal
-//             modalContent += '<h4 class="mtext-105 cl2 js-name-detail p-b-14">' + goiCuoc.find('.ten').text() + '</h4>';
-//             modalContent += '<span class="mtext-106 cl2">' + goiCuoc.find('.gia').text() + '</span>';
-//             modalContent += '<p class="stext-102 cl3 p-t-23">' + goiCuoc.find('.mo-ta').text() + '</p>';
-
-//             Hiển thị nội dung modal và thêm nội dung modal vào thành phần .modal-content
-//             $('.js-modal1').addClass('show-modal1');
-//             $('.js-modal1 .modal-content').html(modalContent);
-//         }
-//     });
-
-//     $('.js-hide-modal1').on('click', function() {
-//         $('.js-modal1').removeClass('show-modal1');
-//     });
-// });
-
-
 })(jQuery);

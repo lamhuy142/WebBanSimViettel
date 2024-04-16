@@ -56,10 +56,6 @@
                                             <?php echo $km['TenKM'] ?>
                                         </a>
                                     </h4>
-
-                                    <p style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-108 cl6">
-                                        <?php echo mb_substr($km["MoTa"], 0, 100) . "..."; ?>
-                                    </p>
                                 </div>
                             </div>
                         </div>
