@@ -64,9 +64,19 @@ switch ($action) {
         foreach($dssim as $kt):
             if($kt["SoSim"] == $_POST["txtsosim"]){
                 echo "<script>alert('Số điện thoại đã tồn tại, Vui lòng nhập lại số điện thoại khác.');</script>";
+                $SoSim = $_POST["txtsosim"];
+                $LoaiSim= $_POST["optloaisim"];
+                $ThueBao= $_POST["optloaithuebao"];
+                $loai = $ls->laydanhsachloaisim();
+                $loaithuebao = $s->laydanhsachloaithuebao();
+                $danhgia = $dg->laydanhsachdanhgia();
+                $nguoidung = $nd->laydanhsachnguoidung();
+                $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+                include("themsim.php");
+                exit();
             }
         endforeach;
-        include("themsim.php");
+       
         //xử lý load ảnh
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
         $duongdan = "../../img/sim/" . $hinhanh; //nơi lưu file upload
@@ -86,7 +96,6 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
-        
         include("sim.php");
         break;
     case "khoa":

@@ -15,7 +15,7 @@
                         <select class="form-control form-select" required name="optloaisim">
                             <option value="">Chọn loại sim</option>
                             <?php foreach ($loai as $l) : ?>
-                                <option value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenLS']; ?></option>
+                                <option <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenLS']; ?></option>
                             <?php endforeach; ?>
                         </select>
                         <div class="invalid-feedback">Vui lòng chọn loại sim.</div>
@@ -27,9 +27,9 @@
                             <option value="">Chọn loại thuê bao</option>
                             <?php foreach ($loaithuebao as $tb) : ?>
                                 <?php if ($tb['LoaiThueBao'] == 1) { ?>
-                                    <option value="1">Thuê Bao Trả Trước</option>
+                                    <option <?php if (isset($ThueBao) && $ThueBao == 1) if ($ThueBao == $tb['LoaiThueBao']) echo 'selected' ?> value="1">Thuê Bao Trả Trước</option>
                                 <?php } elseif ($tb['LoaiThueBao'] == 0) { ?>
-                                    <option value="0">Thuê Bao Trả Sau</option>
+                                    <option <?php if (isset($ThueBao)&& $ThueBao == 0) if ($ThueBao == $tb['LoaiThueBao']) echo 'selected' ?> value="0">Thuê Bao Trả Sau</option>
                                 <?php } ?>
                             <?php endforeach; ?>
                         </select>

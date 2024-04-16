@@ -167,11 +167,11 @@ if (isset($_SESSION["nguoidung"])) {
                                 </div>
                             </div>
                         <?php } ?>
-                        <div class="flex-c-m h-full p-lr-19">
+                        <!-- <div class="flex-c-m h-full p-lr-19">
                             <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
                                 <i style="color: #576C9D;" class="zmdi zmdi-menu"></i>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </nav>
             </div>

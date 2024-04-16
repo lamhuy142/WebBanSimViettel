@@ -140,6 +140,26 @@ class DANHGIA
             exit();
         }
     }
+    public function kiemtradanhgiadatraloi($MaDG)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT *
+                    FROM danhgia
+                    LEFT JOIN traloidanhgia ON danhgia.MaDG = traloidanhgia.MaDG
+                    WHERE danhgia.MaDG = :MaDG
+                    AND traloidanhgia.MaDG IS NOT NULL;";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaDG", $MaDG);
+            $cmd->execute();
+            $result = $cmd->fetchColumn();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 
     // Thêm ng dùng mới, trả về khóa của dòng mới thêm
     // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)

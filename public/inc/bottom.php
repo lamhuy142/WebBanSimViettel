@@ -8,13 +8,18 @@
 					</h4>
 
 					<ul>
-						<?php foreach ($loaisim as $ls) { ?>
-							<li class="p-b-10">
-								<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=dstheoloaisim" class="stext-107 cl7 hov-cl1 trans-04">
-									<?php echo $ls["TenLS"] ?>
-								</a>
-							</li>
-						<?php } ?>
+
+						<li class="p-b-10">
+							<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=sim" class="stext-107 cl7 hov-cl1 trans-04">
+								Sim
+							</a>
+						</li>
+						<li class="p-b-10">
+							<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=goicuoc" class="stext-107 cl7 hov-cl1 trans-04">
+								Gói cước
+							</a>
+						</li>
+
 					</ul>
 				</div>
 
@@ -294,7 +299,6 @@
 				});
 			});
 		});
-		
 	</script>
 
 	</body>
