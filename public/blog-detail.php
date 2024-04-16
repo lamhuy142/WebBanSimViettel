@@ -94,135 +94,145 @@
 						</form>
 
 						<!-- HIỂN THỊ BÌNH LUẬN -->
-						<div style="margin-top: 50px;">
-							<?php
-							$i = 0;
-							foreach ($danhgia as $dg) :
-								foreach ($nguoidung as $nd) :
-									if ($dg["MaKM"] == $khuyenmai_ht["MaKM"] && $dg["MaND"] == $nd["MaND"]) : ?>
-										<div style="margin-top: 20px; padding:15px; border:0.5px dashed #E1E3EA;" class="rounded-3  border-gray-300 w-100 p-7 p-lg-10 mb-10">
-											<div class="w-100 d-flex align-items-center justify-content-between mb-3">
-												<div class="d-flex align-items-center">
-													<!--begin::Author-->
-													<div class="symbol symbol-35px me-3">
-														<img class="symbol-label img-thumnail rounded-circle" width="57px" height="64px" src="../img/user/<?php echo $nd['HinhAnh']; ?>" alt="">
-													</div>
-													<!--end::Author-->
-
-													<!--begin::Info-->
-													<div class="d-flex flex-column">
-														<!--begin::Text-->
-														<div class="d-flex align-items-center">
-															<!--begin::Username-->
-															<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-dark fw-bold fs-12 me-3 lh-1">
-																<?php echo $nd['HoTen']; ?>
-															</span>
-															<!--end::Username-->
+						<style>
+							.comment-container {
+								max-height: 300px;
+								/* Đặt chiều cao tối đa cho phần tử */
+								overflow-y: auto;
+								/* Cho phép thanh cuộn dọc khi nội dung vượt quá kích thước */
+							}
+						</style>
+						<div class="comment-container mt-5">
+							<div style="margin-top: 50px;">
+								<?php
+								$i = 0;
+								foreach ($danhgia as $dg) :
+									foreach ($nguoidung as $nd) :
+										if ($dg["MaKM"] == $khuyenmai_ht["MaKM"] && $dg["MaND"] == $nd["MaND"]) : ?>
+											<div style="margin-top: 20px; padding:15px; border:0.5px dashed #E1E3EA;" class="rounded-3  border-gray-300 w-100 p-7 p-lg-10 mb-10">
+												<div class="w-100 d-flex align-items-center justify-content-between mb-3">
+													<div class="d-flex align-items-center">
+														<!--begin::Author-->
+														<div class="symbol symbol-35px me-3">
+															<img class="symbol-label img-thumnail rounded-circle" width="57px" height="64px" src="../img/user/<?php echo $nd['HinhAnh']; ?>" alt="">
 														</div>
-														<!--end::Text-->
+														<!--end::Author-->
 
-														<!--begin::Date-->
-														<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-gray-600 fw-semibold fs-10">
-															<?php echo date('d-M-Y', strtotime($dg['NgayDG'])); ?>
-														</span>
-														<!--end::Date-->
+														<!--begin::Info-->
+														<div class="d-flex flex-column">
+															<!--begin::Text-->
+															<div class="d-flex align-items-center">
+																<!--begin::Username-->
+																<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-dark fw-bold fs-12 me-3 lh-1">
+																	<?php echo $nd['HoTen']; ?>
+																</span>
+																<!--end::Username-->
+															</div>
+															<!--end::Text-->
+
+															<!--begin::Date-->
+															<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-gray-600 fw-semibold fs-10">
+																<?php echo date('d-M-Y', strtotime($dg['NgayDG'])); ?>
+															</span>
+															<!--end::Date-->
+														</div>
+														<!--end::Info-->
 													</div>
-													<!--end::Info-->
-												</div>
-												<div class="m-0">
-													<p>
-														<?php if (isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["MaQ"] == 1) { ?>
-															<a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033 !important; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
-																Trả lời
-															</a>
-														<?php } ?>
+													<div class="m-0">
+														<p>
+															<?php if (isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["MaQ"] == 1) { ?>
+																<a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033 !important; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+																	Trả lời
+																</a>
+															<?php } ?>
 
-													</p>
+														</p>
+													</div>
 												</div>
-											</div>
-											<p style="font-family: 'Tilt Neon', sans-serif !important;" class="fw-normal fs-base text-gray-700 m-0 p-0" data-kt-element="comment-text">
-												<?php echo $dg['NoiDung']; ?>
-											</p>
-										</div>
-										<div class="collapse" id="<?php echo $i; ?>">
-											<form method="post">
-												<input type="hidden" name="action" value="traloidanhgia">
-												<input type="hidden" name="MaDG" value="<?php echo $dg["MaDG"] ?>">
-												<input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht["MaKM"] ?>">
-												<input type="hidden" name="nguoiphanhoi" value="<?php echo $_SESSION["nguoidung"]["MaND"] ?>">
-												<div style="border:0.5px groove #E1E3EA;" class="rounded bor19 m-b-20 m-t-20">
-													<textarea style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="traloi" placeholder="Bình luận..."></textarea>
-												</div>
-												<p>
-													<a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-decoration-none btn btn-secondary m-l-2" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
-														Hủy
-													</a>
-													<input style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#576C8F; background-color:#E7E7E7; border:1px solid #E7E7E7;" type="submit" value="Trả lời" class="text-decoration-none btn btn-secondary m-l-10" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+												<p style="font-family: 'Tilt Neon', sans-serif !important;" class="fw-normal fs-base text-gray-700 m-0 p-0" data-kt-element="comment-text">
+													<?php echo $dg['NoiDung']; ?>
 												</p>
-											</form>
-										</div>
+											</div>
+											<div class="collapse" id="<?php echo $i; ?>">
+												<form method="post">
+													<input type="hidden" name="action" value="traloidanhgia">
+													<input type="hidden" name="MaDG" value="<?php echo $dg["MaDG"] ?>">
+													<input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht["MaKM"] ?>">
+													<input type="hidden" name="nguoiphanhoi" value="<?php echo $_SESSION["nguoidung"]["MaND"] ?>">
+													<div style="border:0.5px groove #E1E3EA;" class="rounded bor19 m-b-20 m-t-20">
+														<textarea style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="traloi" placeholder="Bình luận..."></textarea>
+													</div>
+													<p>
+														<a style="font-family: 'Tilt Neon', sans-serif !important;" class="text-decoration-none btn btn-secondary m-l-2" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+															Hủy
+														</a>
+														<input style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#576C8F; background-color:#E7E7E7; border:1px solid #E7E7E7;" type="submit" value="Trả lời" class="text-decoration-none btn btn-secondary m-l-10" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
+													</p>
+												</form>
+											</div>
 
-										<?php
-										foreach ($traloidanhgia as $t) :
-											foreach ($nguoidung as $nd_tl) :
-												if ($t["MaDG"] == $dg["MaDG"] && $t["MaND"] == $nd_tl["MaND"]) {
-										?>
-													<!-- HIỂN THỊ TRẢ LỜI -->
-													<div class="ms-5 ms-lg-10">
-														<div id="kt_post_comment_96" data-kt-comment-id="96">
-															<div style="padding-left: 7px !important;" class="rounded-3 border border-dashed border-gray-300 w-100 p-7 pl-7 p-lg-10 mb-10 mt-2">
-																<div class="w-100 d-flex align-items-center justify-content-between mb-4">
-																	<div class="d-flex align-items-center mt-2 ml-2 ">
-																		<!--begin::Author-->
-																		<div class="symbol symbol-35px me-3">
-																			<img class="symbol-label img-thumnail rounded-circle" style="width: 20px; height:20px;" src="../img/logo/favicon.png" alt="">
-																		</div>
-																		<!--end::Author-->
-
-																		<!--begin::Info-->
-																		<div class="d-flex flex-column">
-																			<!--begin::Text-->
-																			<div class="d-flex align-items-center">
-																				<!--begin::Username-->
-																				<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-dark fw-bold fs-12 me-3 lh-1">
-																					Viettel
-																				</span>
-																				<!--end::Username-->
+											<?php
+											foreach ($traloidanhgia as $t) :
+												foreach ($nguoidung as $nd_tl) :
+													if ($t["MaDG"] == $dg["MaDG"] && $t["MaND"] == $nd_tl["MaND"]) {
+											?>
+														<!-- HIỂN THỊ TRẢ LỜI -->
+														<div class="ms-5 ms-lg-10">
+															<div id="kt_post_comment_96" data-kt-comment-id="96">
+																<div style="padding-left: 7px !important;" class="rounded-3 border border-dashed border-gray-300 w-100 p-7 pl-7 p-lg-10 mb-10 mt-2">
+																	<div class="w-100 d-flex align-items-center justify-content-between mb-4">
+																		<div class="d-flex align-items-center mt-2 ml-2 ">
+																			<!--begin::Author-->
+																			<div class="symbol symbol-35px me-3">
+																				<img class="symbol-label img-thumnail rounded-circle" style="width: 20px; height:20px;" src="../img/logo/favicon.png" alt="">
 																			</div>
-																			<!--end::Text-->
+																			<!--end::Author-->
 
-																			<!--begin::Date-->
-																			<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-gray-600 fw-semibold fs-10">
-																				<?php echo date('d-M-Y', strtotime($t['NgayTL'])); ?>
-																			</span>
-																			<!--end::Date-->
+																			<!--begin::Info-->
+																			<div class="d-flex flex-column">
+																				<!--begin::Text-->
+																				<div class="d-flex align-items-center">
+																					<!--begin::Username-->
+																					<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-dark fw-bold fs-12 me-3 lh-1">
+																						Viettel
+																					</span>
+																					<!--end::Username-->
+																				</div>
+																				<!--end::Text-->
+
+																				<!--begin::Date-->
+																				<span style="font-family: 'Tilt Neon', sans-serif !important;" class="text-gray-600 fw-semibold fs-10">
+																					<?php echo date('d-M-Y', strtotime($t['NgayTL'])); ?>
+																				</span>
+																				<!--end::Date-->
+																			</div>
+																			<!--end::Info-->
 																		</div>
-																		<!--end::Info-->
+																	</div>
+																	<p class="fw-normal fs-base text-gray-700 m-2 p-0" data-kt-element="comment-text">
+																		<?php echo $t['TraLoi']; ?>
+																	</p>
+																	<div data-kt-element="comment-edit"></div>
+																</div>
+																<div id="kt_post_comment_96_wrapper" data-parent-id="96">
+																	<div class="ps-5 ps-lg-10 2">
+																		<!-- replies for the comment -->
 																	</div>
 																</div>
-																<p class="fw-normal fs-base text-gray-700 m-2 p-0" data-kt-element="comment-text">
-																	<?php echo $t['TraLoi']; ?>
-																</p>
-																<div data-kt-element="comment-edit"></div>
-															</div>
-															<div id="kt_post_comment_96_wrapper" data-parent-id="96">
-																<div class="ps-5 ps-lg-10 2">
-																	<!-- replies for the comment -->
-																</div>
 															</div>
 														</div>
-													</div>
-										<?php
-												}
+											<?php
+													}
+												endforeach;
 											endforeach;
-										endforeach;
-										?>
-							<?php
-										$i++;
-									endif;
+											?>
+								<?php
+											$i++;
+										endif;
+									endforeach;
 								endforeach;
-							endforeach;
-							?>
+								?>
+							</div>
 						</div>
 					</div>
 				</div>
