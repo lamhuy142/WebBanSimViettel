@@ -20,6 +20,7 @@
                             <th scope="col">Giá Gốc</th>
                             <th scope="col">Giá Bán</th>
                             <th scope="col">Lượt Mua</th>
+                            <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
                         </tr>
                     </thead>
@@ -31,6 +32,7 @@
                             <th scope="col">Giá Gốc</th>
                             <th scope="col">Giá Bán</th>
                             <th scope="col">Lượt Mua</th>
+                            <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
                         </tr>
                     </tfoot>
@@ -45,10 +47,19 @@
                                         <td><?php echo number_format($ls["GiaGoc"])  ?></td>
                                         <td><?php echo number_format($ls["GiaBan"]) ?></td>
                                         <td><?php echo $ls["LuotMua"] ?></td>
-                                        <td>
-                                            <a href="index.php?action=suals&id=<?php echo $ls['MaLS']; ?>" class="btn btn-warning">Sửa</a>
-                                            <!-- <a href="index.php?action=xoagc&id=<php echo  $ls['MaGC']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a> -->
-                                        </td>
+                                        <?php if ($ls["TrangThai"] == 1) { ?>
+                                            <td class="text-success font-weight-bold"> Hoạt Động</td>
+                                            <td>
+                                                <a href="index.php?action=suals&id=<?php echo $ls['MaLS']; ?>" class="btn btn-warning">Sửa</a>
+                                                <a href="index.php?action=doitrangthails&id=<?php echo $ls['MaLS']; ?>&TrangThai=<?php echo $ls['TrangThai']; ?>" class="btn btn-secondary">Khóa</a>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td class="text-danger font-weight-bold"> Ngừng</td>
+                                            <td>
+                                                <a href="index.php?action=suals&id=<?php echo $ls['MaLS']; ?>" class="btn btn-warning">Sửa</a>
+                                                <a href="index.php?action=doitrangthails&id=<?php echo $ls['MaLS']; ?>&TrangThai=<?php echo $ls['TrangThai']; ?>" class="btn btn-primary">Mở</a>
+                                            </td>
+                                        <?php } ?>
                                     </tr>
 
                         <?php

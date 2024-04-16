@@ -17,7 +17,7 @@
                             <th scope="col">Mã Sim</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
-                            <th scope="col">Mô Tả</th>
+                            <!-- <th scope="col">Mô Tả</th> -->
                             <th scope="col">Loại Thuê Bao</th>
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
@@ -28,7 +28,7 @@
                             <th scope="col">Mã Sim</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
-                            <th scope="col">Mô Tả</th>
+                            <!-- <th scope="col">Mô Tả</th> -->
                             <th scope="col">Loại Thuê Bao</th>
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
@@ -42,7 +42,7 @@
                                         <td><?php echo $s["MaSim"] ?></td>
                                         <td><?php echo $l["TenLS"] ?></td>
                                         <td><?php echo $s["SoSim"] ?></td>
-                                        <td><?php echo $s["MoTa"] ?></td>
+                                        <!-- <td><php echo $s["MoTa"] ?></td> -->
 
                                         <!-- Loại thuê bao -->
                                         <?php if ($s["LoaiThueBao"] == 1) { ?>
@@ -55,13 +55,13 @@
                                             <td class="text-success font-weight-bold"> Còn Hàng</td>
                                             <td>
                                                 <a href="index.php?action=sua&id=<?php echo $s['MaSim']; ?>" class="btn btn-warning">Sửa</a>
-                                                <a href="index.php?action=khoa&id=<?php echo $s['MaSim']; ?>&TrangThai=<?php echo $s['TinhTrang']; ?>" class="btn btn-secondary">Khóa</a>
+                                                <a href="index.php?action=doitrangthaisim&id=<?php echo $s['MaSim']; ?>&TrangThai=<?php echo $s['TinhTrang']; ?>" class="btn btn-secondary">Khóa</a>
                                             </td>
                                         <?php } else { ?>
                                             <td class="text-danger font-weight-bold"> Hết Hàng</td>
                                             <td>
                                                 <a href="index.php?action=sua&id=<?php echo $s['MaSim']; ?>" class="btn btn-warning">Sửa</a>
-                                                <a href="index.php?action=khoa&id=<?php echo $s['MaSim']; ?>&TrangThai=<?php echo $s['TinhTrang']; ?>" class="btn btn-primary">Mở</a>
+                                                <a href="index.php?action=doitrangthaisim&id=<?php echo $s['MaSim']; ?>&TrangThai=<?php echo $s['TinhTrang']; ?>" class="btn btn-primary">Mở</a>
                                             </td>
                                         <?php } ?>
 

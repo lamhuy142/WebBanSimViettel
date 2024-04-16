@@ -6,7 +6,7 @@
             <h6 style="color: #EA0029;" class="m-0 font-weight-bold ">SỬA THÔNG TIN SIM</h6>
         </div>
         <div class="card-body">
-            <form method="post" action="index.php" enctype="multipart/form-data">
+            <form class="was-validated" method="post" action="index.php" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="xulysua">
                 <input type="hidden" name="MaSim" value="<?php echo $sim_ht["MaSim"]; ?>">
                 <div class="row g-3">
@@ -18,6 +18,7 @@
                                 <option value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
                             <?php } ?>
                         </select>
+                        <div class="invalid-feedback">Vui lòng chọn loại sim.</div>
                     </div>
                     <!-- LOẠI THUÊ BAO -->
                     <div class="col md-3 mt-3">
@@ -36,35 +37,15 @@
                     <div class="col my-3">
                         <label>Số Sim</label>
                         <input class="form-control" type="text" name="txtsosim" required value="<?php echo $sim_ht["SoSim"]; ?>">
+                        <div class="valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Vui lòng nhập số.</div>
                     </div>
-                </div>
-                <div class="md-3 mt-3">
-                    <label for="txtmota" class="form-label">Mô tả</label>
-                    <textarea id="editor" rows="5" class="form-control" name="txtmota"><?php echo $sim_ht['MoTa']; ?></textarea>
                 </div>
                 <div class="md-1 mt-1">
                     <label for="txttinhtrang" class="form-label">Trạng Thái</label>
                     <input class="form-control" name="txttinhtrang" value="<?php echo $sim_ht['TinhTrang']; ?>" readonly></input>
                 </div>
                 </br>
-                <div class="row g-3">
-                    <div class="col my-3">
-                        <label>Hình ảnh</label><br>
-                        <input type="hidden" name="hinhanh" value="<?php echo $sim_ht["HinhAnh"]; ?>">
-                        <!-- <img src="../../img/sim/<php echo $sim_ht["HinhAnh"]; ?>" width="100px" class="img-thumbnail"> -->
-                        <p>
-                            <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                Đổi hình ảnh
-                            </a>
-                        </p>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-                                <input type="file" class="form-control" name="filehinhanh">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
                 <div class="my-3">
                     <a href="index.php?action=sim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input class="btn btn-primary" type="submit" value="Lưu">

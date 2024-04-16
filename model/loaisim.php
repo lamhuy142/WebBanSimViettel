@@ -7,6 +7,7 @@ class LOAISIM
     private $GiaGoc;
     private $GiaBan;
     private $LuotMua;
+    private $TrangThai;
     
     public function getMaLS()
     {
@@ -56,6 +57,14 @@ class LOAISIM
     {
         $this->LuotMua = $value;
     }
+    public function getTrangThai()
+    {
+        return $this->TrangThai;
+    }
+    public function setTrangThai($value)
+    {
+        $this->TrangThai = $value;
+    }
     // khai báo các thuộc tính (SV tự viết)
 
     // lấy tất cả ng dùng
@@ -96,14 +105,15 @@ class LOAISIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO loaisim(TenLS, MaGC, GiaGoc, GiaBan, LuotMua) 
-VALUES(:TenLS, :MaGC, :GiaGoc, :GiaBan, :LuotMua)";
+            $sql = "INSERT INTO loaisim(TenLS, MaGC, GiaGoc, GiaBan, LuotMua, TrangThai) 
+VALUES(:TenLS, :MaGC, :GiaGoc, :GiaBan, :LuotMua, :TrangThai)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':TenLS', $loaisim->TenLS);
             $cmd->bindValue(':MaGC', $loaisim->MaGC);
             $cmd->bindValue(':GiaGoc', $loaisim->GiaGoc);
             $cmd->bindValue(':GiaBan', $loaisim->GiaBan);
             $cmd->bindValue(':LuotMua', $loaisim->LuotMua);
+            $cmd->bindValue(':TrangThai', $loaisim->TrangThai);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -118,7 +128,7 @@ VALUES(:TenLS, :MaGC, :GiaGoc, :GiaBan, :LuotMua)";
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE loaisim SET MaGC=:MaGC, TenLS=:TenLS, GiaGoc=:GiaGoc,GiaBan=:GiaBan, LuotMua=:LuotMua WHERE MaLS=:MaLS";
+            $sql = "UPDATE loaisim SET MaGC=:MaGC, TenLS=:TenLS, GiaGoc=:GiaGoc,GiaBan=:GiaBan, LuotMua=:LuotMua, TrangThai=:TrangThai WHERE MaLS=:MaLS";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaLS', $loaisim->MaLS);
             $cmd->bindValue(':MaGC', $loaisim->MaGC);
@@ -126,6 +136,7 @@ VALUES(:TenLS, :MaGC, :GiaGoc, :GiaBan, :LuotMua)";
             $cmd->bindValue(':GiaGoc', $loaisim->GiaGoc);
             $cmd->bindValue(':GiaBan', $loaisim->GiaBan);
             $cmd->bindValue(':LuotMua', $loaisim->LuotMua);
+            $cmd->bindValue(':TrangThai', $loaisim->TrangThai);
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -134,22 +145,6 @@ VALUES(:TenLS, :MaGC, :GiaGoc, :GiaBan, :LuotMua)";
             exit();
         }
     }
-    // Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 khách hàng)
-    // public function doiloaibaiviet($Email, $QuyenND)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set QuyenND=:QuyenND where Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':Email', $Email);
-    //         $cmd->bindValue(':QuyenND', $QuyenND);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
     // }
     // Đổi trạng thái (0 khóa, 1 kích hoạt)
     public function doitrangthai($MaLS, $TrangThai)

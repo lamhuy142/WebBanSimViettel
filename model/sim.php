@@ -4,8 +4,6 @@ class SIM
     private $MaSim;
     private $SoSim;
     private $MaLS;
-    private $MoTa;
-    private $HinhAnh;
     private $TinhTrang;
     private $LoaiThueBao;
 
@@ -35,22 +33,6 @@ class SIM
     {
         $this->MaLS = $value;
     }
-    public function getMoTa()
-    {
-        return $this->MoTa;
-    }
-    public function setMoTa($value)
-    {
-        $this->MoTa = $value;
-    }
-    public function getHinhAnh()
-    {
-        return $this->HinhAnh;
-    }
-    public function setHinhAnh($value)
-    {
-        $this->HinhAnh = $value;
-    }
     public function getTinhTrang()
     {
         return $this->TinhTrang;
@@ -76,7 +58,6 @@ class SIM
             $sql = "SELECT * FROM sim WHERE SoSim LIKE :dauSo";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":dauSo", "$dauSo%");
-            // $cmd->bindValue(":duoiSo", $duoiSo);
             $cmd->execute();
             $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
             return $result;
@@ -175,13 +156,13 @@ class SIM
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO sim(SoSim, MaLS, MoTa, HinhAnh, TinhTrang, LoaiThueBao) 
-VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :TinhTrang, :LoaiThueBao)";
+            $sql = "INSERT INTO sim(SoSim, MaLS, TinhTrang, LoaiThueBao) 
+VALUES(:SoSim, :MaLS, :TinhTrang, :LoaiThueBao)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':SoSim', $sim->SoSim);
             $cmd->bindValue(':MaLS', $sim->MaLS);
-            $cmd->bindValue(':MoTa', $sim->MoTa);
-            $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
+            // $cmd->bindValue(':MoTa', $sim->MoTa);
+            // $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
             $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
             $cmd->bindValue(':LoaiThueBao', $sim->LoaiThueBao);
             $result = $cmd->execute();
@@ -192,42 +173,17 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :TinhTrang, :LoaiThueBao)";
             exit();
         }
     }
-    // Cập nhật thông tin ng dùng: họ tên, số đt, email, ảnh đại diện 
-    // (SV nên truyền tham số là 1 đối tượng kiểu người dùng, không nên truyền nhiều tham số rời rạc như thế này)
-    // public function capnhatsim($MaSim, $SoSim, $MaLS, $MoTa, $HinhAnh, $GiaGoc, $GiaBan, $TinhTrang) 
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE sim set SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, GiaGoc=:GiaGoc, GiaBan=:GiaBan, TinhTrang=:TinhTrang where MaSim=MaSim";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':MaSim', $MaSim);
-    //         $cmd->bindValue(':SoSim', $SoSim);
-    //         $cmd->bindValue(':MaLS', $MaLS);
-    //         $cmd->bindValue(':MoTa', $MoTa);
-    //         $cmd->bindValue(':HinhAnh', $HinhAnh);
-    //         $cmd->bindValue(':GiaGoc', $GiaGoc);
-    //         $cmd->bindValue(':GiaBan', $GiaBan);
-    //         $cmd->bindValue(':TinhTrang', $TinhTrang);
-
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
     public function suasim($sim)
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, MoTa=:MoTa, HinhAnh=:HinhAnh, TinhTrang=:TinhTrang, LoaiThueBao=:LoaiThueBao WHERE MaSim=:MaSim";
+            $sql = "UPDATE sim SET SoSim=:SoSim, MaLS=:MaLS, TinhTrang=:TinhTrang, LoaiThueBao=:LoaiThueBao WHERE MaSim=:MaSim";
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(':MaSim', $sim->MaSim);
             $cmd->bindValue(':SoSim', $sim->SoSim);
             $cmd->bindValue(':MaLS', $sim->MaLS);
-            $cmd->bindValue(':MoTa', $sim->MoTa);
-            $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
+            // $cmd->bindValue(':MoTa', $sim->MoTa);
+            // $cmd->bindValue(':HinhAnh', $sim->HinhAnh);
             $cmd->bindValue(':TinhTrang', $sim->TinhTrang);
             $cmd->bindValue(':LoaiThueBao', $sim->LoaiThueBao);
             $result = $cmd->execute();
@@ -253,23 +209,6 @@ VALUES(:SoSim, :MaLS, :MoTa, :HinhAnh, :TinhTrang, :LoaiThueBao)";
             exit();
         }
     }
-    // Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 khách hàng)
-    // public function doiloaibaiviet($Email, $QuyenND)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set QuyenND=:QuyenND where Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':Email', $Email);
-    //         $cmd->bindValue(':QuyenND', $QuyenND);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
     public function doitrangthai($MaSim, $TinhTrang)
     {

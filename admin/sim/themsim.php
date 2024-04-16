@@ -29,7 +29,7 @@
                                 <?php if ($tb['LoaiThueBao'] == 1) { ?>
                                     <option <?php if (isset($ThueBao) && $ThueBao == 1) if ($ThueBao == $tb['LoaiThueBao']) echo 'selected' ?> value="1">Thuê Bao Trả Trước</option>
                                 <?php } elseif ($tb['LoaiThueBao'] == 0) { ?>
-                                    <option <?php if (isset($ThueBao)&& $ThueBao == 0) if ($ThueBao == $tb['LoaiThueBao']) echo 'selected' ?> value="0">Thuê Bao Trả Sau</option>
+                                    <option <?php if (isset($ThueBao) && $ThueBao == 0) if ($ThueBao == $tb['LoaiThueBao']) echo 'selected' ?> value="0">Thuê Bao Trả Sau</option>
                                 <?php } ?>
                             <?php endforeach; ?>
                         </select>
@@ -42,25 +42,10 @@
                         <div class="invalid-feedback">Vui lòng nhập số.</div>
                     </div>
                     <div class="col md-3 mt-3">
-                        <label for="txtmota" class="form-label">Mô Tả</label>
-                        <textarea id="editor" rows="5" class="form-control" name="txtmota"></textarea>
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Vui lòng nhập mô tả.</div>
-                    </div>
-                </div>
-                <div class="row g-3">
-                    <div class="col md-3 mt-3">
                         <label for="txttinhtrang" class="form-label">Trạng Thái</label>
                         <input class="form-control" type="number" name="txttinhtrang" value="1" readonly>
                     </div>
-                    <div class="col md-3 mt-3">
-                        <label for="fileanh" class="form-label">Hình Ảnh</label>
-                        <input type="file" class="form-control" name="fileanh" required></input>
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Vui lòng chọn hình ảnh cho sản phẩm.</div>
-                    </div>
                 </div>
-
                 <div class="md-3 mt-3">
                     <a href="index.php?action=sim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>
                     <input type="submit" value="Lưu" class="btn btn-success"></input>
