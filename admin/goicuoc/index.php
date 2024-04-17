@@ -61,8 +61,8 @@ switch ($action) {
         $dsgc = $gc->laydanhsachgoicuoc();
         
         foreach ($dsgc as $kt) :
-            print_r($_POST["txttengc"]);
-            exit($kt["Ten"]);
+            // print_r($kt["Ten"]);
+            // exit();
             if ($kt["Ten"] == $_POST["txttengc"]) {
                 echo "<script>alert('Tên gói cước đã tồn tại, Vui lòng nhập lại.'); window.history.back();</script>";
                 $LoaiGC = $_POST["optloaigc"];
@@ -72,7 +72,8 @@ switch ($action) {
                 $Gia = $_POST["gia"];
                 $MoTa = $_POST["txtmota"];
                 exit();
-            } elseif (strlen($_POST["giagoc"]) < 4 ||  $_POST["giagoc"] < 0 || strlen($_POST["giaban"]) < 4 ||  $_POST["giaban"] < 0) {
+            } 
+            elseif (strlen($_POST["giagoc"]) < 4 ||  $_POST["giagoc"] < 0 || strlen($_POST["giaban"]) < 4 ||  $_POST["giaban"] < 0) {
                 echo "<script>alert('Giá phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
                 $LoaiGC = $_POST["optloaigc"];
                 $GoiCuoc = $_POST["txttengc"];
