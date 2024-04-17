@@ -12,31 +12,34 @@
                 <div class="row g-3">
                     <div class="col my-3">
                         <label for="txttenloaisim" class="form-label">Tên loại sim</label>
-                        <input class="form-control" type="text" name="txttenloaisim" value="<?php echo $loaisim_ht['TenLS']; ?>">
+                        <input class="form-control" type="text" name="txttenloaisim" required value="<?php echo $loaisim_ht['TenLS']; ?>">
                     </div>
                     <div class="col my-3">
                         <label>Loại gói cước</label>
-                        <select class="form-control" name="optloaigoicuoc">
+                        <select class="form-control" name="optloaigoicuoc" required>
                             <?php foreach ($goicuoc as $gc) { ?>
                                 <option value="<?php echo $gc["MaGC"]; ?>" <?php if ($gc["MaGC"] == $loaisim_ht["MaGC"]) echo "selected"; ?>><?php echo $gc["Ten"]; ?></option>
                             <?php } ?>
                         </select>
+                        <div class="invalid-feedback">Vui lòng chọn loại gói cước.</div>
                     </div>
                 </div>
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
                         <label for="txtgiagoc" class="form-label">Giá Gốc</label>
-                        <input class="form-control" type="number" name="giagoc" value="<?php echo $loaisim_ht['GiaGoc']; ?>">
+                        <input class="form-control" type="number" name="giagoc" required value="<?php echo $loaisim_ht['GiaGoc']; ?>">
+                        <div class=" valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Vui lòng nhập giá gốc.</div>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtgiaban" class="form-label">Giá Bán</label>
-                        <input class="form-control" type="number" name="giaban" value="<?php echo $loaisim_ht['GiaBan']; ?>">
+                        <input class="form-control" type="number" name="giaban" required value="<?php echo $loaisim_ht['GiaBan']; ?>">
+                        <div class="valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Vui lòng nhập giá bán.</div>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtluotmua" class="form-label">Lượt mua</label>
-                        <input class="form-control" type="number" name="txtluotmua" required value="<?php echo $loaisim_ht['LuotMua']; ?>">
-                        <div class="valid-feedback">Hợp lệ.</div>
-                        <div class="invalid-feedback">Vui lòng nhập thời hạn của loại sim.</div>
+                        <input class="form-control" type="number" name="txtluotmua" required value="<?php echo $loaisim_ht['LuotMua']; ?>" readonly>
                     </div>
                 </div>
                 </br>

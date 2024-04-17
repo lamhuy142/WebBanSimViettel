@@ -29,8 +29,7 @@
                     <div class="col md-3 mt-3">
                         <label for="giagoc" class="form-label">Giá gốc</label>
                         <input class="form-control" type="number" name="giagoc" value="<?php echo isset($GiaGoc) ? $GiaGoc : ''; ?>" required>
-                        <div class=" valid-feedback">Hợp lệ.
-                        </div>
+                        <div class=" valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập giá gốc.</div>
                     </div>
                     <div class="col md-3 mt-3">
