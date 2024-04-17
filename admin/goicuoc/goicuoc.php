@@ -20,6 +20,7 @@
                             <th scope="col">Giá</th>
                             <th scope="col">Giá Trị Khuyến Mãi</th>
                             <th scope="col">Thời Hạn</th>
+                            <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
                         </tr>
                     </thead>
@@ -31,29 +32,40 @@
                             <th scope="col">Giá</th>
                             <th scope="col">Giá Trị Khuyến Mãi</th>
                             <th scope="col">Thời Hạn</th>
+                            <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <?php foreach ($goicuoc as $gc) :
-                            foreach ($loai as $l) : 
-                            if($l["MaLGC"] == $gc["MaLGC"]){ ?>
-                            <tr>
-                                <td><?php echo $gc["Ten"] ?></td>
-                                <td><?php echo $l["TenLGC"] ?></td>
-                                <td><?php echo $gc["MoTa"] ?></td>
-                                <td><?php echo number_format($gc["Gia"]); ?></td>
-                                <td><?php echo $gc["GiaTriKM"] ?></td>
-                                <td><?php echo $gc["ThoiHan"] ?></td>
-                                <td>
-                                    <a href="index.php?action=suagc&id=<?php echo $gc['MaGC']; ?>" class="btn btn-warning">Sửa</a>
-                                    <!-- <a href="index.php?action=xoagc&id=<php echo  $gc['MaGC']; ?>" class="btn btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?')">Xóa</a> -->
-                                </td>
-                            </tr>
+                            foreach ($loai as $l) :
+                                if ($l["MaLGC"] == $gc["MaLGC"]) { ?>
+                                    <tr>
+                                        <td><?php echo $gc["Ten"] ?></td>
+                                        <td><?php echo $l["TenLGC"] ?></td>
+                                        <td><?php echo $gc["MoTa"] ?></td>
+                                        <td><?php echo number_format($gc["Gia"]); ?></td>
+                                        <td><?php echo $gc["GiaTriKM"] ?></td>
+                                        <td><?php echo $gc["ThoiHan"] ?></td>
+                                        <?php if ($gc["TrangThai"] == 1) { ?>
+                                            <td class="text-success font-weight-bold">Hoạt động</td>
+                                            <td>
+                                                <a href="index.php?action=suagc&id=<?php echo $gc['MaGC']; ?>" class="btn btn-warning">Sửa</a>
+                                                <a href="index.php?action=doitrangthaigc&id=<?php echo $gc['MaGC']; ?>&TrangThai=<?php echo $gc['TrangThai']; ?>" class="btn btn-secondary">Khóa</a>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td class="text-danger font-weight-bold">Ngưng</td>
+                                            <td>
+                                                <a href="index.php?action=suagc&id=<?php echo $gc['MaGC']; ?>" class="btn btn-warning">Sửa</a>
+                                                <a href="index.php?action=doitrangthaigc&id=<?php echo $gc['MaGC']; ?>&TrangThai=<?php echo $gc['TrangThai']; ?>" class="btn btn-primary">Mở</a>
+                                            </td>
+                                        <?php } ?>
+                                        
+                                    </tr>
                         <?php
-                            }
+                                }
                             endforeach;
-                     endforeach; ?>
+                        endforeach; ?>
                     </tbody>
                 </table>
             </div>

@@ -9,6 +9,7 @@
             <form class="was-validated" method="post" action="index.php" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="xulysua">
                 <input type="hidden" name="MaSim" value="<?php echo $sim_ht["MaSim"]; ?>">
+                <input type="hidden" name="trangthai" value="<?php echo $sim_ht["TinhTrang"]; ?>">
                 <div class="row g-3">
                     <div class="col my-3">
                         <label for="optloaisim" class="form-label">Loại sim</label>
@@ -16,9 +17,9 @@
                             <option value="">Chọn loại sim</option>
                             <?php foreach ($loai as $l) {
                                 if ($l["TrangThai"] == 0) { ?>
-                                    <option class="text-danger" <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
+                                    <option class="text-danger" value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
                                 <?php }else{ ?>
-                                    <option <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
+                                    <option value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
 
                                <?php } ?>
                             <?php } ?>
@@ -48,10 +49,10 @@
                         <div class="invalid-feedback">Vui lòng nhập số.</div>
                     </div>
                 </div>
-                <div class="md-1 mt-1">
+                <!-- <div class="md-1 mt-1">
                     <label for="txttinhtrang" class="form-label">Trạng Thái</label>
-                    <input class="form-control" name="txttinhtrang" value="<?php echo $sim_ht['TinhTrang']; ?>" readonly></input>
-                </div>
+                    <input class="form-control" name="txttinhtrang" value="<php echo $sim_ht['TinhTrang']; ?>" readonly></input>
+                </div> -->
                 </br>
                 <div class="my-3">
                     <a href="index.php?action=sim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>

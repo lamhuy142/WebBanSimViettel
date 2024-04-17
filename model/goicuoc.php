@@ -67,42 +67,6 @@ class GOICUOC
         $this->Gia = $value;
     }
     // khai báo các thuộc tính (SV tự viết)
-
-
-    // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
-    // public function laygoicuoctheoloai($MaLGC)
-    // {
-    //     $dbcon = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM goicuoc WHERE MaLGC=:MaLGC";
-    //         $cmd = $dbcon->prepare($sql);
-    //         $cmd->bindValue(":MaLGC", $MaLGC);
-    //         $cmd->execute();
-    //         $result = $cmd->fetch();
-    //         return $result;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
     public function laygoicuoctheoid($MaGC)
     {
         $dbcon = DATABASE::connect();
@@ -235,20 +199,20 @@ class GOICUOC
     //     }
     // }
     // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doitrangthai($ThoiGianHieuLuc, $TrangThai)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set TrangThai=:TrangThai where ThoiGianHieuLuc=:ThoiGianHieuLuc";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':ThoiGianHieuLuc', $ThoiGianHieuLuc);
-    //         $cmd->bindValue(':TrangThai', $TrangThai);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    public function doitrangthai($MaGC, $TrangThai)
+    {
+        $db = DATABASE::connect();
+        try {
+            $sql = "UPDATE goicuoc set TrangThai=:TrangThai where MaGC=:MaGC";
+            $cmd = $db->prepare($sql);
+            $cmd->bindValue(':MaGC', $MaGC);
+            $cmd->bindValue(':TrangThai', $TrangThai);
+            $ketqua = $cmd->execute();
+            return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 }

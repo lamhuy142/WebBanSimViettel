@@ -12,19 +12,11 @@
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
                         <label for="txttenlgc" class="form-label">Tên loại gói cước</label>
-                        <input class="form-control" type="text" name="txttenlgc" required>
+                        <input class="form-control" type="text" name="txttenlgc" value="<?php echo isset($LoaiGC) ? $LoaiGC : ''; ?>" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng điền tên loại gói cước.</div>
                     </div>
-                    <div class="col md-3 mt-3">
-                        <label for="opttrangthai" class="form-label">Trạng thái</label>
-                        <select class="form-control form-select" required name="opttrangthai">
-                            <option value="">Chọn trạng thái</option>
-                                <option value="0">Tắt</option>
-                                <option value="1">Bật</option>
-                        </select>
-                        <div class="invalid-feedback">Vui lòng chọn loại gói cước.</div>
-                    </div>
+                    
                 </div>
                 <div class="md-3 mt-3">
                     <a href="index.php?action=goicuoc" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>

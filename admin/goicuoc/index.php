@@ -59,7 +59,6 @@ switch ($action) {
         break;
     case "xulythemgc":
         $dsgc = $gc->laydanhsachgoicuoc();
-        
         foreach ($dsgc as $kt) :
             // print_r($kt["Ten"]);
             // exit();
@@ -103,6 +102,8 @@ switch ($action) {
         $moi->setThoiHan($_POST["txtthoihan"]);
         // thêm
         $gc->themgoicuoc($moi);
+        echo "<script>alert('Thêm thành công.');</script>";
+
         // load sản phẩm
         $loai = $l->laydanhsachloaigoicuoc();
         $goicuoc = $gc->laydanhsachgoicuoc();
@@ -111,6 +112,31 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
 
         include("goicuoc.php");
+        break;
+    case "doitrangthaigc":
+        if (isset($_REQUEST["id"]))
+            $id = $_REQUEST["id"];
+        if (isset($_REQUEST["TrangThai"]))
+        $trangthai = $_REQUEST["TrangThai"];
+        else
+            $trangthai = "1";
+        if ($trangthai == "1") {
+            $trangthai = 0;
+            $gc->doitrangthai($id, $trangthai);
+        } else {
+            $trangthai = 1;
+            $gc->doitrangthai($id, $trangthai);
+        }
+        // load danh sách
+        $loai = $l->laydanhsachloaigoicuoc();
+        $goicuoc = $gc->laydanhsachgoicuoc();
+        $danhgia = $dg->laydanhsachdanhgia();
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        echo "<script>alert('Đổi trạng thái thành công.');</script>";
+
+        include("goicuoc.php");
+
         break;
     case "khoalgc":
         if (isset($_REQUEST["id"]))
@@ -131,6 +157,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
+        echo "<script>alert('Đổi trạng thái thành công.');</script>";
 
         include("loaigoicuoc.php");
         
@@ -144,18 +171,32 @@ switch ($action) {
         include("themloaigoicuoc.php");
         break;
     case "xulythemlgc":
-        
-        // $SoSim = $_POST["txtsosim"];
-        // $DungLuong = $_POST["txtdungluong"];
-        // $MoTa = $_POST["txtmota"];
-        // $GiaGoc = $_POST["txtgiagoc"];
-        // $GiaBan = $_POST["txtgiaban"];
+
+        $dsloai = $l->laydanhsachloaigoicuoc();
+        foreach ($dsloai as $kt) :
+            // print_r($kt["Ten"]);
+            // exit();
+            if ($kt["TenLGC"] == $_POST["txttenlgc"]) {
+                echo "<script>alert('Loại gói cước đã tồn tại, Vui lòng nhập lại.'); window.history.back();</script>";
+                $LoaiGC = $_POST["txttenlgc"];
+                exit();
+            } elseif (strlen($_POST["txttenlgc"]) < 4 ) {
+                echo "<script>alert('Tên loại gói cước phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
+                $LoaiGC = $_POST["txttenlgc"];
+                exit();
+            } elseif ($_POST["txttenlgc"] == null) {
+                echo "<script>alert('Tên loại gói cước không được để trống, Vui lòng nhập lại.');window.history.back();</script>";
+                $LoaiGC = $_POST["txttenlgc"];
+                exit();
+            }
+        endforeach;
         //xử lý thêm mặt hàng
         $moi = new LOAIGOICUOC();
         $moi->setTenLGC($_POST["txttenlgc"]);
-        $moi->setTrangThai($_POST["opttrangthai"]);
+        $moi->setTrangThai(1);
         // thêm
         $l->themloaigoicuoc($moi);
+        echo "<script>alert('Thêm thành công.');</script>";
 
         // load sản phẩm
         $loai = $l->laydanhsachloaigoicuoc();
@@ -186,7 +227,27 @@ switch ($action) {
         }
         break;
     case "xulysuagc": // lưu dữ liệu sửa mới vào db
-
+        $dsgc = $gc->laydanhsachgoicuoc();
+        foreach ($dsgc as $kt) :
+            // print_r($kt["Ten"]);
+            // exit();
+            if(strlen($_POST["gia"]) < 4 ||  $_POST["gia"] < 0) {
+                echo "<script>alert('Giá phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
+                exit();
+            } elseif ($_POST["gia"] == null) {
+                echo "<script>alert('Gia không được để trống, Vui lòng nhập giá.');window.history.back();</script>";
+                // $LoaiGC = $_POST["optloai"];
+                // $GoiCuoc = $_POST["txtten"];
+                // $GiaTriKM = $_POST["giatrikm"];
+                // $ThoiHan = $_POST["txtthoihan"];
+                // $Gia = $_POST["gia"];
+                // $MoTa = $_POST["txtmota"];
+                exit();
+            }elseif (strlen($_POST["txtten"]) < 2 ) {
+                echo "<script>alert('Tên gói cước tối thiểu 2 kí tự, Vui lòng nhập lại.');window.history.back();</script>";
+                exit();
+            }
+        endforeach;
         // gán dữ liệu từ form
         
         $sua = new GOICUOC();
@@ -206,6 +267,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
+        echo "<script>alert('Cập nhật thành công.');</script>";
 
         include("goicuoc.php");
         break;
@@ -228,11 +290,33 @@ switch ($action) {
         }
         break;
     case "xulysualgc": // lưu dữ liệu sửa mới vào db
+        $dslgc = $l->laydanhsachloaigoicuoc();
+        foreach ($dslgc as $kt) :
+            // print_r($kt["Ten"]);
+            // exit();
+            if (strlen($_POST["txtten"]) < 4) {
+                echo "<script>alert('Tên loại gói cước phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
+                exit();
+            } elseif ($_POST["txtten"] == null
+            ) {
+                echo "<script>alert('Tên loại gói cước không được để trống, Vui lòng nhập giá.');window.history.back();</script>";
+                // $LoaiGC = $_POST["optloai"];
+                // $GoiCuoc = $_POST["txtten"];
+                // $GiaTriKM = $_POST["giatrikm"];
+                // $ThoiHan = $_POST["txtthoihan"];
+                // $Gia = $_POST["gia"];
+                // $MoTa = $_POST["txtmota"];
+                exit();
+            } elseif (strlen($_POST["txtten"]) < 2) {
+                echo "<script>alert('Tên loại gói cước tối thiểu 2 kí tự, Vui lòng nhập lại.');window.history.back();</script>";
+                exit();
+            }
+        endforeach;
         // gán dữ liệu từ form
         $sua = new LOAIGOICUOC();
         $sua->setMaLGC($_POST["MaLGC"]);
         $sua->setTenLGC($_POST["txtten"]);
-        $sua->setTrangThai($_POST["opttrangthai"]);
+        $sua->setTrangThai($_POST["trangthai"]);
         // sửa
         $l->sualoaigoicuoc($sua);
         // load danh sách
@@ -241,6 +325,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
+        echo "<script>alert('Cập nhật thành công.');</script>";
 
         include("loaigoicuoc.php");
         break;

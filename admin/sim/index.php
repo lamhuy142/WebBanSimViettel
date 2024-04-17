@@ -90,7 +90,7 @@ switch ($action) {
         $moi->setSoSim($_POST["txtsosim"]);
         $moi->setLoaiThueBao($_POST["optloaithuebao"]);
         $moi->setMaLS($_POST["optloaisim"]);
-        $moi->setTinhTrang($_POST["txttinhtrang"]);
+        $moi->setTinhTrang(1);
         // thêm
         $s->themsim($moi);
         echo "<script>alert('Thêm thành công.');</script>";
@@ -234,24 +234,11 @@ switch ($action) {
         //kiểm tra 
         $dssim = $s->laydanhsachsim();
         foreach ($dssim as $kt) :
-            // if ($kt["SoSim"] == $_POST["txtsosim"]) {
-            //     echo "<script>alert('Số điện thoại đã tồn tại, Vui lòng nhập lại số điện thoại khác.'); window.history.back();</script>";
-            //     $SoSim = $_POST["txtsosim"];
-            //     $LoaiSim = $_POST["optloaisim"];
-            //     $ThueBao = $_POST["optloaithuebao"];
-            //     exit();
-            // } else
             if (strlen($_POST["txtsosim"]) < 10) {
                 echo "<script>alert('Số điện thoại phải có ít nhất 10 kí tự, Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
-                $SoSim = $_POST["txtsosim"];
-                $LoaiSim = $_POST["optloaisim"];
-                $ThueBao = $_POST["optloaithuebao"];
                 exit();
             } elseif (substr($_POST["txtsosim"], 0, 1) != "0") {
                 echo "<script>alert('Số điện thoại phải có kí từ đầu là 0, Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
-                $SoSim = $_POST["txtsosim"];
-                $LoaiSim = $_POST["optloaisim"];
-                $ThueBao = $_POST["optloaithuebao"];
                 exit();
             }
         endforeach;
@@ -262,7 +249,7 @@ switch ($action) {
         $sua->setMaLS($_POST["optloaisim"]);
         $sua->setLoaiThueBao($_POST["optloaithuebao"]);
         $sua->setSoSim($_POST["txtsosim"]);
-        $sua->setTinhTrang($_POST["txttinhtrang"]);
+        $sua->setTinhTrang($_POST["trangthai"]);
         // sửa
         $s->suasim($sua);
         echo "<script>alert('Cập nhật thành công.');</script>";
@@ -286,42 +273,24 @@ switch ($action) {
             $goicuoc = $gc->laydanhsachgoicuoc();
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
-
             include("sualoaisim.php");
         } else {
             $loai = $ls->laydanhsachloaisim();
             $goicuoc = $gc->laydanhsachgoicuoc();
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
-
             include("loaisim.php");
         }
         break;
     case "xulysuals": // lưu dữ liệu sửa mới vào db
         $dsloaisim = $ls->laydanhsachloaisim();
         foreach ($dsloaisim as $kt) :
-            // if ($kt["TenLS"] == $_POST["txttenloaisim"]) {
-            //     echo "<script>alert('Loại sim đã tồn tại, Vui lòng nhập lại.');window.history.back();</script>";
-            //     $TenLS = $_POST["txttenloaisim"];
-            //     $GiaGoc = $_POST["giagoc"];
-            //     $GiaBan = $_POST["giaban"];
-            //     $GoiCuoc = $_POST["optloaigoicuoc"];
-            //     exit();
-            // } else
             if (strlen($_POST["giagoc"]) < 4 ||  $_POST["giagoc"] < 0 || strlen($_POST["giaban"]) < 4 ||  $_POST["giaban"] < 0) {
                 echo "<script>alert('Giá phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
-                $TenLS = $_POST["txttenloaisim"];
-                $GiaGoc = $_POST["giagoc"];
-                $GiaBan = $_POST["giaban"];
-                $GoiCuoc = $_POST["optloaigoicuoc"];
                 exit();
             } elseif ($_POST["giagoc"] == null
             ) {
-                echo "<script>alert(', Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
-                $TenLS = $_POST["txttenloaisim"];
-                $GiaGoc = $_POST["giagoc"];
-                $GiaBan = $_POST["giaban"];
-                $GoiCuoc = $_POST["optloaigoicuoc"];
+                echo "<script>alert('Giá không được để trống, Vui lòng nhập giá.');window.history.back();</script>";
                 exit();
             }
         endforeach;

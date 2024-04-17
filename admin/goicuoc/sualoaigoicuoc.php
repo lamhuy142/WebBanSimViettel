@@ -9,25 +9,13 @@
             <form class="was-validated" method="post" action="index.php" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="xulysualgc">
                 <input type="hidden" name="MaLGC" value="<?php echo $loaigoicuoc_ht["MaLGC"]; ?>">
+                <input type="hidden" name="trangthai" value="<?php echo $loaigoicuoc_ht["TrangThai"]; ?>">
                 <div class="row g-3">
                     <div class="col my-3">
                         <label>Tên Gói Cước</label>
                         <input class="form-control" type="text" name="txtten" required value="<?php echo $loaigoicuoc_ht["TenLGC"]; ?>">
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng điền tên gói cước.</div>
-                    </div>
-                    <div class="col md-3 mt-3">
-                        <label for="opttrangthai" class="form-label">Trạng thái</label>
-                        <select class="form-select" name="opttrangthai">
-                            <option value="">Chọn trạng thái</option>
-                            <?php if ($loaigoicuoc_ht["TrangThai"] == 0) { ?>
-                                <option value="<?php echo $loaigoicuoc_ht["TrangThai"] ?>" <?php echo "selected"; ?>>Tắt</option>
-                                <option value="1">Bật</option>
-                            <?php } else { ?>
-                                <option value="<?php echo $loaigoicuoc_ht["TrangThai"] ?>" <?php echo "selected"; ?>>Bật</option>
-                                <option value="0">Tắt</option>
-                            <?php } ?>
-                        </select>
                     </div>
                 </div>
                 </br>

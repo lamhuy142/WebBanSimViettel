@@ -34,7 +34,7 @@
                                 <td><?php echo $l["MaLGC"] ?></td>
                                 <td><?php echo $l["TenLGC"] ?></td>
                                 <?php if ($l["TrangThai"] == 0) { ?>
-                                    <td class="text-secondary">Tắt</td>
+                                    <td class="text-danger">Tắt</td>
                                     <td>
                                         <a href=" index.php?action=sualgc&id=<?php echo $l['MaLGC']; ?>" class="btn btn-warning">Sửa</a>
                                         <a href=" index.php?action=khoalgc&id=<?php echo $l['MaLGC']; ?>&TrangThai=<?php echo $l['TrangThai']; ?>" class="btn btn-success">Mở</a>
