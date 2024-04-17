@@ -14,8 +14,13 @@
                         <label for="optloaisim" class="form-label">Loại Sim</label>
                         <select class="form-control form-select" required name="optloaisim">
                             <option value="">Chọn loại sim</option>
-                            <?php foreach ($loai as $l) : ?>
+                            <?php foreach ($loai as $l) : 
+                                if($l["TrangThai"] == 0){ ?>
+
+                                    <option class="text-danger" <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenLS']; ?></option>
+                               <?php }else{?> 
                                 <option <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenLS']; ?></option>
+                                <?php } ?>
                             <?php endforeach; ?>
                         </select>
                         <div class="invalid-feedback">Vui lòng chọn loại sim.</div>

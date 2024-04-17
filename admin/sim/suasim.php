@@ -14,8 +14,13 @@
                         <label for="optloaisim" class="form-label">Loại sim</label>
                         <select class="form-control form-select" required name="optloaisim">
                             <option value="">Chọn loại sim</option>
-                            <?php foreach ($loai as $l) { ?>
-                                <option value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
+                            <?php foreach ($loai as $l) {
+                                if ($l["TrangThai"] == 0) { ?>
+                                    <option class="text-danger" <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
+                                <?php }else{ ?>
+                                    <option <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l["MaLS"]; ?>" <?php if ($l["MaLS"] == $sim_ht["MaLS"]) echo "selected"; ?>><?php echo $l["TenLS"]; ?></option>
+
+                               <?php } ?>
                             <?php } ?>
                         </select>
                         <div class="invalid-feedback">Vui lòng chọn loại sim.</div>
@@ -26,7 +31,9 @@
                         <select class="form-control form-select" required name="optloaithuebao">
                             <option value="">Chọn loại thuê bao</option>
                             <?php foreach ($loaithuebao as $tb) : ?>
-                                <option value="<?php echo $tb['LoaiThueBao']; ?>" <?php if ($tb['LoaiThueBao'] == $sim_ht['LoaiThueBao']) echo 'selected'; ?>>
+                                <option <?php if (isset($ThueBao)) if ($ThueBao == $tb['LoaiThueBao']) {
+                                            echo 'selected value=' . $tb['LoaiThueBao'];
+                                        } ?> value="<?php echo $tb['LoaiThueBao']; ?>" <?php if ($tb['LoaiThueBao'] == $sim_ht['LoaiThueBao']) echo 'selected'; ?>>
                                     <?php echo $tb['LoaiThueBao'] == 1 ? 'Thuê Bao Trả Trước' : 'Thuê Bao Trả Sau'; ?>
                                 </option>
                             <?php endforeach; ?>

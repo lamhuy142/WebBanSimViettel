@@ -26,11 +26,11 @@
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
                         <label for="txtgiagoc" class="form-label">Giá Gốc</label>
-                        <input class="form-control" type="number" name="txtgiagoc" value="<?php echo $loaisim_ht['GiaGoc']; ?>">
+                        <input class="form-control" type="number" name="giagoc" value="<?php echo $loaisim_ht['GiaGoc']; ?>">
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtgiaban" class="form-label">Giá Bán</label>
-                        <input class="form-control" type="number" name="txtgiaban" value="<?php echo $loaisim_ht['GiaBan']; ?>">
+                        <input class="form-control" type="number" name="giaban" value="<?php echo $loaisim_ht['GiaBan']; ?>">
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtluotmua" class="form-label">Lượt mua</label>

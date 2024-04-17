@@ -37,6 +37,10 @@ switch ($action) {
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         include("sim.php");
         break;
+    case "trove":
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        // exit();
+        break;
     case "chuyentrang":
         header("Location:../../public/index.php");
         break;
@@ -62,48 +66,26 @@ switch ($action) {
         $dssim = $s->laydanhsachsim();
         foreach ($dssim as $kt) :
             if ($kt["SoSim"] == $_POST["txtsosim"]) {
-                echo "<script>alert('Số điện thoại đã tồn tại, Vui lòng nhập lại số điện thoại khác.');</script>";
+                echo "<script>alert('Số điện thoại đã tồn tại, Vui lòng nhập lại số điện thoại khác.'); window.history.back();</script>";
                 $SoSim = $_POST["txtsosim"];
                 $LoaiSim = $_POST["optloaisim"];
                 $ThueBao = $_POST["optloaithuebao"];
-                $loai = $ls->laydanhsachloaisim();
-                $loaithuebao = $s->laydanhsachloaithuebao();
-                $danhgia = $dg->laydanhsachdanhgia();
-                $nguoidung = $nd->laydanhsachnguoidung();
-                $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-                include("themsim.php");
                 exit();
             } elseif (strlen($_POST["txtsosim"]) < 10) {
-                echo "<script>alert('Số điện thoại phải có ít nhất 10 kí tự, Vui lòng nhập lại số điện thoại.');</script>";
+                echo "<script>alert('Số điện thoại phải có ít nhất 10 kí tự, Vui lòng nhập lại số điện thoại.'); window.history.back();</script>";
                 $SoSim = $_POST["txtsosim"];
                 $LoaiSim = $_POST["optloaisim"];
                 $ThueBao = $_POST["optloaithuebao"];
                 $loai = $ls->laydanhsachloaisim();
-                $loaithuebao = $s->laydanhsachloaithuebao();
-                $danhgia = $dg->laydanhsachdanhgia();
-                $nguoidung = $nd->laydanhsachnguoidung();
-                $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-                include("themsim.php");
                 exit();
             } elseif (substr($_POST["txtsosim"], 0, 1) != "0") {
-                echo "<script>alert('Số điện thoại phải có kí từ đầu là 0, Vui lòng nhập lại số điện thoại.');</script>";
+                echo "<script>alert('Số điện thoại phải có kí từ đầu là 0, Vui lòng nhập lại số điện thoại.'); window.history.back();</script>";
                 $SoSim = $_POST["txtsosim"];
                 $LoaiSim = $_POST["optloaisim"];
                 $ThueBao = $_POST["optloaithuebao"];
-                $loai = $ls->laydanhsachloaisim();
-                $loaithuebao = $s->laydanhsachloaithuebao();
-                $danhgia = $dg->laydanhsachdanhgia();
-                $nguoidung = $nd->laydanhsachnguoidung();
-                $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-                include("themsim.php");
                 exit();
             }
         endforeach;
-
-        // //xử lý load ảnh
-        // $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
-        // $duongdan = "../../img/sim/" . $hinhanh; //nơi lưu file upload
-        // $moi->sethinhanh($hinhanh);
         $moi = new SIM();
         $moi->setSoSim($_POST["txtsosim"]);
         $moi->setLoaiThueBao($_POST["optloaithuebao"]);
@@ -148,7 +130,7 @@ switch ($action) {
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
         if (isset($_REQUEST["TrangThai"]))
-        $trangthai = $_REQUEST["TrangThai"];
+            $trangthai = $_REQUEST["TrangThai"];
         else
             $trangthai = "1";
         if ($trangthai == "1") {
@@ -172,16 +154,36 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-
         include("themloaisim.php");
         break;
     case "xulythemls":
-
-        // $SoSim = $_POST["txtsosim"];
-        // $DungLuong = $_POST["txtdungluong"];
-        // $MoTa = $_POST["txtmota"];
-        // $GiaGoc = $_POST["txtgiagoc"];
-        // $GiaBan = $_POST["txtgiaban"];
+        // print_r(strlen($_POST["giagoc"]));
+        // exit();
+        $dsloaisim = $ls->laydanhsachloaisim();
+        foreach ($dsloaisim as $kt) :
+            if ($kt["TenLS"] == $_POST["txttenloaisim"]) {
+                echo "<script>alert('Loại sim đã tồn tại, Vui lòng nhập lại.'); window.history.back();</script>";
+                $TenLS = $_POST["txttenloaisim"];
+                $GiaGoc = $_POST["giagoc"];
+                $GiaBan = $_POST["giaban"];
+                $GoiCuoc = $_POST["optloaicuoc"];
+                exit();
+            } elseif (strlen($_POST["giagoc"]) < 4 ||  $_POST["giagoc"] < 0 || strlen($_POST["giaban"]) < 4 ||  $_POST["giaban"] < 0) {
+                echo "<script>alert('Giá phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
+                $TenLS = $_POST["txttenloaisim"];
+                $GiaGoc = $_POST["giagoc"];
+                $GiaBan = $_POST["giaban"];
+                $GoiCuoc = $_POST["optloaicuoc"];
+                exit();
+            } elseif ($_POST["giagoc"] == null) {
+                echo "<script>alert(', Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
+                $TenLS = $_POST["txttenloaisim"];
+                $GiaGoc = $_POST["giagoc"];
+                $GiaBan = $_POST["giaban"];
+                $GoiCuoc = $_POST["optloaicuoc"];
+                exit();
+            }
+        endforeach;
         //xử lý thêm mặt hàng
         $moi = new LOAISIM();
         $moi->setTenLS($_POST["txttenloaisim"]);
@@ -189,6 +191,7 @@ switch ($action) {
         $moi->setGiaGoc($_POST["giagoc"]);
         $moi->setMaGC($_POST["optloaicuoc"]);
         $moi->setLuotMua($_POST["luotmua"]);
+        $moi->setTrangThai(1);
         // thêm
         $ls->themloaisim($moi);
 
@@ -198,6 +201,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        echo "<script>alert('Thêm thành công.');</script>";
         include("loaisim.php");
         break;
         // case "xoa":
@@ -215,7 +219,6 @@ switch ($action) {
             $loaithuebao = $s->laydanhsachloaithuebao();
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
-
             include("suasim.php");
         } else {
             $sim = $s->laydanhsachsim();
@@ -223,13 +226,7 @@ switch ($action) {
             $loaithuebao = $s->laydanhsachloaithuebao();
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
-            // Đánh giá chưa được phản hồi 
-            $luotdg = 0;
-            foreach ($danhgia as $dg) {
-                if ($dg["TraLoi"] == null) {
-                    $luotdg = $luotdg + 1;
-                }
-            }
+            
             include("sim.php");
         }
         break;
@@ -237,42 +234,24 @@ switch ($action) {
         //kiểm tra 
         $dssim = $s->laydanhsachsim();
         foreach ($dssim as $kt) :
-            if ($kt["SoSim"] == $_POST["txtsosim"]
-            ) {
-                echo "<script>alert('Số điện thoại đã tồn tại, Vui lòng nhập lại số điện thoại khác.');</script>";
+            // if ($kt["SoSim"] == $_POST["txtsosim"]) {
+            //     echo "<script>alert('Số điện thoại đã tồn tại, Vui lòng nhập lại số điện thoại khác.'); window.history.back();</script>";
+            //     $SoSim = $_POST["txtsosim"];
+            //     $LoaiSim = $_POST["optloaisim"];
+            //     $ThueBao = $_POST["optloaithuebao"];
+            //     exit();
+            // } else
+            if (strlen($_POST["txtsosim"]) < 10) {
+                echo "<script>alert('Số điện thoại phải có ít nhất 10 kí tự, Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
                 $SoSim = $_POST["txtsosim"];
                 $LoaiSim = $_POST["optloaisim"];
                 $ThueBao = $_POST["optloaithuebao"];
-                $loai = $ls->laydanhsachloaisim();
-                $loaithuebao = $s->laydanhsachloaithuebao();
-                $danhgia = $dg->laydanhsachdanhgia();
-                $nguoidung = $nd->laydanhsachnguoidung();
-                $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-                include("themsim.php");
-                exit();
-            } elseif (strlen($_POST["txtsosim"]) < 10) {
-                echo "<script>alert('Số điện thoại phải có ít nhất 10 kí tự, Vui lòng nhập lại số điện thoại.');</script>";
-                $SoSim = $_POST["txtsosim"];
-                $LoaiSim = $_POST["optloaisim"];
-                $ThueBao = $_POST["optloaithuebao"];
-                $loai = $ls->laydanhsachloaisim();
-                $loaithuebao = $s->laydanhsachloaithuebao();
-                $danhgia = $dg->laydanhsachdanhgia();
-                $nguoidung = $nd->laydanhsachnguoidung();
-                $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-                include("themsim.php");
                 exit();
             } elseif (substr($_POST["txtsosim"], 0, 1) != "0") {
-                echo "<script>alert('Số điện thoại phải có kí từ đầu là 0, Vui lòng nhập lại số điện thoại.');</script>";
+                echo "<script>alert('Số điện thoại phải có kí từ đầu là 0, Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
                 $SoSim = $_POST["txtsosim"];
                 $LoaiSim = $_POST["optloaisim"];
                 $ThueBao = $_POST["optloaithuebao"];
-                $loai = $ls->laydanhsachloaisim();
-                $loaithuebao = $s->laydanhsachloaithuebao();
-                $danhgia = $dg->laydanhsachdanhgia();
-                $nguoidung = $nd->laydanhsachnguoidung();
-                $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-                include("themsim.php");
                 exit();
             }
         endforeach;
@@ -283,20 +262,10 @@ switch ($action) {
         $sua->setMaLS($_POST["optloaisim"]);
         $sua->setLoaiThueBao($_POST["optloaithuebao"]);
         $sua->setSoSim($_POST["txtsosim"]);
-        // $sua->setMoTa($_POST["txtmota"]);
         $sua->setTinhTrang($_POST["txttinhtrang"]);
-        // $sua->setHinhAnh($_POST["hinhanh"]);
-
-        // if ($_FILES["filehinhanh"]["name"] != "") {
-        //     //xử lý load ảnh
-        //     $hinhanh = basename($_FILES["filehinhanh"]["name"]); // đường dẫn ảnh lưu trong db
-        //     $sua->sethinhanh($hinhanh);
-        //     $duongdan = "../../img/sim/" . $hinhanh; //nơi lưu file upload
-        //     move_uploaded_file($_FILES["filehinhanh"]["tmp_name"], $duongdan);
-        // }
         // sửa
         $s->suasim($sua);
-        echo "<script>alert('Đã cập nhật sim thành công.');</script>";
+        echo "<script>alert('Cập nhật thành công.');</script>";
 
         // load danh sách
         $loai = $ls->laydanhsachloaisim();
@@ -310,6 +279,7 @@ switch ($action) {
         break;
 
     case "suals":
+        
         if (isset($_GET["id"])) {
             $loaisim_ht = $ls->laydanhsachloaisimtheoid($_GET["id"]);
             $loai = $ls->laydanhsachloaisim();
@@ -328,13 +298,40 @@ switch ($action) {
         }
         break;
     case "xulysuals": // lưu dữ liệu sửa mới vào db
+        $dsloaisim = $ls->laydanhsachloaisim();
+        foreach ($dsloaisim as $kt) :
+            // if ($kt["TenLS"] == $_POST["txttenloaisim"]) {
+            //     echo "<script>alert('Loại sim đã tồn tại, Vui lòng nhập lại.');window.history.back();</script>";
+            //     $TenLS = $_POST["txttenloaisim"];
+            //     $GiaGoc = $_POST["giagoc"];
+            //     $GiaBan = $_POST["giaban"];
+            //     $GoiCuoc = $_POST["optloaigoicuoc"];
+            //     exit();
+            // } else
+            if (strlen($_POST["giagoc"]) < 4 ||  $_POST["giagoc"] < 0 || strlen($_POST["giaban"]) < 4 ||  $_POST["giaban"] < 0) {
+                echo "<script>alert('Giá phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
+                $TenLS = $_POST["txttenloaisim"];
+                $GiaGoc = $_POST["giagoc"];
+                $GiaBan = $_POST["giaban"];
+                $GoiCuoc = $_POST["optloaigoicuoc"];
+                exit();
+            } elseif ($_POST["giagoc"] == null
+            ) {
+                echo "<script>alert(', Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
+                $TenLS = $_POST["txttenloaisim"];
+                $GiaGoc = $_POST["giagoc"];
+                $GiaBan = $_POST["giaban"];
+                $GoiCuoc = $_POST["optloaigoicuoc"];
+                exit();
+            }
+        endforeach;
         // gán dữ liệu từ form
         $sua = new LOAISIM();
         $sua->setMaLS($_POST["MaLS"]);
         $sua->setTenLS($_POST["txttenloaisim"]);
         $sua->setMaGC($_POST["optloaigoicuoc"]);
-        $sua->setGiaGoc($_POST["txtgiagoc"]);
-        $sua->setGiaBan($_POST["txtgiaban"]);
+        $sua->setGiaGoc($_POST["giagoc"]);
+        $sua->setGiaBan($_POST["giaban"]);
         $sua->setLuotMua($_POST["txtluotmua"]);
         // sửa
         $ls->sualoaisim($sua);
@@ -344,6 +341,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        echo "<script>alert('Cập nhật thành công.');</script>";
 
         include("loaisim.php");
         break;

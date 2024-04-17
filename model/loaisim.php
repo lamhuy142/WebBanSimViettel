@@ -83,6 +83,22 @@ class LOAISIM
             exit();
         }
     }
+    public function tangluotmualoaisim($MaLS)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "UPDATE LoaiSim SET LuotMua = LuotMua + 1 WHERE MaLS = :MaLS";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":MaLS", $MaLS);
+            $cmd->execute();
+            $result = $cmd->fetch();
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     public function laydanhsachloaisimtheoid($MaLS)
     {
         $dbcon = DATABASE::connect();

@@ -186,6 +186,15 @@ switch ($action) {
             $dhct_moi->setDonGia($dongia);
             $dhct_moi->setSoLuong(1);
             $dhct_moi->setThanhTien($dongia);
+            //THÊM LƯỢT MUA CHO LOẠI SIM 
+            $loaisim = $ls->laydanhsachloaisim();
+            $sim = $s->laydanhsachsimtheoid($sl["MaS"]);
+            foreach($loaisim as $l):
+                    
+                if($l["MaLS"] == $sim["MaLS"]){
+                    $ls->tangluotmualoaisim($l["MaLS"]);
+                }
+            endforeach;
             $dh_ct->themdonhang_ct($dhct_moi);
         endforeach;
 
