@@ -35,7 +35,7 @@
                         <?php foreach ($quangcao as $qc) : ?>
                             <tr>
                                 <td><?php echo $qc["MaQC"]; ?></td>
-                                <td><img width="50px" src="../../img/user/<?php echo $qc["HinhAnh"]; ?>" alt="<?php echo $qc["HinhAnh"]; ?>"></td>
+                                <td><img width="200px" src="../../img/quangcao/<?php echo $qc["HinhAnh"]; ?>" alt="<?php echo $qc["HinhAnh"]; ?>"></td>
                                 <td><a class="text-decoration-none" href="<?php echo $qc['Url']; ?>"><?php echo $qc["Url"]; ?></a></td>
                                 <?php if ($qc["TrangThai"] == 1) { ?>
                                     <td class="text-success">Bật</td>

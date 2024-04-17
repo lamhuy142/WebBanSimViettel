@@ -12,6 +12,7 @@ require("../model/traloidanhgia.php");
 require("../model/giohang_ct.php");
 require("../model/donhang.php");
 require("../model/donhang_ct.php");
+require("../model/quangcao.php");
 
 
 
@@ -36,6 +37,7 @@ $tl = new TRALOIDANHGIA();
 $gh = new GIOHANG_CT();
 $dh = new DONHANG();
 $dh_ct = new DONHANG_CT();
+$qc = new QUANGCAO();
 
 
 switch ($action) {
@@ -47,6 +49,7 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $nguoidung = $nd->laydanhsachnguoidung();
+        $quangcao = $qc->laydanhsachquangcao();
         include("main.php");
         break;
     case "chuyentrang":

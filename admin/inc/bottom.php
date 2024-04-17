@@ -92,20 +92,6 @@
     $(document).ready(function() {
         $('#datatable4').DataTable();
     });
-
-    // document.getElementById("txtMaDH").addEventListener("input", function() {
-    //     var maDH = document.getElementById("txtMaDH").value;
-    //     // Gửi yêu cầu Ajax để tìm kiếm đơn hàng dựa trên mã đơn hàng
-    //     var xhr = new XMLHttpRequest();
-    //     xhr.onreadystatechange = function() {
-    //         if (xhr.readyState == 4 && xhr.status == 200) {
-    //             // Xử lý dữ liệu trả về (ví dụ: cập nhật nội dung trang)
-    //             document.getElementById("result").innerHTML = xhr.responseText;
-    //         }
-    //     };
-    //     xhr.open("GET", "index.php?action=xem&txtMaDH=" + maDH, true);
-    //     xhr.send();
-    // });
 </script>
 
 </body>

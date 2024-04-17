@@ -60,9 +60,6 @@ if (isset($_SESSION["nguoidung"])) {
     <!--===============================================================================================-->
 </head>
 
-<!-- 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger intent="WELCOME" chat-title="Test" agent-id="fc9a4396-d40f-461c-ac16-1fdabafc04e8" language-code="en"></df-messenger> -->
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger intent="WELCOME" chat-title="ViChat" agent-id="9ec64812-29d0-47d0-b211-fb51ca18a7af" language-code="vi"></df-messenger>
 

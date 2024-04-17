@@ -43,6 +43,7 @@ $luotdg = $dg->soluongchuatraloi();
     <link rel="stylesheet" href="../../admin/inc/css/css_upro.css">
 
 
+
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.0/classic/ckeditor.js"></script>
 
 </head>
@@ -266,7 +267,7 @@ $luotdg = $dg->soluongchuatraloi();
                                 </h6>
                                 <?php foreach ($danhgia as $d) :
                                     foreach ($nguoidung as $n) :
-                                    // foreach ($traloidanhgia as $tl) :
+                                        // foreach ($traloidanhgia as $tl) :
                                         if ($n["MaND"] == $d["MaND"]) {
                                 ?>
                                             <a class="dropdown-item d-flex align-items-center" href="../phanhoinguoidung/index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">

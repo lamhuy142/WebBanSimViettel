@@ -1,15 +1,11 @@
 <section>
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
+            <?php foreach($quangcao as $qc): ?>
             <div class="carousel-item active">
-                <img src="../img/slide/slide2.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="../img/slide/slide4.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="../img/slide/slide1.png" class="d-block w-100" alt="...">
-            </div>
+                <img src="../img/quangcao/<?php echo $qc["HinhAnh"]; ?>" class="d-block w-100" alt="...">
+            </div>  
+            <?php endforeach; ?>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
