@@ -73,7 +73,7 @@ switch ($action) {
                 $MoTa = $_POST["txtmota"];
                 exit();
             } 
-            elseif (strlen($_POST["giagoc"]) < 4 ||  $_POST["giagoc"] < 0 || strlen($_POST["giaban"]) < 4 ||  $_POST["giaban"] < 0) {
+            elseif (strlen($_POST["gia"]) < 4 ||  $_POST["gia"] < 0 ) {
                 echo "<script>alert('Giá phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
                 $LoaiGC = $_POST["optloaigc"];
                 $GoiCuoc = $_POST["txttengc"];
@@ -82,7 +82,7 @@ switch ($action) {
                 $Gia = $_POST["gia"];
                 $MoTa = $_POST["txtmota"];
                 exit();
-            } elseif ($_POST["giagoc"] == null) {
+            } elseif ($_POST["gia"] == null) {
                 echo "<script>alert(', Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
                 $LoaiGC = $_POST["optloaigc"];
                 $GoiCuoc = $_POST["txttengc"];
