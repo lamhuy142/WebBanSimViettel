@@ -12,7 +12,7 @@
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
                         <label for="txttengc" class="form-label">Tên gói cước</label>
-                        <input class="form-control" type="text" name="txttengc" required>
+                        <input class="form-control" type="text" name="txttengc" value="<?php echo isset($GoiCuoc) ? $GoiCuoc : ''; ?>" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng điền tên gói cước.</div>
                     </div>
@@ -21,26 +21,26 @@
                         <select class="form-control form-select" required name="optloaigc">
                             <option value="">Chọn loại gói cước</option>
                             <?php foreach ($loai as $l) : ?>
-                                <option value="<?php echo $l['MaLGC']; ?>"><?php echo $l['TenLGC']; ?></option>
+                                <option <?php if (isset($LoaiGC)) if ($LoaiGC == $l['MaLGC']) echo 'selected' ?> value="<?php echo $l['MaLGC']; ?>"><?php echo $l['TenLGC']; ?></option>
                             <?php endforeach; ?>
                         </select>
                         <div class="invalid-feedback">Vui lòng chọn loại gói cước.</div>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtgiatrikm" class="form-label">Giá trị khuyến mãi</label>
-                        <input class="form-control" type="number" name="txtgiatrikm" required>
+                        <input class="form-control" type="number" name="txtgiatrikm" value="<?php echo isset($GiaTriKM) ? $GiaTriKM : ''; ?>" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Hãy nhập giá trị khuyến mãi.</div>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="txtthoihan" class="form-label">Thời hạn</label>
-                        <input class="form-control" type="text" name="txtthoihan" required>
+                        <input class="form-control" type="text" name="txtthoihan" value="<?php echo isset($ThoiHan) ? $ThoiHan : ''; ?>" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập thời hạn của gói cước.</div>
                     </div>
                     <div class="col md-3 mt-3">
                         <label for="gia" class="form-label">Giá</label>
-                        <input class="form-control" type="number" name="gia" required>
+                        <input class="form-control" type="number" name="gia" value="<?php echo isset($Gia) ? $Gia : ''; ?>" required>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập giá tiền của gói cước.</div>
                     </div>
@@ -48,8 +48,9 @@
                 <div class="row g-3">
                     <div class="col md-3 mt-3">
                         <label for="txtmota" class="form-label">Mô Tả</label>
-                        <!-- <input class="form-control" id="editor" type="text" name="txtmota"> -->
-                        <textarea id="editor" rows="5" class="form-control" name="txtmota"></textarea>
+                        <textarea id="editor" rows="5" class="form-control" name="txtmota">
+                            <?php echo isset($MoTa) ? $MoTa : ''; ?>
+                        </textarea>
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Hãy nhập mô tả gói cước.</div>
                     </div>

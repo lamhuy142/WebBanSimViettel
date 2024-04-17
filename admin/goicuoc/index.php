@@ -30,8 +30,6 @@ $l = new LOAIGOICUOC();
 $dg = new DANHGIA();
 $tl = new TRALOIDANHGIA();
 $nd = new NGUOIDUNG();
-
-
 switch ($action) {
     case "goicuoc":
         $loai = $l->laydanhsachloaigoicuoc();
@@ -39,7 +37,6 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
-
         include("goicuoc.php");
         break;
     case "chuyentrang":
@@ -51,7 +48,6 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
-
         include("loaigoicuoc.php");
         break;
     case "themgoicuoc":
@@ -59,11 +55,44 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
-
         include("themgoicuoc.php");
         break;
     case "xulythemgc":
+        $dsgc = $gc->laydanhsachgoicuoc();
         
+        foreach ($dsgc as $kt) :
+            print_r($_POST["txttengc"]);
+            exit($kt["Ten"]);
+            if ($kt["Ten"] == $_POST["txttengc"]) {
+                echo "<script>alert('Tên gói cước đã tồn tại, Vui lòng nhập lại.'); window.history.back();</script>";
+                $LoaiGC = $_POST["optloaigc"];
+                $GoiCuoc = $_POST["txttengc"];
+                $GiaTriKM = $_POST["txtgiatrikm"];
+                $ThoiHan = $_POST["txtthoihan"];
+                $Gia = $_POST["gia"];
+                $MoTa = $_POST["txtmota"];
+                exit();
+            } elseif (strlen($_POST["giagoc"]) < 4 ||  $_POST["giagoc"] < 0 || strlen($_POST["giaban"]) < 4 ||  $_POST["giaban"] < 0) {
+                echo "<script>alert('Giá phải 4 kí tự và không được là số âm , Vui lòng nhập lại.');window.history.back();</script>";
+                $LoaiGC = $_POST["optloaigc"];
+                $GoiCuoc = $_POST["txttengc"];
+                $GiaTriKM = $_POST["txtgiatrikm"];
+                $ThoiHan = $_POST["txtthoihan"];
+                $Gia = $_POST["gia"];
+                $MoTa = $_POST["txtmota"];
+                exit();
+            } elseif ($_POST["giagoc"] == null) {
+                echo "<script>alert(', Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
+                $LoaiGC = $_POST["optloaigc"];
+                $GoiCuoc = $_POST["txttengc"];
+                $GiaTriKM = $_POST["txtgiatrikm"];
+                $ThoiHan = $_POST["txtthoihan"];
+                $Gia = $_POST["gia"];
+                $MoTa = $_POST["txtmota"];
+                exit();
+            }
+        endforeach;
+        // thêm gói cước
         $moi = new GOICUOC();
         $moi->setTen($_POST["txttengc"]);
         $moi->setGia($_POST["gia"]);
