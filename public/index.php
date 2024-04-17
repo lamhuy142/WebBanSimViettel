@@ -115,6 +115,8 @@ switch ($action) {
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
+        $quangcao = $qc->laydanhsachquangcao();
+
         include("main.php");
         break;
     case "themvaogiohang":
@@ -227,6 +229,7 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();
+        $quangcao = $qc->laydanhsachquangcao();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         include("main.php");
         break;
@@ -270,6 +273,8 @@ switch ($action) {
                 $khuyenmai = $km->laydanhsachkhuyenmai();
                 $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
                 $goicuoc = $gc->laydanhsachgoicuoc();
+                $quangcao = $qc->laydanhsachquangcao();
+
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 0) {
                 $thongbao = "Tài khoản đã bị khóa";
@@ -363,6 +368,8 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $nguoidung = $nd->laydanhsachnguoidung();
+        $quangcao = $qc->laydanhsachquangcao();
+
         include("main.php");
         break;
 
@@ -384,6 +391,8 @@ switch ($action) {
             $khuyenmai = $km->laydanhsachkhuyenmai();
             $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
             $goicuoc = $gc->laydanhsachgoicuoc();
+            $quangcao = $qc->laydanhsachquangcao();
+
             include("main.php");
         }
         break;
