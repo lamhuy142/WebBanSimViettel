@@ -15,7 +15,7 @@
                             <select class="form-select" required name="optquyen">
                                 <option value="">Chọn quyền người dùng</option>
                                 <?php foreach ($quyen as $q) : ?>
-                                    <option value="<?php echo $q['MaQ']; ?>"><?php echo $q['TenQ']; ?></option>
+                                    <option <?php if (isset($loaiquyen)) if ($loaiquyen == $q['MaLS']) echo 'selected' ?> value="<?php echo $q['MaQ']; ?>"><?php echo $q['TenQ']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <div class="invalid-feedback">Vui lòng chọn loại quyền</div>
@@ -61,12 +61,6 @@
                             <input class="form-control has-validation" type="text" name="txtmatkhau" value="<?php echo isset($MatKhau) ? $MatKhau : ''; ?>" required></input>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="txttrangthai" class="form-label">Trạng thái</label>
-                            <input class="form-control" type="number" name="txttrangthai" value="1"></input>
                         </div>
                     </div>
                     <div class="col">

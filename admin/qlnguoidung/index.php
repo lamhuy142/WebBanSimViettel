@@ -49,51 +49,69 @@ switch ($action) {
         $kiemtra2 = $nd->kiemtraTenDangNhapTonTai($tendangnhap);
         
         if(strlen($sodienthoai) < 10 ){
-            echo "<script>alert('Số điện thoại phải tối thiểu 10 chữ số, Vui lòng nhập lại số điện thoại.');</script>";
+            echo "<script>alert('Số điện thoại phải tối thiểu 10 chữ số, Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
             $HoTen = $_POST["txthoten"];
             $tendangnhap = $_POST["txttendangnhap"];
             $DiaChi = $_POST["txtdiachi"];
             $MatKhau = $_POST["txtmatkhau"];
             $MaQ = $_POST["optquyen"];
-            $TrangThai = $_POST["txttrangthai"];
-            $HinhAnh = basename($_FILES["fileanh"]["name"]);
-            $quyen = $q->laydanhsachquyen();
-            $danhgia = $dg->laydanhsachdanhgia();
-            $nguoidung = $nd->laydanhsachnguoidung();
-            
-            include("themnguoidung.php");
+            $HinhAnh = ($_FILES["fileanh"]);
+            exit();
         }elseif($kiemtra1) {
             // Nếu số điện thoại đã tồn tại, hiển thị thông báo
-            echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập số điện thoại khác.');</script>";
+            echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập số điện thoại khác.');window.history.back();</script>";
             $HoTen = $_POST["txthoten"];
             $tendangnhap= $_POST["txttendangnhap"];
             $DiaChi = $_POST["txtdiachi"];
             $MatKhau = $_POST["txtmatkhau"];
             $MaQ = $_POST["optquyen"];
-            $TrangThai = $_POST["txttrangthai"];
-            $HinhAnh = basename($_FILES["fileanh"]["name"]);
-            $quyen = $q->laydanhsachquyen();
-            $danhgia = $dg->laydanhsachdanhgia();
-            $nguoidung = $nd->laydanhsachnguoidung();
-
-            include("themnguoidung.php");
+            $HinhAnh = ($_FILES["fileanh"]);
+            exit();
         }elseif($kiemtra2){
             // Nếu email đã tồn tại, hiển thị thông báo
-            echo "<script>alert('Tên đăng nhập đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập Tên đăng nhập khác.');</script>";
+            echo "<script>alert('Tên đăng nhập đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập Tên đăng nhập khác.');window.history.back();</script>";
             $HoTen = $_POST["txthoten"];
             $Sdt = $_POST["txtsodienthoai"];
             $DiaChi = $_POST["txtdiachi"];
+            $TenDangNhap = $_POST["txttendangnhap"];
             $MatKhau = $_POST["txtmatkhau"];
             $MaQ = $_POST["optquyen"];
-            $TrangThai = $_POST["txttrangthai"];
-            $HinhAnh = basename($_FILES["fileanh"]["name"]);
-            $quyen = $q->laydanhsachquyen();
-            $danhgia = $dg->laydanhsachdanhgia();
-            $nguoidung = $nd->laydanhsachnguoidung();
-            
-            include("themnguoidung.php");
-        }
-         else {
+            $HinhAnh = ($_FILES["fileanh"]);
+            exit();
+        } elseif (strlen($tendangnhap) < 3 ) {
+            // Nếu email đã tồn tại, hiển thị thông báo
+            echo "<script>alert('Tên đăng nhập phải tối thiểu 3 kí tự. Vui lòng nhập lại.');window.history.back();</script>";
+            $HoTen = $_POST["txthoten"];
+            $Sdt = $_POST["txtsodienthoai"];
+            $DiaChi = $_POST["txtdiachi"];
+            $TenDangNhap = $_POST["txttendangnhap"];
+            $MatKhau = $_POST["txtmatkhau"];
+            $MaQ = $_POST["optquyen"];
+            $HinhAnh = ($_FILES["fileanh"]);
+            exit();
+        } elseif (strlen($_POST["txtmatkhau"]) < 3) {
+            // Nếu email đã tồn tại, hiển thị thông báo
+            echo "<script>alert('Mật khẩu phải tối thiểu 3 kí tự. Vui lòng nhập lại.');window.history.back();</script>";
+            $HoTen = $_POST["txthoten"];
+            $Sdt = $_POST["txtsodienthoai"];
+            $DiaChi = $_POST["txtdiachi"];
+            $TenDangNhap = $_POST["txttendangnhap"];
+            $MatKhau = $_POST["txtmatkhau"];
+            $MaQ = $_POST["optquyen"];
+            $HinhAnh = ($_FILES["fileanh"]);
+            exit();
+        } elseif (strlen($_POST["txtsosim"]) < 10) {
+            // Nếu email đã tồn tại, hiển thị thông báo
+            echo "<script>alert('Số điện thoại tối thiểu 10 số. Vui lòng nhập lại.');window.history.back();</script>";
+            $HoTen = $_POST["txthoten"];
+            $Sdt = $_POST["txtsodienthoai"];
+            $DiaChi = $_POST["txtdiachi"];
+            $TenDangNhap = $_POST["txttendangnhap"];
+            $MatKhau = $_POST["txtmatkhau"];
+            $MaQ = $_POST["optquyen"];
+            $HinhAnh = ($_FILES["fileanh"]);
+            exit();
+        }else {
             //xử lý load ảnh
             $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
             $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
@@ -106,7 +124,7 @@ switch ($action) {
             $nguoidungmoi->setDiaChi($_POST["txtdiachi"]);
             $nguoidungmoi->setHoTen($_POST["txthoten"]);
             $nguoidungmoi->setMaQ($_POST["optquyen"]);
-            $nguoidungmoi->setTrangThai($_POST["txttrangthai"]);
+            $nguoidungmoi->setTrangThai(1);
             $nguoidungmoi->setHinhAnh($hinhanh);
             // thêm
             $nd->themnguoidung($nguoidungmoi);
@@ -114,10 +132,10 @@ switch ($action) {
             $quyen = $q->laydanhsachquyen();
             $nguoidung = $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
+            echo "<script>alert('Thêm thành công.');</script>";
             
             include("main.php");
         }
-        
         break;
     case "khoa":
         if (isset($_REQUEST["id"]))
@@ -138,6 +156,7 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        echo "<script>alert('Đã đổi trạng thái.');</script>";
         
         include("main.php");
         break;
