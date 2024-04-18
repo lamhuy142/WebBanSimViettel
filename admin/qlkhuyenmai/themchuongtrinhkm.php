@@ -63,14 +63,6 @@
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng chọn hình ảnh .</div>
                     </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="trangthai" class="form-label">Trạng Thái</label>
-                            <input class="form-control" type="number" name="trangthai" value="1" readonly required>
-                            <div class="valid-feedback">Hợp lệ.</div>
-                            <div class="invalid-feedback">Vui lòng nhập trạng thái khuyến mãi.</div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col">

@@ -107,7 +107,7 @@ switch ($action) {
         $khuyenmaimoi->setHinhAnh($hinhanh);
         $khuyenmaimoi->setNgayBD($_POST["ngaybd"]);
         $khuyenmaimoi->setNgayKT($_POST["ngaykt"]);
-        $khuyenmaimoi->setTrangThai($_POST["trangthai"]);
+        $khuyenmaimoi->setTrangThai(1);
         // thêm
         $km->themkhuyenmai($khuyenmaimoi);
         // load người dùng
@@ -236,18 +236,32 @@ switch ($action) {
         include("themloaikm.php");
         break;
     case "xulythemloaikm":
+        $dslkm = $lkm->laydanhsachloaikhuyenmai();
+        foreach ($dslkm as $kt) :
+            if ($kt["TenLKM"] == $_POST["txtten"]) {
+                echo "<script>alert('Tên đã tồn tại, Vui lòng nhập lại Tên khác.'); window.history.back();</script>";
+                $tenlkm = $_POST["txtten"];
+                $donvi = $_POST["txtdonvi"];
+                exit();
+            } elseif ($_POST["txtdonvi"] != "%" || $_POST["txtdonvi"] != "GB" || $_POST["txtdonvi"] != "KB" || $_POST["txtdonvi"] != "MB" ) {
+                echo "<script>alert('Đơn vị chỉ được là những giá trị sau %, GB, ,MB, KB, Vui lòng nhập lại.'); window.history.back();</script>";
+                $tenlkm = $_POST["txtten"];
+                $donvi = $_POST["txtdonvi"];
+                exit();
+            }
+        endforeach;
         //xử lý thêm 
         $moi = new LOAIKHUYENMAI();
         $moi->setTenLKM($_POST["txtten"]);
         $moi->setDonViKM($_POST["txtdonvi"]);
-        $moi->setTrangThai($_POST["opttrangthai"]);
+        $moi->setTrangThai(1);
         // thêm
         $lkm->themloaikhuyenmai($moi);
         // load người dùng
         $loai = $lkm->laydanhsachloaikhuyenmai();
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
-
+        echo "<script>alert('Thêm thành công.');</script>";
         include("loaikhuyenmai.php");
         break;
     case "sualoaikm":
@@ -266,14 +280,25 @@ switch ($action) {
         }
         break;
     case "xulysualoaikm": // lưu dữ liệu sửa mới vào db
-
+        $dslkm = $lkm->laydanhsachloaikhuyenmai();
+        // print_r($_POST["txtdonvi"]);
+        // print_r("%");
+        // if($_POST["txtdonvi"] == "%"){
+        //     echo "</hr>ĐÚNG RỒI";
+        // }
+        // exit();
+        foreach ($dslkm as $kt) :
+            if($_POST["txtdonvi"] != "%" && $_POST["txtdonvi"] != 'GB' && $_POST["txtdonvi"] != "KB" && $_POST["txtdonvi"] != "MB") {
+                echo "<script>alert('Đơn vị chỉ được là những giá trị sau %, GB,MB, KB, Vui lòng nhập lại.'); window.history.back();</script>";
+                exit();
+            }
+        endforeach;
         // gán dữ liệu từ form
-
         $sua = new LOAIKHUYENMAI();
         $sua->setMaLKM($_POST["MaLKM"]);
         $sua->setTenLKM($_POST["txtten"]);
         $sua->setDonViKM($_POST["txtdonvi"]);
-        $sua->setTrangThai($_POST["opttrangthai"]);
+        $sua->setTrangThai($_POST["trangthai"]);
         // sửa
         $lkm->capnhatloaikhuyenmai($sua);
         // load danh sách
@@ -281,7 +306,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
-
+        echo "<script>alert('Cập nhật thành công.');</script>";
         include("loaikhuyenmai.php");
         break;
     case "khoaloaikm":
@@ -302,7 +327,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
-
+        echo "<script>alert('Đã đổi trạng thái.');</script>";
         include("loaikhuyenmai.php");
         break;
     default:

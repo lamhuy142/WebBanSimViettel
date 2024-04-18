@@ -12,7 +12,7 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtten" class="form-label">Tên </label>
-                            <input class="form-control" type="text" name="txtten" required>
+                            <input class="form-control" type="text" name="txtten" value="<?php echo isset($tenlkm) ? $tenlkm : ''; ?>" required>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Vui lòng điền tên .</div>
                         </div>
@@ -20,24 +20,10 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtdonvi" class="form-label">Đơn Vị</label>
-                            <input class="form-control" type="text" name="txtdonvi" required>
+                            <input class="form-control" type="text" name="txtdonvi" value="<?php echo isset($donvi) ? $donvi : ''; ?>" required>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Vui lòng điền đơn vị.</div>
                         </div>
-                    </div>
-                    <div class="col md-3 mt-3">
-                        <label for="opttrangthai" class="form-label">Loại trạng thái</label>
-                        <select class="form-control form-select" required name="opttrangthai">
-                            <option value="">Chọn loại trạng thái</option>
-                            <!-- <php foreach ($trangthai as $t) : ?> -->
-                                <!-- <php if ($t['TrangThai'] == 1) { ?> -->
-                                    <option value="1">Hoạt Động</option>
-                                <!-- <php } elseif ($t['TrangThai'] == 0) { ?> -->
-                                    <option value="0">Dừng</option>
-                                <!-- <php } ?> -->
-                            <!-- <php endforeach; ?> -->
-                        </select>
-                        <div class="invalid-feedback">Vui lòng chọn loại thuê bao.</div>
                     </div>
                 </div>
                 <div class="md-3 mt-3">

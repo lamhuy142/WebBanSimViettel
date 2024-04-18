@@ -11,6 +11,7 @@
                 <input type="hidden" name="action" value="xulysua">
                 <input type="hidden" name="MaKM" value="<?php echo $khuyenmai_ht['MaKM'] ?>">
                 <input type="hidden" name="ngaytao" value="<?php echo $khuyenmai_ht['NgayTao'] ?>">
+                <input type="hidden" name="txttrangthai" value="<?php echo $khuyenmai_ht['TrangThai'] ?>">
 
                 <div class="row">
                     <div class="col">
@@ -53,12 +54,6 @@
                             <input class="form-control" type="number" name="txtgiatri" value="<?php echo $khuyenmai_ht['GiaTriKM'] ?>" required>
                             <div class="valid-feedback">Hợp lệ.</div>
                             <div class="invalid-feedback">Vui lòng nhập giá trị khuyến mãi.</div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="md-3 mt-3">
-                            <label for="txttrangthai" class="form-label">Trạng Thái</label>
-                            <input class="form-control" type="number" name="txttrangthai" value="<?php echo $khuyenmai_ht['TrangThai'] ?>" required>
                         </div>
                     </div>
                 </div>
