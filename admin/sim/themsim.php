@@ -16,7 +16,6 @@
                             <option value="">Chọn loại sim</option>
                             <?php foreach ($loai as $l) :
                                 if ($l["TrangThai"] == 0) { ?>
-
                                     <option class="text-danger" <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenLS']; ?></option>
                                 <?php } else { ?>
                                     <option <?php if (isset($LoaiSim)) if ($LoaiSim == $l['MaLS']) echo 'selected' ?> value="<?php echo $l['MaLS']; ?>"><?php echo $l['TenLS']; ?></option>
@@ -46,10 +45,6 @@
                         <div class="valid-feedback">Hợp lệ.</div>
                         <div class="invalid-feedback">Vui lòng nhập số.</div>
                     </div>
-                    <!-- <div class="col md-3 mt-3">
-                        <label for="txttinhtrang" class="form-label">Trạng Thái</label>
-                        <input class="form-control" type="text" name="txttinhtrang" value="Bật" readonly>
-                    </div> -->
                 </div>
                 <div class="md-3 mt-3">
                     <a href="index.php?action=sim" class="btn btn-primary"><i class="bi bi-arrow-counterclockwise"></i> Trở về </a>

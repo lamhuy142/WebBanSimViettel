@@ -54,6 +54,43 @@ switch ($action) {
         include("themchuongtrinhkm.php");
         break;
     case "xulythemkm":
+        $dskm = $km->laydanhsachkhuyenmai();
+        foreach ($dskm as $kt) :
+            if ($kt["TenKM"] == $_POST["txttenkm"]) {
+                echo "<script>alert('Tên đã tồn tại, Vui lòng nhập lại Tên khác.'); window.history.back();</script>";
+                $tenkm = $_POST["txttenkm"];
+                $giatri = $_POST["txtgiatri"];
+                $loaikm = $_POST["optloai"];
+                $loais = $_POST["optloaisim"];
+                $hinhanh = $_FILES["fileanh"];
+                $mota = $_POST["txtmota"];
+                $ngaybd = $_POST["ngaybd"];
+                $ngaykt = $_POST["ngaykt"];
+                exit();
+            } elseif (strlen($_POST["txttenkm"]) < 6) {
+                echo "<script>alert('Tên phải có ít nhất 6 kí tự, Vui lòng nhập lại Tên.'); window.history.back();</script>";
+                $tenkm = $_POST["txttenkm"];
+                $giatri = $_POST["txtgiatri"];
+                $loaikm = $_POST["optloai"];
+                $loais = $_POST["optloaisim"];
+                $hinhanh = $_FILES["fileanh"];
+                $mota = $_POST["txtmota"];
+                $ngaybd = $_POST["ngaybd"];
+                $ngaykt = $_POST["ngaykt"];
+                exit();
+             }elseif ($_POST["txtgiatri"] == "0") {
+                echo "<script>alert('Giá trị phải lớn hơn 0, Vui lòng nhập lại.'); window.history.back();</script>";
+                $tenkm = $_POST["txttenkm"];
+                $giatri = $_POST["txtgiatri"];
+                $loaikm = $_POST["optloai"];
+                $loais = $_POST["optloaisim"];
+                $hinhanh = $_FILES["fileanh"];
+                $mota = $_POST["txtmota"];
+                $ngaybd = $_POST["ngaybd"];
+                $ngaykt = $_POST["ngaykt"];
+                exit();
+            }
+        endforeach;
         //xử lý load ảnh
         $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
         $duongdan = "../../img/khuyenmai/" . $hinhanh; //nơi lưu file upload
@@ -81,6 +118,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        echo "<script>alert('Thêm thành công.');</script>";
 
 
         include("khuyenmai.php");
@@ -110,7 +148,16 @@ switch ($action) {
         }
         break;
     case "xulysua": // lưu dữ liệu sửa mới vào db
-
+        $dskm = $km->laydanhsachkhuyenmai();
+        foreach ($dskm as $kt) :
+            if (strlen($_POST["txttenkm"]) < 6) {
+                echo "<script>alert('Tên phải có ít nhất 6 kí tự, Vui lòng nhập lại Tên.'); window.history.back();</script>";
+                exit();
+            } elseif ($_POST["txtgiatri"] == "0") {
+                echo "<script>alert('Giá trị phải lớn hơn 0, Vui lòng nhập lại.'); window.history.back();</script>";
+                exit();
+            }
+        endforeach;
         // gán dữ liệu từ form
 
         $sua = new KHUYENMAI();
@@ -144,7 +191,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-
+        echo "<script>alert('Cập nhật thành công.');</script>";
         include("khuyenmai.php");
         break;
     case "khoa":
@@ -169,6 +216,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $ngayht = date("Y-m-d");
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        echo "<script>alert('Đã đổi trạng thái.');</script>";
 
         include("khuyenmai.php");
         break;
@@ -185,13 +233,6 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // // Đánh giá chưa được phản hồi 
-        // $luotdg = 0;
-        // foreach ($traloidanhgia as $tl) {
-        //     if ($tl["TraLoi"] == null) {
-        //         $luotdg = $luotdg + 1;
-        //     }
-        // }
         include("themloaikm.php");
         break;
     case "xulythemloaikm":

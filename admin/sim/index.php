@@ -76,7 +76,6 @@ switch ($action) {
                 $SoSim = $_POST["txtsosim"];
                 $LoaiSim = $_POST["optloaisim"];
                 $ThueBao = $_POST["optloaithuebao"];
-                $loai = $ls->laydanhsachloaisim();
                 exit();
             } elseif (substr($_POST["txtsosim"], 0, 1) != "0") {
                 echo "<script>alert('Số điện thoại phải có kí từ đầu là 0, Vui lòng nhập lại số điện thoại.'); window.history.back();</script>";
