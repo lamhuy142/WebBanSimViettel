@@ -86,7 +86,27 @@ class DONHANG
     //         echo "<p>Lỗi truy vấn: $error_message</p>";
     //         exit();
     //     }
-    // }
+    // } 
+    public function laydoanhthuthang()
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT MONTH(NgayDatHang) AS Thang,
+            YEAR(NgayDatHang) AS Nam, 
+            SUM(TongTien) AS TongDoanhThu
+            FROM donhang
+            GROUP BY YEAR(NgayDatHang), MONTH(NgayDatHang)
+            ORDER BY YEAR(NgayDatHang), MONTH(NgayDatHang)";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->execute();
+            $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
 
     public function laydonhangtheomand($MaND)
     {
@@ -127,7 +147,7 @@ class DONHANG
             $sql = "SELECT MaDH FROM donhang ORDER BY MaDH DESC LIMIT 1";
             $cmd = $db->prepare($sql);
             $cmd->execute();
-            $ketqua = $cmd->fetch(PDO::FETCH_ASSOC);
+            $ketqua = $cmd->fetch(PDO::FETCH_ASSOC); //dữ liệu sẽ được trả về dưới dạng một mảng kết hợp, trong đó tên cột được sử dụng làm khóa 
             return $ketqua['MaDH'];
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
