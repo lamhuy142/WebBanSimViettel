@@ -63,7 +63,7 @@ switch ($action) {
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         include("main.php");
         break;
-    case "khoa":
+    case "xannhandon":
 
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
@@ -81,53 +81,54 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $danhgia = $dg->laydanhsachdanhgia();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        echo "<script>alert('Đã xác nhận đơn thành công.');</script>";
 
         include("main.php");
         break;
-    case "hoantat":
+    // case "hoantat":
 
-        if (isset($_REQUEST["id"]))
-            $id = $_REQUEST["id"];
-        if (isset($_REQUEST["TrangThai"]))
-            $tinhtrang = $_REQUEST["TrangThai"];
-        else
-            $tinhtrang = "1";
-        if ($tinhtrang == "1") {
-            $tinhtrang = 2;
-            $dh->doitrangthai($id, $tinhtrang);
-        }
-        //cập nhật thời gian giao hàng khi nhấn nút hoàn tất
-        $donhanght = new DONHANG();
-        $currentDateTime = date('Y-m-d H:i:s');
-        $dh->capnhatngaygiaohang($id, $currentDateTime);
+    //     if (isset($_REQUEST["id"]))
+    //         $id = $_REQUEST["id"];
+    //     if (isset($_REQUEST["TrangThai"]))
+    //         $tinhtrang = $_REQUEST["TrangThai"];
+    //     else
+    //         $tinhtrang = "1";
+    //     if ($tinhtrang == "1") {
+    //         $tinhtrang = 2;
+    //         $dh->doitrangthai($id, $tinhtrang);
+    //     }
+    //     //cập nhật thời gian giao hàng khi nhấn nút hoàn tất
+    //     $donhanght = new DONHANG();
+    //     $currentDateTime = date('Y-m-d H:i:s');
+    //     $dh->capnhatngaygiaohang($id, $currentDateTime);
 
-        // load hóa đơn
-        $quyen = $q->laydanhsachquyen();
-        $nguoidung = $nd->laydanhsachnguoidung();
-        $donhang = $dh->laydanhsachdonhang();
-        $danhgia = $dg->laydanhsachdanhgia();
-        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+    //     // load hóa đơn
+    //     $quyen = $q->laydanhsachquyen();
+    //     $nguoidung = $nd->laydanhsachnguoidung();
+    //     $donhang = $dh->laydanhsachdonhang();
+    //     $danhgia = $dg->laydanhsachdanhgia();
+    //     $traloidanhgia = $tl->laydanhsachtraloidanhgia();
 
-        include("main.php");
-        break;
-    case "huydon":
-        if (isset($_REQUEST["id"]))
-            $id = $_REQUEST["id"];
-        if (isset($_REQUEST["tinhtrang"]))
-            $tinhtrang = $_REQUEST["tinhtrang"];
-        else
-            $tinhtrang = "1";
-        $tinhtrang = 3;
-        $dh->doitrangthai($id, $tinhtrang);
-        // load hóa đơn
-        $quyen = $q->laydanhsachquyen();
-        $nguoidung = $nd->laydanhsachnguoidung();
-        $donhang = $dh->laydanhsachdonhang();
-        $danhgia = $dg->laydanhsachdanhgia();
-        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+    //     include("main.php");
+    //     break;
+    // case "huydon":
+    //     if (isset($_REQUEST["id"]))
+    //         $id = $_REQUEST["id"];
+    //     if (isset($_REQUEST["tinhtrang"]))
+    //         $tinhtrang = $_REQUEST["tinhtrang"];
+    //     else
+    //         $tinhtrang = "1";
+    //     $tinhtrang = 3;
+    //     $dh->doitrangthai($id, $tinhtrang);
+    //     // load hóa đơn
+    //     $quyen = $q->laydanhsachquyen();
+    //     $nguoidung = $nd->laydanhsachnguoidung();
+    //     $donhang = $dh->laydanhsachdonhang();
+    //     $danhgia = $dg->laydanhsachdanhgia();
+    //     $traloidanhgia = $tl->laydanhsachtraloidanhgia();
 
-        include("main.php");
-        break;
+    //     include("main.php");
+    //     break;
     default:
         break;
 }

@@ -61,12 +61,6 @@
                                         <?php } else { ?>
                                             <td class="text-danger"><i class="bi bi-x-circle-fill"></i></td>
                                         <?php } ?>
-                                        <!-- <php if ($dh["TrangThai"] == 1) { ?>
-                                    <-- 1- chuẩn bị hàng, 2- đang vận chuyển, 3-hoàn tất đơn hàng, vận chuyển thất bại ->
-                                    <td class="text-success">Chuẩn Bị Hàng</td>
-                                <php } else { >
-                                    <td class="text-danger">Khóa</td>
-                                <php }  > -->
                                         <!-- cột trạng thái -->
                                         <?php if ($dh["TrangThai"] == 0) { ?>
                                             <td class="text-success font-weight-bold">Chuẩn bị hàng </td>
@@ -81,7 +75,7 @@
                                             <?php if ($dh["TrangThai"] == 0) { ?>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <a href="index.php?action=khoa&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-warning">Xác nhận</a>
+                                                        <a href="index.php?action=xannhandon&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-warning">Xác nhận</a>
                                                     </div>
                                                 </div>
                                             <?php } elseif ($dh["TrangThai"] == 1) { ?>

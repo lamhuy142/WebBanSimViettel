@@ -35,7 +35,7 @@
                     </tfoot>
                     <tbody>
                         <?php foreach ($danhgia as $d) :
-                            $traLoiFlag = false; // Biến flag để kiểm tra xem đã có phản hồi cho bản ghi hiện tại hay chưa
+                            $traloi = false; // Biến để kiểm tra xem đã có phản hồi cho bình luận hiện tại hay chưa
                             foreach ($nguoidung as $n) :
                                 if ($n["MaND"] == $d["MaND"]) { ?>
                                     <tr>
@@ -44,17 +44,17 @@
                                         <td><?php echo $d["NoiDung"]; ?></td>
                                         <?php foreach ($traloidanhgia as $t) :
                                             if ($t["TraLoi"] != null && $t["MaDG"] == $d["MaDG"]) {
-                                                $traLoiFlag = true; // Đánh dấu đã có phản hồi cho bản ghi hiện tại
+                                                $traloi = true; // Đánh dấu đã có phản hồi cho bình luận hiện tại
                                             }
                                         endforeach; ?>
-                                        <td>
-                                            <?php if ($traLoiFlag) { ?>
-                                                <span class="text-success"><i class="bi bi-check-circle-fill"></i> Đã trả lời</span>
-                                            <?php } else { ?>
-                                                <span class="text-warning"><i class="bi bi-x-circle-fill"></i> Chưa trả lời</span>
-                                            <?php } ?>
-                                        </td>
-                                        <td><a class="btn btn-primary" href="index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">Phản Hồi</a></td>
+
+                                        <?php if ($traloi) { ?>
+                                            <td><span class="text-success"><i class="bi bi-check-circle-fill"></i> Đã trả lời</span></td>
+                                            <td><a class="btn btn-secondary disabled" href="index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">Phản Hồi</a></td>
+                                        <?php } else { ?>
+                                            <td><span class="text-warning"><i class="bi bi-x-circle-fill"></i> Chưa trả lời</span></td>
+                                            <td><a class="btn btn-primary" href="index.php?action=phanhoi&id=<?php echo $d["MaDG"] ?>">Phản Hồi</a></td>
+                                        <?php } ?>
                                     </tr>
                         <?php
                                 } //end if

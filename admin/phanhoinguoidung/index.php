@@ -69,26 +69,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        include("main.php");
-        break;
-    case "khoa":
-        if (isset($_REQUEST["id"]))
-            $id = $_REQUEST["id"];
-        if (isset($_REQUEST["trangthai"]))
-            $trangthai = $_REQUEST["trangthai"];
-        else
-            $trangthai = "1";
-        if ($trangthai == "1") {
-            $trangthai = 0;
-            $nd->doitrangthai($id, $trangthai);
-        } else {
-            $trangthai = 1;
-            $nd->doitrangthai($id, $trangthai);
-        }
-        // load người dùng
-        $quyen = $q->laydanhsachquyen();
-        $nguoidung = $nd->laydanhsachnguoidung();
-        $danhgia = $dg->laydanhsachdanhgia();
+        echo "<script>alert('Đã phản hồi.');</script>";
         include("main.php");
         break;
     default:
