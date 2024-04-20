@@ -166,11 +166,6 @@ if (isset($_SESSION["nguoidung"])) {
                                 </div>
                             </div>
                         <?php } ?>
-                        <!-- <div class="flex-c-m h-full p-lr-19">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-                                <i style="color: #576C9D;" class="zmdi zmdi-menu"></i>
-                            </div>
-                        </div> -->
                     </div>
                 </nav>
             </div>
@@ -256,86 +251,7 @@ if (isset($_SESSION["nguoidung"])) {
             </div>
         </div>
     </header>
-    <!-- Sidebar -->
-    <aside class="wrap-sidebar js-sidebar">
-        <div class="s-full js-hide-sidebar"></div>
 
-        <div class="sidebar flex-col-l p-t-22 p-b-25">
-            <div class="flex-r w-full p-b-30 p-r-27">
-                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-sidebar">
-                    <i class="zmdi zmdi-close"></i>
-                </div>
-            </div>
-
-            <div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
-                <ul class="sidebar-link w-full">
-                    <li class="p-b-13">
-                        <a href="index.php" class="stext-102 cl2 hov-cl1 trans-04">
-                            Home
-                        </a>
-                    </li>
-
-                    <li class="p-b-13">
-                        <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                            My Wishlist
-                        </a>
-                    </li>
-
-                    <li class="p-b-13">
-                        <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                            My Account
-                        </a>
-                    </li>
-
-                    <li class="p-b-13">
-                        <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                            Track Oder
-                        </a>
-                    </li>
-
-                    <li class="p-b-13">
-                        <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                            Refunds
-                        </a>
-                    </li>
-
-                    <li class="p-b-13">
-                        <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                            Help & FAQs
-                        </a>
-                    </li>
-                </ul>
-
-                <div class="sidebar-gallery w-full p-tb-30">
-                    <span class="mtext-101 cl5">
-                        @ CozaStore
-                    </span>
-
-                    <div class="flex-w flex-sb p-t-36 gallery-lb">
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="../../img/slide/slide1.png" data-lightbox="gallery" style="background-image: url('../../img/slide/slide1.png');"></a>
-                        </div>
-
-                        <!-- item gallery sidebar -->
-                        <div class="wrap-item-gallery m-b-10">
-                            <a class="item-gallery bg-img1" href="../../img/slide/slide2.png" data-lightbox="gallery" style="background-image: url('../../img/slide/slide2.png');"></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-gallery w-full">
-                    <span class="mtext-101 cl5">
-                        About Us
-                    </span>
-
-                    <p class="stext-108 cl6 p-t-27">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </aside>
     <!-- Cart -->
     <div class="wrap-header-cart js-panel-cart">
         <div class="s-full js-hide-cart"></div>
@@ -355,6 +271,10 @@ if (isset($_SESSION["nguoidung"])) {
                 <ul class="header-cart-wrapitem w-full">
                     <?php
                     $i = 0;
+                    // Kiểm tra nếu giỏ hàng rỗng
+                      if (empty($giohang)) {
+                        echo '<li class="class="header-cart-item empty-cart">Giỏ hàng rỗng</li>';
+                    } else {
                     foreach ($giohang as $gh) :
                         foreach ($sim as $s) :
                             // foreach ($loaisim as $ls) :
@@ -377,6 +297,7 @@ if (isset($_SESSION["nguoidung"])) {
                     <?php }
                         endforeach;
                     endforeach;
+                }
                     ?>
                 </ul>
 
@@ -397,7 +318,7 @@ if (isset($_SESSION["nguoidung"])) {
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">
-                        <a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=xemgiohang" style="color:white;" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 text-decoration-none p-lr-15 trans-04 m-r-8 m-b-10">
+                        <a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=xemgiohang" style="color:white;" class="flex-c-m hov-btn3 stext-101 cl0 size-107 bg3 bor2 text-decoration-none p-lr-15 trans-04 m-r-8 m-b-10">
                             Xem giỏ hàng
                         </a>
 

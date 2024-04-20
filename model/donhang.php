@@ -87,16 +87,17 @@ class DONHANG
     //         exit();
     //     }
     // } 
-    public function laydoanhthuthang()
+    public function laydoanhthutheothang()
     {
         $dbcon = DATABASE::connect();
         try {
             $sql = "SELECT MONTH(NgayDatHang) AS Thang,
-            YEAR(NgayDatHang) AS Nam, 
-            SUM(TongTien) AS TongDoanhThu
-            FROM donhang
-            GROUP BY YEAR(NgayDatHang), MONTH(NgayDatHang)
-            ORDER BY YEAR(NgayDatHang), MONTH(NgayDatHang)";
+                YEAR(NgayDatHang) AS Nam, 
+                SUM(TongTien) AS TongDoanhThu
+                FROM donhang
+                GROUP BY YEAR(NgayDatHang), MONTH(NgayDatHang)
+                ORDER BY YEAR(NgayDatHang), MONTH(NgayDatHang)";
+
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
@@ -107,6 +108,7 @@ class DONHANG
             exit();
         }
     }
+
 
     public function laydonhangtheomand($MaND)
     {

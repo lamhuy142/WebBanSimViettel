@@ -102,11 +102,23 @@ switch ($action) {
         if ($isLogin == FALSE) {
             include("login.php");
         }
+        $ls_km = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        $giaban = $_GET["DonGia"];
+        foreach ($khuyenmai as $km_ls) :
+            foreach ($ls_km as $lskm) :
+                if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
+                    $giaban = $lskm["GiaBan"] * $km_ls["GiaTriKM"] / 100;
+                }
+            endforeach;
+        endforeach;
+
+
         $moi = new GIOHANG_CT();
         $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
         $moi->setMaS($_GET["MaSim"]);
         $moi->setSL(1);
-        $moi->setDonGia($_GET["DonGia"]);
+        $moi->setDonGia($giaban);
 
         $gh->themgiohang_ct($moi);
         $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
@@ -114,17 +126,31 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();
-        $khuyenmai = $km->laydanhsachkhuyenmai();
         $quangcao = $qc->laydanhsachquangcao();
+        $nguoidung = $nd->laydanhsachnguoidung();
 
         include("main.php");
         break;
     case "themvaogiohang":
+        if ($isLogin == FALSE) {
+            include("login.php");
+        }
+        $ls_km = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        $giaban = $_GET["DonGia"];
+        foreach ($khuyenmai as $km_ls) :
+            foreach ($ls_km as $lskm) :
+                if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
+                    $giaban = $lskm["GiaBan"] * $km_ls["GiaTriKM"] / 100;
+                }
+            endforeach;
+        endforeach;
+
         $moi = new GIOHANG_CT();
         $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
         $moi->setMaS($_GET["MaSim"]);
         $moi->setSL(1);
-        $moi->setDonGia($_GET["DonGia"]);
+        $moi->setDonGia($giaban);
 
         $gh->themgiohang_ct($moi);
         $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
@@ -132,7 +158,6 @@ switch ($action) {
         $sim = $s->laydanhsachsim();
         $thuebao = $s->laydanhsachloaithuebao();
         $loaisim = $ls->laydanhsachloaisim();
-        $khuyenmai = $km->laydanhsachkhuyenmai();
         include("sim.php");
         break;
     case "xemgiohang":
@@ -194,9 +219,9 @@ switch ($action) {
             //THÊM LƯỢT MUA CHO LOẠI SIM 
             $loaisim = $ls->laydanhsachloaisim();
             $sim = $s->laydanhsachsimtheoid($sl["MaS"]);
-            foreach($loaisim as $l):
-                    
-                if($l["MaLS"] == $sim["MaLS"]){
+            foreach ($loaisim as $l) :
+
+                if ($l["MaLS"] == $sim["MaLS"]) {
                     $ls->tangluotmualoaisim($l["MaLS"]);
                 }
             endforeach;
@@ -231,7 +256,7 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $quangcao = $qc->laydanhsachquangcao();
         $khuyenmai = $km->laydanhsachkhuyenmai();
-        include("main.php");
+        include("thanks.php");
         break;
     case "xoamotsim":
         if (isset($_GET["id"])) {
@@ -274,6 +299,7 @@ switch ($action) {
                 $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
                 $goicuoc = $gc->laydanhsachgoicuoc();
                 $quangcao = $qc->laydanhsachquangcao();
+                $nguoidung = $nd->laydanhsachnguoidung();
 
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 0) {
@@ -549,20 +575,26 @@ switch ($action) {
         if (isset($_POST["timkiem"])) {
             $tukhoa = $_POST["timkiem"];
             $vitri = strpos($tukhoa, '*'); // vị trí của dấu * trong chuỗi
-            $tk = str_replace("*", "", $tukhoa); // đổi * thành khoảng trắng trong chuỗi 
-            // print_r($tukhoa);
-            // echo "<br>";
-            // print_r($vitri);
-            // echo "<br>";
-            // print_r($tk);
-            // exit();
-            if ($vitri == 0) {
+
+            // Nếu không có dấu '*' trong từ khóa
+            if ($vitri === false) {
+                // Xử lý khi từ khóa không chứa dấu '*'
+                $sim = $s->timkiemsimtheo($tukhoa);
+                $thuebao = $s->laydanhsachloaithuebao();
+                $khuyenmai = $km->laydanhsachkhuyenmai();
+                $loaisim = $ls->laydanhsachloaisim();
+                include("timkiemsim.php");
+            } elseif ($vitri == 0) {
+                // Xử lý khi từ khóa chứa dấu '*' ở đầu
+                $tk = str_replace("*", "", $tukhoa); // đổi * thành khoảng trắng trong chuỗi 
                 $sim = $s->timkiemsimtheoduoiso($tk);
                 $thuebao = $s->laydanhsachloaithuebao();
                 $khuyenmai = $km->laydanhsachkhuyenmai();
                 $loaisim = $ls->laydanhsachloaisim();
                 include("timkiemsim.php");
-            } elseif ($vitri != 0) {
+            } else {
+                // Xử lý khi từ khóa chứa dấu '*' ở vị trí khác đầu
+                $tk = str_replace("*", "", $tukhoa); // đổi * thành khoảng trắng trong chuỗi 
                 $sim = $s->timkiemsimtheodauso($tk);
                 $thuebao = $s->laydanhsachloaithuebao();
                 $khuyenmai = $km->laydanhsachkhuyenmai();
@@ -570,6 +602,7 @@ switch ($action) {
                 include("timkiemsim.php");
             }
         }
+
         break;
     default:
         break;

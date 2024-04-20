@@ -50,7 +50,22 @@ class SIM
         $this->LoaiThueBao = $value;
     }
 
-
+    function timkiemsimtheo($tukhoa)
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM sim WHERE SoSim LIKE :tukhoa";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->bindValue(":tukhoa", "%$tukhoa%");
+            $cmd->execute();
+            $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
     function timkiemsimtheodauso($dauSo)
     {
         $dbcon = DATABASE::connect();

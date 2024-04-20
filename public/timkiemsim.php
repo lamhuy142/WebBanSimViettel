@@ -74,15 +74,21 @@
 							</div>
 						</div>
 					</form>
-					<!-- TRẢ TRƯỚC TRẢ SAU  -->
-					<!-- <div class="row mb-10">
-						<div class="col-1">
-							<a id="traTruocLink" class="filter-link text-decoration-none" href="index.php?type=1" data-type="1">Trả trước</a>
+
+					<?php if (empty($sim)) { ?>
+						<div class="untree_co-section">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12 text-center pt-5">
+
+										<h2 class="display-3 text-black">Không tìm thấy!</h2>
+										<p class="lead mb-5">Bạn có thể tìm kiếm tiếp tục hoặc <a href="index.php?action=sim" style="color:white; background-color: #EF0033; " class="rounded text-decoration-none pl-1 pr-1 hov-btn3">trở lại cửa hàng</a>.</p>
+
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="col-1">
-							<a id="traSauLink" class="filter-link text-decoration-none" href="index.php?type=0" data-type="0">Trả sau</a>
-						</div>
-					</div> -->
+					<?php } ?>
 
 					<table class="table" id="simTable">
 						<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
@@ -143,6 +149,4 @@
 </div> -->
 </div>
 </div>
-
-
 <?php include("inc/bottom.php") ?>

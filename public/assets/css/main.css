@@ -638,7 +638,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .main-menu > li.active-menu > a {
-  color: #6c7ae0;
+  color: #EA0029;
 }
 
 
@@ -1671,6 +1671,7 @@ button.mfp-close {
   background-color: #333;
 }
 
+
 .swal-title {
   font-family: Poppins-Bold;
   color: #333333;
@@ -1754,13 +1755,13 @@ button.mfp-close {
 }
 
 .filter-link:hover {
-  color: #6c7ae0;
-  border-bottom: 1px solid #6c7ae0;
+  color: #EA0029;
+  border-bottom: 1px solid #EA0029;
 }
 
 .filter-link-active {
-  color: #6c7ae0;
-  border-bottom: 1px solid #6c7ae0;
+  color: #EA0029;
+  border-bottom: 1px solid #EA0029;
 }
 
 @media (max-width: 767px) {
@@ -2855,7 +2856,7 @@ input.num-product::-webkit-inner-spin-button {
   position: absolute;
   width: 0%;
   height: 2px;
-  background-color: #6774d5;
+  background-color: #EA0029;
   left: 0;
   bottom: -2px;
 }

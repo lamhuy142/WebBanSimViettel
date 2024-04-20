@@ -54,7 +54,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 </section>
 
 <section>
-	<div class="container">
+	<div class="container ">
 		<div class="heading_container heading_center p-4">
 			<div class="row align-items-center">
 				<div class="col">
@@ -107,66 +107,57 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 							<a id="traSauLink" class="filter-link text-decoration-none" href="index.php?type=0" data-type="0">Trả sau</a>
 						</div>
 					</div>
+					<div style="max-height: 500px; overflow-y: auto;">
+						<table class="table" id="simTable">
+							<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
+								<tr>
+									<th scope="col">Mã</th>
+									<th scope="col">Sim Số</th>
+									<th scope="col">Giá Sim</th>
+									<th scope="col">Chọn Mua</th>
+								</tr>
+							</thead>
+							<?php
+							$type = isset($_GET['type']) ? $_GET['type'] : 'all';
 
-					<table class="table" id="simTable">
-						<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
-							<tr>
-								<th scope="col">STT</th>
-								<th scope="col">Sim Số</th>
-								<th scope="col">Giá Sim</th>
-								<th scope="col">Chọn Mua</th>
-							</tr>
-						</thead>
-						<?php
-						$type = isset($_GET['type']) ? $_GET['type'] : 'all';
+							foreach ($sim as $s) :
+								foreach ($loaisim as $ls) :
 
-						foreach ($sim as $s) :
-							foreach ($loaisim as $ls) :
+									$loaithuebao = ($s['LoaiThueBao'] == '1');
+									$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao) || ($type == 'all');
 
-								$loaithuebao = ($s['LoaiThueBao'] == '1');
-								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao) || ($type == 'all');
+									if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) { ?>
+										<tbody>
+											<tr class="table-hover-bg-factor">
+												<td scope="row"><?php echo $s['MaSim'] ?></td>
+												<td><?php echo $s['SoSim'] ?></td>
 
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) {
-						?>
-									<!-- <php
-						$type = isset($_GET['type']) ? $_GET['type'] : '';
-						// $type = 0;
-						foreach ($sim as $s) :
-							foreach ($loaisim as $ls) :
+												<!-- Giá khuyến mãi -->
+												<?php
+												$giaban = $ls["GiaBan"]; // Lưu giá gốc của sim
+												foreach ($khuyenmai as $km) :
+													if ($km["MaLS"] == $s["MaLS"] && $km["TrangThai"] == 1) {
+														$giaban = $ls["GiaBan"] * $km["GiaTriKM"] / 100; ?>
+													<?php } ?>
+												<?php endforeach; ?>
+												<?php if ($giaban != $ls["GiaBan"]) { ?>
+													<td class="text-danger"><?php echo number_format($giaban); ?></td>
 
-
-
-								$loaithuebao = ($s['LoaiThueBao'] == '1');
-								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
-
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) { ?> -->
-									<tbody>
-										<tr class="table-hover-bg-factor">
-											<td scope="row"><?php echo $s['MaSim'] ?></td>
-											<td><?php echo $s['SoSim'] ?></td>
-											<?php
-											$giaban = $ls["GiaBan"]; // Lưu giá gốc của sim
-											foreach ($khuyenmai as $km) :
-												if ($km["MaLS"] == $s["MaLS"] && $km["TrangThai"] == 1) {
-													$giaban = $ls["GiaBan"] * $km["GiaTriKM"] / 100; ?>
+												<?php } else { ?>
+													<td><?php echo number_format($giaban); ?></td>
 												<?php } ?>
-											<?php endforeach; ?>
-											<?php if ($giaban != $ls["GiaBan"]) { ?>
-												<td class="text-danger"><?php echo number_format($giaban); ?></td>
+												<!--============================================================================-->
 
-											<?php } else { ?>
-												<td><?php echo number_format($giaban); ?></td>
-											<?php } ?>
-											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $ls['GiaBan'] ?>">Chọn Mua</a></td>
-										</tr>
-									</tbody>
-						<?php
-								}
+												<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&MaLS=<?php echo $s['MaLS'] ?>&DonGia=<?php echo $ls['GiaBan'] ?>">Chọn Mua</a></td>
+											</tr>
+										</tbody>
+							<?php
+									}
+								endforeach;
 							endforeach;
-						endforeach;
-						?>
-					</table>
-
+							?>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -52,7 +52,7 @@
                                     </div>
 
                                     <h4 class="p-b-12">
-                                        <a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033 !important;" href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="">
+                                        <a style="font-family: 'Tilt Neon', sans-serif !important; text-decoration:none !important; color:#44494D !important;" href="index.php?action=detail&id=<?php echo $km['MaKM'] ?>" class="">
                                             <?php echo $km['TenKM'] ?>
                                         </a>
                                     </h4>
@@ -70,10 +70,3 @@
         </div>
     </div>
 </section>
-<style>
-    a.mtext:hover,
-    a.mtext:focus,
-    a.mtext:active {
-        color: #EF0033 !important;
-    }
-</style>

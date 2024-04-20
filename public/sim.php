@@ -32,13 +32,16 @@
 				<div class="tab01 p-2">
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="">
-						<?php foreach ($loaisim as $l) : ?>
-							<li class="nav-item p-b-10">
-								<!-- id=="<php echo $l['MaLS'] ?>_tab" -->
-								<a style="font-family: 'Tilt Neon', sans-serif !important;" id="" class="nav-link
+						<?php foreach ($loaisim as $l) :
+							if ($l["TrangThai"] == 1) { ?>
+								<li class="nav-item p-b-10">
+									<!-- id=="<php echo $l['MaLS'] ?>_tab" -->
+									<a style="font-family: 'Tilt Neon', sans-serif !important;" id="" class="nav-link
 								<?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false  || $l['MaLS'] == 3) echo "active"; ?>" data-toggle="tab" href="#<?php echo $l['MaLS'] ?>"><?php echo $l['TenLS'] ?></a> <!--role="tab"-->
-							</li>
-						<?php endforeach; ?>
+								</li>
+
+						<?php }
+						endforeach; ?>
 					</ul>
 				</div>
 			</div>
@@ -54,24 +57,49 @@
 					</div>
 				</div>
 			</form>
+			<style>
+				/* Loại bỏ border-bottom mặc định của liên kết */
+				a.filter-link {
+					color: #979797;
+					text-decoration: none;
+					border-bottom: none;
+					/* Loại bỏ border-bottom */
+				}
 
+				/* Màu và border-bottom khi hover hoặc focus */
+				a.filter-link:hover,
+				a.filter-link:focus {
+					color: #EF0033;
+					text-decoration: none;
+					border-bottom: none;
+					/* Loại bỏ border-bottom */
+				}
+
+				/* Màu khi liên kết đang được nhấn */
+				a.filter-link:active {
+					color: #EF0033 !important;
+					text-decoration: none !important;
+					border-bottom: none !important;
+					/* Loại bỏ border-bottom */
+				}
+			</style>
 
 			<div class="tab-content p-t-50">
 
 				<!-- if ($l["MaLS"] == 2) { ?> -->
 				<div class="row mx-auto" style=" width: 200px;">
 					<div class="col-6">
-						<a id="traTruocLink" class="filter-link" href="index.php?type=1" data-type="1">Trả trước</a>
+						<a id="traTruocLink" class="filter-link  text-decoration-none" href="index.php?type=1" data-type="1">Trả trước</a>
 					</div>
 					<div class="col-6">
-						<a id="traSauLink" class="filter-link" href="index.php?type=0" data-type="0">Trả sau</a>
+						<a id="traSauLink" class="filter-link  text-decoration-none" href="index.php?type=0" data-type="0">Trả sau</a>
 					</div>
 				</div>
 				<!-- <php } ?> -->
 				<!-- - -->
 				<?php foreach ($loaisim as $l) : ?>
 					<!-- || $l['MaLS'] == 3 -->
-					<div class="tab-pane fade  <?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false || $l['MaLS'] == 3) echo "show active"; ?>" id="<?php echo $l["MaLS"] ?>" role="tabpanel">
+					<div style="max-height: 500px; overflow-y: auto;" class="tab-pane fade  <?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false || $l['MaLS'] == 3) echo "show active"; ?>" id="<?php echo $l["MaLS"] ?>" role="tabpanel">
 						<!-- SIM DATA -->
 						<table class="table" id="simTable<?php echo $l["MaLS"] ?>">
 							<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
@@ -82,17 +110,9 @@
 									<th scope="col">Chọn Mua</th>
 								</tr>
 							</thead>
-
 							<?php
-
-							// $type = isset($_GET['type']) ? $_GET['type'] : '';
-
 							foreach ($sim as $s) :
-								// foreach ($loaisim as $l) :
-								// $loaithuebao = ($s['LoaiThueBao'] == '1');
-								// $hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
-								// Kiểm tra nếu sim không thuộc loại được chọn thì bỏ qua
-								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && $s["MaSim"] != null) { ?> <!-- && $hienthi) { ?> -->
+								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && $l["TrangThai"] == 1 && $s["MaSim"] != null) { ?>
 									<tbody>
 										<tr class="table-hover-bg-factor" data-type="<?php echo $s['LoaiThueBao']; ?>">
 											<td scope=" row"><?php echo $s['MaSim'] ?></td>
@@ -109,9 +129,7 @@
 											<?php } else { ?>
 												<td><?php echo number_format($giaban); ?></td>
 											<?php } ?>
-
-											<!-- <td><php echo number_format($l['GiaBan']);  ?></td> -->
-											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogiohang&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $l['GiaBan'] ?>">Chọn Mua</a></td>
+											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogiohang&MaSim=<?php echo $s['MaSim'] ?>&MaLS=<?php echo $s['MaLS'] ?>&DonGia=<?php echo $l['GiaBan'] ?>">Chọn Mua</a></td>
 										</tr>
 									</tbody>
 							<?php

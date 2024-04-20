@@ -31,9 +31,9 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         //doanh thu tháng
-        $doanhthuthang = $dh->laydoanhthuthang();
+        $doanhthuthang = $dh->laydoanhthutheothang();
         // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
-        $doanhthu_json = json_encode($doanhthu);
+        $doanhthu_json = json_encode($doanhthuthang);
 
         $thanght = date("m");
         $namht = date("Y");
