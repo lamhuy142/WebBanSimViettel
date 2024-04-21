@@ -48,29 +48,7 @@ class DANHGIA
     {
         $this->NgayDG = $value;
     }
-    // khai báo các thuộc tính (SV tự viết)
 
-
-    // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
-
-    // lấy tất cả ng dùng
     public function laydanhsachdanhgiatheoid($MaDG)
     {
         $dbcon = DATABASE::connect();
@@ -79,6 +57,7 @@ class DANHGIA
             $cmd = $dbcon->prepare($sql);
             $cmd->bindValue(":MaDG", $MaDG);
             $cmd->execute();
+            //=======================================
             $result = $cmd->fetch();
             return $result;
         } catch (PDOException $e) {
@@ -94,8 +73,25 @@ class DANHGIA
             $sql = "SELECT * FROM danhgia ORDER BY MaDG DESC";
             $cmd = $db->prepare($sql);
             $cmd->execute();
+            //=======================================
             $ketqua = $cmd->fetchAll();
             return $ketqua;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+    public function tongsoluongdanhgia()
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT COUNT(*) AS TongSoDanhGia FROM danhgia";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->execute();
+            //=======================================
+            $result = $cmd->fetchColumn();
+            return $result;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();
             echo "<p>Lỗi truy vấn: $error_message</p>";
@@ -173,6 +169,7 @@ class DANHGIA
             $cmd->bindValue(':MaKM', $danhgia->MaKM);
             $cmd->bindValue(':NoiDung', $danhgia->NoiDung);
             $cmd->bindValue(':NgayDG', $danhgia->NgayDG);
+            //=======================================
             $result = $cmd->execute();
             return $result;
         } catch (PDOException $e) {
@@ -219,38 +216,4 @@ class DANHGIA
             exit();
         }
     }
-    // Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 khách hàng)
-    // public function doiloaibaiviet($Email, $QuyenND)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set QuyenND=:QuyenND where Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':Email', $Email);
-    //         $cmd->bindValue(':QuyenND', $QuyenND);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
-    // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doiNoiDung($MaND, $NoiDung)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set NoiDung=:NoiDung where MaND=:MaND";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':MaND', $MaND);
-    //         $cmd->bindValue(':NoiDung', $NoiDung);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
 }

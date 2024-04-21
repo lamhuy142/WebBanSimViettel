@@ -66,7 +66,8 @@
                                             <td class="text-success font-weight-bold">Chuẩn bị hàng </td>
                                         <?php } elseif ($dh["TrangThai"] == 1) { ?>
                                             <td class="text-success font-weight-bold">Đang vận chuyển</td>
-                                        <?php } elseif ($dh["TrangThai"] == 2) { ?><td class="text-success font-weight-bold">Giao hàng thành công</td>
+                                        <?php } elseif ($dh["TrangThai"] == 2) { ?>
+                                            <td class="text-success font-weight-bold">Giao hàng thành công</td>
                                         <?php } elseif ($dh["TrangThai"] == 3) { ?>
                                             <td class="text-danger font-weight-bold">Đơn đã hủy</td>
                                         <?php } ?>

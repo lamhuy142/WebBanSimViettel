@@ -32,6 +32,7 @@ switch ($action) {
         $danhgia = $dg->laydanhsachdanhgia();
         //doanh thu tháng
         $doanhthuthang = $dh->laydoanhthutheothang();
+
         // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
         $doanhthu_json = json_encode($doanhthuthang);
 
@@ -41,7 +42,7 @@ switch ($action) {
         $tongdt_thanght = 0;
         foreach ($donhang as $d) {
             $thangdh = date('m', strtotime($d['NgayGiaoHang']));
-            if ($thangdh == $thanght) {
+            if ($thangdh == $thanght && $d["TrangThai"] == 2) {
                 $tongdt_thanght += $d["TongTien"];
             }
         }
@@ -49,13 +50,47 @@ switch ($action) {
         $tongdt_namht = 0;
         foreach ($donhang as $d) {
             $namdh = date('Y', strtotime($d['NgayGiaoHang']));
-            if ($namdh == $namht) {
+            if ($namdh == $namht && $d["TrangThai"] == 2) {
                 $tongdt_namht += $d["TongTien"];
             }
         }
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         
         include("main.php");
+        break;
+    case "demo":
+        $donhang = $dh->laydanhsachdonhang();
+        $nguoidung = $nd->laydanhsachnguoidung();
+        $danhgia = $dg->laydanhsachdanhgia();
+        //doanh thu tháng
+        $doanhthuthang = $dh->laydoanhthutheothang();
+
+        // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
+        $doanhthu_json = json_encode($doanhthuthang);
+        // print_r($doanhthu_json);
+        // exit();
+
+        $thanght = date("m");
+        $namht = date("Y");
+        // Tính tổng doanh thu theo tháng
+        $tongdt_thanght = 0;
+        foreach ($donhang as $d) {
+            $thangdh = date('m', strtotime($d['NgayGiaoHang']));
+            if ($thangdh == $thanght && $d["TrangThai"] == 2) {
+                $tongdt_thanght += $d["TongTien"];
+            }
+        }
+        // Tính tổng doanh thu theo năm
+        $tongdt_namht = 0;
+        foreach ($donhang as $d) {
+            $namdh = date('Y', strtotime($d['NgayGiaoHang']));
+            if ($namdh == $namht && $d["TrangThai"] == 2) {
+                $tongdt_namht += $d["TongTien"];
+            }
+        }
+        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+
+        include("demo.php");
         break;
     case "chuyentrang":
         header("Location:../../public/index.php");
@@ -68,7 +103,6 @@ switch ($action) {
            
             include("profile.php");
         }
-        // include("profile.php");
         break;
     case "luuhoso":
 
@@ -108,7 +142,7 @@ switch ($action) {
         $tongdt_thanght = 0;
         foreach ($donhang as $d) {
             $thangdh = date('m', strtotime($d['NgayGiaoHang']));
-            if ($thangdh == $thanght) {
+            if ($thangdh == $thanght && $d["TrangThai"] == 2) {
                 $tongdt_thanght += $d["TongTien"];
             }
         }
@@ -116,30 +150,20 @@ switch ($action) {
         $tongdt_namht = 0;
         foreach ($donhang as $d) {
             $namdh = date('Y', strtotime($d['NgayGiaoHang']));
-            if ($namdh == $namht) {
+            if ($namdh == $namht && $d["TrangThai"] == 2) {
                 $tongdt_namht += $d["TongTien"];
             }
         }
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        // Đánh giá chưa được phản hồi 
-        // foreach ($danhgia as $d) {
-        //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-        // }
         include("main.php");
         break;
     case "dangnhap":
         include("login.php");
         break;
-        // case "dangky":
-        //     include("register.php");
-        //     break;
     case "dangxuat":
         unset($_SESSION["nguoidung"]);
         include("login.php");
         break;
-        // case "quenmatkhau":
-        //     include("forgot-password.php");
-        //     break;
     case "xulydangnhap":
 
         $tendangnhap = $_POST["txtdangnhap"];
@@ -160,7 +184,7 @@ switch ($action) {
                 $tongdt_thanght = 0;
                 foreach ($donhang as $d) {
                     $thangdh = date('m', strtotime($d['NgayGiaoHang']));
-                    if ($thangdh == $thanght) {
+                    if ($thangdh == $thanght && $d["TrangThai"] == 2) {
                         $tongdt_thanght += $d["TongTien"];
                     }
                 }
@@ -168,16 +192,11 @@ switch ($action) {
                 $tongdt_namht = 0;
                 foreach ($donhang as $d) {
                     $namdh = date('Y', strtotime($d['NgayGiaoHang']));
-                    if ($namdh == $namht) {
+                    if ($namdh == $namht && $d["TrangThai"] == 2) {
                         $tongdt_namht += $d["TongTien"];
                     }
                 }
                 $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-                // Đánh giá chưa được phản hồi 
-                // foreach ($danhgia as $d) {
-                //     $luotdg = $dg->soluongchuatraloi($d["MaDG"]);
-                // }
-
                 include("main.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2) {
                 header("Location:../../public/index.php");
@@ -192,10 +211,6 @@ switch ($action) {
             $thongbao = "Nhập sai mật khẩu hoặc tên đăng nhập";
             include("login.php");
         }
-        // else {
-        //     $thongbao = "Mật khẩu hoặc tendangnhap khôgn hợp lệ";
-        //     include("login.php");
-        // }
         break;
         
     default:
