@@ -104,7 +104,9 @@ switch ($action) {
         }
         $ls_km = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
+        $giohang = $gh->laydanhsachgiohang_ct();
         $giaban = $_GET["DonGia"];
+        //lấy giá khuyến mãi nếu có
         foreach ($khuyenmai as $km_ls) :
             foreach ($ls_km as $lskm) :
                 if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
@@ -112,24 +114,26 @@ switch ($action) {
                 }
             endforeach;
         endforeach;
+        //kiểm tra sim có trong giỏ chưa
+        $simDaTonTai = false;
+        foreach ($giohang as $gio) :
+            if ($gio["MaS"] == $_GET["MaSim"]) {
+                $simDaTonTai = true;
+                break;
+            }
+        endforeach;
+        if ($simDaTonTai) {
+            echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";
+        } else {
+            $moi = new GIOHANG_CT();
+            $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
+            $moi->setMaS($_GET["MaSim"]);
+            $moi->setSL(1);
+            $moi->setDonGia($giaban);
 
-
-        $moi = new GIOHANG_CT();
-        $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
-        $moi->setMaS($_GET["MaSim"]);
-        $moi->setSL(1);
-        $moi->setDonGia($giaban);
-
-        $gh->themgiohang_ct($moi);
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        $sim = $s->laydanhsachsim();
-        $thuebao = $s->laydanhsachloaithuebao();
-        $loaisim = $ls->laydanhsachloaisim();
-        $quangcao = $qc->laydanhsachquangcao();
-        $nguoidung = $nd->laydanhsachnguoidung();
-
-        include("main.php");
+            $gh->themgiohang_ct($moi);
+            echo "<script>alert('Đã thêm vào giỏ.'); window.history.back();</script>";
+        }
         break;
     case "themvaogiohang":
         if ($isLogin == FALSE) {
@@ -137,7 +141,9 @@ switch ($action) {
         }
         $ls_km = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
+        $giohang = $gh->laydanhsachgiohang_ct();
         $giaban = $_GET["DonGia"];
+        //lấy giá khuyến mãi nếu có
         foreach ($khuyenmai as $km_ls) :
             foreach ($ls_km as $lskm) :
                 if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
@@ -145,20 +151,26 @@ switch ($action) {
                 }
             endforeach;
         endforeach;
+        //kiểm tra sim có trong giỏ chưa
+        $simDaTonTai = false;
+        foreach ($giohang as $gio) :
+            if ($gio["MaS"] == $_GET["MaSim"]) {
+                $simDaTonTai = true;
+                break;
+            }
+        endforeach;
+        if ($simDaTonTai) {
+            echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";
+        } else {
+            $moi = new GIOHANG_CT();
+            $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
+            $moi->setMaS($_GET["MaSim"]);
+            $moi->setSL(1);
+            $moi->setDonGia($giaban);
 
-        $moi = new GIOHANG_CT();
-        $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
-        $moi->setMaS($_GET["MaSim"]);
-        $moi->setSL(1);
-        $moi->setDonGia($giaban);
-
-        $gh->themgiohang_ct($moi);
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        $sim = $s->laydanhsachsim();
-        $thuebao = $s->laydanhsachloaithuebao();
-        $loaisim = $ls->laydanhsachloaisim();
-        include("sim.php");
+            $gh->themgiohang_ct($moi);
+            echo "<script>alert('Đã thêm vào giỏ.'); window.history.back();</script>";
+        }
         break;
     case "xemgiohang":
         if (isset($_SESSION["nguoidung"])) {
@@ -245,7 +257,8 @@ switch ($action) {
             endforeach;
         } else {
             // Xử lý trường hợp không tồn tại MaGH
-            echo "MaGH không được cung cấp!";
+            echo "<script>alert('MaGH không được cung cấp!.'); window.history.back();</script>";
+
             // Hoặc thực hiện hành động khác như điều hướng người dùng...
         }
 
@@ -263,12 +276,7 @@ switch ($action) {
             $xoa = $_GET["id"];
             $gh->xoagiohangtheosim($xoa);
         }
-        $loaisim = $ls->laydanhsachloaisim();
-        $sim = $s->laydanhsachsim();
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-        $goicuoc = $gc->laydanhsachgoicuoc();
-        $giohang = $gh->laydanhsachgiohang_ct();
-        include("shoping-cart.php");
+        echo "<script>alert('Đã xóa.'); window.history.back();</script>";
         break;
     case "dangnhap":
         include("login.php");

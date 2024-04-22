@@ -40,17 +40,11 @@
 												<td class="column-2 pl-4"><?php echo $s["SoSim"]; ?></td>
 												<td style="font-family: 'Tilt Neon', sans-serif !important;" class="column-3"><?php echo  number_format($dhct["DonGia"]); ?>đ</td>
 												<td class="column-4">
-													<div class="wrap-num-product flex-w m-l-auto m-r-0">
-														<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-															<i class="fs-16 zmdi zmdi-minus"></i>
-														</div>
 
-														<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+												<td class="column-4">
+													<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+												</td>
 
-														<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-															<i class="fs-16 zmdi zmdi-plus"></i>
-														</div>
-													</div>
 												</td>
 												<td class="column-5"><?php echo number_format($dhct["DonGia"]); ?>đ</td>
 												<!-- Trạng thái -->

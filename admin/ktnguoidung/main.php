@@ -158,19 +158,19 @@
                     }
                 },
                 scales: {
-                    xAxes: [{
-                        time: {
-                            unit: 'week'
-                        },
-                        gridLines: {
-                            display: false,
-                            drawBorder: false
-                        },
-                        ticks: {
-                            maxTicksLimit: 6
-                        },
-                        maxBarThickness: 25,
-                    }],
+                    // xAxes: [{
+                    //     time: {
+                    //         unit: 'week'
+                    //     },
+                    //     gridLines: {
+                    //         display: false,
+                    //         drawBorder: false
+                    //     },
+                    //     ticks: {
+                    //         maxTicksLimit: 6
+                    //     },
+                    //     maxBarThickness: 25,
+                    // }],
                     yAxes: [{
                         ticks: {
                             beginAtZero: true,
