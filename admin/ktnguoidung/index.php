@@ -31,10 +31,10 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         //doanh thu tháng
-        $doanhthuthang = $dh->laydoanhthutheothang();
+        // $doanhthuthang = $dh->laydoanhthutheotuan();
 
         // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
-        $doanhthu_json = json_encode($doanhthuthang);
+        // $doanhthu_json = json_encode($doanhthuthang);
 
         $thanght = date("m");
         $namht = date("Y");
@@ -63,10 +63,10 @@ switch ($action) {
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         //doanh thu tháng
-        $doanhthuthang = $dh->laydoanhthutheothang();
+        $doanhthutuan = $dh->laydoanhthutheotuan();
 
         // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
-        $doanhthu_json = json_encode($doanhthuthang);
+        $doanhthu_json = json_encode($doanhthutuan);
         // print_r($doanhthu_json);
         // exit();
 

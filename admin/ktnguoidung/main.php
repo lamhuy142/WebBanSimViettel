@@ -68,16 +68,16 @@
     </div>
     <?php
     // Lấy dữ liệu từ cơ sở dữ liệu
-    $doanhThuThang = $dh->laydoanhthutheothang();
+    $doanhThuTuan = $dh->laydoanhthutheotuan();
 
     // Chuẩn bị dữ liệu cho biểu đồ
     $labels = [];
     $data = [];
-    foreach ($doanhThuThang as $thang) {
-        $labels[] = $thang['Thang'] . '/' . $thang['Nam'];
-        $data[] = $thang['TongDoanhThu'];
+    foreach ($doanhThuTuan as $tuan) {
+        $labels[] = $tuan['Tuan'] . '/' . $tuan['Nam'];
+        $data[] = $tuan['TongDoanhThu'];
     }
-    $doanhthu_json = json_encode($doanhThuThang);
+    $doanhthu_json = json_encode($doanhThuTuan);
     ?>
     <!-- Content Row -->
     <!-- Content Column -->
@@ -86,47 +86,61 @@
             <!-- Bar Chart -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Liệt Kê Doanh Thu Tháng</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Liệt Kê Doanh Thu Tuần</h6>
                 </div>
-                <div class="card-body">
-                    <div class="chart-bar">
-                        <canvas id="myBarChart"></canvas>
+                <div class="card-body ">
+                    <div class="chart-bar-container">
+                        <canvas id="bieudodoanhthutuan"></canvas>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+<style>
+    .chart-bar-container {
+        width: 100%;
+        /* Đảm bảo rằng container có kích thước bằng với card-body */
+        height: 400px;
+        /* Đặt kích thước cố định cho container */
+        position: relative;
+        /* Thiết lập vị trí tương đối để container có thể chứa canvas */
+    }
+
+    #bieudodoanhthutuan {
+        width: 100%;
+        /* Lấp đầy toàn bộ chiều rộng của container */
+        height: 100%;
+        /* Lấp đầy toàn bộ chiều cao của container */
+    }
+</style>
 <!-- BIỂU ĐỒ -->
 <script>
     // Hàm lấy dữ liệu doanh thu từ PHP và chuyển đổi thành JavaScript
-    function layDoanhThuThang() {
+    function layDoanhThuTuan() {
         return <?php echo $doanhthu_json; ?>;
     }
 
     // Hàm vẽ biểu đồ cột
     function veBieuDoDoanhThu() {
-        var doanhThuThang = layDoanhThuThang();
+        var doanhThuTuan = layDoanhThuTuan();
         var labels = [];
         var data = [];
 
         // Duyệt qua dữ liệu và tách ra nhãn và doanh thu
-        for (var i = 0; i < doanhThuThang.length; i++) {
-            labels.push(doanhThuThang[i].Thang + '/' + doanhThuThang[i].Nam);
-            data.push(doanhThuThang[i].TongDoanhThu);
+        for (var i = 0; i < doanhThuTuan.length; i++) {
+            labels.push('Tuần ' + doanhThuTuan[i].Tuan + '/' + doanhThuTuan[i].Nam);
+            data.push(doanhThuTuan[i].TongDoanhThu);
         }
-
         // Lấy thẻ canvas để vẽ biểu đồ
-        var ctx = document.getElementById('myBarChart').getContext('2d');
-
+        var ctx = document.getElementById('bieudodoanhthutuan').getContext('2d');
         // Tạo biểu đồ cột
-        var myBarChart = new Chart(ctx, {
+        var bieudodoanhthutuan = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Doanh thu theo tháng',
+                    label: 'Doanh thu theo tuần',
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1,
@@ -134,17 +148,72 @@
                 }]
             },
             options: {
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 25,
+                        top: 25,
+                        bottom: 0
+                    }
+                },
                 scales: {
+                    xAxes: [{
+                        time: {
+                            unit: 'week'
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 6
+                        },
+                        maxBarThickness: 25,
+                    }],
                     yAxes: [{
                         ticks: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            padding: 10,
+                            // Include a dollar sign in the ticks
+                            callback: function(value, index, values) {
+                                return number_format(value)+'đ';
+                            }
+                        },
+                        gridLines: {
+                            color: "rgb(234, 236, 244)",
+                            zeroLineColor: "rgb(234, 236, 244)",
+                            drawBorder: false,
+                            borderDash: [2],
+                            zeroLineBorderDash: [2]
                         }
-                    }]
-                }
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    titleMarginBottom: 10,
+                    titleFontColor: '#6e707e',
+                    titleFontSize: 14,
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                    callbacks: {
+                        label: function(tooltipItem, chart) {
+                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                            return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+                        }
+                    }
+                },
             }
         });
     }
-
     // Gọi hàm vẽ biểu đồ khi trang được tải
     window.onload = veBieuDoDoanhThu;
 </script>

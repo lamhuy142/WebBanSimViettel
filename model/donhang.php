@@ -87,17 +87,17 @@ class DONHANG
     //         exit();
     //     }
     // } 
-    public function laydoanhthutheothang()
+    public function laydoanhthutheotuan()
     {
         $dbcon = DATABASE::connect();
         try {
-            $sql = "SELECT MONTH(NgayDatHang) AS Thang,
-                    YEAR(NgayDatHang) AS Nam, 
+            $sql = "SELECT WEEK(NgayDatHang) AS Tuan,
+                    YEAR(NgayDatHang) AS Nam,
                     SUM(TongTien) AS TongDoanhThu
                     FROM donhang
                     WHERE TrangThai = 2
-                    GROUP BY YEAR(NgayDatHang), MONTH(NgayDatHang)
-                    ORDER BY YEAR(NgayDatHang), MONTH(NgayDatHang)";
+                    GROUP BY YEAR(NgayDatHang), WEEK(NgayDatHang)
+                    ORDER BY YEAR(NgayDatHang), WEEK(NgayDatHang)";
             $cmd = $dbcon->prepare($sql);
             $cmd->execute();
             $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
