@@ -99,9 +99,19 @@ switch ($action) {
         include("contact.php");
         break;
     case "themvaogio":
-        if ($isLogin == FALSE) {
-            include("login.php");
-        }
+        
+        $ls_km = $ls->laydanhsachloaisim();
+        $khuyenmai = $km->laydanhsachkhuyenmai();
+        $giohang = $gh->laydanhsachgiohang_ct();
+        $giaban = $_GET["DonGia"];
+        //lấy giá khuyến mãi nếu có
+        foreach ($khuyenmai as $km_ls) :
+            foreach ($ls_km as $lskm) :
+                if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
+                    $giaban = $lskm["GiaBan"] * $km_ls["GiaTriKM"] / 100;
+                }
+            endforeach;
+        endforeach;
         $ls_km = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $giohang = $gh->laydanhsachgiohang_ct();
@@ -122,7 +132,9 @@ switch ($action) {
                 break;
             }
         endforeach;
-        if ($simDaTonTai) {
+        if ($isLogin == FALSE) {
+            include("login.php");
+        }elseif($simDaTonTai) {
             echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";
         } else {
             $moi = new GIOHANG_CT();
@@ -133,12 +145,18 @@ switch ($action) {
 
             $gh->themgiohang_ct($moi);
             echo "<script>alert('Đã thêm vào giỏ.'); window.history.back();</script>";
+            $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+            $goicuoc = $gc->laydanhsachgoicuoc();
+            $sim = $s->laydanhsachsim();
+            $thuebao = $s->laydanhsachloaithuebao();
+            $loaisim = $ls->laydanhsachloaisim();
+            // $khuyenmai = $km->laydanhsachkhuyenmai();
+            $nguoidung = $nd->laydanhsachnguoidung();
+            $quangcao = $qc->laydanhsachquangcao();
+            include("main.php");
         }
         break;
     case "themvaogiohang":
-        if ($isLogin == FALSE) {
-            include("login.php");
-        }
         $ls_km = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $giohang = $gh->laydanhsachgiohang_ct();
@@ -159,7 +177,9 @@ switch ($action) {
                 break;
             }
         endforeach;
-        if ($simDaTonTai) {
+        if ($isLogin == FALSE) {
+            include("login.php");
+        }elseif ($simDaTonTai) {
             echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";
         } else {
             $moi = new GIOHANG_CT();
@@ -170,6 +190,15 @@ switch ($action) {
 
             $gh->themgiohang_ct($moi);
             echo "<script>alert('Đã thêm vào giỏ.'); window.history.back();</script>";
+            $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+            $goicuoc = $gc->laydanhsachgoicuoc();
+            $sim = $s->laydanhsachsim();
+            $thuebao = $s->laydanhsachloaithuebao();
+            $loaisim = $ls->laydanhsachloaisim();
+            // $khuyenmai = $km->laydanhsachkhuyenmai();
+            $nguoidung = $nd->laydanhsachnguoidung();
+            $quangcao = $qc->laydanhsachquangcao();
+            include("main.php");
         }
         break;
     case "xemgiohang":
@@ -257,7 +286,7 @@ switch ($action) {
             endforeach;
         } else {
             // Xử lý trường hợp không tồn tại MaGH
-            echo "<script>alert('MaGH không được cung cấp!.'); window.history.back();</script>";
+            echo "<script>alert('MaGH không được cung cấp!.');</script>";
 
             // Hoặc thực hiện hành động khác như điều hướng người dùng...
         }

@@ -118,20 +118,21 @@
 			</div>
 			<div class="col-md-4 col-lg-3 p-b-80">
 				<div class="side-menu">
-					<div class="p-t-5">
-						<h4 class=" cl2 p-b-33">
+					<div class="p-t-55">
+						<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-112 cl2 p-b-33">
 							Danh Mục
 						</h4>
-
 						<ul>
-							<?php foreach ($loaisim as $ls) { ?>
-								<li class="bor18">
-									<a style="color:#EE234E;" href="index.php?action=dstheoloaisim" class=" text-decoration-none dis-block  cl6 trans-04 p-tb-8 p-lr-4">
-										<?php echo $ls["TenLS"] ?>
-									</a>
-								</li>
-							<?php } ?>
-
+							<li class="bor18">
+								<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=sim" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									Sim
+								</a>
+							</li>
+							<li class="bor18">
+								<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=goicuoc" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+									Gói cước
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
