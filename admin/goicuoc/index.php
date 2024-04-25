@@ -274,13 +274,14 @@ switch ($action) {
     
     case "sualgc":
         if (isset($_GET["id"])) {
-            $loaigoicuoc_ht = $l->laydanhsachloaigoicuoctheoid($_GET["id"]);
+            $id = $_GET["id"];
+            // $loaigoicuoc_ht = $l->laydanhsachloaigoicuoctheoid($_GET["id"]);
             $loai = $l->laydanhsachloaigoicuoc();
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
             $nguoidung = $nd->laydanhsachnguoidung();
 
-            include("sualoaigoicuoc.php");
+            include("loaigoicuoc.php");
         } else {
             $loai = $l->laydanhsachloaigoicuoc();
             $danhgia = $dg->laydanhsachdanhgia();

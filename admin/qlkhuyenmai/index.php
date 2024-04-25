@@ -266,11 +266,13 @@ switch ($action) {
         break;
     case "sualoaikm":
         if (isset($_GET["id"])) {
-            $loai_ht = $lkm->laydanhsachloaikmtheoid($_GET["id"]);
+            $id = $_GET["id"];
+            // $loai_ht = $lkm->laydanhsachloaikmtheoid($_GET["id"]);
+            $loai = $lkm->laydanhsachloaikhuyenmai();
             $danhgia = $dg->laydanhsachdanhgia();
             $nguoidung = $nd->laydanhsachnguoidung();
 
-            include("sualoaikm.php");
+            include("loaikhuyenmai.php");
         } else {
             $loai = $lkm->laydanhsachloaikhuyenmai();
             $danhgia = $dg->laydanhsachdanhgia();

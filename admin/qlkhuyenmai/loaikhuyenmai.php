@@ -30,27 +30,57 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <?php foreach ($loai as $l) : ?>
-                            <tr>
-                                <td><?php echo $l["TenLKM"]; ?></td>
-                                <td><?php echo $l["DonViKM"]; ?></td>
-                                <!-- Trạng Thái của chương trình khuyến mãi -->
-                                <?php if ($l["TrangThai"] == 1) { ?>
-                                    <td class="text-success">Hoạt Động</td>
-                                    <td>
-                                        <a href="index.php?action=sualoaikm&id=<?php echo $l['MaLKM']; ?>" class="btn btn-warning">Sửa</a>
-                                        <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>&TrangThai=<?php echo $l['TrangThai'] ?>" class="btn btn-danger">Khóa</a>
-                                    </td>
-                                <?php } else { ?>
-                                    <td class="text-danger">Dừng</td>
-                                    <td>
-                                        <a href="index.php?action=sualoaikm&id=<?php echo $l['MaLKM']; ?>" class="btn btn-warning">Sửa</a>
-                                        <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>&TrangThai=<?php echo $l['TrangThai'] ?>" class="btn btn-primary">Mở</a>
-                                    </td>
-                                <?php } ?>
+                        <?php foreach ($loai as $l) :
+                            if (isset($id) && $l["MaLKM"] == $id) { ?>
+                                <tr>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="action" value="xulysualoaikm">
+                                        <input type="hidden" name="MaLKM" value="<?php echo $l['MaLKM'] ?>">
+                                        <input type="hidden" name="trangthai" value="<?php echo $l['TrangThai'] ?>">
+                                        <td>
+                                            <input required class="form-control" type="text" name="txtten" value="<?php echo $l['TenLKM'] ?>">
+                                        </td>
+                                        <td>
+                                            <input required class="form-control" type="text" name="txtdonvi" value="<?php echo $l['DonViKM'] ?>">
+                                        </td>
+                                        <!-- Trạng Thái của chương trình khuyến mãi -->
+                                        <?php if ($l["TrangThai"] == 1) { ?>
+                                            <td class="text-success">Hoạt Động</td>
+                                            <td>
+                                                <input type="submit" value="Lưu" class="btn btn-success"></input>
+                                                <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>&TrangThai=<?php echo $l['TrangThai'] ?>" class="btn btn-danger">Khóa</a>
+                                            </td>
+                                        <?php } else { ?>
+                                            <td class="text-danger">Dừng</td>
+                                            <td>
+                                                <input type="submit" value="Lưu" class="btn btn-success"></input>
+                                                <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>&TrangThai=<?php echo $l['TrangThai'] ?>" class="btn btn-primary">Mở</a>
+                                            </td>
+                                        <?php } ?>
+                                    </form>
 
+                                </tr>
+                            <?php } else { ?>
+                                <tr>
+                                    <td><?php echo $l["TenLKM"]; ?></td>
+                                    <td><?php echo $l["DonViKM"]; ?></td>
+                                    <!-- Trạng Thái của chương trình khuyến mãi -->
+                                    <?php if ($l["TrangThai"] == 1) { ?>
+                                        <td class="text-success">Hoạt Động</td>
+                                        <td>
+                                            <a href="index.php?action=sualoaikm&id=<?php echo $l['MaLKM']; ?>" class="btn btn-warning">Sửa</a>
+                                            <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>&TrangThai=<?php echo $l['TrangThai'] ?>" class="btn btn-danger">Khóa</a>
+                                        </td>
+                                    <?php } else { ?>
+                                        <td class="text-danger">Dừng</td>
+                                        <td>
+                                            <a href="index.php?action=sualoaikm&id=<?php echo $l['MaLKM']; ?>" class="btn btn-warning">Sửa</a>
+                                            <a href="index.php?action=khoaloaikm&id=<?php echo $l['MaLKM']; ?>&TrangThai=<?php echo $l['TrangThai'] ?>" class="btn btn-primary">Mở</a>
+                                        </td>
+                                    <?php } ?>
+                                </tr>
+                            <?php } ?>
 
-                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

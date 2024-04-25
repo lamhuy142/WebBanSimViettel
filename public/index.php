@@ -99,7 +99,7 @@ switch ($action) {
         include("contact.php");
         break;
     case "themvaogio":
-        
+
         $ls_km = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $giohang = $gh->laydanhsachgiohang_ct();
@@ -134,8 +134,8 @@ switch ($action) {
         endforeach;
         if ($isLogin == FALSE) {
             include("login.php");
-        }elseif($simDaTonTai) {
-            echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";
+        } elseif ($simDaTonTai) {
+            echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";  
         } else {
             $moi = new GIOHANG_CT();
             $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
@@ -144,7 +144,7 @@ switch ($action) {
             $moi->setDonGia($giaban);
 
             $gh->themgiohang_ct($moi);
-            echo "<script>alert('Đã thêm vào giỏ.'); window.history.back();</script>";
+            echo "<script>alert('Đã thêm vào giỏ.');</script>";
             $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
             $goicuoc = $gc->laydanhsachgoicuoc();
             $sim = $s->laydanhsachsim();
@@ -179,7 +179,7 @@ switch ($action) {
         endforeach;
         if ($isLogin == FALSE) {
             include("login.php");
-        }elseif ($simDaTonTai) {
+        } elseif ($simDaTonTai) {
             echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";
         } else {
             $moi = new GIOHANG_CT();
@@ -189,7 +189,7 @@ switch ($action) {
             $moi->setDonGia($giaban);
 
             $gh->themgiohang_ct($moi);
-            echo "<script>alert('Đã thêm vào giỏ.'); window.history.back();</script>";
+            echo "<script>alert('Đã thêm vào giỏ.');</script>";
             $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
             $goicuoc = $gc->laydanhsachgoicuoc();
             $sim = $s->laydanhsachsim();
