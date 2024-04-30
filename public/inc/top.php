@@ -204,13 +204,10 @@ if (isset($_SESSION["nguoidung"])) {
 
 
         <!-- Menu Mobile -->
-        <div class="menu-mobile" style=" background-color: #FFFFFF; color: black;">
+        <!-- <div class="menu-mobile" style=" background-color: #FFFFFF; color: black;">
             <ul class="main-menu-m">
                 <li>
                     <a href="index.php">Home</a>
-                    <!-- <span class="arrow-main-menu-m">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </span> -->
                 </li>
 
                 <li>
@@ -233,7 +230,7 @@ if (isset($_SESSION["nguoidung"])) {
                     <a href="contact.php">Contact</a>
                 </li>
             </ul>
-        </div>
+        </div> -->
 
         <!-- Modal Search -->
         <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">

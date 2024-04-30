@@ -169,20 +169,21 @@ switch ($action) {
 
             $gh->themgiohang_ct($moi);
             echo "<script>alert('Đã thêm vào giỏ.');</script>";
-            $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-            $goicuoc = $gc->laydanhsachgoicuoc();
-            $sim = $s->laydanhsachsim();
-            $thuebao = $s->laydanhsachloaithuebao();
-            $loaisim = $ls->laydanhsachloaisim();
-            // $khuyenmai = $km->laydanhsachkhuyenmai();
-            $nguoidung = $nd->laydanhsachnguoidung();
-            $quangcao = $qc->laydanhsachquangcao();
-
+            
+            // $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
+            // $goicuoc = $gc->laydanhsachgoicuoc();
             // $sim = $s->laydanhsachsim();
             // $thuebao = $s->laydanhsachloaithuebao();
-            // $khuyenmai = $km->laydanhsachkhuyenmai();
             // $loaisim = $ls->laydanhsachloaisim();
-            include("main.php");
+            // // $khuyenmai = $km->laydanhsachkhuyenmai();
+            // $nguoidung = $nd->laydanhsachnguoidung();
+            // $quangcao = $qc->laydanhsachquangcao();
+
+            $sim = $s->laydanhsachsim();
+            $thuebao = $s->laydanhsachloaithuebao();
+            $khuyenmai = $km->laydanhsachkhuyenmai();
+            $loaisim = $ls->laydanhsachloaisim();
+            include("sim.php");
         }
         break;
     case "xemgiohang":

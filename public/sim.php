@@ -35,9 +35,9 @@
 						<?php foreach ($loaisim as $l) :
 							if ($l["TrangThai"] == 1) { ?>
 								<li class="nav-item p-b-10">
-									<!-- id=="<php echo $l['MaLS'] ?>_tab" -->
-									<a style="font-family: 'Tilt Neon', sans-serif !important;" id="" class="nav-link
-								<?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false  || $l['MaLS'] == 3) echo "active"; ?>" data-toggle="tab" href="#<?php echo $l['MaLS'] ?>"><?php echo $l['TenLS'] ?></a> <!--role="tab"-->
+									<!-- id="<php echo $l['MaLS'] ?>_tab" -->
+									<a style="font-family: 'Tilt Neon', sans-serif !important;" id="<?php echo $l['MaLS'] ?>_tab" class="nav-link
+								<?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false) echo "active"; ?>" data-toggle="tab" href="#<?php echo $l['MaLS'] ?>" role="tab"><?php echo $l['TenLS'] ?></a> <!--role="tab"-->
 								</li>
 						<?php }
 						endforeach; ?>
@@ -97,9 +97,8 @@
 				<!-- <php } ?> -->
 				<!-- - -->
 				<?php foreach ($loaisim as $l) : ?>
-					<!-- || $l['MaLS'] == 3 -->
 					<div style="max-height: 500px; overflow-y: auto;" class="tab-pane fade  <?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false || $l['MaLS'] == 3) echo "show active"; ?>" id="<?php echo $l["MaLS"] ?>" role="tabpanel">
-						<!-- SIM DATA -->
+						<!-- SIM -->
 						<table class="table" id="simTable<?php echo $l["MaLS"] ?>">
 							<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
 								<tr>
@@ -128,6 +127,7 @@
 											<?php } else { ?>
 												<td><?php echo number_format($giaban); ?></td>
 											<?php } ?>
+											<!-- class=" buy-link" data-sim-id="<php echo $s['MaSim'] ?>" data-tab-id="<php echo $l["MaLS"] ?>" -->
 											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogiohang&MaSim=<?php echo $s['MaSim'] ?>&MaLS=<?php echo $s['MaLS'] ?>&DonGia=<?php echo $l['GiaBan'] ?>">Chọn Mua</a></td>
 										</tr>
 									</tbody>
@@ -192,4 +192,60 @@
 		});
 	});
 </script>
+<!-- <script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const filterLinks = document.querySelectorAll('.filter-link');
+		const simTypeLinks = document.querySelectorAll('.nav-link'); // Selector cho các liên kết loại sim
+
+		filterLinks.forEach(link => {
+			link.addEventListener('click', function(e) {
+				e.preventDefault();
+				const type = this.dataset.type; // '1' cho trả trước, '0' cho trả sau
+
+				document.querySelectorAll('[id^="simTable"]').forEach(table => {
+					const rows = table.querySelectorAll('tbody tr');
+					rows.forEach(row => {
+						if (row.dataset.type === type || type === 'all') {
+							row.style.display = '';
+						} else {
+							row.style.display = 'none';
+						}
+					});
+				});
+			});
+		});
+
+		// Thêm sự kiện click cho các liên kết loại sim
+		simTypeLinks.forEach(link => {
+			link.addEventListener('click', function(e) {
+				// Khi một loại sim được chọn, reset bảng hiển thị tất cả các hàng
+				document.querySelectorAll('[id^="simTable"]').forEach(table => {
+					const rows = table.querySelectorAll('tbody tr');
+					rows.forEach(row => {
+						row.style.display = ''; // Hiển thị tất cả các hàng
+					});
+				});
+			});
+		});
+
+		// Thêm sự kiện click cho các liên kết "Chọn Mua"
+		const buyLinks = document.querySelectorAll('.buy-link');
+		buyLinks.forEach(link => {
+			link.addEventListener('click', function(e) {
+				e.preventDefault();
+				const simId = this.dataset.simId; // Lấy ID của sim đã chọn
+				const tabId = this.dataset.tabId; // Lấy ID của tab-pane tương ứng
+
+				// Ẩn tất cả các tab-pane trừ tab-pane tương ứng với ID được nhấn
+				document.querySelectorAll('.tab-pane').forEach(tab => {
+					if (tab.id === tabId) {
+						tab.classList.add('show', 'active'); // Hiển thị tab-pane được chọn
+					} else {
+						tab.classList.remove('show', 'active'); // Ẩn các tab-pane khác
+					}
+				});
+			});
+		});
+	});
+</script> -->
 <?php include("inc/bottom.php") ?>
