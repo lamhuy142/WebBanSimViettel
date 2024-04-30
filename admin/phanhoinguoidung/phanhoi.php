@@ -14,7 +14,8 @@
                     <div class="col">
                         <div class="md-3 mt-3">
                             <label for="txtdanhgia" class="form-label">Đánh giá từ người dùng</label>
-                            <textarea id="editor" rows="5" class="form-control" name="txtdanhgia"><?php echo $danhgia_ht["NoiDung"]; ?></textarea>
+                            <input type="text" name="txtdanhgia" value="<?php echo $danhgia_ht['NoiDung']; ?>" class="form-control" disabled></input>
+                            <!-- <textarea id="editor" rows="5" class="form-control" name="txtdanhgia" disabled><php echo $danhgia_ht["NoiDung"]; ?></textarea> -->
                         </div>
                     </div>
                     <div class="col">

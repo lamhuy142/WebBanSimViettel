@@ -96,24 +96,6 @@
 						</div>
 					</div>
 					<a style="background-color:#EE234E; color:white;" class="btn pl-5 pr-5 js-show-modal1" href="">Đăng ký</a>
-					<!----> <!---->
-					<!-- <div class="flex-w flex-t p-t-16">
-						<span class="size-216 stext-116 cl8 p-t-4">
-							Tags
-						</span>
-
-						<div class="flex-w size-217">
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Streetstyle
-							</a>
-
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Crafts
-							</a>
-						</div>
-					</div> -->
-
-					<!--  -->
 				</div>
 			</div>
 			<div class="col-md-4 col-lg-3 p-b-80">

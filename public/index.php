@@ -55,7 +55,6 @@ switch ($action) {
     case "chuyentrang":
         header("Location:../../WebBanSimViettel/admin/index.php");
         break;
-
     case "khuyenmai":
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
@@ -71,13 +70,6 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         include("sim.php");
         break;
-        // case "dstheoloaisim":
-        //     $sim = $s->laydanhsachsim();
-        //     $thuebao = $s->laydanhsachloaithuebao();
-        //     $khuyenmai = $km->laydanhsachkhuyenmai();
-        //     $loaisim = $ls->laydanhsachloaisim();
-        //     include("sim.php");
-        //     break;
     case "goicuoc":
         $loaisim = $ls->laydanhsachloaisim();
         $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
@@ -99,26 +91,13 @@ switch ($action) {
         include("contact.php");
         break;
     case "themvaogio":
-
         $ls_km = $ls->laydanhsachloaisim();
         $khuyenmai = $km->laydanhsachkhuyenmai();
         $giohang = $gh->laydanhsachgiohang_ct();
         $giaban = $_GET["DonGia"];
         //lấy giá khuyến mãi nếu có
         foreach ($khuyenmai as $km_ls) :
-            foreach ($ls_km as $lskm) :
-                if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
-                    $giaban = $lskm["GiaBan"] * $km_ls["GiaTriKM"] / 100;
-                }
-            endforeach;
-        endforeach;
-        $ls_km = $ls->laydanhsachloaisim();
-        $khuyenmai = $km->laydanhsachkhuyenmai();
-        $giohang = $gh->laydanhsachgiohang_ct();
-        $giaban = $_GET["DonGia"];
-        //lấy giá khuyến mãi nếu có
-        foreach ($khuyenmai as $km_ls) :
-            foreach ($ls_km as $lskm) :
+            foreach ($ls_km as $lskm) : //ds loai sim
                 if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
                     $giaban = $lskm["GiaBan"] * $km_ls["GiaTriKM"] / 100;
                 }
@@ -198,6 +177,11 @@ switch ($action) {
             // $khuyenmai = $km->laydanhsachkhuyenmai();
             $nguoidung = $nd->laydanhsachnguoidung();
             $quangcao = $qc->laydanhsachquangcao();
+
+            // $sim = $s->laydanhsachsim();
+            // $thuebao = $s->laydanhsachloaithuebao();
+            // $khuyenmai = $km->laydanhsachkhuyenmai();
+            // $loaisim = $ls->laydanhsachloaisim();
             include("main.php");
         }
         break;
@@ -445,7 +429,7 @@ switch ($action) {
             $khuyenmai = $km->laydanhsachkhuyenmai();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
             $sim = $s->laydanhsachsim();
-
+            $dg_chuatl = $dg->danhsachchuatraloi();
             include("blog-detail.php");
         } else {
             $sim = $s->laydanhsachsim();
@@ -472,9 +456,8 @@ switch ($action) {
             // Thêm đánh giá mới vào cơ sở dữ liệu
             $dg->themdanhgia($moi);
         } else {
-            echo "Không có đánh giá nào được nhập.";
+            echo "<script>alert('Không có đánh giá nào được nhập');</script>";
         }
-
         // Load lại dữ liệu và bao gồm trang blog-detail.php
         $khuyenmai_ht = $km->laydanhsachkhuyenmaitheoid($_POST["MaKM"]);
         $danhgia = $dg->laydanhsachdanhgia();
@@ -483,7 +466,7 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         $sim = $s->laydanhsachsim();
-
+        $dg_chuatl = $dg->danhsachchuatraloi();
         include("blog-detail.php");
         break;
     case "traloidanhgia":
@@ -503,6 +486,7 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+        $dg_chuatl = $dg->danhsachchuatraloi();
         include("blog-detail.php");
         break;
     case "chitietgoicuoc":
@@ -513,7 +497,7 @@ switch ($action) {
             include("chitietgoicuoc.php");
         }
         $sim = $s->laydanhsachsim();
-        include("chitietgoicuoc.php");
+        include("main.php");
         break;
     case "hoso":
         $loaisim = $ls->laydanhsachloaisim();
@@ -558,15 +542,12 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         include("hoso.php");
         break;
-
     case "xemdondamua":
         $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
         $donhang_nd = $dh->laydonhangtheomand($_SESSION["nguoidung"]["MaND"]);
         $donhang = $dh->laydanhsachdonhang();
         $donhang_ct = $dh_ct->laydanhsachdonhang_ct();
-        // print_r($donhang_ct);
-        // exit();
         include("dondamua.php");
         break;
     case "hoantat":

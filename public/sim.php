@@ -39,7 +39,6 @@
 									<a style="font-family: 'Tilt Neon', sans-serif !important;" id="" class="nav-link
 								<?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false  || $l['MaLS'] == 3) echo "active"; ?>" data-toggle="tab" href="#<?php echo $l['MaLS'] ?>"><?php echo $l['TenLS'] ?></a> <!--role="tab"-->
 								</li>
-
 						<?php }
 						endforeach; ?>
 					</ul>
@@ -168,7 +167,6 @@
 
 				document.querySelectorAll('[id^="simTable"]').forEach(table => {
 					const rows = table.querySelectorAll('tbody tr');
-
 					rows.forEach(row => {
 						if (row.dataset.type === type || type === 'all') {
 							row.style.display = '';
@@ -187,7 +185,7 @@
 				document.querySelectorAll('[id^="simTable"]').forEach(table => {
 					const rows = table.querySelectorAll('tbody tr');
 					rows.forEach(row => {
-						row.style.display = ''; // Hiển thị tất cả các hàng
+						row.style.display = ''; // Hiển thị tất cả các hàng  Dòng này đặt thuộc tính CSS display của mỗi hàng dữ liệu thành một chuỗi trống ''.
 					});
 				});
 			});

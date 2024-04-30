@@ -91,8 +91,6 @@
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-
-
 	<div class="mwrap-modal1 wrap-modal1 js-modal1 p-t-60 p-b-20">
 		<div class="overlay-modal1 js-hide-modal1"></div>
 
@@ -101,8 +99,6 @@
 				<button class="how-pos3 hov3 trans-04 js-hide-modal1">
 					<img src="../img/icons/icon-close.png" alt="CLOSE">
 				</button>
-
-
 				<div class="p-r-50 p-t-5 p-lr-0-lg">
 					<h4 style="font-family: 'Tilt Neon', sans-serif !important;" class="mtext-105 cl2 js-name-detail p-b-14">
 						Xác nhận mua gói cước
@@ -126,8 +122,6 @@
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
 	</div>

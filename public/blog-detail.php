@@ -140,11 +140,14 @@
 													</div>
 													<div class="m-0">
 														<p>
-															<?php if (isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["MaQ"] == 1) { ?>
+															<?php
+															foreach($dg_chuatl as $ds):
+															if (isset($_SESSION["nguoidung"]) && $_SESSION["nguoidung"]["MaQ"] == 1 && $ds["MaDG"] == $dg["MaDG"]) { ?>
 																<a style="font-family: 'Tilt Neon', sans-serif !important;" style="color:#EF0033 !important; background-color:#E7E7E7; padding: 10px ; " class="text-decoration-none rounded" data-bs-toggle="collapse" href="#<?php echo $i; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $i; ?>">
 																	Trả lời
 																</a>
-															<?php } ?>
+															<?php }
+															endforeach; ?>
 
 														</p>
 													</div>
@@ -212,12 +215,6 @@
 																	<p class="fw-normal fs-base text-gray-700 m-2 p-0" data-kt-element="comment-text">
 																		<?php echo $t['TraLoi']; ?>
 																	</p>
-																	<div data-kt-element="comment-edit"></div>
-																</div>
-																<div id="kt_post_comment_96_wrapper" data-parent-id="96">
-																	<div class="ps-5 ps-lg-10 2">
-																		<!-- replies for the comment -->
-																	</div>
 																</div>
 															</div>
 														</div>
@@ -267,13 +264,9 @@
 								if ($k["MaKM"] != $khuyenmai_ht["MaKM"] && $i < 3) {
 									$i++; ?>
 									<li class="flex-w flex-t p-b-30">
-										<!-- <a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $k['MaKM'] ?>" class=" wrao-pic-w size-214 hov-ovelay1 m-r-20"> -->
 										<div class="mr-3">
-
 											<img width="50px" height="50px" class="thumnail" src="../img/khuyenmai/<?php echo $k['HinhAnh']; ?>" alt="PRODUCT">
 										</div>
-										<!-- </a> -->
-
 										<div class="size-215 flex-col-t p-t-8">
 											<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=detail&id=<?php echo $k['MaKM'] ?>" class="stext-116 cl8 hov-cl1 trans-04">
 												<?php echo $k["TenKM"]; ?>
