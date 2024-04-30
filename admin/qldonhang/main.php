@@ -76,7 +76,7 @@
                                             <?php if ($dh["TrangThai"] == 0) { ?>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <a href="index.php?action=xannhandon&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-warning">Xác nhận</a>
+                                                        <a href="index.php?action=xacnhandon&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-warning">Xác nhận</a>
                                                     </div>
                                                 </div>
                                             <?php } elseif ($dh["TrangThai"] == 1) { ?>

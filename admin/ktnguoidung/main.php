@@ -129,7 +129,7 @@
 
         // Duyệt qua dữ liệu và tách ra nhãn và doanh thu
         for (var i = 0; i < doanhThuTuan.length; i++) {
-            labels.push('Tuần ' + doanhThuTuan[i].Tuan + '/' + doanhThuTuan[i].Nam);
+            labels.push('Tuần ' + doanhThuTuan[i].Tuan + '/' + doanhThuTuan[i].Nam); 
             data.push(doanhThuTuan[i].TongDoanhThu);
         }
         // Lấy thẻ canvas để vẽ biểu đồ
@@ -158,19 +158,6 @@
                     }
                 },
                 scales: {
-                    // xAxes: [{
-                    //     time: {
-                    //         unit: 'week'
-                    //     },
-                    //     gridLines: {
-                    //         display: false,
-                    //         drawBorder: false
-                    //     },
-                    //     ticks: {
-                    //         maxTicksLimit: 6
-                    //     },
-                    //     maxBarThickness: 25,
-                    // }],
                     yAxes: [{
                         ticks: {
                             beginAtZero: true,

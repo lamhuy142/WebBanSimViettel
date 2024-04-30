@@ -7,7 +7,6 @@
         <div class="card-body">
             <form class="was-validated" method="post" enctype="multipart/form-data" action="index.php">
                 <input type="hidden" name="action" value="xulythemnd">
-
                 <div class="row">
                     <div class="col">
                         <div class="md-3 mt-3">

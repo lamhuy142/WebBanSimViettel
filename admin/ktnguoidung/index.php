@@ -14,9 +14,6 @@ if (isset($_REQUEST["action"])) {
     $action = $_REQUEST["action"];
 } elseif ($isLogin == FALSE) {
     $action = "dangnhap";
-    // } 
-    // elseif($_SESSION["nguoidung"]["MaQ"] == 2){
-    //     header("Location:../../public/");
 } else {
     $action = "macdinh";
 }
@@ -30,18 +27,13 @@ switch ($action) {
         $donhang = $dh->laydanhsachdonhang();
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
-        //doanh thu tháng
-        // $doanhthuthang = $dh->laydoanhthutheotuan();
-
-        // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
-        // $doanhthu_json = json_encode($doanhthuthang);
-
+        
         $thanght = date("m");
         $namht = date("Y");
         // Tính tổng doanh thu theo tháng
         $tongdt_thanght = 0;
         foreach ($donhang as $d) {
-            $thangdh = date('m', strtotime($d['NgayGiaoHang']));
+            $thangdh = date('m', strtotime($d['NgayGiaoHang'])); // lấy tháng hiện tại
             if ($thangdh == $thanght && $d["TrangThai"] == 2) {
                 $tongdt_thanght += $d["TongTien"];
             }
@@ -58,40 +50,40 @@ switch ($action) {
         
         include("main.php");
         break;
-    case "demo":
-        $donhang = $dh->laydanhsachdonhang();
-        $nguoidung = $nd->laydanhsachnguoidung();
-        $danhgia = $dg->laydanhsachdanhgia();
-        //doanh thu tháng
-        $doanhthutuan = $dh->laydoanhthutheotuan();
+    // case "demo":
+    //     $donhang = $dh->laydanhsachdonhang();
+    //     $nguoidung = $nd->laydanhsachnguoidung();
+    //     $danhgia = $dg->laydanhsachdanhgia();
+    //     //doanh thu tháng
+    //     $doanhthutuan = $dh->laydoanhthutheotuan();
 
-        // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
-        $doanhthu_json = json_encode($doanhthutuan);
-        // print_r($doanhthu_json);
-        // exit();
+    //     // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
+    //     $doanhthu_json = json_encode($doanhthutuan);
+    //     // print_r($doanhthu_json);
+    //     // exit();
 
-        $thanght = date("m");
-        $namht = date("Y");
-        // Tính tổng doanh thu theo tháng
-        $tongdt_thanght = 0;
-        foreach ($donhang as $d) {
-            $thangdh = date('m', strtotime($d['NgayGiaoHang']));
-            if ($thangdh == $thanght && $d["TrangThai"] == 2) {
-                $tongdt_thanght += $d["TongTien"];
-            }
-        }
-        // Tính tổng doanh thu theo năm
-        $tongdt_namht = 0;
-        foreach ($donhang as $d) {
-            $namdh = date('Y', strtotime($d['NgayGiaoHang']));
-            if ($namdh == $namht && $d["TrangThai"] == 2) {
-                $tongdt_namht += $d["TongTien"];
-            }
-        }
-        $traloidanhgia = $tl->laydanhsachtraloidanhgia();
+    //     $thanght = date("m");
+    //     $namht = date("Y");
+    //     // Tính tổng doanh thu theo tháng
+    //     $tongdt_thanght = 0;
+    //     foreach ($donhang as $d) {
+    //         $thangdh = date('m', strtotime($d['NgayGiaoHang']));
+    //         if ($thangdh == $thanght && $d["TrangThai"] == 2) {
+    //             $tongdt_thanght += $d["TongTien"];
+    //         }
+    //     }
+    //     // Tính tổng doanh thu theo năm
+    //     $tongdt_namht = 0;
+    //     foreach ($donhang as $d) {
+    //         $namdh = date('Y', strtotime($d['NgayGiaoHang']));
+    //         if ($namdh == $namht && $d["TrangThai"] == 2) {
+    //             $tongdt_namht += $d["TongTien"];
+    //         }
+    //     }
+    //     $traloidanhgia = $tl->laydanhsachtraloidanhgia();
 
-        include("demo.php");
-        break;
+    //     include("demo.php");
+    //     break;
     case "chuyentrang":
         header("Location:../../public/index.php");
         break;

@@ -48,16 +48,7 @@ switch ($action) {
         $kiemtra1 = $nd->kiemtraSdtTonTai($sodienthoai);
         $kiemtra2 = $nd->kiemtraTenDangNhapTonTai($tendangnhap);
         
-        if(strlen($sodienthoai) < 10 ){
-            echo "<script>alert('Số điện thoại phải tối thiểu 10 chữ số, Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
-            $HoTen = $_POST["txthoten"];
-            $tendangnhap = $_POST["txttendangnhap"];
-            $DiaChi = $_POST["txtdiachi"];
-            $MatKhau = $_POST["txtmatkhau"];
-            $MaQ = $_POST["optquyen"];
-            $HinhAnh = ($_FILES["fileanh"]);
-            exit();
-        }elseif($kiemtra1) {
+        if($kiemtra1) {
             // Nếu số điện thoại đã tồn tại, hiển thị thông báo
             echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập số điện thoại khác.');window.history.back();</script>";
             $HoTen = $_POST["txthoten"];
@@ -100,7 +91,7 @@ switch ($action) {
             $MaQ = $_POST["optquyen"];
             $HinhAnh = ($_FILES["fileanh"]);
             exit();
-        } elseif (strlen($_POST["txtsosim"]) < 10) {
+        } elseif (strlen($_POST["txtsodienthoai"]) < 10) {
             // Nếu email đã tồn tại, hiển thị thông báo
             echo "<script>alert('Số điện thoại tối thiểu 10 số. Vui lòng nhập lại.');window.history.back();</script>";
             $HoTen = $_POST["txthoten"];
@@ -109,13 +100,17 @@ switch ($action) {
             $TenDangNhap = $_POST["txttendangnhap"];
             $MatKhau = $_POST["txtmatkhau"];
             $MaQ = $_POST["optquyen"];
-            $HinhAnh = ($_FILES["fileanh"]);
+            $HinhAnh = $_FILES["fileanh"];
             exit();
         }else {
             //xử lý load ảnh
-            $hinhanh = basename($_FILES["fileanh"]["name"]); // đường dẫn ảnh lưu trong db
-            $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
-            move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
+            $hinhanh = basename($_FILES["fileanh"]["name"]); // Lấy tên tệp ảnh
+            $duongdan_moi = "../../img/user/" . $hinhanh; // Đường dẫn mới đến thư mục mong muốn
+
+            // Di chuyển tệp ảnh đến thư mục mong muốn
+            if (!empty($hinhanh)) {
+                move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan_moi);
+            }
             //xử lý thêm 
             $nguoidungmoi = new NGUOIDUNG();
             $nguoidungmoi->setTenDangNhap($_POST["txttendangnhap"]);

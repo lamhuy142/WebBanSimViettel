@@ -63,8 +63,7 @@ switch ($action) {
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
         include("main.php");
         break;
-    case "xannhandon":
-
+    case "xacnhandon":
         if (isset($_REQUEST["id"]))
             $id = $_REQUEST["id"];
         if (isset($_REQUEST["TrangThai"]))

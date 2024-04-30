@@ -181,7 +181,8 @@ class NGUOIDUNG
     {
         $db = DATABASE::connect();
         try {
-            $sql = "INSERT INTO nguoidung(HoTen, Sdt, MatKhau, TenDangNhap, TrangThai, HinhAnh, MaQ, DiaChi) 
+            $sql = "INSERT INTO 
+            nguoidung(HoTen, Sdt, MatKhau, TenDangNhap, TrangThai, HinhAnh, MaQ, DiaChi) 
 VALUES(:HoTen, :Sdt, :MatKhau, :TenDangNhap, :TrangThai, :HinhAnh, :MaQ, :DiaChi)";
             $cmd = $db->prepare($sql);
             $cmd->bindValue(':HoTen', $nguoidung->HoTen);

@@ -66,27 +66,7 @@ class DONHANG
     {
         $this->TrangThai = $value;
     }
-    // khai báo các thuộc tính (SV tự viết)
-
-
-    // lấy thông tin người dùng có $email
-    // public function laythongtinbaiviet($email)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "SELECT * FROM baiviet WHERE Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(":Email", $Email);
-    //         $cmd->execute();
-    //         $ketqua = $cmd->fetch();
-    //         $cmd->closeCursor();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // } 
+   
     public function laydoanhthutheotuan()
     {
         $dbcon = DATABASE::connect();
@@ -222,40 +202,7 @@ VALUES(:MaND, :NgayDatHang, :NgayGiaoHang, :TongTien, :GhiChu, :TrangThai)";
             exit();
         }
     }
-    // Đổi quyền (loại người dùng: 1 quản trị, 2 nhân viên. Không cần nâng cấp quyền đối với loại người dùng 3 khách hàng)
-    // public function doiloaibaiviet($Email, $QuyenND)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set QuyenND=:QuyenND where Email=:Email";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':Email', $Email);
-    //         $cmd->bindValue(':QuyenND', $QuyenND);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
-    // // Đổi trạng thái (0 khóa, 1 kích hoạt)
-    // public function doiGhiChu($GhiChu, $GhiChu)
-    // {
-    //     $db = DATABASE::connect();
-    //     try {
-    //         $sql = "UPDATE baiviet set GhiChu=:GhiChu where GhiChu=:GhiChu";
-    //         $cmd = $db->prepare($sql);
-    //         $cmd->bindValue(':GhiChu', $GhiChu);
-    //         $cmd->bindValue(':GhiChu', $GhiChu);
-    //         $ketqua = $cmd->execute();
-    //         return $ketqua;
-    //     } catch (PDOException $e) {
-    //         $error_message = $e->getMessage();
-    //         echo "<p>Lỗi truy vấn: $error_message</p>";
-    //         exit();
-    //     }
-    // }
+    
     public function capnhatngaygiaohang($MaDH, $NgayGiaoHang)
     {
         $dbcon = DATABASE::connect();
