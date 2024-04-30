@@ -135,7 +135,7 @@ switch ($action) {
         if ($isLogin == FALSE) {
             include("login.php");
         } elseif ($simDaTonTai) {
-            echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";  
+            echo "<script>alert('Sim đã tồn tại trong giỏ hàng.'); window.history.back();</script>";
         } else {
             $moi = new GIOHANG_CT();
             $moi->setMaND($_SESSION["nguoidung"]["MaND"]);
@@ -526,30 +526,39 @@ switch ($action) {
         $TenDangNhap = $_POST["txttendn"];
         $Sdt = $_POST["sdt"];
         $HoTen = $_POST["txthoten"];
-        $HinhAnh = $_POST["HinhAnh"];
         $DiaChi = $_POST["txtdiachi"];
         $MatKhau = $_POST["txtmk"];
 
+        // Kiểm tra nếu có tệp ảnh được tải lên
         if ($_FILES["fhinhanh"]["name"] != null) {
-            //xử lý load ảnh
-            $hinhanh = basename($_FILES["fhinhanh"]["name"]); // đường dẫn ảnh lưu trong db
-            $duongdan = "../img/user/" . $hinhanh; //nơi lưu file upload
-            move_uploaded_file($_FILES["fhinhanh"]["tmp_name"], $duongdan);
-            $_SESSION["nguoidung"]["HinhAnh"] = $hinhanh; // Cập nhật hình ảnh mới vào session
+            // Xử lý tải ảnh lên và lưu vào thư mục
+            $hinhanh = basename($_FILES["fhinhanh"]["name"]);
+            $duongdan = "../img/user/" . $hinhanh;
+            if (!empty($hinhanh)) {
+                move_uploaded_file($_FILES["fhinhanh"]["tmp_name"], $duongdan);
+            }
+            $HinhAnh = $hinhanh;
+            // Cập nhật đường dẫn hình ảnh mới vào biến $HinhAnh
+            $_SESSION["nguoidung"]["HinhAnh"] = $hinhanh;
+        } else {
+            // Nếu không có tệp ảnh được tải lên, giữ nguyên đường dẫn hình ảnh cũ
+            $HinhAnh = $_POST["HinhAnh"];
         }
 
-        // sửa
+        // Sửa thông tin người dùng
         $nd->capnhatnguoidung($MaND, $HoTen, $TenDangNhap, $Sdt, $MatKhau, $HinhAnh, $DiaChi);
-        // Sau khi lưu thành công, cập nhật thông tin hình ảnh mới vào session.
-        $hoten = $_POST["txthoten"];
-        $_SESSION["nguoidung"]["HoTen"] = $hoten;
-        // load danh sách
+
+        // Cập nhật thông tin người dùng mới vào session
+        $_SESSION["nguoidung"]["HoTen"] = $HoTen;
+
+        // Load danh sách
         $donhang = $dh->laydanhsachdonhang();
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
         $loaisim = $ls->laydanhsachloaisim();
         include("hoso.php");
         break;
+
     case "xemdondamua":
         $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
