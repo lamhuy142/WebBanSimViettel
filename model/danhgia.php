@@ -116,6 +116,23 @@ class DANHGIA
             exit();
         }
     }
+    public function danhsachchuatraloi()
+    {
+        $dbcon = DATABASE::connect();
+        try {
+            $sql = "SELECT * FROM danhgia
+                WHERE MaDG NOT IN (SELECT MaDG FROM traloidanhgia)";
+            $cmd = $dbcon->prepare($sql);
+            $cmd->execute();
+            $result = $cmd->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            $error_message = $e->getMessage();
+            echo "<p>Lỗi truy vấn: $error_message</p>";
+            exit();
+        }
+    }
+
     public function kiemtradanhgia($MaDG)
     {
         $dbcon = DATABASE::connect();
