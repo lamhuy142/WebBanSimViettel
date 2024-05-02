@@ -141,13 +141,13 @@ switch ($action) {
         $giohang = $gh->laydanhsachgiohang_ct();
         $giaban = $_GET["DonGia"];
         //lấy giá khuyến mãi nếu có
-        foreach ($khuyenmai as $km_ls) :
-            foreach ($ls_km as $lskm) :
-                if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
-                    $giaban = $lskm["GiaBan"] * $km_ls["GiaTriKM"] / 100;
-                }
-            endforeach;
-        endforeach;
+        // foreach ($khuyenmai as $km_ls) :
+        //     foreach ($ls_km as $lskm) :
+        //         if ($km_ls["MaLS"] == $lskm["MaLS"] && $km_ls["TrangThai"] == 1 && $_GET["MaLS"] == $lskm["MaLS"]) {
+        //             $giaban = $lskm["GiaBan"] * $km_ls["GiaTriKM"] / 100;
+        //         }
+        //     endforeach;
+        // endforeach;
         //kiểm tra sim có trong giỏ chưa
         $simDaTonTai = false;
         foreach ($giohang as $gio) :

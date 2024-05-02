@@ -17,8 +17,7 @@
 <!-- Product -->
 <div class="bg0 m-t-23 p-b-140">
 	<div class="container">
-		<div class="flex-w flex-sb-m p-b-20">
-		</div>
+		
 		<section class="sec-product bg0 p-t-20 p-b-50">
 			<div class="container">
 				<!-- Tab02 -->
@@ -97,6 +96,7 @@
 				<!-- <php } ?> -->
 				<!-- - -->
 				<?php foreach ($loaisim as $l) : ?>
+
 					<div style="max-height: 500px; overflow-y: auto;" class="tab-pane fade  <?php if (strpos($_SERVER["REQUEST_URI"], $l['MaLS']) != false || $l['MaLS'] == 3) echo "show active"; ?>" id="<?php echo $l["MaLS"] ?>" role="tabpanel">
 						<!-- SIM -->
 						<table class="table" id="simTable<?php echo $l["MaLS"] ?>">
@@ -127,8 +127,7 @@
 											<?php } else { ?>
 												<td><?php echo number_format($giaban); ?></td>
 											<?php } ?>
-											<!-- class=" buy-link" data-sim-id="<php echo $s['MaSim'] ?>" data-tab-id="<php echo $l["MaLS"] ?>" -->
-											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogiohang&MaSim=<?php echo $s['MaSim'] ?>&MaLS=<?php echo $s['MaLS'] ?>&DonGia=<?php echo $l['GiaBan'] ?>">Chọn Mua</a></td>
+											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogiohang&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $giaban ?>">Chọn Mua</a></td>
 										</tr>
 									</tbody>
 							<?php
@@ -146,14 +145,6 @@
 	</div>
 </div>
 
-<!-- Load more -->
-<!-- <div class="flex-c-m flex-w w-full p-t-45 p-b-30">
-	<a style="font-family: 'Tilt Neon', sans-serif !important;" href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-		Load More
-	</a>
-</div> -->
-</div>
-</div>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
@@ -192,60 +183,4 @@
 		});
 	});
 </script>
-<!-- <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		const filterLinks = document.querySelectorAll('.filter-link');
-		const simTypeLinks = document.querySelectorAll('.nav-link'); // Selector cho các liên kết loại sim
-
-		filterLinks.forEach(link => {
-			link.addEventListener('click', function(e) {
-				e.preventDefault();
-				const type = this.dataset.type; // '1' cho trả trước, '0' cho trả sau
-
-				document.querySelectorAll('[id^="simTable"]').forEach(table => {
-					const rows = table.querySelectorAll('tbody tr');
-					rows.forEach(row => {
-						if (row.dataset.type === type || type === 'all') {
-							row.style.display = '';
-						} else {
-							row.style.display = 'none';
-						}
-					});
-				});
-			});
-		});
-
-		// Thêm sự kiện click cho các liên kết loại sim
-		simTypeLinks.forEach(link => {
-			link.addEventListener('click', function(e) {
-				// Khi một loại sim được chọn, reset bảng hiển thị tất cả các hàng
-				document.querySelectorAll('[id^="simTable"]').forEach(table => {
-					const rows = table.querySelectorAll('tbody tr');
-					rows.forEach(row => {
-						row.style.display = ''; // Hiển thị tất cả các hàng
-					});
-				});
-			});
-		});
-
-		// Thêm sự kiện click cho các liên kết "Chọn Mua"
-		const buyLinks = document.querySelectorAll('.buy-link');
-		buyLinks.forEach(link => {
-			link.addEventListener('click', function(e) {
-				e.preventDefault();
-				const simId = this.dataset.simId; // Lấy ID của sim đã chọn
-				const tabId = this.dataset.tabId; // Lấy ID của tab-pane tương ứng
-
-				// Ẩn tất cả các tab-pane trừ tab-pane tương ứng với ID được nhấn
-				document.querySelectorAll('.tab-pane').forEach(tab => {
-					if (tab.id === tabId) {
-						tab.classList.add('show', 'active'); // Hiển thị tab-pane được chọn
-					} else {
-						tab.classList.remove('show', 'active'); // Ẩn các tab-pane khác
-					}
-				});
-			});
-		});
-	});
-</script> -->
 <?php include("inc/bottom.php") ?>
