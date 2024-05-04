@@ -23,7 +23,8 @@
 <section class="bg0 p-t-62 p-b-60">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-lg-9 p-b-80" style="max-height: 900px; overflow-y: auto;">
+			<!-- style="max-height: 900px; overflow-y: auto;" -->
+			<div class="col-md-8 col-lg-9 p-b-80">
 				<div class="p-r-45 p-r-0-lg">
 					<!-- item blog -->
 					<?php foreach ($khuyenmai as $km) :
@@ -96,6 +97,25 @@
 
 					?>
 				</div>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item">
+							<a style="color:#212529 !important;" class="page-link" href="index.php?action=khuyenmai&trang=1" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>
+						</li>
+						<?php for ($i = 1; $i <= $sotrang; $i++) { ?>
+							<li class="page-item "><a style="color:#212529 !important;" class="page-link" href="index.php?action=khuyenmai&trang=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+						<?php } ?>
+						<li class="page-item">
+							<a style="color:#212529 !important;" class="page-link" href="index.php?action=khuyenmai&trang=<?php echo $sotrang; ?>" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								<span class="sr-only">Next</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
 			</div>
 			<div class="col-md-4 col-lg-3 p-b-80">
 				<div class="side-menu">

@@ -58,9 +58,22 @@ switch ($action) {
     case "khuyenmai":
         $danhgia = $dg->laydanhsachdanhgia();
         $nguoidung = $nd->laydanhsachnguoidung();
-        $khuyenmai = $km->laydanhsachkhuyenmai();
+        // $khuyenmai = $km->laydanhsachkhuyenmai();
         $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
+
+        // phân trang 
+        $trang = isset($_GET['trang']) ? $_GET['trang'] : 1;
+        $gioihan = 3;
+        $tongsotrang = $km->laysoluongkm();
+        // Tính toán vị trí bắt đầu của kết quả truy vấn
+        $vitri = ($trang - 1) * $gioihan;
+
+        // Sử dụng vị trí tính toán được trong phương thức phân trang
+        $khuyenmai = $km->phantrang($vitri, $gioihan);
+        
+        $sotrang = ceil($tongsotrang / $gioihan);
+        
         include("blog.php");
         break;
     case "sim":
@@ -166,19 +179,8 @@ switch ($action) {
             $moi->setMaS($_GET["MaSim"]);
             $moi->setSL(1);
             $moi->setDonGia($giaban);
-
             $gh->themgiohang_ct($moi);
             echo "<script>alert('Đã thêm vào giỏ.');</script>";
-            
-            // $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
-            // $goicuoc = $gc->laydanhsachgoicuoc();
-            // $sim = $s->laydanhsachsim();
-            // $thuebao = $s->laydanhsachloaithuebao();
-            // $loaisim = $ls->laydanhsachloaisim();
-            // // $khuyenmai = $km->laydanhsachkhuyenmai();
-            // $nguoidung = $nd->laydanhsachnguoidung();
-            // $quangcao = $qc->laydanhsachquangcao();
-
             $sim = $s->laydanhsachsim();
             $thuebao = $s->laydanhsachloaithuebao();
             $khuyenmai = $km->laydanhsachkhuyenmai();
