@@ -68,7 +68,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 					</div>
 					<style>
 						/* Loại bỏ border-bottom mặc định của liên kết */
-						a.filter-link {
+						a.filter-link1 {
 							color: #979797;
 							text-decoration: none;
 							border-bottom: none;
@@ -76,8 +76,8 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						}
 
 						/* Màu và border-bottom khi hover hoặc focus */
-						a.filter-link:hover,
-						a.filter-link:focus {
+						a.filter-link1:hover,
+						a.filter-link1:focus {
 							color: #EF0033;
 							text-decoration: none;
 							border-bottom: none;
@@ -85,7 +85,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						}
 
 						/* Màu khi liên kết đang được nhấn */
-						a.filter-link:active {
+						a.filter-link1:active {
 							color: #EF0033 !important;
 							text-decoration: none !important;
 							border-bottom: none !important;
@@ -101,10 +101,10 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 							<a id="all" style="color: #E7E7E7;" class="text-decoration-none" href="index.php?type=all">Tất cả</a>
 						</div>
 						<div class="col-1">
-							<a id="traTruocLink" class="filter-link text-decoration-none" href="index.php?type=1" data-type="1">Trả trước</a>
+							<a id="traTruocLink" class="filter-link1 text-decoration-none" href="index.php?type=1" data-type="1">Trả trước</a>
 						</div>
 						<div class="col-1">
-							<a id="traSauLink" class="filter-link text-decoration-none" href="index.php?type=0" data-type="0">Trả sau</a>
+							<a id="traSauLink" class="filter-link1 text-decoration-none" href="index.php?type=0" data-type="0">Trả sau</a>
 						</div>
 					</div>
 					<div style="max-height: 500px; overflow-y: auto;">
@@ -117,6 +117,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 									<th scope="col">Chọn Mua</th>
 								</tr>
 							</thead>
+							<tbody>
 							<?php
 							$type = isset($_GET['type']) ? $_GET['type'] : 'all';
 
@@ -125,7 +126,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 									$loaithuebao = ($s['LoaiThueBao'] == '1');
 									$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao) || ($type == 'all');
 									if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1 && $hienthi) { ?>
-										<tbody>
+										
 											<tr class="table-hover-bg-factor">
 												<td scope="row"><?php echo $s['MaSim'] ?></td>
 												<td><?php echo $s['SoSim'] ?></td>
@@ -148,12 +149,13 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 
 												<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&MaLS=<?php echo $s['MaLS'] ?>&DonGia=<?php echo $ls['GiaBan'] ?>">Chọn Mua</a></td>
 											</tr>
-										</tbody>
+										
 							<?php
 									}
 								endforeach;
 							endforeach;
 							?>
+							</tbody>
 						</table>
 					</div>
 				</div>

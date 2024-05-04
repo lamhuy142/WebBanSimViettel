@@ -17,7 +17,7 @@
 <!-- Product -->
 <div class="bg0 m-t-23 p-b-140">
 	<div class="container">
-		
+
 		<section class="sec-product bg0 p-t-20 p-b-50">
 			<div class="container">
 				<!-- Tab02 -->
@@ -102,16 +102,16 @@
 						<table class="table" id="simTable<?php echo $l["MaLS"] ?>">
 							<thead class="rounded-top" style="background-color: #E4E4E4; color:#444966; ">
 								<tr>
-									<th scope=" col">STT</th>
+									<th scope=" col">Mã</th>
 									<th scope="col">Sim Số</th>
 									<th scope="col">Giá Sim</th>
 									<th scope="col">Chọn Mua</th>
 								</tr>
 							</thead>
-							<?php
-							foreach ($sim as $s) :
-								if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && $l["TrangThai"] == 1 && $s["MaSim"] != null) { ?>
-									<tbody>
+							<tbody>
+								<?php
+								foreach ($sim as $s) :
+									if ($s['MaLS'] == $l['MaLS'] && $s["TinhTrang"] == 1 && $l["TrangThai"] == 1 && $s["MaSim"] != null) { ?>
 										<tr class="table-hover-bg-factor" data-type="<?php echo $s['LoaiThueBao']; ?>">
 											<td scope=" row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
@@ -129,12 +129,12 @@
 											<?php } ?>
 											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogiohang&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $giaban ?>">Chọn Mua</a></td>
 										</tr>
-									</tbody>
-							<?php
-								}
-							endforeach;
-							// endforeach;
-							?>
+								<?php
+									}
+								endforeach;
+								// endforeach;
+								?>
+							</tbody>
 						</table>
 					</div>
 				<?php endforeach;
