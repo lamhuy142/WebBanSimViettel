@@ -87,7 +87,19 @@ switch ($action) {
         $loaisim = $ls->laydanhsachloaisim();
         $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
         $sim = $s->laydanhsachsim();
-        $goicuoc = $gc->laydanhsachgoicuoc();
+        // $goicuoc = $gc->laydanhsachgoicuoc();
+
+        // phân trang 
+        $trang = isset($_GET['trang']) ? $_GET['trang'] : 1;
+        $gioihan = 8;
+        $tongsotrang = $gc->laysoluonggc();
+        // Tính toán vị trí bắt đầu của kết quả truy vấn
+        $vitri = ($trang - 1) * $gioihan;
+
+        // Sử dụng vị trí tính toán được trong phương thức phân trang
+        $goicuoc = $gc->phantrang($vitri, $gioihan);
+
+        $sotrang = ceil($tongsotrang / $gioihan);
         include("goicuoc.php");
         break;
     case "thongtin":

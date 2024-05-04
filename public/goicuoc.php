@@ -60,19 +60,28 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						</div>
 					<?php endforeach; ?>
 				</div>
-
-
 			</div>
 		</section>
-
+		<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+			<ul class="pagination">
+				<li class="page-item">
+					<a style="color:#212529 !important;" class="page-link" href="index.php?action=goicuoc&trang=1" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Previous</span>
+					</a>
+				</li>
+				<?php for ($i = 1; $i <= $sotrang; $i++) { ?>
+					<li class="page-item "><a style="color:#212529 !important;" class="page-link" href="index.php?action=goicuoc&trang=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+				<?php } ?>
+				<li class="page-item">
+					<a style="color:#212529 !important;" class="page-link" href="index.php?action=goicuoc&trang=<?php echo $sotrang; ?>" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
-
-	<!-- Load more -->
-	<!-- <div class="flex-c-m flex-w w-full p-t-45 p-b-30">
-		<a style="font-family: 'Tilt Neon', sans-serif !important;" href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-			Load More
-		</a>
-	</div> -->
 </div>
 
 
