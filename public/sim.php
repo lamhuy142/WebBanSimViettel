@@ -49,7 +49,7 @@
 				<div class="row input-group">
 					<div class="col-4 flex-w flex-c-m m-tb-10">
 						<input type="text" placeholder="Tìm kiếm" name="timkiem" class="form-control">
-						<input style="width:85px; margin-left:3px;background-color:#EF0033; color:white;" class="btn  " type="submit" name="" id="" value="tìm kiếm">
+						<input style="width:85px; margin-left:3px;background-color:#EF0033; color:white;" class="btn" type="submit" name="" id="" value="tìm kiếm">
 					</div>
 					<div class="col">
 					</div>
@@ -176,7 +176,7 @@
 				document.querySelectorAll('[id^="simTable"]').forEach(table => {
 					const rows = table.querySelectorAll('tbody tr');
 					rows.forEach(row => {
-						row.style.display = ''; // Hiển thị tất cả các hàng  Dòng này đặt thuộc tính CSS display của mỗi hàng dữ liệu thành một chuỗi trống ''.
+						row.style.display = ''; // Dòng này đặt thuộc tính CSS display của mỗi hàng dữ liệu thành một chuỗi trống ''.
 					});
 				});
 			});

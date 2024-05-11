@@ -113,11 +113,13 @@ if (isset($_SESSION["nguoidung"])) {
 
                         <?php if (isset($_SESSION["nguoidung"])) {
                         ?>
+                            <!-- Giỏ hàng -->
                             <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
                                 <div class="icon-header-item cl2 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="<?php echo $tong_gh ?>">
                                     <i style="color: #EF0033;" class="zmdi zmdi-shopping-cart"></i>
                                 </div>
                             </div>
+                            <!-- ------- -->
                         <?php } ?>
                         <?php if (isset($_SESSION["nguoidung"]) && !empty($_SESSION["nguoidung"]["HoTen"])) { ?>
                             <nav class="navbar navbar-expand-lg text-decoration-none ">
@@ -201,37 +203,6 @@ if (isset($_SESSION["nguoidung"])) {
                 </span>
             </div>
         </div>
-
-
-        <!-- Menu Mobile -->
-        <!-- <div class="menu-mobile" style=" background-color: #FFFFFF; color: black;">
-            <ul class="main-menu-m">
-                <li>
-                    <a href="index.php">Home</a>
-                </li>
-
-                <li>
-                    <a href="product.php">Shop</a>
-                </li>
-
-                <li>
-                    <a href="shoping-cart.php" class="label1 rs1" data-label1="hot">Features</a>
-                </li>
-
-                <li>
-                    <a href="blog.php">Blog</a>
-                </li>
-
-                <li>
-                    <a href="about.php">About</a>
-                </li>
-
-                <li>
-                    <a href="contact.php">Contact</a>
-                </li>
-            </ul>
-        </div> -->
-
         <!-- Modal Search -->
         <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
             <div class="container-search-header">
@@ -249,7 +220,7 @@ if (isset($_SESSION["nguoidung"])) {
         </div>
     </header>
 
-    <!-- Cart -->
+    <!-- Giỏ Hàng ===========================================================================================================-->
     <div class="wrap-header-cart js-panel-cart">
         <div class="s-full js-hide-cart"></div>
 
@@ -269,35 +240,34 @@ if (isset($_SESSION["nguoidung"])) {
                     <?php
                     $i = 0;
                     // Kiểm tra nếu giỏ hàng rỗng
-                      if (empty($giohang)) {
+                    if (empty($giohang)) {
                         echo '<li class="class="header-cart-item empty-cart">Giỏ hàng rỗng</li>';
                     } else {
-                    foreach ($giohang as $gh) :
-                        foreach ($sim as $s) :
-                            // foreach ($loaisim as $ls) :
-                            if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
-                                $i++; ?>
-                                <li class="header-cart-item flex-w flex-t m-b-12">
-                                    <div class="header-cart-item-img">
-                                        <span><?php echo $i; ?></span>
-                                    </div>
-                                    <div class="header-cart-item-txt p-t-8">
-                                        <a href="#" style="color:black;" class=" header-cart-item-name m-b-18 text-decoration-none trans-04">
-                                            <?php echo $s["SoSim"]; ?>
-                                        </a>
+                        foreach ($giohang as $gh) :
+                            foreach ($sim as $s) :
+                                // foreach ($loaisim as $ls) :
+                                if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) {
+                                    $i++; ?>
+                                    <li class="header-cart-item flex-w flex-t m-b-12">
+                                        <div class="header-cart-item-img">
+                                            <span><?php echo $i; ?></span>
+                                        </div>
+                                        <div class="header-cart-item-txt p-t-8">
+                                            <a href="#" style="color:black;" class=" header-cart-item-name m-b-18 text-decoration-none trans-04">
+                                                <?php echo $s["SoSim"]; ?>
+                                            </a>
 
-                                        <span class="header-cart-item-info">
-                                            <?php echo $gh["SL"]; ?> x <?php echo number_format($gh["DonGia"]); ?>đ
-                                        </span>
-                                    </div>
-                                </li>
+                                            <span class="header-cart-item-info">
+                                                <?php echo $gh["SL"]; ?> x <?php echo number_format($gh["DonGia"]); ?>đ
+                                            </span>
+                                        </div>
+                                    </li>
                     <?php }
+                            endforeach;
                         endforeach;
-                    endforeach;
-                }
+                    }
                     ?>
                 </ul>
-
                 <div class="w-full">
                     <div style="font-family: 'Tilt Neon', sans-serif !important;" class="header-cart-total w-full p-tb-40">
                         Tổng tiền:
@@ -318,10 +288,6 @@ if (isset($_SESSION["nguoidung"])) {
                         <a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=xemgiohang" style="color:white;" class="flex-c-m hov-btn3 stext-101 cl0 size-107 bg3 bor2 text-decoration-none p-lr-15 trans-04 m-r-8 m-b-10">
                             Xem giỏ hàng
                         </a>
-
-                        <!-- <a href="shoping-cart.php" style="color:white;" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 text-decoration-none p-lr-15 trans-04 m-b-10">
-                            Thanh toán
-                        </a> -->
                     </div>
                 </div>
             </div>

@@ -90,14 +90,26 @@
 
 </footer>
 
+<!-- Hiển thị form đăng ký gói cước -->
+<script>
+	/*==================================================================
+    [ Show modal1 ]*/
+	$('.js-show-modal1').on('click', function(e) {
+		e.preventDefault();
+		$('.js-modal1').addClass('show-modal1');
+	});
 
+	$('.js-hide-modal1').on('click', function() {
+		$('.js-modal1').removeClass('show-modal1');
+	});
+</script>
 <!-- Back to top -->
 <div class="btn-back-to-top" id="myBtn">
 	<span class="symbol-btn-back-to-top">
 		<i class="zmdi zmdi-chevron-up"></i>
 	</span>
 </div>
-<div class="mwrap-modal1 wrap-modal1 js-modal1 p-t-60 p-b-20">
+<div class="mwrap-modal1 wrap-modal1 js-modal1 p-t-60 p-b-20 ">
 	<div class="overlay-modal1 js-hide-modal1"></div>
 
 	<div class="container">

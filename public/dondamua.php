@@ -53,7 +53,7 @@
 													<td style="font-family: 'Tilt Neon', sans-serif !important;" class="text-success font-weight-bold">Chuẩn bị hàng </td>
 													<td>
 														<div class="col">
-															<a href="index.php?action=huydon&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-secondary">Hủy đơn</a>
+															<a style="font-family: 'Tilt Neon', sans-serif !important;" href="index.php?action=huydon&id=<?php echo $dh['MaDH']; ?>&TrangThai=<?php echo $dh['TrangThai']; ?>" class="btn btn-secondary">Hủy đơn</a>
 														</div>
 													</td>
 												<?php } elseif ($dh["TrangThai"] == 1) { ?>

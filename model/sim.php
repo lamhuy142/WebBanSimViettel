@@ -50,7 +50,7 @@ class SIM
         $this->LoaiThueBao = $value;
     }
 
-    function timkiemsimtheo($tukhoa)
+    function timkiemsim($tukhoa)
     {
         $dbcon = DATABASE::connect();
         try {

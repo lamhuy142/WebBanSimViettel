@@ -195,7 +195,7 @@
     /*==================================================================
     [ Cart ]*/
     $('.js-show-cart').on('click',function(){
-        $('.js-panel-cart').addClass('show-header-cart');
+      $(".js-panel-cart").addClass("show-header-cart"); //jQuery sẽ thêm lớp 'show-header-cart' vào tất cả các phần tử có lớp là 'js-panel-cart
     });
 
     $('.js-hide-cart').on('click',function(){
@@ -266,14 +266,5 @@
         });
     });
     
-    /*==================================================================
-    [ Show modal1 ]*/
-    $('.js-show-modal1').on('click',function(e){
-        e.preventDefault();
-        $('.js-modal1').addClass('show-modal1');
-    });
-
-    $('.js-hide-modal1').on('click',function(){
-        $('.js-modal1').removeClass('show-modal1');
-    });
+    
 })(jQuery);

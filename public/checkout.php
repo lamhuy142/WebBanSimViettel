@@ -25,8 +25,8 @@
                     <div class="row">
                         <div class="col-md-12 col-lg-6">
                             <div class="form-item w-100">
-                                <label class="form-label my-3">Tên đăng nhập<sup>*</sup></label>
-                                <input type="text" class="form-control" name="txtemail" value="<?php echo $_SESSION["nguoidung"]["TenDangNhap"]; ?>" disabled>
+                                <label class="form-label my-3">Họ tên<sup>*</sup></label>
+                                <input type="text" class="form-control" name="txthoten" value="<?php echo $_SESSION["nguoidung"]["HoTen"]; ?>" disabled>
                             </div>
                         </div>
                         <div class=" col-md-12 col-lg-6">
@@ -35,10 +35,6 @@
                                 <input type="text" class="form-control" name="txtsodienthoai" value="<?php echo $_SESSION["nguoidung"]["Sdt"] ?>" disabled>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-item">
-                        <label class="form-label my-3">Họ tên<sup>*</sup></label>
-                        <input type="text" class="form-control" name="txthoten" value="<?php echo $_SESSION["nguoidung"]["HoTen"]; ?>" disabled>
                     </div>
                     <div class="form-item">
                         <label class="form-label my-3">Địa chỉ <sup>*</sup></label>

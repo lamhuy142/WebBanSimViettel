@@ -70,7 +70,7 @@ $selectedOption = isset($_POST['inlineRadioOptions']) ? $_POST['inlineRadioOptio
 						<span class="sr-only">Previous</span>
 					</a>
 				</li>
-				<?php for ($i = 1; $i <= $sotrang; $i++) { ?>
+				<?php for($i = 1; $i <= $sotrang; $i++) { ?>
 					<li class="page-item "><a style="color:#212529 !important;" class="page-link" href="index.php?action=goicuoc&trang=<?php echo $i; ?>"><?php echo $i; ?></a></li>
 				<?php } ?>
 				<li class="page-item">

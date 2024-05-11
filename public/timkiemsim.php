@@ -80,10 +80,8 @@
 							<div class="container">
 								<div class="row">
 									<div class="col-md-12 text-center pt-5">
-
 										<h2 class="display-3 text-black">Không tìm thấy!</h2>
 										<p class="lead mb-5">Bạn có thể tìm kiếm tiếp tục hoặc <a href="index.php?action=sim" style="color:white; background-color: #EF0033; " class="rounded text-decoration-none pl-1 pr-1 hov-btn3">trở lại cửa hàng</a>.</p>
-
 									</div>
 								</div>
 							</div>
@@ -99,16 +97,18 @@
 								<th scope="col">Chọn Mua</th>
 							</tr>
 						</thead>
-						<?php
-						$type = isset($_GET['type']) ? $_GET['type'] : '';
-						// $type = 0;
-						foreach ($sim as $s) :
-							foreach ($loaisim as $ls) :
-								$loaithuebao = ($s['LoaiThueBao'] == '1');
-								$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
-								// && $hienthi
-								if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1) { ?>
-									<tbody>
+						<tbody>
+							<?php
+							$type = isset($_GET['type']) ? $_GET['type'] : '';
+							// $type = 0;
+
+							foreach ($sim as $s) :
+								foreach ($loaisim as $ls) :
+									$loaithuebao = ($s['LoaiThueBao'] == '1');
+									$hienthi = ($type == '1' && $loaithuebao) || ($type == '0' && !$loaithuebao);
+									// && $hienthi
+									if ($ls["MaLS"] == $s["MaLS"] && $s["TinhTrang"] == 1) { ?>
+
 										<tr class="table-hover-bg-factor">
 											<td scope="row"><?php echo $s['MaSim'] ?></td>
 											<td><?php echo $s['SoSim'] ?></td>
@@ -127,12 +127,13 @@
 											<?php } ?>
 											<td><a style="background-color: #EF0033; color: white;" class="btn" href="index.php?action=themvaogio&MaSim=<?php echo $s['MaSim'] ?>&DonGia=<?php echo $ls['GiaBan'] ?>">Chọn Mua</a></td>
 										</tr>
-									</tbody>
-						<?php
-								}
+
+							<?php
+									}
+								endforeach;
 							endforeach;
-						endforeach;
-						?>
+							?>
+						</tbody>
 					</table>
 				</div>
 			</div>

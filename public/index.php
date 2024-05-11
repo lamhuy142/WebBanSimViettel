@@ -85,20 +85,18 @@ switch ($action) {
         break;
     case "goicuoc":
         $loaisim = $ls->laydanhsachloaisim();
-        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
         $sim = $s->laydanhsachsim();
+        $loaigoicuoc = $lgc->laydanhsachloaigoicuoc();
         // $goicuoc = $gc->laydanhsachgoicuoc();
-
+        
         // phân trang 
         $trang = isset($_GET['trang']) ? $_GET['trang'] : 1;
         $gioihan = 8;
         $tongsotrang = $gc->laysoluonggc();
         // Tính toán vị trí bắt đầu của kết quả truy vấn
         $vitri = ($trang - 1) * $gioihan;
-
         // Sử dụng vị trí tính toán được trong phương thức phân trang
         $goicuoc = $gc->phantrang($vitri, $gioihan);
-
         $sotrang = ceil($tongsotrang / $gioihan);
         include("goicuoc.php");
         break;
@@ -200,6 +198,38 @@ switch ($action) {
             include("sim.php");
         }
         break;
+    case "timkiemsim":
+        if (isset($_POST["timkiem"])) {
+            $tukhoa = $_POST["timkiem"];
+            $vitri = strpos($tukhoa, '*'); // vị trí của dấu * trong chuỗi
+
+            // Nếu không có dấu '*' trong từ khóa
+            if ($vitri === false) {
+                // Xử lý khi từ khóa không chứa dấu '*'
+                $sim = $s->timkiemsim($tukhoa);
+                $thuebao = $s->laydanhsachloaithuebao();
+                $khuyenmai = $km->laydanhsachkhuyenmai();
+                $loaisim = $ls->laydanhsachloaisim();
+                include("timkiemsim.php");
+            } elseif ($vitri == 0) {
+                // Xử lý khi từ khóa chứa dấu '*' ở đầu
+                $tk = str_replace("*", "", $tukhoa); // đổi * thành khoảng trắng trong chuỗi 
+                $sim = $s->timkiemsimtheoduoiso($tk);
+                $thuebao = $s->laydanhsachloaithuebao();
+                $khuyenmai = $km->laydanhsachkhuyenmai();
+                $loaisim = $ls->laydanhsachloaisim();
+                include("timkiemsim.php");
+            } else {
+                // Xử lý khi từ khóa chứa dấu '*' ở vị trí khác đầu
+                $tk = str_replace("*", "", $tukhoa); // đổi * thành khoảng trắng trong chuỗi 
+                $sim = $s->timkiemsimtheodauso($tk);
+                $thuebao = $s->laydanhsachloaithuebao();
+                $khuyenmai = $km->laydanhsachkhuyenmai();
+                $loaisim = $ls->laydanhsachloaisim();
+                include("timkiemsim.php");
+            }
+        }
+        break;
     case "xemgiohang":
         if (isset($_SESSION["nguoidung"])) {
             $loaisim = $ls->laydanhsachloaisim();
@@ -209,7 +239,6 @@ switch ($action) {
             $giohang = $gh->laydanhsachgiohang_ct();
             include("shoping-cart.php");
         }
-
         break;
     case "dathang":
         if (isset($_SESSION["nguoidung"])) {
@@ -227,7 +256,7 @@ switch ($action) {
 
         $ngayhd = date("Y-m-d");
         $tongtien = $gh->tinhtongtientheond($nguoidung_id);
-
+        
         $dh_moi = new DONHANG();
         $dh_moi->setMaND($_SESSION["nguoidung"]["MaND"]);
         $dh_moi->setNgayDatHang($ngayhd);
@@ -511,8 +540,6 @@ switch ($action) {
             $sim = $s->laydanhsachsim();
             include("chitietgoicuoc.php");
         }
-        $sim = $s->laydanhsachsim();
-        include("main.php");
         break;
     case "hoso":
         $loaisim = $ls->laydanhsachloaisim();
@@ -613,39 +640,7 @@ switch ($action) {
             include("xemtheoloaigc.php");
         }
         break;
-    case "timkiemsim":
-        if (isset($_POST["timkiem"])) {
-            $tukhoa = $_POST["timkiem"];
-            $vitri = strpos($tukhoa, '*'); // vị trí của dấu * trong chuỗi
-
-            // Nếu không có dấu '*' trong từ khóa
-            if ($vitri === false) {
-                // Xử lý khi từ khóa không chứa dấu '*'
-                $sim = $s->timkiemsimtheo($tukhoa);
-                $thuebao = $s->laydanhsachloaithuebao();
-                $khuyenmai = $km->laydanhsachkhuyenmai();
-                $loaisim = $ls->laydanhsachloaisim();
-                include("timkiemsim.php");
-            } elseif ($vitri == 0) {
-                // Xử lý khi từ khóa chứa dấu '*' ở đầu
-                $tk = str_replace("*", "", $tukhoa); // đổi * thành khoảng trắng trong chuỗi 
-                $sim = $s->timkiemsimtheoduoiso($tk);
-                $thuebao = $s->laydanhsachloaithuebao();
-                $khuyenmai = $km->laydanhsachkhuyenmai();
-                $loaisim = $ls->laydanhsachloaisim();
-                include("timkiemsim.php");
-            } else {
-                // Xử lý khi từ khóa chứa dấu '*' ở vị trí khác đầu
-                $tk = str_replace("*", "", $tukhoa); // đổi * thành khoảng trắng trong chuỗi 
-                $sim = $s->timkiemsimtheodauso($tk);
-                $thuebao = $s->laydanhsachloaithuebao();
-                $khuyenmai = $km->laydanhsachkhuyenmai();
-                $loaisim = $ls->laydanhsachloaisim();
-                include("timkiemsim.php");
-            }
-        }
-
-        break;
+    
     default:
         break;
 }
