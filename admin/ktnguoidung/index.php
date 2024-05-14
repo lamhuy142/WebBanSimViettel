@@ -10,7 +10,7 @@ require("../../model/traloidanhgia.php");
 // Biến $isLogin cho biết người dùng đăng nhập chưa
 $isLogin = isset($_SESSION["nguoidung"]);
 // Kiểm tra hành động $action: yêu cầu đăng nhập nếu chưa xác thực
-if (isset($_REQUEST["action"])) {
+if(isset($_REQUEST["action"])){
     $action = $_REQUEST["action"];
 } elseif ($isLogin == FALSE) {
     $action = "dangnhap";
@@ -90,6 +90,7 @@ switch ($action) {
     case "hoso":
         if (isset($_GET["id"])) {
             $nguoidung_ht = $nd->laynguoidungtheoid($_GET["id"]);
+            $nguoidung= $nd->laydanhsachnguoidung();
             $danhgia = $dg->laydanhsachdanhgia();
             $traloidanhgia = $tl->laydanhsachtraloidanhgia();
            
@@ -193,14 +194,17 @@ switch ($action) {
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 1 && $_SESSION["nguoidung"]["MaQ"] == 2) {
                 header("Location:../../public/index.php");
             } elseif ($_SESSION["nguoidung"]["TrangThai"] == 0) {
-                $thongbao = "Tài khoản đã bị khóa";
+                echo "<script>alert('Tài khoản đã bị khóa.');</script>";
+                // $thongbao = "Tài khoản đã bị khóa";
                 include("login.php");
             } else {
-                $thongbao = "Nhập sai mật khẩu hoặc tên đăng nhập";
+                echo "<script>alert('Nhập sai mật khẩu hoặc tên đăng nhập.');</script>";
+                // $thongbao = "Nhập sai mật khẩu hoặc tên đăng nhập";
                 include("login.php");
             }
         } else {
-            $thongbao = "Nhập sai mật khẩu hoặc tên đăng nhập";
+            echo "<script>alert('Nhập sai mật khẩu hoặc tên đăng nhập.');</script>";
+            // $thongbao = "Nhập sai mật khẩu hoặc tên đăng nhập";
             include("login.php");
         }
         break;

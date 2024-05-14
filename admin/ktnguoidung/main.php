@@ -136,7 +136,7 @@
         var ctx = document.getElementById('bieudodoanhthutuan').getContext('2d');
         // Tạo biểu đồ cột
         var bieudodoanhthutuan = new Chart(ctx, {
-            type: 'bar',
+            type: 'bar', // dạng đồ thị
             data: {
                 labels: labels,
                 datasets: [{
