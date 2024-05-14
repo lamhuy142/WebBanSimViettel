@@ -124,31 +124,13 @@ switch ($action) {
         // Sau khi lưu thành công, cập nhật thông tin hình ảnh mới vào session.
         $hoten = $_POST["txthoten"];
         $_SESSION["nguoidung"]["HoTen"] = $hoten;
+        
         // load danh sách
-        $donhang = $dh->laydanhsachdonhang();
+        $nguoidung_ht = $nd->laynguoidungtheoid($_POST["MaND"]);
         $nguoidung = $nd->laydanhsachnguoidung();
         $danhgia = $dg->laydanhsachdanhgia();
-
-        $thanght = date("m");
-        $namht = date("Y");
-        // Tính tổng doanh thu theo tháng
-        $tongdt_thanght = 0;
-        foreach ($donhang as $d) {
-            $thangdh = date('m', strtotime($d['NgayGiaoHang']));
-            if ($thangdh == $thanght && $d["TrangThai"] == 2) {
-                $tongdt_thanght += $d["TongTien"];
-            }
-        }
-        // Tính tổng doanh thu theo năm
-        $tongdt_namht = 0;
-        foreach ($donhang as $d) {
-            $namdh = date('Y', strtotime($d['NgayGiaoHang']));
-            if ($namdh == $namht && $d["TrangThai"] == 2) {
-                $tongdt_namht += $d["TongTien"];
-            }
-        }
         $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-        include("main.php");
+        include("profile.php");
         break;
     case "dangnhap":
         include("login.php");
