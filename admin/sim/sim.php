@@ -17,7 +17,6 @@
                             <th scope="col">Mã Sim</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
-                            <!-- <th scope="col">Mô Tả</th> -->
                             <th scope="col">Loại Thuê Bao</th>
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
@@ -28,7 +27,6 @@
                             <th scope="col">Mã Sim</th>
                             <th scope="col">Loại Sim</th>
                             <th scope="col">Số Sim</th>
-                            <!-- <th scope="col">Mô Tả</th> -->
                             <th scope="col">Loại Thuê Bao</th>
                             <th scope="col">Trạng Thái</th>
                             <th scope="col">Hành Động</th>
@@ -42,7 +40,6 @@
                                         <td><?php echo $s["MaSim"] ?></td>
                                         <td><?php echo $l["TenLS"] ?></td>
                                         <td><?php echo $s["SoSim"] ?></td>
-                                        <!-- <td><php echo $s["MoTa"] ?></td> -->
 
                                         <!-- Loại thuê bao -->
                                         <?php if ($s["LoaiThueBao"] == 1) { ?>

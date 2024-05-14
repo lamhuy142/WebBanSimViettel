@@ -203,14 +203,6 @@ switch ($action) {
         echo "<script>alert('Thêm thành công.');</script>";
         include("loaisim.php");
         break;
-        // case "xoa":
-        //     $xoa = new SIM();
-        //     $xoa->setMaSim($_GET["id"]);
-        //     $sim = $s->xoasim($xoa);
-        //     $loaisim = $ls->laydanhsachloaisim();
-        //     $sim = $s->laydanhsachsim();
-        //     include("sim.php");
-        //     break;
     case "sua":
         if (isset($_GET["id"])) {
             $sim_ht = $s->laydanhsachsimtheoid($_GET["id"]);
@@ -231,8 +223,8 @@ switch ($action) {
         break;
     case "xulysua": // lưu dữ liệu sửa mới vào db
         //kiểm tra 
-        $dssim = $s->laydanhsachsim();
-        foreach ($dssim as $kt) :
+        // $dssim = $s->laydanhsachsim();
+        // foreach ($dssim as $kt) :
             if (strlen($_POST["txtsosim"]) < 10) {
                 echo "<script>alert('Số điện thoại phải có ít nhất 10 kí tự, Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
                 exit();
@@ -240,7 +232,7 @@ switch ($action) {
                 echo "<script>alert('Số điện thoại phải có kí từ đầu là 0, Vui lòng nhập lại số điện thoại.');window.history.back();</script>";
                 exit();
             }
-        endforeach;
+        // endforeach;
         // gán dữ liệu từ form
 
         $sua = new SIM();
