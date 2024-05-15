@@ -384,7 +384,7 @@ switch ($action) {
         // }
         break;
     case "xldangky":
-        $sodienthoai = $_POST["sdt"];
+        $sodienthoai = $_POST["sodienthoai"];
         $tendangnhap = $_POST["txttendn"];
 
         $kiemtra1 = $nd->kiemtraSdtTonTai($sodienthoai);
@@ -394,11 +394,9 @@ switch ($action) {
             echo "<script>alert('Số điện thoại phải tối thiểu 10 chữ số, Vui lòng nhập lại số điện thoại.');</script>";
             $HoTen = $_POST["txthoten"];
             $tendangnhap = $_POST["txttendn"];
-            $DiaChi = $_POST["txtdiachi"];
             $MatKhau = $_POST["txtmatkhau"];
-            $MaQ = $_POST["optquyen"];
-            $TrangThai = $_POST["txttrangthai"];
-            $HinhAnh = basename($_FILES["fileanh"]["name"]);
+            $MaQ = $_POST["quyen"];
+            $TrangThai = $_POST["trangthai"];
             $quyen = $q->laydanhsachquyen();
             include("register.php");
         } elseif ($kiemtra1) {
@@ -406,11 +404,9 @@ switch ($action) {
             echo "<script>alert('Số điện thoại đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập số điện thoại khác.');</script>";
             $HoTen = $_POST["txthoten"];
             $tendangnhap = $_POST["txttendn"];
-            $DiaChi = $_POST["txtdiachi"];
             $MatKhau = $_POST["txtmatkhau"];
-            $MaQ = $_POST["optquyen"];
-            $TrangThai = $_POST["txttrangthai"];
-            $HinhAnh = basename($_FILES["fileanh"]["name"]);
+            $MaQ = $_POST["quyen"];
+            $TrangThai = $_POST["trangthai"];
             $quyen = $q->laydanhsachquyen();
             include("register.php");
         }
@@ -419,28 +415,22 @@ switch ($action) {
         //     echo "<script>alert('Tên đăng nhập đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập Tên đăng nhập khác.');</script>";
         //     $HoTen = $_POST["txthoten"];
         //     $Sdt = $_POST["sdt"];
-        //     $DiaChi = $_POST["txtdiachi"];
         //     $MatKhau = $_POST["txtmatkhau"];
-        //     $MaQ = $_POST["optquyen"];
-        //     $TrangThai = $_POST["txttrangthai"];
-        //     $HinhAnh = basename($_FILES["fileanh"]["name"]);
+        //     $MaQ = $_POST["quyen"];
+        //     $TrangThai = $_POST["trangthai"];
         //     $quyen = $q->laydanhsachquyen();
         //     include("register.php");
         // } else {
-        //xử lý load ảnh
-        $hinhanh = "user_md.png"; // đường dẫn ảnh lưu trong db
-        // $duongdan = "../../img/user/" . $hinhanh; //nơi lưu file upload
-        // move_uploaded_file($_FILES["fileanh"]["tmp_name"], $duongdan);
         //xử lý thêm 
         $nguoidungmoi = new NGUOIDUNG();
-        $nguoidungmoi->setTenDangNhap($_POST["txttendangnhap"]);
+        $nguoidungmoi->setTenDangNhap($_POST["txttendn"]);
         $nguoidungmoi->setSdt($_POST["sodienthoai"]);
         $nguoidungmoi->setMatKhau($_POST["txtpassword"]);
-        $nguoidungmoi->setDiaChi($_POST["diachi"]);
+        $nguoidungmoi->setDiaChi(null);
         $nguoidungmoi->setHoTen($_POST["txthoten"]);
         $nguoidungmoi->setMaQ($_POST["quyen"]);
         $nguoidungmoi->setTrangThai($_POST["trangthai"]);
-        $nguoidungmoi->setHinhAnh($hinhanh);
+        $nguoidungmoi->setHinhAnh('user_md.png');
 
         // thêm
         $nd->themnguoidung($nguoidungmoi);

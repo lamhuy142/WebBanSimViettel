@@ -37,6 +37,7 @@ if (isset($_SESSION["nguoidung"])) {
     <link rel="stylesheet" type="text/css" href="./assets/css/util.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/css1.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
@@ -53,15 +54,11 @@ if (isset($_SESSION["nguoidung"])) {
 
     <!-- FONT CHỮ ---------------------------- -->
     <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
-    <!-- SLIDE------------------------ -->
-    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
 
-    <!-- Hiển thị đánh giá -->
-    <!--===============================================================================================-->
+    <link rel="stylesheet" href="../public/assets/css/css2.css">
+
 </head>
 
-<!-- <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<df-messenger intent="WELCOME" chat-title="ViChat" agent-id="9ec64812-29d0-47d0-b211-fb51ca18a7af" language-code="vi"></df-messenger> -->
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger intent="WELCOME" chat-title="Chat" agent-id="e0b0fdf5-4b21-4ad4-a00c-da3b5bdf5c01" language-code="vi"></df-messenger>
 

@@ -18,7 +18,7 @@
                                 <img class="img-thumbnail" src="
                     <?php
                     if ($_SESSION['nguoidung']['HinhAnh'] == NULL) {
-                        echo '../img/user/user.png';
+                        echo '../img/user/user_md.png';
                     } else echo '../img/user/' . $_SESSION['nguoidung']['HinhAnh']; ?>" alt="<?php echo $_SESSION['nguoidung']['HoTen'];  ?>" width="100px">
                             </div>
                             <div class="my-3">
