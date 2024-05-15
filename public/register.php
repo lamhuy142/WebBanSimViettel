@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Đăng Ký</title>
     <link rel="stylesheet" href="../public/assets/css/css2.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -13,8 +13,8 @@
 
 </head>
 
-<body>
-    <section class="vh-50 gradient-custom">
+<body style="background-image: url(../img/gioithieu/headbg.png);background-size: cover; background-position: center;">
+    <section class="vh-50 ">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-50">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -58,7 +58,7 @@
                             </form>
 
                             <div>
-                                <p class="mb-0 text-center">Chưa có tài khoản? <a href="index.php?action=dangky" class="text-white-50 fw-bold">Đăng ký</a>
+                                <p class="mb-0 text-center">Đã có tài khoản? <a href="index.php?action=dangnhap" class="text-white-50 fw-bold">Đăng nhập</a>
                                 </p>
                             </div>
 

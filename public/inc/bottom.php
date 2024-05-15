@@ -43,20 +43,16 @@
 				</h4>
 
 				<p style="font-family: 'Tilt Neon', sans-serif !important;" class="stext-107 cl7 size-201">
-					Có câu hỏi nào không? Hãy cho chúng tôi biết tại cửa hàng tại tầng 8, 379 Hudson St, New York, NY 10018 hoặc gọi cho chúng tôi theo số 0111222333
+					Cơ quan chủ quản: Tổng Công ty Viễn thông Viettel (Viettel Telecom) - Chi nhánh Tập đoàn Công nghiệp - Viễn thông Quân đội. Mã số doanh nghiệp: 0100109106-011 do Sở Kế hoạch và Đầu tư Thành phố Hà Nội cấp lần đầu ngày 18/07/2005, sửa đổi lần thứ 15 ngày 18/12/2018. Chịu trách nhiệm nội dung: Ông Cao Anh Sơn
 				</p>
 
 				<div class="p-t-27">
-					<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+					<a href="https://www.facebook.com/vietteltelecom/" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
 						<i class="fa fa-facebook"></i>
 					</a>
 
-					<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-						<i class="fa fa-instagram"></i>
-					</a>
-
-					<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-						<i class="fa fa-pinterest-p"></i>
+					<a href="https://www.youtube.com/user/Viettelchannels" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+						<i class="bi bi-youtube"></i>
 					</a>
 				</div>
 			</div>
@@ -90,6 +86,13 @@
 
 </footer>
 
+
+<!-- Back to top -->
+<div class="btn-back-to-top" id="myBtn">
+	<span class="symbol-btn-back-to-top">
+		<i class="zmdi zmdi-chevron-up"></i>
+	</span>
+</div>
 <!-- Hiển thị form đăng ký gói cước -->
 <script>
 	/*==================================================================
@@ -103,15 +106,8 @@
 		$('.js-modal1').removeClass('show-modal1');
 	});
 </script>
-<!-- Back to top -->
-<div class="btn-back-to-top" id="myBtn">
-	<span class="symbol-btn-back-to-top">
-		<i class="zmdi zmdi-chevron-up"></i>
-	</span>
-</div>
 <div class="mwrap-modal1 wrap-modal1 js-modal1 p-t-60 p-b-20 ">
 	<div class="overlay-modal1 js-hide-modal1"></div>
-
 	<div class="container">
 		<div style="padding-left:25px;" class="mbg bg0 p-t-30 p-b-30 p-lr-15-lg how-pos3-parent">
 			<button class="how-pos3 hov3 trans-04 js-hide-modal1">
