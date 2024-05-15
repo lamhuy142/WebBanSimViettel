@@ -129,7 +129,7 @@
 
         // Duyệt qua dữ liệu và tách ra nhãn và doanh thu
         for (var i = 0; i < doanhThuTuan.length; i++) {
-            labels.push('Tuần ' + doanhThuTuan[i].Tuan + '/' + doanhThuTuan[i].Nam); 
+            labels.push('Tuần ' + doanhThuTuan[i].Tuan + '/' + doanhThuTuan[i].Nam);
             data.push(doanhThuTuan[i].TongDoanhThu);
         }
         // Lấy thẻ canvas để vẽ biểu đồ
@@ -141,8 +141,8 @@
                 labels: labels,
                 datasets: [{
                     label: 'Doanh thu theo tuần',
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: '#4E73DF', // màu cột
+                    borderColor: '#4E73DF', // màu viền
                     borderWidth: 1,
                     data: data
                 }]
@@ -164,12 +164,12 @@
                             padding: 10,
                             // Include a dollar sign in the ticks
                             callback: function(value, index, values) {
-                                return number_format(value)+'đ';
+                                return number_format(value) + 'đ';
                             }
                         },
                         gridLines: {
-                            color: "rgb(234, 236, 244)",
-                            zeroLineColor: "rgb(234, 236, 244)",
+                            color: "rgb(234, 236, 244)", // line ngang của biểu đồ
+                            zeroLineColor: "rgb(234, 236, 244)", // màu của line dưới cùng của biểu đồ
                             drawBorder: false,
                             borderDash: [2],
                             zeroLineBorderDash: [2]
@@ -183,7 +183,7 @@
                     titleMarginBottom: 10,
                     titleFontColor: '#6e707e',
                     titleFontSize: 14,
-                    backgroundColor: "rgb(255,255,255)",
+                    backgroundColor: "rgb(255,255,255)", // màu chú thích
                     bodyFontColor: "#858796",
                     borderColor: '#dddfeb',
                     borderWidth: 1,
