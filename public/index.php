@@ -410,17 +410,7 @@ switch ($action) {
             $quyen = $q->laydanhsachquyen();
             include("register.php");
         }
-        // elseif ($kiemtra2) {
-        //     // Nếu email đã tồn tại, hiển thị thông báo
-        //     echo "<script>alert('Tên đăng nhập đã tồn tại trong cơ sở dữ liệu. Vui lòng nhập Tên đăng nhập khác.');</script>";
-        //     $HoTen = $_POST["txthoten"];
-        //     $Sdt = $_POST["sdt"];
-        //     $MatKhau = $_POST["txtmatkhau"];
-        //     $MaQ = $_POST["quyen"];
-        //     $TrangThai = $_POST["trangthai"];
-        //     $quyen = $q->laydanhsachquyen();
-        //     include("register.php");
-        // } else {
+       
         //xử lý thêm 
         $nguoidungmoi = new NGUOIDUNG();
         $nguoidungmoi->setTenDangNhap($_POST["txttendn"]);
@@ -566,6 +556,8 @@ switch ($action) {
 
         // Cập nhật thông tin người dùng mới vào session
         $_SESSION["nguoidung"]["HoTen"] = $HoTen;
+        $_SESSION["nguoidung"]["DiaChi"] = $DiaChi;
+
 
         // Load danh sách
         $donhang = $dh->laydanhsachdonhang();
