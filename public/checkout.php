@@ -17,7 +17,7 @@
     <div class="container py-5">
         <h1 class="mb-4">Thông Tin Đặt Hàng
             <?php if (isset($_SESSION["nguoidung"])) { ?></h1>
-        <form action="index.php" method="post">
+        <form class="was-validated" action="index.php" method="post">
             <input type="hidden" name="MaND" value="<?php echo $_SESSION["nguoidung"]["MaND"]; ?>">
             <input type="hidden" name="action" value="luudonhang">
             <div class="row g-5">
@@ -26,19 +26,21 @@
                         <div class="col-md-12 col-lg-6">
                             <div class="form-item w-100">
                                 <label class="form-label my-3">Họ tên<sup>*</sup></label>
-                                <input type="text" class="form-control" name="txthoten" value="<?php echo $_SESSION["nguoidung"]["HoTen"]; ?>" disabled>
+                                <input type="text" class="form-control" name="txthoten" value="<?php echo $_SESSION["nguoidung"]["HoTen"]; ?>" disabled required>
                             </div>
                         </div>
                         <div class=" col-md-12 col-lg-6">
                             <div class="form-item w-100">
                                 <label class="form-label my-3">Số điện thoại<sup>*</sup></label>
-                                <input type="text" class="form-control" name="txtsodienthoai" value="<?php echo $_SESSION["nguoidung"]["Sdt"] ?>" disabled>
+                                <input type="text" class="form-control" name="txtsodienthoai" value="<?php echo $_SESSION["nguoidung"]["Sdt"] ?>" disabled required>
                             </div>
                         </div>
                     </div>
                     <div class="form-item">
                         <label class="form-label my-3">Địa chỉ <sup>*</sup></label>
-                        <input type="text" class="form-control" id="diachi" placeholder="Địa chỉ" name="txtdiachi" value="<?php echo $_SESSION['nguoidung']['DiaChi']; ?>" disabled>
+                        <input type="text" class="form-control" id="diachi" placeholder="Hãy nhập địa chỉ" name="txtdiachi" value="<?php echo $_SESSION['nguoidung']['DiaChi']; ?>" required>
+                        <div class="valid-feedback">Hợp lệ.</div>
+                        <div class="invalid-feedback">Vui lòng điền địa chỉ.</div>
                     </div>
                 </div>
             <?php } ?>

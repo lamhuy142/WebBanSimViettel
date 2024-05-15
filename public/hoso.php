@@ -23,23 +23,23 @@
                             </div>
                             <div class="my-3">
                                 <label for="txthoten" class="form-label">Họ tên:</label>
-                                <input type="text" class="form-control" placeholder="Họ tên" name="txthoten" value="<?php echo $_SESSION['nguoidung']['HoTen']; ?>" required>
+                                <input type="text" class="form-control" placeholder="Họ tên" name="txthoten" value="<?php echo $_SESSION['nguoidung']['HoTen']; ?>" >
                             </div>
                             <div class="my-3">
                                 <label for="sdt" class="form-label">Số điện thoại:</label>
-                                <input type="number" class="form-control" placeholder="Số điện thoại" name="sdt" value="<?php echo $_SESSION['nguoidung']['Sdt']; ?>" required>
+                                <input type="number" class="form-control" placeholder="Số điện thoại" name="sdt" value="<?php echo $_SESSION['nguoidung']['Sdt']; ?>" >
                             </div>
                             <div class="my-3">
                                 <label for="txtdiachi" class="form-label">Địa chỉ:</label>
-                                <input type="text" class="form-control" placeholder="Địa chỉ" name="txtdiachi" value="<?php echo $_SESSION['nguoidung']['DiaChi']; ?>" required>
+                                <input type="text" class="form-control" placeholder="Hãy nhập địa chỉ đầy đủ" name="txtdiachi" value="<?php echo $_SESSION['nguoidung']['DiaChi']; ?>" required>
                             </div>
                             <div class="my-3 mt-3">
                                 <label for="txttendn" class="form-label">Tên đăng nhập:</label>
-                                <input type="text" class="form-control" placeholder="Tên đăng nhập" name="txttendn" value="<?php echo $_SESSION['nguoidung']['TenDangNhap']; ?>" required>
+                                <input type="text" class="form-control" placeholder="Tên đăng nhập" name="txttendn" value="<?php echo $_SESSION['nguoidung']['TenDangNhap']; ?>" >
                             </div>
                             <div class="my-3">
                                 <label for="txtmk" class="form-label">Mật khẩu:</label>
-                                <input type="password" class="form-control" placeholder="Nhập mật khẩu mới nếu muốn đổi" name="txtmk"  required>
+                                <input type="password" class="form-control" placeholder="Nhập mật khẩu mới nếu muốn đổi" name="txtmk" >
                             </div>
                             <div class="my-3">
                                 <label for="fhinhanh" class="form-label">Đổi hình đại diện</label>
