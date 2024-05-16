@@ -606,6 +606,7 @@ switch ($action) {
             $tinhtrang = "1";
         $tinhtrang = 3;
         $dh->doitrangthai($id, $tinhtrang);
+        $s->doitrangthai($_REQUEST["idsim"], 1);
         // load hóa đơn
         $loaisim = $ls->laydanhsachloaisim();
         $sim = $s->laydanhsachsim();
