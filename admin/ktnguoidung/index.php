@@ -50,40 +50,6 @@ switch ($action) {
         
         include("main.php");
         break;
-    // case "demo":
-    //     $donhang = $dh->laydanhsachdonhang();
-    //     $nguoidung = $nd->laydanhsachnguoidung();
-    //     $danhgia = $dg->laydanhsachdanhgia();
-    //     //doanh thu tháng
-    //     $doanhthutuan = $dh->laydoanhthutheotuan();
-
-    //     // Chuyển đổi dữ liệu doanh thu thành JSON để truyền vào JavaScript
-    //     $doanhthu_json = json_encode($doanhthutuan);
-    //     // print_r($doanhthu_json);
-    //     // exit();
-
-    //     $thanght = date("m");
-    //     $namht = date("Y");
-    //     // Tính tổng doanh thu theo tháng
-    //     $tongdt_thanght = 0;
-    //     foreach ($donhang as $d) {
-    //         $thangdh = date('m', strtotime($d['NgayGiaoHang']));
-    //         if ($thangdh == $thanght && $d["TrangThai"] == 2) {
-    //             $tongdt_thanght += $d["TongTien"];
-    //         }
-    //     }
-    //     // Tính tổng doanh thu theo năm
-    //     $tongdt_namht = 0;
-    //     foreach ($donhang as $d) {
-    //         $namdh = date('Y', strtotime($d['NgayGiaoHang']));
-    //         if ($namdh == $namht && $d["TrangThai"] == 2) {
-    //             $tongdt_namht += $d["TongTien"];
-    //         }
-    //     }
-    //     $traloidanhgia = $tl->laydanhsachtraloidanhgia();
-
-    //     include("demo.php");
-    //     break;
     case "chuyentrang":
         header("Location:../../public/index.php");
         break;
@@ -121,7 +87,6 @@ switch ($action) {
         }
         // sửa
         $nd->suanguoidung($sua);
-        // Sau khi lưu thành công, cập nhật thông tin hình ảnh mới vào session.
         $hoten = $_POST["txthoten"];
         $_SESSION["nguoidung"]["HoTen"] = $hoten;
         
@@ -141,7 +106,7 @@ switch ($action) {
         break;
     case "xulydangnhap":
 
-        $tendangnhap = $_POST["txtdangnhap"];
+        $tendangnhap = $_POxST["txtdangnhap"];
         $matkhau = $_POST["txtpassword"];
 
         // Kiểm tra tính hợp lệ của tendangnhap và mật khẩu
