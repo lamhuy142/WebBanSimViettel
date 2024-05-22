@@ -58,7 +58,7 @@ if (empty($giohang)) { ?>
 									<th style="font-family: 'Tilt Neon', sans-serif !important;" class="column-5">Tổng tiền</th>
 									<th style="font-family: 'Tilt Neon', sans-serif !important;" class="column-5">Thao tác</th>
 								</tr>
-								<?php foreach ($giohang as $gh) :
+								<?php foreach ($giohang as $gh) : //lap qua tung gio hang
 									foreach ($sim as $s) :
 										if ($gh["MaND"] == $_SESSION["nguoidung"]["MaND"] && $s["MaSim"] == $gh["MaS"]) { ?>
 											<tr class="table_row">

@@ -106,7 +106,7 @@ switch ($action) {
         break;
     case "xulydangnhap":
 
-        $tendangnhap = $_POxST["txtdangnhap"];
+        $tendangnhap = $_POST["txtdangnhap"];
         $matkhau = $_POST["txtpassword"];
 
         // Kiểm tra tính hợp lệ của tendangnhap và mật khẩu
